@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import Layout from './Layout' ;
+import {Helmet} from "react-helmet";
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div>      
+      <Helmet>
+      <script src="./materialize/js/materialize.min.js"></script>
+      <script src="./js/scripts.js"></script>
+      </Helmet>    
       <Layout home="active" mun17="" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light"/>      
         <section className="banner-4 parallax-bg bg-fixed overlay dark-5 fullscreen-banner valign-wrapper" data-stellar-background-ratio="0.5">
             <div className="valign-cell">

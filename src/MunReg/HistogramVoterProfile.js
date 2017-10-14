@@ -26,7 +26,7 @@ class HistogramVoterProfile extends Component {
                     backgroundColor: 'rgba(255, 255, 255, .6)'
                 },
                 title: {
-                    text: this.props.clickedShapeName,
+                    text: "registered in "+ this.props.clickedShapeName + "per age tranche",
                 },
                 credits:false,
                 subtitle: {
@@ -104,7 +104,7 @@ class HistogramVoterProfile extends Component {
                     backgroundColor: 'rgba(255, 255, 255, .6)'
                 },
                 title: {
-                    text: nextProps.clickedShapeName+" per age tranche "
+                    text: "registered in "+ nextProps.clickedShapeName+" per age tranche "
                 },
                 credits:false,
                 subtitle: {

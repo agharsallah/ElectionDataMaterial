@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Layout from './Layout' ;
 import {Link,NavLink,Route } from 'react-router-dom';
+import {Helmet} from "react-helmet";
 
 import MunMap from './MunReg/MunMap' ;
+import DataRectangle from './MunReg/DataRectangle' ;
 import HistogramVoterProfile from './MunReg/HistogramVoterProfile' ;
 
 class MunReg extends Component {
@@ -19,12 +21,20 @@ class MunReg extends Component {
     }
     sendHistoDataBack(data){
         console.log('histo data',data);
+        //contains maleHistogram  femaleHistogram mapClicked ...
         this.setState(data);
     }
-
+    sendRectangleDataBack(recData){
+        console.log("rectangle data",recData);
+        this.setState(recData)
+    }
     render() {
+        let population=(this.state.population)
         return (
             <div>
+            <Helmet>
+            <script src="../../js/scripts.js"></script>
+            </Helmet>             
                 <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
                 <section className="page-title ptb-50">
                     <div className="container">
@@ -39,41 +49,7 @@ class MunReg extends Component {
                         </div>
                     </div>
                 </section>
-                <section >
-                <div className="container-fluid">   
-                    <div className="counter-section ">
-                        <div className="row text-center">
-                            <div className="col-sm-3">
-                                <div className="color-box blue-grad">
-                                <h2><span className="timer">570</span>K</h2>
-                                <span className="count-desc">Population</span>
-                                </div>
-                            </div> {/* /.col-sm-3 */}
-    
-                            <div className="col-sm-3">
-                            <div className="color-box pink-grad">
-                                <h2><span className="timer">350</span>+</h2>
-                                <span className="count-desc">Chair</span>
-                            </div>
-                            </div>{/* /.col-sm-3 */}
-    
-                            <div className="col-sm-3">
-                            <div className="color-box green-grad">
-                                <h2><span className="timer">6.71</span> Km²</h2>
-                                <span className="count-desc">Area</span>
-                            </div>
-                            </div>{/* /.col-sm-3 */}
-    
-                            <div className="col-sm-3">
-                            <div className="color-box purple-grad">
-                                <h2><span className="timer">20</span></h2>
-                                <span className="count-desc">Municipality</span>
-                            </div>
-                            </div>{/* /.col-sm-3 */}
-                        </div>
-                    </div>
-                </div>
-            </section>
+                
                 <section >
                     <div className="border-bottom-tab" style={{padding:'20px 5px'}} >
                     <ul className="nav nav-tabs" role="tablist">
@@ -82,6 +58,7 @@ class MunReg extends Component {
 {/*                 <li data-id="vc" onClick={this.chosenNiveau.bind(this)}><a href="#tab-4" role="tab" className="waves-effect waves-dark" data-toggle="tab">Voting center</a></li> */}                  </ul> 
                     </div>
                 </section>
+                
                 <section className="latest-news-card " style={{padding:'10px 0'}}>
                     <div className="container-fluid">
                         <div className="row">
@@ -91,7 +68,12 @@ class MunReg extends Component {
                                                 <h3 className=" activator">Click on the shape</h3>
                                             </div>
                                             <div className=" waves-effect waves-block waves-light">
-                                                <MunMap chosenNiveau={this.state.chosenNiveau} sendHistoDataBack={this.sendHistoDataBack.bind(this)} chosenGov={this.props.match.url} />
+                                                <MunMap 
+                                                    chosenNiveau={this.state.chosenNiveau}
+                                                    sendHistoDataBack={this.sendHistoDataBack.bind(this)} 
+                                                    chosenGov={this.props.match.url} 
+                                                    sendRectangleDataBack={this.sendRectangleDataBack.bind(this)}
+                                                />
                                             </div>
 
                                     </article>{/* /.card */}
@@ -116,6 +98,15 @@ class MunReg extends Component {
                             </div>{/* /.row */}
                         </div>{/* /.container */}
                     </section>
+                                    
+                <section >
+                    <DataRectangle
+                        population={population}
+                        area={this.state.area}
+                        chairs={this.state.chairs}
+                        munNumber={this.state.munNumber}
+                    />
+                </section>
 
             </div>
         );

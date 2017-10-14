@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import MunReg from './MunReg' ;
-import Choose from './Choose' ;
+import ChooseRegGov from './ChooseRegGov' ;
 import Invalid from './parl/Invalid' ;
 import { Route, Router, Redirect, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
@@ -19,7 +19,7 @@ const render = Component =>
     <Router history={customHistory}>
       <Switch>
       <Route exact path="/" component={App}/>
-      <Route  path="/munre" component={Choose}/>
+      <Route  path="/munre" component={ChooseRegGov}/>
       <Route  path="/munreg/:city" component={MunReg}/>
       <Route  path="/parl/invalid" component={Invalid}/>
       </Switch>

@@ -21,12 +21,11 @@ class Layout extends Component {
 
                             {/*mega menu start*/}
                             <ul className={headerColor}>
-                                <li className={this.props.home}><a href='/'>Home</a>
+                                <li className={this.props.home}><Link to='/'>Home</Link>
                                 </li>
 
                                 <li className={this.props.mun17}><Link to='/munre'>Registration 2017</Link>
                                 </li>
-a
                                 <li className={this.props.parl14}><a href='javascript:void(0)'>Parlimentary 2014</a>
                                     <ul className="dropdown">
                                         <li><Link to='/parl/invalid'>Invalid</Link></li>

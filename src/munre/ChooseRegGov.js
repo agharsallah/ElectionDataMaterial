@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip,LayersControl,Marker,CircleMarker } from 'react-leaflet';
 import { Redirect,withRouter,Link,NavLink,Route } from 'react-router-dom';
-import config from './config' ;
+import config from '../config' ;
 import axios from 'axios' ;
-import Layout from './Layout' ;
+import Layout from '../Layout' ;
+import HeaderHelmet from '../HeaderHelmet' ;
 
-class Choose extends Component {
+class ChooseRegGov extends Component {
     constructor(props){
       super(props);
       this.state={redirect: false}
@@ -44,6 +45,8 @@ class Choose extends Component {
         return (
             this.state.redirect ? <Redirect push to={url}/>:
             <div>
+            <HeaderHelmet/>
+            
             <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
             <section className="page-title ptb-50">
                 <div className="container">
@@ -90,4 +93,4 @@ class Choose extends Component {
     }
 }
 
-export default Choose;
+export default ChooseRegGov;

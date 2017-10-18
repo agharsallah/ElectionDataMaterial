@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Layout from './Layout' ;
+import Layout from '../Layout' ;
 import {Link,NavLink,Route } from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
-import MunMap from './MunReg/MunMap' ;
-import DataRectangle from './MunReg/DataRectangle' ;
-import HistogramVoterProfile from './MunReg/HistogramVoterProfile' ;
+import MunMap from './MunMap' ;
+import DataRectangle from './DataRectangle' ;
+import HistogramVoterProfile from './HistogramVoterProfile' ;
 
 class MunReg extends Component {
 
@@ -50,6 +50,7 @@ class MunReg extends Component {
                     </div>
                 </section>
                 
+                {/* Tab to Choose the level of the map  */}
                 <section >
                     <div className="border-bottom-tab" style={{padding:'20px 5px'}} >
                     <ul className="nav nav-tabs" role="tablist">

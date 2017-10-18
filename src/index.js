@@ -2,8 +2,8 @@ import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import MunReg from './MunReg' ;
-import ChooseRegGov from './ChooseRegGov' ;
+import MunReg from './munReg/MunReg' ;
+import ChooseRegGov from './munre/ChooseRegGov' ;
 import Invalid from './parl/Invalid' ;
 import { Route, Router, Redirect, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'

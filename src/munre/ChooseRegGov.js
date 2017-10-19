@@ -114,7 +114,7 @@ class ChooseRegGov extends Component {
         }
     }
     render() {
-        const position = [34.8,10.8 ];
+        const position = [34.8,11 ];
         let url = this.state.url;
         return (
             this.state.redirect ? <Redirect push to={url}/>:
@@ -151,7 +151,7 @@ class ChooseRegGov extends Component {
             <section className="latest-news-card " style={{padding:'10px 0'}}>
             <div className="container-fluid">
                 <div className="row">
-                        <div className="col-xs-12 col-sm-6 col-md-6 blog-grid-item mb-30">
+                        <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-30">
                             <article className="card">
                                 <Map center={position} zoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
                                 <GeoJSON
@@ -172,7 +172,7 @@ class ChooseRegGov extends Component {
                                 <Control position="bottomright">
                                 <MapKey colorSet={["#BBDEFB","#005288","#0096d6"]} grades={["New","Old","Extended"]}  keyTitle="Municipality color Representation" />                                
                                 </Control>
-                                <div className="color-box blue-grad col-sm-4" style={{padding:"40px 40px",float:"right"}}>
+                                <div className="color-box blue-grad col-sm-2" style={{padding:"40px 40px",float:"right"}}>
                                 <h2 style={{textAlign:"center"}}><span className="timer" >{this.state.munNumber}</span></h2>
                                 <span className="count-desc" style={{textAlign:"center"}}>{this.state.munRectangle}</span>
                                 </div>

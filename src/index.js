@@ -1,9 +1,15 @@
+import { createStore, applyMiddleware } from "redux";
+import { Provider } from "react-redux";
+import ReduxPromise from "redux-promise";
+import reducers from "./reducers";
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 import { AppContainer } from 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import MunReg from './munReg/MunReg' ;
 import ChooseRegGov from './munre/ChooseRegGov' ;
+import DetailedRegGovRoot from './detailed-reg/DetailedRegGovRoot' ;
 import Invalid from './parl/Invalid' ;
 import { Route, Router, Redirect, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
@@ -14,6 +20,7 @@ const rootEl = document.getElementById('root');
 const render = Component =>
   ReactDOM.render(
     
+    <Provider store={createStoreWithMiddleware(reducers)}>
     <AppContainer>
     <MuiThemeProvider>
     <Router history={customHistory}>
@@ -21,11 +28,17 @@ const render = Component =>
       <Route exact path="/" component={App}/>
       <Route  path="/munre" component={ChooseRegGov}/>
       <Route  path="/munreg/:city" component={MunReg}/>
+      
+      <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
+
+      <Route  path="/reg-perfomance" component={ChooseRegGov}/>
+      
       <Route  path="/parl/invalid" component={Invalid}/>
       </Switch>
     </Router>
     </MuiThemeProvider>
-    </AppContainer>,
+    </AppContainer>
+    </Provider>,
     rootEl
   );
 

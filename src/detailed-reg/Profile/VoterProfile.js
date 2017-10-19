@@ -18,6 +18,7 @@ import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import SemiPie from './SemiPie' ;
 import TooltipPie from './TooltipPie' ;
+import {Link} from 'react-router-dom' ;
 import Translate    from 'react-translate-component';
 import counterpart from 'counterpart' ;
 
@@ -232,7 +233,7 @@ class VoterProfile extends Component {
     }
 
     render() {
-        const position = [34.85360, 2.40795];
+        const position = [33.25360, 3.40795];
         //choose which shape to load based on the delimiattion
         let chosenSape,GeojsonKeyChanger;
         this.state.selectedMapLevel=="gov"?(chosenSape=this.props.shape,GeojsonKeyChanger="gov"):(chosenSape=this.props.munShape,GeojsonKeyChanger="mun")
@@ -251,6 +252,19 @@ class VoterProfile extends Component {
 
         return (
                 <div>
+                <section className="page-title ptb-50">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h2 style={{marginTop:"5px"}}> {TITLE}</h2>
+                                <ol className="breadcrumb">
+                                    <li><Link to="/">Home</Link></li>
+                                    <li ><Link to="/munre">Municipal Registration 2017</Link></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 {this.props.shapeIsLoaded ? <div><Map  maxZoom={23} center={position} zoom={6} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
@@ -314,18 +328,18 @@ class VoterProfile extends Component {
                     </GeoJSON>
 
                     {/* bottom Navigation To Change map : Governorate - Municipality */}
-                    
-                    <div className="col-md-12" style={{zIndex:1500,position:"fixed",marginTop: "94vh"}} >
+
+                    <div className="col-md-12" style={{zIndex:1500,position:"absolute",marginTop: "90vh"}} >
                     <div className="col-md-7">_</div>
                     <div className="col-md-5">
-                        <RaisedButton onTouchTap={this.MapLevelClick.bind(this,"gov")} label={GOV}  labelColor={this.state.buttonLabelGov} />
-                        <RaisedButton onTouchTap={this.MapLevelClick.bind(this,"mun")} label={MUN} style={{marginLeft:"1vh"}} labelColor={this.state.buttonLabelMun} />
+                        <RaisedButton onClick={this.MapLevelClick.bind(this,"gov")} label={GOV}  labelColor={this.state.buttonLabelGov} />
+                        <RaisedButton onClick={this.MapLevelClick.bind(this,"mun")} label={MUN} style={{marginLeft:"1vh"}} labelColor={this.state.buttonLabelMun} />
 
                     </div>   
                     </div>    
-                        
+
                     {/*Left side ScatterPlot*/}
-                    <div className="col-md-6" style={{marginTop:"22rem",zIndex:1500}}>
+                    <div className="col-md-6" style={{marginTop:"12rem",zIndex:1500}}>
                     {this.state.radioChart==="difference" ?
                         <BarMaleFemaleDiff 
                             alldiffrenceArray={this.state.diffrenceArray} 
@@ -343,28 +357,24 @@ class VoterProfile extends Component {
                     </div>
                 
                     {/*to show description at the beginning of the page click*/}
-                    {console.log(this.props.count)}
                     {
-                    this.props.count==1?
+                    /* this.props.count==1?
                     <DescriptionVoterProfile styleProp={{zIndex:1500,position:"fixed",right: "1%",marginTop: "40rem"}}/>
                     :
-                    <div></div>
+                    <div></div> */
                     } 
                     
                    {/*Title of the map*/}
-                    <Control position="topleft">
+{/*                     <Control position="topleft">
                         <div className="lefttitle" >
                             <h1 style={{marginTop:"5px"}} >{TITLE} </h1>
                             <p style={{fontSize:"13px"}}>{SUBTITLE}</p>
                         </div>
-                    </Control>
-
-                    </Map>
-
+                    </Control> */}
                     {/* Menu Drawer */}
                     <MenuDrawerVoterProfile getRadioChart={this.getRadioChart.bind(this)} colorSet={this.state.dynamicColor} grades={this.state.dynamicPercentage} getColor={this.state.colorfun} keyTitleRegPerc={this.state.keyTitleRegPerc} keyTitleDiff={this.state.keyTitleDiff} radioChart= {this.state.radioChart} />
-                    {/*  */}
-            
+                    
+                    </Map>            
                 </div>
                 :
                 <div>

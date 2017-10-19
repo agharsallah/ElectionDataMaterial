@@ -244,7 +244,7 @@ class ScatterRegVsElig extends Component {
         render() {
             return (
                 <div style={{position:"absolute!important"}} >
-                <HighchartInit  options={this.state.options} styles={{height:"65vh"}} key={this.props.genderFilter+this.state.title} />
+                <HighchartInit  options={this.state.options} styles={{height:"75vh"}} key={this.props.genderFilter+this.state.title} />
                 </div>
             );
         }

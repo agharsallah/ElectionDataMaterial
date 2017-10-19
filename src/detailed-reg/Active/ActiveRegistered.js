@@ -7,6 +7,8 @@ import ThemeRadio from '../containers/pickFilter/ThemeRadio' ;
 import RaisedButton from 'material-ui/RaisedButton';
 import  '../DetailedRegGovMapStyle.css' ;
 import MenuDrawerActiveReg from './MenuDrawerActiveReg' ;
+import {Link} from 'react-router-dom' ;
+
 import Translate    from 'react-translate-component';
 import counterpart from 'counterpart' ;
 
@@ -99,6 +101,19 @@ class ActiveRegistered extends Component {
         const NEWREG= <Translate type="text" content="ActiveReg.newReg"/>
         return (
                 <div>
+                <section className="page-title ptb-50">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <h2 style={{marginTop:"5px"}} > {TITLE}</h2>
+                            <ol className="breadcrumb">
+                                <li><Link to="/">Home</Link></li>
+                                <li ><Link to="/munre">Municipal Registration 2017</Link></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
                 {this.props.shapeIsLoaded ? <Map  maxZoom={23} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
@@ -141,12 +156,12 @@ class ActiveRegistered extends Component {
                     </Control>
                     
                     {/*Title of the map*/}
-                    <Control position="topleft">
+{/*                     <Control position="topleft">
                         <div className="lefttitle" >
                             <h1 style={{marginTop:"5px"}} > {TITLE}</h1>
                             <p style={{fontSize:"13px"}}>{SUBTITLE} </p>
                         </div>
-                    </Control>
+                    </Control> */}
                     {/* Menu Drawer" */}
                     <MenuDrawerActiveReg colorSet={["#ffffcc", "#c2e699", "#78c679","#238443"]} grades={this.state.grades} getColor={this.state.colorfun} keyTitle={this.state.keytitle}/>
 

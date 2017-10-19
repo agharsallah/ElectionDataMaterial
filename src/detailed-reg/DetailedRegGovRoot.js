@@ -7,6 +7,8 @@ import counterpart  from 'counterpart';
 import Translate    from 'react-translate-component';
 import axios from 'axios' ;
 import config from '../config'
+import {Helmet} from "react-helmet";
+
 
 import { connect } from "react-redux";
 import { getPopValue } from "../actions/index";
@@ -63,20 +65,23 @@ class DetailedRegGovRoot extends Component {
 
     //count the number of how much radiobutton has been chosen to show the description only one time
     componentWillReceiveProps(nextProps) {
-        let compteur=this.state.countProfile
+        /* let compteur=this.state.countProfile
                 if (nextProps.radioFilterPicker==="pop") {
            this.setState({countRegVs:this.state.countRegVs+1}); 
         }else if (nextProps.radioFilterPicker==="active") {
            this.setState({countActive:this.state.countActive+1}); 
         }else{
         this.setState({countProfile:this.state.countProfile+1});
-        }
+        } */
     }
 
     render() {
         return (
             <div>
-                <Layout/>
+                <Helmet>
+                    <script src="../../js/scripts.js"></script>
+                </Helmet>  
+                <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
                 {   this.props.radioFilterPicker==="pop" ?
                     <RegVsElig count={this.state.countRegVs} shape={this.state.shape} shapeIsLoaded={this.state.shapeIsLoaded} key={this.state.key} />
                     :

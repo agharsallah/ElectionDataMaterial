@@ -6,7 +6,6 @@ import ReactLoading from 'react-loading';
 import ThemeRadio from '../containers/pickFilter/ThemeRadio' ;
 import ColorBrew from '../containers/dynamic color/ColorBrew';
 import RaisedButton from 'material-ui/RaisedButton';
-import  '../DetailedRegGovMapStyle.css' ;
 import ScatterRegVsElig from './ScatterRegVsElig' ;
 import regression from 'regression';
 import SelectField from 'material-ui/SelectField';
@@ -15,6 +14,7 @@ import MenuDrawerRegVsElig from './MenuDrawerRegVsElig' ;
 import counterpart from 'counterpart' ;
 import Translate    from 'react-translate-component';
 var _t = Translate.translate;
+import {Link} from 'react-router-dom';
 
 import { connect } from "react-redux";
 import { getPopValue } from "../../actions/index";
@@ -153,8 +153,22 @@ class RegVsElig extends Component {
         /* Props to Scatter */
 
         return (
+                
                 <div>
-                {this.props.shapeIsLoaded ? <Map  maxZoom={23} center={position} zoom={6} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
+                <section className="page-title ptb-50">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <h2 style={{marginTop:"5px"}}  >{TITLE} </h2>
+                                <ol className="breadcrumb">
+                                    <li><Link to="/">Home</Link></li>
+                                    <li ><Link to="/munre">Municipal Registration 2017</Link></li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {this.props.shapeIsLoaded ? <section> <Map  maxZoom={23} center={position} zoom={6} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
@@ -190,7 +204,7 @@ class RegVsElig extends Component {
                     </GeoJSON>
                     <ThemeRadio defaultSelected="pop" styles={{marginTop:"14vh",minWidth:"16vw",position:"fixed",zIndex:2,marginLeft:"83%"}}/>
                     {/*Left side ScatterPlot*/}
-                    <div className="col-md-6" style={{marginTop:"22rem",zIndex:1500}}>
+                    <div className="col-md-6" style={{marginTop:"20vh",zIndex:1500}}>
                         {
                         <ScatterRegVsElig
                         menElgReg={this.state.menElgReg}
@@ -212,17 +226,17 @@ class RegVsElig extends Component {
                     </Control>
                     
                     {/*Title of the map*/}
-                    <Control position="topleft">
+                    {/* <Control position="topleft">
                         <div className="lefttitle" >
                             <h1 style={{marginTop:"5px"}} >{TITLE}</h1>
                             <p style={{fontSize:"13px"}}>{SUBTITLE}</p>
                         </div>
-                    </Control>
+                    </Control> */}
                     
                     {/* Menu Drawer */}
                     <MenuDrawerRegVsElig getMapGender={this.getMapGender.bind(this)} colorSet={this.state.keyColor} grades={this.state.grades} getColor={this.state.colorfun} keyTitle={this.state.keyTitle} mapGender= {this.state.mapGender} />
 
-                </Map>:
+                </Map></section>:
                 <div>
                     <div className="col-md-5"></div>
                     <div className="col-md-5" style={{marginTop:"43vh"}}>

@@ -42,7 +42,7 @@ class MenuDrawerActiveReg extends Component {
                 <Drawer width={"20%"}
                         open={this.state.open}
                         openSecondary={true}
-                        containerStyle={{top:"12vh",height:"88%",zIndex:"1001"}}
+                        containerStyle={{top:"0vh",height:"98%",zIndex:"1001",position:"absolute"}}
                         onRequestChange={(open) => this.setState({open})}
                         zDepth={2}
                 >

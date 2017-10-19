@@ -11,7 +11,9 @@ import Control from 'react-leaflet-control';
 class ChooseRegGov extends Component {
     constructor(props){
       super(props);
-      this.state={redirect: false,stateFilter:"All"}
+        this.state={redirect: false,stateFilter:"All",
+        munNumber:"350",munRectangle:"Municipality"
+        }
     }
     componentWillMount() {
         
@@ -78,7 +80,7 @@ class ChooseRegGov extends Component {
            
             
             return {
-                fillColor: this.getColor(ETAT,["#0096d6","#005288","#BBDEFB"]),
+                fillColor: this.getColor(ETAT,["#BBDEFB","#005288","#0096d6"]),
                 color: 'black',
                 weight: 1,
                 fillOpacity: 0.5
@@ -98,8 +100,21 @@ class ChooseRegGov extends Component {
         //window.location =url;
         this.setState({ redirect: true,url:url })
     }
+    chosenNiveau(event){
+        let pickedLevel=event.currentTarget.dataset.id
+        this.setState({stateFilter:event.currentTarget.dataset.id});
+        if (pickedLevel=="New") {
+           this.setState({ munNumber:"86",munRectangle:"New"});
+        }else if(pickedLevel=="Old"){
+            this.setState({ munNumber:"75",munRectangle:"Old"});
+        }else if(pickedLevel=="Extended"){
+            this.setState({ munNumber:"189",munRectangle:"Extended"});
+        }else{
+            this.setState({ munNumber:"350",munRectangle:"Municipality"});
+        }
+    }
     render() {
-        const position = [34.8,9.5 ];
+        const position = [34.8,10.8 ];
         let url = this.state.url;
         return (
             this.state.redirect ? <Redirect push to={url}/>:
@@ -120,10 +135,23 @@ class ChooseRegGov extends Component {
                     </div>
                 </div>
             </section>
+
+            {/* Tab to Choose the level of the map  */}
+            <section >
+                <div className="border-bottom-tab" style={{padding:'20px 5px'}} >
+                <ul className="nav nav-tabs" role="tablist">
+                    <li  data-id="All" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-2" role="tab" className="waves-effect waves-dark" data-toggle="tab">All</a></li>
+                    <li data-id="New" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">New</a></li>
+                    <li data-id="Old" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Old</a></li>
+                    <li data-id="Extended" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Extended</a></li>
+                    </ul> 
+                </div>
+            </section>
+
             <section className="latest-news-card " style={{padding:'10px 0'}}>
             <div className="container-fluid">
                 <div className="row">
-                        <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-30">
+                        <div className="col-xs-12 col-sm-6 col-md-6 blog-grid-item mb-30">
                             <article className="card">
                                 <Map center={position} zoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
                                 <GeoJSON
@@ -142,8 +170,13 @@ class ChooseRegGov extends Component {
                                     data= {this.state.shape}
                                 />
                                 <Control position="bottomright">
-                                <MapKey colorSet={["#0096d6","#005288","#BBDEFB"]} grades={["New","Extended","Old"]}  keyTitle="Municipality color Representation" />                                
+                                <MapKey colorSet={["#BBDEFB","#005288","#0096d6"]} grades={["New","Old","Extended"]}  keyTitle="Municipality color Representation" />                                
                                 </Control>
+                                <div className="color-box blue-grad col-sm-4" style={{padding:"40px 40px",float:"right"}}>
+                                <h2 style={{textAlign:"center"}}><span className="timer" >{this.state.munNumber}</span></h2>
+                                <span className="count-desc" style={{textAlign:"center"}}>{this.state.munRectangle}</span>
+                                </div>
+
                                 </Map>   
                             </article>{/* /.card */}
                         </div>{/* /.col-md-12 */}

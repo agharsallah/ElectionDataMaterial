@@ -24,7 +24,6 @@ class MapKey extends Component {
                         )
                 },this)}
 
-                <i style={{background:"#fefefd"}} ></i> {"none"}
             </div>
         );
     }

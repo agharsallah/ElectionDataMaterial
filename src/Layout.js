@@ -31,7 +31,7 @@ class Layout extends Component {
                                         <li ><Link to='/reg-perfomance'>Registration perfomance</Link></li>
                                     </ul>
                                 </li>
-                                <li className={this.props.parl14}><a href='javascript:void(0)'>Parlimentary 2014</a>
+                                <li className={this.props.parl14}><Link to='javascript:void(0)'>Parlimentary 2014</Link>
                                     <ul className="dropdown">
                                         <li><Link to='/parl/invalid'>Invalid</Link></li>
                                         <li ><Link to='/parl/turnout'>Turnout</Link></li>

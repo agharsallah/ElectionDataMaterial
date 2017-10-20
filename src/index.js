@@ -10,6 +10,7 @@ import App from './App';
 import MunReg from './munReg/MunReg' ;
 import ChooseRegGov from './munre/ChooseRegGov' ;
 import DetailedRegGovRoot from './detailed-reg/DetailedRegGovRoot' ;
+import RegTrackLineRoot from './reg-perfomance/RegTrackLineRoot' ;
 import Invalid from './parl/Invalid' ;
 import { Route, Router, Redirect, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
@@ -31,7 +32,7 @@ const render = Component =>
       
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
 
-      <Route  path="/reg-perfomance" component={ChooseRegGov}/>
+      <Route  path="/reg-perfomance" component={RegTrackLineRoot}/>
       
       <Route  path="/parl/invalid" component={Invalid}/>
       </Switch>

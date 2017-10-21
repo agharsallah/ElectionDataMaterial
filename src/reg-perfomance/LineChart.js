@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 var Highcharts = require('highcharts');
 import HighchartInit from './HighchartInit' ;
 import counterpart  from 'counterpart';
-
+import DataRectangle from './DataRectangle' ;
 import './box-css.css';
 
 class LineChart extends Component {
@@ -97,11 +97,23 @@ componentWillMount() {
         malePercentage=((Number(this.props.maleReg)*100)/Number(this.props.sumReg)).toFixed(2)
         femalePercentage=((Number(this.props.femaleReg)*100)/Number(this.props.sumReg)).toFixed(2)
         return (
-            <div className="container_row">
+            <div>
+                <section className="container-fluid">
+                <div className="row no-gutter">
+                <DataRectangle imgLink="/img/sum.svg" regValue={this.props.sumReg.toLocaleString()} title="Total" />
+                <DataRectangle imgLink="/img/woman.svg" regValue={this.props.femaleReg.toLocaleString()} title="Female" />
+                <DataRectangle imgLink="/img/man.svg" regValue={this.props.maleReg.toLocaleString()} title="Male" />
+                <DataRectangle imgLink="/img/average.PNG" regValue={this.props.averageVal.toLocaleString()} title="Average" />
+                <DataRectangle imgLink="/img/increaseArrow.svg" regValue={this.props.highest.toLocaleString()} title="Highest" />
+                <DataRectangle imgLink="/img/decreaseArrow.svg" regValue={this.props.lowest.toLocaleString()} title="Lowest" />
+                </div>
+                </section>
+
                 <div className={"backwardedChart col-md-12"} style={{marginTop:"2rem"}} >
                 <HighchartInit key={this.props.chartkey+this.props.inscription}  options={this.state.options}/>
                 </div>
-                <div className="col-md-12">
+
+                {/* <div className="col-md-12">
                 <div className="cardinfo card-1 centerbox col-md-2" style={{position:"absolute !important",zIndex: 2,marginTop:"-10rem"}}>
                     <div className="col-md-12">
                         Total {this.props.subj}<br/>
@@ -149,7 +161,7 @@ componentWillMount() {
                         <p className="maleFemaleNumText">{this.props.lowest.toLocaleString()} </p>
                     </div>
                 </div> 
-            </div>
+            </div> */}
 
             </div>
         );

@@ -165,10 +165,8 @@ class RegTrackLineRoot extends Component {
                     </div>
                 </section>
                 <section>             
-                <div className="col-md-12" style={{marginTop:"15rem"}} >
-                {
-                    this.props.stateFilter=="All" ? 
-                    <div>
+                <div  style={{marginTop:"2rem"}} >
+
                         <LineChart
                             key={this.state.dates+inscription }
                             chartkey={this.state.classCharts}
@@ -185,13 +183,7 @@ class RegTrackLineRoot extends Component {
                             highest={highest}
                             lowest={lowest}
                         />
-                    </div>
-                :
-                    (this.props.stateFilter=="Bubble" ? <BubbleChart/>
-                        :
-                        <HeatMapCalendar/>
-                    )
-                }
+
                 </div>
                 </section>
             </div>

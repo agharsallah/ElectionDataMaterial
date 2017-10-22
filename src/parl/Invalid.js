@@ -3,7 +3,7 @@ import Layout from '../Layout' ;
 import {Link,NavLink,Route } from 'react-router-dom';
 import {Helmet} from "react-helmet";
 
-import MunMap from './MunMap' ;
+import InvalidMap from './InvalidMap' ;
 
 class Invalid extends Component {
 
@@ -59,7 +59,7 @@ class Invalid extends Component {
                                                 <h3 className=" activator">Hover on the shape</h3>
                                             </div>
                                             <div className=" waves-effect waves-block waves-light">
-                                                <MunMap 
+                                                <InvalidMap 
                                                     chosenNiveau={this.state.chosenNiveau}
                                                 />
                                             </div>

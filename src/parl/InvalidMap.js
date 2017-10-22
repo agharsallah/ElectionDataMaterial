@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios' ;
 import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip,LayersControl,Marker,CircleMarker } from 'react-leaflet';
 import config from '../config' ;
-class MunMap extends Component {
+import Control from 'react-leaflet-control';
+import MapKey from './MapKey' ;
+class InvalidMap extends Component {
     constructor(props){
       super(props);
-      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[36.65,10.23]}
+      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[34.9,11.23]}
     }
     
     componentWillMount() {
@@ -57,22 +59,21 @@ class MunMap extends Component {
     }
 
     resetHighlight(e) {
-    	featuresLayer.resetStyle(e.target);
-    	 info.update();
+    	const layer = e.target;
+	    return layer.setStyle({
+	        weight: 1,
+            fillOpacity: 0.7,
+             color: 'white'
+        });
     }
     
     highlightFeature(e) {
-	    var layer = e.target;
-	    layer.setStyle({
-	        weight: 5,
+        const layer = e.target;
+	    return layer.setStyle({
+	        weight: 3,
 	        color: '#666',
 	        fillOpacity: 1
 	    });
-
-	    info.update(layer.feature.properties);
-	    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-	        layer.bringToFront();
-	    }
     }
     
     getColor(d) {
@@ -94,7 +95,7 @@ class MunMap extends Component {
                 dashOffset:"10%",
                 opacity: 1,
                 color: 'white',
-                fillOpacity: 0.6
+                fillOpacity: 0.7
             };
 
     }
@@ -121,14 +122,18 @@ class MunMap extends Component {
                         //sending shapes center to marker component
                         layer.bindTooltip(feature.properties.NAME_EN,{ permanent: false,className:'tooltipnamear',direction:'right' })
                         layer.on({click: this.clickedShape.bind(this)});
-                        /* layer.on({mouseover: this.highlightFeature.bind(this)});
-                        layer.on({mouseout: this.resetFeature.bind(this)}); */
+                        layer.on({mouseover: this.highlightFeature.bind(this)});
+                        layer.on({mouseout: this.resetHighlight.bind(this)});
                     }    
                 }
             />
+
+            <Control position="bottomright" >
+            <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[6,10]} getColor={this.getColor} keyTitle="Percentage of invalid ballot"  />
+            </Control>
           </Map>        
         );
     }
 }
 
-export default MunMap;
+export default InvalidMap;

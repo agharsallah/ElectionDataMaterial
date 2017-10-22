@@ -36,6 +36,7 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "compression-webpack-plugin": "^1.0.1",
     "copyfiles": "^1.2.0",
     "cross-env": "^3.1.4",
     "css-loader": "^0.28.7",
@@ -71,8 +72,7 @@
     "redux": "^3.7.1",
     "redux-promise": "^0.5.3",
     "regression": "^2.0.0",
-    "react-input-range": "^1.1.4",    
+    "react-input-range": "^1.1.4",
     "react-loading": "^0.1.4"
-    
   }
 }

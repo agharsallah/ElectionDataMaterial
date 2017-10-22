@@ -24,7 +24,7 @@ class RegVsElig extends Component {
     constructor(props){
         super(props);
         this.state={
-            gouv_name:"",munNumber:"",destroy:true,eligVsReg:"",eligible2014:"", allRegistered:"",
+            gouv_name:"",munNumber:"",eligVsReg:"",eligible2014:"", allRegistered:"",
             grades:[60, 65, 70],dynamicReg:[60, 65, 70],colorfun:this.getColorRegElg,
             keyTitle:counterpart.translate('RegVsElig.ALLKEY'),mapGender:"All",
             keyColor:["#ffffcc", "#c2e699", "#78c679","#238443"],
@@ -112,7 +112,7 @@ class RegVsElig extends Component {
             eligible=property._2014_eligilevotersfemale,registered=property.allreg_female_sum
             )
             )
-        this.setState({destroy:false,gouv_name:property.NAME_EN,munNumber:property.munnumber,
+        this.setState({gouv_name:property.NAME_EN,munNumber:property.munnumber,
                         eligVsReg:eligVsRegPer,eligible2014:eligible,allRegistered:registered});
         return layer.setStyle({
             weight: 5,
@@ -126,7 +126,7 @@ class RegVsElig extends Component {
 	     layer.setStyle({
 	        weight: 5
 	    });
-        this.setState({destroy:true});
+        
     }
 
     getMapGender(value){

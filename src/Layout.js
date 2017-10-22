@@ -31,7 +31,7 @@ class Layout extends Component {
                                         <li ><Link to='/reg-perfomance'>Registration perfomance</Link></li>
                                     </ul>
                                 </li>
-                                <li className={this.props.parl14}><Link to='javascript:void(0)'>Parlimentary 2014</Link>
+                                <li className={this.props.parl14}><Link to='javascript:void(0)'>Last elections</Link>
                                     <ul className="dropdown">
                                         <li><Link to='/parl/invalid'>Invalid</Link></li>
                                         <li ><Link to='/parl/turnout'>Turnout</Link></li>
@@ -39,10 +39,9 @@ class Layout extends Component {
                                         </ul>
                                 </li>
 
-                                <li className={this.props.pres14}><Link to='/pres'>Presidentaial 2014</Link>
-                                </li>
+                                
 
-                                <li className={this.props.contact}><Link to='/contact'>Contact</Link>
+                                <li className={this.props.contact}><Link to='javascript:void(0)'>Contact</Link>
                                 </li>
                             </ul>
                             {/*mega menu end*/}

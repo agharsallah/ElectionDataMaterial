@@ -10,12 +10,12 @@ class Home extends Component {
       <script src="./js/scripts.js"></script>
       </Helmet>    
       <Layout home="active" mun17="" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light"/>      
-        <section className="banner-4 parallax-bg bg-fixed overlay dark-5 fullscreen-banner valign-wrapper" data-stellar-background-ratio="0.5">
+        <section className="banner-light parallax-bg bg-fixed overlay  fullscreen-banner valign-wrapper" data-stellar-background-ratio="0.5">
             <div className="valign-cell">
             <div className="container padding-top-110">
                 <div className="row">
                     <div className="col-md-6">
-                        <h1 className="intro-title text-uppercase white-text mb-30">Election Data</h1>
+                        <h1 className="intro-title text-uppercase white-text mb-30" >Election Data</h1>
                         <p className="lead text-regular white-text">Bringing all election data in one place.</p>
                     </div>{/* col-md-6 */}
                 </div>{/* row */}
@@ -55,7 +55,7 @@ class Home extends Component {
                             </div>{/* thumb */}
 
                             <div className="portfolio-title">
-                                <h2><a href="#">Municipal election data</a></h2>
+                                <h2 ><a href="#">Municipal election data</a></h2>
                                 <p><a href="#">Bringing the Registration Data into life and visualize them ontop of maps and other charts</a> </p>
                             </div>
 

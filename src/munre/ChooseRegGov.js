@@ -12,7 +12,7 @@ class ChooseRegGov extends Component {
     constructor(props){
       super(props);
         this.state={redirect: false,stateFilter:"All",
-        munNumber:"350",munRectangle:"Municipality"
+        munNumber:"350",munRectangle:"Municipality",munShape:config.initShape,shape:config.initShape
         }
     }
     componentWillMount() {

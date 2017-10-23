@@ -91,7 +91,7 @@ class MunReg extends Component {
                                         mapClicked={this.state.mapClicked}
                                         clickedShapeName={this.state.clickedShapeName}
                                         maleFemaleHistogram={this.state.maleFemaleHistogram}
-                                        />  
+                                    />  
                                     
                                     </div>
                                     </article>{/* /.card */}

@@ -7,11 +7,12 @@ import Layout from '../Layout' ;
 import HeaderHelmet from '../HeaderHelmet' ;
 import MapKey from './MapKey' ;
 import Control from 'react-leaflet-control';
+import ReactLoading from 'react-loading';
 
 class ChooseRegGov extends Component {
     constructor(props){
       super(props);
-        this.state={redirect: false,stateFilter:"All",
+        this.state={redirect: false,stateFilter:"All",shapeIsLoaded:false,
         munNumber:"350",munRectangle:"Municipality",munShape:config.initShape,shape:config.initShape
         }
     }
@@ -47,7 +48,7 @@ class ChooseRegGov extends Component {
             }
         })
         .then(response=>{
-            this.setState({shape:JSON.parse(response.data.data),key:'gov',shapeIsLoaded:true
+            this.setState({shape:JSON.parse(response.data.data),key:'gov'
             });
         }
         )
@@ -153,7 +154,12 @@ class ChooseRegGov extends Component {
                 <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-30">
                             <article className="card">
+                            {this.state.shapeIsLoaded ?
                                 <Map center={position} zoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
+                                <GeoJSON
+                                key={this.state.key}
+                                data= {this.state.shape}
+                            />
                                 <GeoJSON
                                 key={"a"+this.state.keyMun}
                                 data= {this.state.munShape}
@@ -165,10 +171,6 @@ class ChooseRegGov extends Component {
                                     }    
                                 }
                                 />
-                                <GeoJSON
-                                    key={this.state.key}
-                                    data= {this.state.shape}
-                                />
                                 <Control position="bottomright">
                                 <MapKey colorSet={["#BBDEFB","#005288","#0096d6"]} grades={["New","Old","Extended"]}  keyTitle="Municipality color Representation" />                                
                                 </Control>
@@ -177,7 +179,16 @@ class ChooseRegGov extends Component {
                                 <span className="count-desc" style={{textAlign:"center"}}>{this.state.munRectangle}</span>
                                 </div>
 
-                                </Map>   
+                                </Map>
+                                :
+                                <div>
+                                    <div className="col-md-5"></div>
+                                    <div className="col-md-5" style={{marginTop:"43vh"}}>
+                                        <h2>"Loading Map"</h2>
+                                        <ReactLoading type="bars" color="#444" className="react-Loader" delay={0} />
+                                    </div>
+                                </div>
+                            }   
                             </article>{/* /.card */}
                         </div>{/* /.col-md-12 */}
                 </div>{/* /.row */}

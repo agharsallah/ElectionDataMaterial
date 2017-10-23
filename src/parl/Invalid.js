@@ -2,22 +2,24 @@ import React, { Component } from 'react';
 import Layout from '../Layout' ;
 import {Link,NavLink,Route } from 'react-router-dom';
 import {Helmet} from "react-helmet";
-
 import InvalidMap from './InvalidMap' ;
-
+import BarChart from './BarChart' ;
 class Invalid extends Component {
 
     constructor(props){
       super(props);
       this.state={
           chosenNiveau:'parl',
+          hoveredProperty:{name:"aa"}
         }
     }
     
     chosenNiveau(event){
         this.setState({chosenNiveau:event.currentTarget.dataset.id});
     }
-
+    getProperty(hoveredProperty){
+        this.setState({hoveredProperty:hoveredProperty});
+    }
     render() {
         let population=(this.state.population)
         return (
@@ -44,7 +46,7 @@ class Invalid extends Component {
                 <section >
                     <div className="border-bottom-tab" style={{padding:'20px 5px'}} >
                     <ul className="nav nav-tabs" role="tablist">
-                    <li data-id="parl" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Parlementary</a></li>                    
+                    <li data-id="parl" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Parlimentary</a></li>                    
                     <li  data-id="pres"  onClick={this.chosenNiveau.bind(this)}><a href="#tab-2" role="tab" className="waves-effect waves-dark" data-toggle="tab">Presidential</a></li>
 {/*                 <li data-id="vc" onClick={this.chosenNiveau.bind(this)}><a href="#tab-4" role="tab" className="waves-effect waves-dark" data-toggle="tab">Voting center</a></li> */}                  </ul> 
                     </div>
@@ -56,11 +58,12 @@ class Invalid extends Component {
                                 <div className="col-xs-12 col-sm-7 col-md-7 blog-grid-item mb-30">
                                     <article className="card">
                                             <div style={{textAlign:"center"}}>
-                                                <h3 className=" activator">Hover on the shape</h3>
+                                                <h3 className=" activator">Click on the shape</h3>
                                             </div>
                                             <div className=" waves-effect waves-block waves-light">
                                                 <InvalidMap 
                                                     chosenNiveau={this.state.chosenNiveau}
+                                                    sendDataBack={this.getProperty.bind(this)}
                                                 />
                                             </div>
 
@@ -71,8 +74,9 @@ class Invalid extends Component {
                                     <article className="card">
 
                                     <div className="card-image waves-effect waves-block waves-light">
-                                    
-                                    Chart
+                                    <BarChart
+                                    hoveredProperties={this.state.hoveredProperty}
+                                    />  
                                     
                                     </div>
                                     </article>{/* /.card */}

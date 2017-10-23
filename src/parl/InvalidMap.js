@@ -36,7 +36,6 @@ class InvalidMap extends Component {
 
     componentWillReceiveProps(nextProps) {
         //console.log(nextProps.chosenNiveau);
-        let governorate=((this.props.chosenGov.substring(8)).slice(0, -1));        
         let qString=config.apiUrl+'/api/reg/'+'deleg_'+nextProps.chosenNiveau;
         //console.log('qs2',qString);
         axios({
@@ -73,7 +72,9 @@ class InvalidMap extends Component {
 	        weight: 3,
 	        color: '#666',
 	        fillOpacity: 1
-	    });
+        });
+        
+        
     }
     
     getColor(d) {
@@ -102,7 +103,7 @@ class InvalidMap extends Component {
     clickedShape(e){
         //for the histogram age BarChart
         let property=e.target.feature.properties;
-
+        this.props.sendDataBack(property)
     }
     
     render() {
@@ -129,7 +130,7 @@ class InvalidMap extends Component {
             />
 
             <Control position="bottomright" >
-            <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[6,10]} getColor={this.getColor} keyTitle="Percentage of invalid ballot"  />
+                <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[6,10]} getColor={this.getColor} keyTitle="Percentage of invalid ballot"  />
             </Control>
           </Map>        
         );

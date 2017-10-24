@@ -4,7 +4,7 @@ import HighchartInit from '../HighchartInit' ;
 import counterpart from 'counterpart' ;
 import Translate    from 'react-translate-component';
 
-class HistogramVoterProfile extends Component {
+class BarChart extends Component {
     constructor(props) {
         super(props);
         this.state={options:{}}
@@ -24,23 +24,20 @@ class HistogramVoterProfile extends Component {
         componentWillReceiveProps(nextProps) {
             console.log(nextProps);
             let property=nextProps.hoveredProperties, name = property.NAME_EN,
-            blank= property.blank,
-            spoiled= property.spoiled,
-            cancelled= property.cancelled,
-            invalid= blank+spoiled+cancelled,
+            registeredVoters= property.registeredVoters,
             signingVoters= property.signingVoters,
-            pntr=0,cnt=5,
-            invalidPer= ((invalid*100)/signingVoters).toFixed(2),
+            pntr=0,cnt=2,
+            turnoutPer= ((signingVoters*100)/registeredVoters).toFixed(2),
             chosenNiveau=nextProps.chosenNiveau
             ;
-            chosenNiveau=="parl"?chosenNiveau='Parlimentary 14':chosenNiveau='Presidential 14'
+            chosenNiveau=="parl"?chosenNiveau='Parliamentary 14':chosenNiveau='Presidential 14'
         this.setState({
             options:{
                 chart: {
                     type: 'bar'
                 },
                 title: {
-                text: 'Invalid votes in '+ name+' ('+chosenNiveau+')'
+                text: 'turnout in '+ name+' ('+chosenNiveau+')'
                 },
                 labels: {
                      overflow: 'justify'
@@ -57,16 +54,13 @@ class HistogramVoterProfile extends Component {
                                 console.log(pntr);
                                 if(pntr !== cnt)
                                 {
-                                    return  invalid +' Invalid ballot which represents '+invalidPer+'%';
+                                    return   ' turnout Percentage is '+turnoutPer+'%';
                                 }else{
                                     console.log('ggggg',pntr);
-                                    return signingVoters ;
+                                    return registeredVoters+' registered voter ' ;
                                 }
                             }
                         }
-                    },
-                    series: {
-                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -81,29 +75,22 @@ class HistogramVoterProfile extends Component {
                     shadow: false
                 },
                 xAxis: {
-                    categories: ['invalid','total'],
+                    categories: ['turnout','total'],
                     text: null
                 },
                 yAxis: {
                     title: {
                         text: 'votes',
-                        data: [invalid]
+                        data: [signingVoters]
                     }
                 },
-                series: [{
-                    name: "blank",
-                    data: [blank]
-                },
+                series: [
                 {
-                    name: "spoiled",
-                    data: [spoiled]
-                },
-                {
-                    name: "cancelled",
-                    data: [cancelled]
+                    name: "turnout",
+                    data: [signingVoters]
                 }, {
-                    name: 'Total',
-                    data: [0,signingVoters]
+                    name: 'Total registered',
+                    data: [registeredVoters]
                 }],
                 credits: false
             }
@@ -120,4 +107,4 @@ class HistogramVoterProfile extends Component {
         }
 }
 
-export default HistogramVoterProfile;
+export default BarChart;

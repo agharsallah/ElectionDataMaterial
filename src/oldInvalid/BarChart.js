@@ -4,7 +4,7 @@ import HighchartInit from '../HighchartInit' ;
 import counterpart from 'counterpart' ;
 import Translate    from 'react-translate-component';
 
-class HistogramVoterProfile extends Component {
+class BarChart extends Component {
     constructor(props) {
         super(props);
         this.state={options:{}}
@@ -120,4 +120,4 @@ class HistogramVoterProfile extends Component {
         }
 }
 
-export default HistogramVoterProfile;
+export default BarChart;

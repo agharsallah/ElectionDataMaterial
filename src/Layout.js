@@ -33,7 +33,7 @@ class Layout extends Component {
                                 <li className={this.props.parl14}><a href='javascript:void(0)'>Last elections</a>                                   <ul className="dropdown">
                                         <li><Link to='/invalid'>Invalid</Link></li>
                                         <li ><Link to='/turnout'>Turnout</Link></li>
-                                        <li ><Link to='/result'>Result</Link></li>
+                                        <li ><a href='http://tunisiaelectiondata.com' target="_blank">more visualizations</a></li>
                                         </ul>
                                 </li>
 

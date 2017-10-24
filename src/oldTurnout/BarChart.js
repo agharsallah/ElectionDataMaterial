@@ -57,11 +57,14 @@ class BarChart extends Component {
                                     return   ' turnout Percentage is '+turnoutPer+'%';
                                 }else{
                                     console.log('ggggg',pntr);
-                                    return registeredVoters+' registered voter ' ;
+                                    return registeredVoters+' total registered voter ' ;
                                 }
                             }
                         }
                     }
+                },
+                tooltip: {
+                    enabled: false,
                 },
                 legend: {
                     layout: 'vertical',
@@ -90,7 +93,8 @@ class BarChart extends Component {
                     data: [signingVoters]
                 }, {
                     name: 'Total registered',
-                    data: [registeredVoters]
+                    data: [registeredVoters],
+                    color:'#e8a766'
                 }],
                 credits: false
             }

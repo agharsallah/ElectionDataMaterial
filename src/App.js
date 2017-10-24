@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Home from './Home';
+import Home from './home/Home';
 import counterpart  from 'counterpart';
 import Translate    from 'react-translate-component';
 counterpart.registerTranslations('en',require('./../locales/en'));

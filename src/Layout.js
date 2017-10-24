@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link,NavLink,Route } from 'react-router-dom';
-import Home from './Home' ;
 class Layout extends Component {
     render() {
         let headerClass= 'tt-nav '+this.props.layoutShape;
@@ -39,8 +38,8 @@ class Layout extends Component {
 
                                 
 
-                                <li className={this.props.contact}><Link to='javascript:void(0)'>Contact</Link>
-                                </li>
+                                {/* <li className={this.props.contact}><Link to='javascript:void(0)'>Contact</Link>
+                                </li> */}
                             </ul>
                             {/*mega menu end*/}
 

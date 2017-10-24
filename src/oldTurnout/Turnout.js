@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import Layout from '../Layout' ;
 import {Link,NavLink,Route } from 'react-router-dom';
 import {Helmet} from "react-helmet";
-import InvalidMap from './InvalidMap' ;
+import TurnoutMap from './TurnoutMap' ;
 import BarChart from './BarChart' ;
-class Invalid extends Component {
+class Turnout extends Component {
 
     constructor(props){
       super(props);
@@ -32,10 +32,10 @@ class Invalid extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                <h2> Election Invalid ballots </h2>
+                                <h2> Election Turnout </h2>
                                 <ol className="breadcrumb">
-                                    <li><Link to="/">Home</Link></li>
-                                    <li ><Link to="/munre">Municipal Registration 2017</Link></li>
+                                <li><Link to="/">Last Elections</Link></li>
+                                <li ><Link to="/munre">Turnout</Link></li>
                                 </ol>
                             </div>
                         </div>
@@ -46,8 +46,8 @@ class Invalid extends Component {
                 <section >
                     <div className="border-bottom-tab" style={{padding:'20px 5px'}} >
                     <ul className="nav nav-tabs" role="tablist">
-                    <li data-id="parl" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Parlimentary</a></li>                    
-                    <li  data-id="pres"  onClick={this.chosenNiveau.bind(this)}><a href="#tab-2" role="tab" className="waves-effect waves-dark" data-toggle="tab">Presidential</a></li>
+                    <li data-id="parl" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Parlimentary 14</a></li>                    
+                    <li  data-id="pres"  onClick={this.chosenNiveau.bind(this)}><a href="#tab-2" role="tab" className="waves-effect waves-dark" data-toggle="tab">Presidential 14</a></li>
 {/*                 <li data-id="vc" onClick={this.chosenNiveau.bind(this)}><a href="#tab-4" role="tab" className="waves-effect waves-dark" data-toggle="tab">Voting center</a></li> */}                  </ul> 
                     </div>
                 </section>
@@ -61,7 +61,7 @@ class Invalid extends Component {
                                                 <h3 className=" activator">Click on a shape</h3>
                                             </div>
                                             <div className=" waves-effect waves-block waves-light">
-                                                <InvalidMap 
+                                                <TurnoutMap 
                                                     chosenNiveau={this.state.chosenNiveau}
                                                     sendDataBack={this.getProperty.bind(this)}
                                                 />
@@ -76,6 +76,8 @@ class Invalid extends Component {
                                     <div className="card-image waves-effect waves-block waves-light">
                                     <BarChart
                                     hoveredProperties={this.state.hoveredProperty}
+                                    chosenNiveau={this.state.chosenNiveau}
+                                    
                                     />  
                                     
                                     </div>
@@ -91,4 +93,4 @@ class Invalid extends Component {
     }
 }
 
-export default Invalid;
+export default Turnout;

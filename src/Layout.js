@@ -31,9 +31,9 @@ class Layout extends Component {
                                     </ul>
                                 </li>
                                 <li className={this.props.parl14}><a href='javascript:void(0)'>Last elections</a>                                   <ul className="dropdown">
-                                        <li><Link to='/parl/invalid'>Invalid</Link></li>
-                                        <li ><Link to='/parl/turnout'>Turnout</Link></li>
-                                        <li ><Link to='/parl/result'>Result</Link></li>
+                                        <li><Link to='/invalid'>Invalid</Link></li>
+                                        <li ><Link to='/turnout'>Turnout</Link></li>
+                                        <li ><Link to='/result'>Result</Link></li>
                                         </ul>
                                 </li>
 

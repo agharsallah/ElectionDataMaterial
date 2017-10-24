@@ -11,7 +11,8 @@ import MunReg from './munReg/MunReg' ;
 import ChooseRegGov from './munre/ChooseRegGov' ;
 import DetailedRegGovRoot from './detailed-reg/DetailedRegGovRoot' ;
 import RegTrackLineRoot from './reg-perfomance/RegTrackLineRoot' ;
-import Invalid from './parl/Invalid' ;
+import Invalid from './oldInvalid/Invalid' ;
+import Turnout from './oldTurnout/Turnout' ;
 import { Route, Router, Redirect, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -34,7 +35,8 @@ const render = Component =>
 
       <Route  path="/reg-perfomance" component={RegTrackLineRoot}/>
       
-      <Route  path="/parl/invalid" component={Invalid}/>
+      <Route  path="/invalid" component={Invalid}/>
+      <Route  path="/turnout" component={Turnout}/>
       </Switch>
     </Router>
     </MuiThemeProvider>

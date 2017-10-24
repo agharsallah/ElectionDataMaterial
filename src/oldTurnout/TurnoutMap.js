@@ -4,7 +4,7 @@ import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip,LayersControl,Mar
 import config from '../config' ;
 import Control from 'react-leaflet-control';
 import MapKey from './MapKey' ;
-class InvalidMap extends Component {
+class TurnoutMap extends Component {
     constructor(props){
       super(props);
       this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[35.5,11.23]}
@@ -35,7 +35,26 @@ class InvalidMap extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        
+        let qString=config.apiUrl+'/api/reg/'+'deleg_'+nextProps.chosenNiveau;
+        //console.log("qString",qString);
+        axios({
+            method: 'get',
+            url: qString,
+            headers: {
+                'name': 'Isie',
+                'password': 'Isie@ndDi'
+            }
+        })
+        .then(response=>{
+            let shape=JSON.parse(response.data.data)
+            let property=shape.features[0].properties;
+            console.log(this);
+            this.setState({shape,key:'gov',shapeIsLoaded:true,key:nextProps.chosenNiveau});
+        }
+        )
+        .catch(function (error) {
+            console.log(error);
+        });        
     }
 
     resetHighlight(e) {
@@ -57,20 +76,21 @@ class InvalidMap extends Component {
     }
     
     getColor(d) {
-	    return d > 10 ? '#67000d' :
-	           d > 6  ? '#fb6a4a' :
+	    return d > 70 ? '#bd0026' :
+	           d > 60  ? '#fd8d3c' :
+	           d > 50  ? '#fecc5c' :               
                d == 'inexistant'? '#252525' :
                d == 'water'? '#54A4DE' :
-	                      '#fee0d2';
+	                      '#ffffb2';
     }
     
     style(feature) {
         let property=feature.properties
-         var invalidPer=(property.spoiled+property.cancelled+property.blank)*100 / property.signingVoters
-         if ( isNaN(invalidPer)) {invalidPer="inexistant"} 
-         if ( property.circSubId==null) {invalidPer="water"} 
+         var turnoutPer=(property.signingVoters)*100 / property.registeredVoters
+         if ( isNaN(turnoutPer)) {turnoutPer="inexistant"} 
+         if ( property.circSubId==null) {turnoutPer="water"} 
          return {
-                fillColor: this.getColor(invalidPer),
+                fillColor: this.getColor(turnoutPer),
                 weight: 1,
                 dashOffset:"10%",
                 opacity: 1,
@@ -115,11 +135,11 @@ class InvalidMap extends Component {
             />
 
             <Control position="bottomright" >
-                <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[6,10]} getColor={this.getColor} keyTitle="Percentage of invalid ballot"  />
+                <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[50,60,70]} getColor={this.getColor} keyTitle="Turnout percentage"  />
             </Control>
           </Map>        
         );
     }
 }
 
-export default InvalidMap;
+export default TurnoutMap;

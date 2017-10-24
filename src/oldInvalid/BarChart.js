@@ -30,14 +30,17 @@ class HistogramVoterProfile extends Component {
             invalid= blank+spoiled+cancelled,
             signingVoters= property.signingVoters,
             pntr=0,cnt=5,
-            invalidPer= ((invalid*100)/signingVoters).toFixed(2) ;
+            invalidPer= ((invalid*100)/signingVoters).toFixed(2),
+            chosenNiveau=nextProps.chosenNiveau
+            ;
+            chosenNiveau=="parl"?chosenNiveau='Parlimentary 14':chosenNiveau='Presidential 14'
         this.setState({
             options:{
                 chart: {
                     type: 'bar'
                 },
                 title: {
-                    text: 'Invalid votes in '+ name
+                text: 'Invalid votes in '+ name+' ('+chosenNiveau+')'
                 },
                 labels: {
                      overflow: 'justify'
@@ -110,8 +113,8 @@ class HistogramVoterProfile extends Component {
         render() {
             return (
                 <div style={{position:"absolute!important"}} >
-                {console.log("key",this.props.hoveredProperties.NAME_EN)}
-                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.NAME_EN} styles={{height:"75vh"}}/>
+                {console.log("key",this.props.hoveredProperties.cancelled)}
+                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.cancelled} styles={{height:"75vh"}}/>
                 </div>
             );
         }

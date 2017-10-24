@@ -106,7 +106,46 @@ class MunMap extends Component {
             chairs:chairs,
             munNumber:munNumber
         })
+        const layer = e.target;
+	     layer.setStyle({
+	        weight: 9,
+	        color: '#666',
+	        fillOpacity: 1
+        });
+        
     }
+    resetHighlight(e) {
+    	const layer = e.target;
+	    return layer.setStyle({
+	        weight: 1,
+            fillOpacity: 0.5,
+             color: 'black'
+        });
+    }
+    style(feature) {
+            let property=feature.properties.state
+            if ((property=="extended")){
+                var ETAT = 1;
+            }else if ((property=="new")||(property=="new2015")){
+                var ETAT = 2;
+            }else if ((property=="old")){
+                var ETAT = 3;
+            }
+
+            return {
+                fillColor: this.getColor(ETAT,["#BBDEFB","#005288","#0096d6"]),
+                color: 'black',
+                weight: 1,
+                fillOpacity: 0.5
+            };
+    }
+
+    getColor(d,c1) {
+        if      (d >2)      {return (c1[2]); }
+        else if (d >1)      {return (c1[1]);}
+        else if (isNaN(d))    {return ('white')}
+        else                  {return (c1[0]);}
+	}
     
     render() {
         const position = this.state.position;
@@ -125,8 +164,7 @@ class MunMap extends Component {
                         //sending shapes center to marker component
                         layer.bindTooltip(feature.properties.NAME_EN,{ permanent: false,className:'tooltipnamear',direction:'right' })
                         layer.on({click: this.clickedShape.bind(this)});
-                        /* layer.on({mouseover: this.highlightFeature.bind(this)});
-                        layer.on({mouseout: this.resetFeature.bind(this)}); */
+                        layer.on({mouseout: this.resetHighlight.bind(this)});
                     }    
                 }
             />

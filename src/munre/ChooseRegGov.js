@@ -79,7 +79,6 @@ class ChooseRegGov extends Component {
                 var ETAT = 3;
             }
            
-            
             return {
                 fillColor: this.getColor(ETAT,["#BBDEFB","#005288","#0096d6"]),
                 color: 'black',
@@ -157,7 +156,6 @@ class ChooseRegGov extends Component {
                             {this.state.shapeIsLoaded ?
                                 <Map center={position} zoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
                                 <GeoJSON
-                                key={this.state.key}
                                 data= {this.state.shape}
                             />
                                 <GeoJSON

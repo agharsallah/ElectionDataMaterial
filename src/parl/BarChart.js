@@ -16,7 +16,7 @@ class HistogramVoterProfile extends Component {
             options:{
                 credits: false,
                 title: {
-                    text: 'Click on shape first'
+                    text: 'Pick a shape'
                 }
             }
         });
@@ -29,7 +29,7 @@ class HistogramVoterProfile extends Component {
             cancelled= property.cancelled,
             invalid= blank+spoiled+cancelled,
             signingVoters= property.signingVoters,
-            pntr=0,cnt=2,
+            pntr=0,cnt=5,
             invalidPer= ((invalid*100)/signingVoters).toFixed(2) ;
         this.setState({
             options:{
@@ -46,18 +46,24 @@ class HistogramVoterProfile extends Component {
                     bar: {
                         dataLabels: {
                             enabled: true,
+                            color: 'black',
+                            fontSize:"14px",
                             formatter:function() 
                             {
                                 pntr++;
-                                var pcnt = (this.y);
+                                console.log(pntr);
                                 if(pntr !== cnt)
                                 {
                                     return  invalid +' Invalid ballot which represents '+invalidPer+'%';
                                 }else{
+                                    console.log('ggggg',pntr);
                                     return signingVoters ;
                                 }
                             }
                         }
+                    },
+                    series: {
+                        stacking: 'normal'
                     }
                 },
                 legend: {
@@ -69,22 +75,32 @@ class HistogramVoterProfile extends Component {
                     floating: true,
                     borderWidth: 1,
                     backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
-                    shadow: true
+                    shadow: false
                 },
                 xAxis: {
-                    text: ''
+                    categories: ['invalid','total'],
+                    text: null
                 },
                 yAxis: {
                     title: {
-                        text: 'votes'
+                        text: 'votes',
+                        data: [invalid]
                     }
                 },
                 series: [{
-                    name: "Invalid",
-                    data: [invalid]
+                    name: "blank",
+                    data: [blank]
+                },
+                {
+                    name: "spoiled",
+                    data: [spoiled]
+                },
+                {
+                    name: "cancelled",
+                    data: [cancelled]
                 }, {
                     name: 'Total',
-                    data: [signingVoters]
+                    data: [0,signingVoters]
                 }],
                 credits: false
             }
@@ -95,7 +111,7 @@ class HistogramVoterProfile extends Component {
             return (
                 <div style={{position:"absolute!important"}} >
                 {console.log("key",this.props.hoveredProperties.NAME_EN)}
-                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.NAME_EN} styles={{height:"65vh"}}/>
+                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.NAME_EN} styles={{height:"75vh"}}/>
                 </div>
             );
         }

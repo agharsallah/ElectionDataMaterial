@@ -7,7 +7,7 @@ import MapKey from './MapKey' ;
 class InvalidMap extends Component {
     constructor(props){
       super(props);
-      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[34.9,11.23]}
+      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[35.5,11.23]}
     }
     
     componentWillMount() {
@@ -35,26 +35,7 @@ class InvalidMap extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        //console.log(nextProps.chosenNiveau);
-        let qString=config.apiUrl+'/api/reg/'+'deleg_'+nextProps.chosenNiveau;
-        //console.log('qs2',qString);
-        axios({
-            method: 'get',
-            url: qString,
-            headers: {
-                'name': 'Isie',
-                'password': 'Isie@ndDi'
-            }
-        })
-        .then(response=>{
-            this.setState({shape:JSON.parse(response.data.data),key:nextProps.chosenNiveau,shapeIsLoaded:true
-            });
-            //console.log(response.data.data);
-        }
-        )
-        .catch(function (error) {
-            console.log(error);
-        });
+        
     }
 
     resetHighlight(e) {
@@ -73,8 +54,6 @@ class InvalidMap extends Component {
 	        color: '#666',
 	        fillOpacity: 1
         });
-        
-        
     }
     
     getColor(d) {
@@ -104,12 +83,18 @@ class InvalidMap extends Component {
         //for the histogram age BarChart
         let property=e.target.feature.properties;
         this.props.sendDataBack(property)
+        const layer = e.target;
+	    return layer.setStyle({
+	        weight: 6,
+	        color: '#666',
+	        fillOpacity: 1
+        });
     }
     
     render() {
         const position = this.state.position;
         return (
-            <Map center={position} zoom={7} style={{height: '90vh',position:'relative',backgroundColor:'white'}}>
+            <Map center={position} zoom={7} style={{height: '70vh',position:'relative',backgroundColor:'white'}}>
             <TileLayer
             url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '

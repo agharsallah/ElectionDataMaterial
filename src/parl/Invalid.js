@@ -58,7 +58,7 @@ class Invalid extends Component {
                                 <div className="col-xs-12 col-sm-7 col-md-7 blog-grid-item mb-30">
                                     <article className="card">
                                             <div style={{textAlign:"center"}}>
-                                                <h3 className=" activator">Click on the shape</h3>
+                                                <h3 className=" activator">Click on a shape</h3>
                                             </div>
                                             <div className=" waves-effect waves-block waves-light">
                                                 <InvalidMap 

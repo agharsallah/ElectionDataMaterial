@@ -24,15 +24,13 @@ class Layout extends Component {
                                 <li className={this.props.home}><Link to='/'>Home</Link>
                                 </li>
 
-                                <li className={this.props.mun17}><Link to='javascript:void(0)'>Municipal 2017</Link>
-                                    <ul className="dropdown">
+                                <li className={this.props.mun17}><a href='javascript:void(0)'>Municipal 2017</a>                                   <ul className="dropdown">
                                         <li><Link to='/munre'>Insights</Link></li>
                                         <li ><Link to='/detailed-reg'>Registration</Link></li>
                                         <li ><Link to='/reg-perfomance'>Registration perfomance</Link></li>
                                     </ul>
                                 </li>
-                                <li className={this.props.parl14}><Link to='javascript:void(0)'>Last elections</Link>
-                                    <ul className="dropdown">
+                                <li className={this.props.parl14}><a href='javascript:void(0)'>Last elections</a>                                   <ul className="dropdown">
                                         <li><Link to='/parl/invalid'>Invalid</Link></li>
                                         <li ><Link to='/parl/turnout'>Turnout</Link></li>
                                         <li ><Link to='/parl/result'>Result</Link></li>

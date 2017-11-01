@@ -1,3 +1,4 @@
+/* HHHHHHHHHHHHHEEEEEEEEYYYYYYYYYYYYY DON4T FOGET TO CHANGE CONFIG FILE  */
 var path = require('path');
 var webpack = require('webpack');
 var CompressionPlugin = require("compression-webpack-plugin");

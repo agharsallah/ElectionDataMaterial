@@ -14,6 +14,7 @@ class Home extends Component {
             <div className="valign-cell">
             <div className="container padding-top-110">
                 <div className="row">
+                <div className="col-md-6"></div>
                     <div className="col-md-6">
                         <h1 className="intro-title text-uppercase white-text mb-30" style={{color:"white"}} >Election Data</h1>
                         <p className="lead text-regular white-text" style={{color:"white"}}>Bringing all election data in one place.</p>

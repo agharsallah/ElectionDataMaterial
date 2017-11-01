@@ -178,5 +178,12 @@ LineChart:{
     Thursday:"Thursday",
     Friday:"Friday",
     Saturday:"Saturday"
+},
+
+radioComp:{
+  all:"All",
+  old:"Old",
+  new:"New",
+  extended:"Extended",
 }
 }

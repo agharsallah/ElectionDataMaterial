@@ -8,6 +8,7 @@ import HeaderHelmet from '../HeaderHelmet' ;
 import MapKey from './MapKey' ;
 import Control from 'react-leaflet-control';
 import ReactLoading from 'react-loading';
+import Radio_state from './Radiobutton_state.js';
 
 class ChooseRegGov extends Component {
     constructor(props){
@@ -101,8 +102,9 @@ class ChooseRegGov extends Component {
         this.setState({ redirect: true,url:url })
     }
     chosenNiveau(event){
-        let pickedLevel=event.currentTarget.dataset.id
-        this.setState({stateFilter:event.currentTarget.dataset.id});
+        console.log("dddddddddddd",event.currentTarget.value);
+        let pickedLevel=event.currentTarget.value
+        this.setState({stateFilter:pickedLevel});
         if (pickedLevel=="New") {
            this.setState({ munNumber:"86",munRectangle:"New"});
         }else if(pickedLevel=="Old"){
@@ -114,7 +116,7 @@ class ChooseRegGov extends Component {
         }
     }
     render() {
-        const position = [35.3,10 ];
+        const position = [34.8,10 ];
         let url = this.state.url;
         return (
             this.state.redirect ? <Redirect push to={url}/>:
@@ -122,7 +124,7 @@ class ChooseRegGov extends Component {
             <HeaderHelmet/>
             
             <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
-            <section className="page-title ptb-50">
+            {/* <section className="page-title ptb-50">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
@@ -134,11 +136,11 @@ class ChooseRegGov extends Component {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Tab to Choose the level of the map  */}
-            <section >
-                <div className="border-bottom-tab" style={{padding:'20px 5px'}} >
+            {/* <section >
+                <div className="border-bottom-tab" style={{paddingTop:'20vh'}} >
                 <ul className="nav nav-tabs" role="tablist">
                     <li  data-id="All" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-2" role="tab" className="waves-effect waves-dark" data-toggle="tab">All</a></li>
                     <li data-id="New" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">New</a></li>
@@ -146,41 +148,45 @@ class ChooseRegGov extends Component {
                     <li data-id="Extended" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Extended</a></li>
                     </ul> 
                 </div>
-            </section>
+            </section> */}
 
-            <section className="latest-news-card " style={{padding:'10px 0'}}>
+            <section className="latest-news-card " style={{paddingTop:'10vh'}}>
             <div className="container-fluid">
                 <div className="row">
-                        <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-30">
+                        <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-10 ">
                             <article className="card">
-                                <div style={{textAlign:"center"}}>
+                                {/* <div style={{textAlign:"center"}}>
                                     <h4 className=" activator">Click on a shape for more detailes</h4>
-                                </div>
+                                </div> */}
 
                             {this.state.shapeIsLoaded ?
-                                <Map center={position} zoom={7} style={{height: '80vh',position:'relative',backgroundColor:'white'}}>
+                                <Map center={position} zoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
                                 <GeoJSON
-                                data= {this.state.shape}
-                            />
-                                <GeoJSON
-                                key={"a"+this.state.keyMun}
-                                data= {this.state.munShape}
-                                style={this.style.bind(this)} 
-                                onEachFeature={
-                                    (feature, layer) => {
-                                        layer.bindTooltip(feature.properties.NAME_EN,{ permanent: false,className:'tooltipnamear',direction:'right' })
-                                        layer.on({click: this.clickedShape.bind(this)});
-                                    }    
-                                }
+                                    data= {this.state.shape}
                                 />
+                                <GeoJSON
+                                    key={"a"+this.state.keyMun}
+                                    data= {this.state.munShape}
+                                    style={this.style.bind(this)} 
+                                    onEachFeature={
+                                        (feature, layer) => {
+                                            layer.bindTooltip(feature.properties.NAME_EN,{ permanent: false,className:'tooltipnamear',direction:'right' })
+                                            layer.on({click: this.clickedShape.bind(this)});
+                                        }    
+                                    }
+                                />
+
                                 <Control position="bottomright">
-                                <MapKey colorSet={["#BBDEFB","#005288","#0096d6"]} grades={["New","Old","Extended"]}  keyTitle="Municipality color Representation" />                                
+                                    <MapKey colorSet={["#BBDEFB","#005288","#0096d6"]} grades={["New","Old","Extended"]}  keyTitle="Municipality color Representation" />                                
                                 </Control>
+
                                 <div className="color-box blue-grad col-sm-2" style={{padding:"40px 40px",float:"right"}}>
                                 <h2 style={{textAlign:"center"}}><span className="timer" >{this.state.munNumber}</span></h2>
                                 <span className="count-desc" style={{textAlign:"center"}}>{this.state.munRectangle}</span>
                                 </div>
 
+                                <Radio_state handleMunState={this.chosenNiveau.bind(this)} />
+                                
                                 </Map>
                                 :
                                 <div>

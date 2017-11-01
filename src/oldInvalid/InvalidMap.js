@@ -76,11 +76,12 @@ class InvalidMap extends Component {
     }
     
     getColor(d) {
-	    return d > 10 ? '#67000d' :
-	           d > 6  ? '#fb6a4a' :
+	    return d > 10 ? '#bd0026' :
+               d > 6  ? '#fd8d3c' :
+               d > 3  ? '#fecc5c' :               
                d == 'inexistant'? '#252525' :
                d == 'water'? '#54A4DE' :
-	                      '#fee0d2';
+	                      '#ffffb2';
     }
     
     style(feature) {
@@ -134,7 +135,7 @@ class InvalidMap extends Component {
             />
 
             <Control position="bottomright" >
-                <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[6,10]} getColor={this.getColor} keyTitle="Percentage of invalid ballot"  />
+                <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[3,6,10]} getColor={this.getColor} keyTitle="Percentage of invalid ballot"  />
             </Control>
           </Map>        
         );

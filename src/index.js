@@ -33,7 +33,7 @@ const render = Component =>
       
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
 
-      <Route  path="/reg-perfomance" component={RegTrackLineRoot}/>
+      <Route  path="/reg-performance" component={RegTrackLineRoot}/>
       
       <Route  path="/invalid" component={Invalid}/>
       <Route  path="/turnout" component={Turnout}/>

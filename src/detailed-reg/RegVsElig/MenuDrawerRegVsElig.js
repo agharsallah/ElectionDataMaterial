@@ -45,10 +45,10 @@ class MenuDrawerRegVsElig extends Component {
                 primary={true}
                 onClick={this.handleToggle.bind(this)}
                 />
-                <Drawer width={"21%"}
+                <Drawer width={"15%"}
                         open={this.state.open}
-                        openSecondary={true}
-                        containerStyle={{top:"0vh",height:"98%",zIndex:"1001",position:"absolute"}}
+                        openSecondary={false}
+                        containerStyle={{top:"0vh",position:"absolute"}}
                         onRequestChange={(open) => this.setState({open})}
                         zDepth={2}
                 >

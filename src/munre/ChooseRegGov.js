@@ -114,7 +114,7 @@ class ChooseRegGov extends Component {
         }
     }
     render() {
-        const position = [34.8,11 ];
+        const position = [35.3,10 ];
         let url = this.state.url;
         return (
             this.state.redirect ? <Redirect push to={url}/>:
@@ -153,8 +153,12 @@ class ChooseRegGov extends Component {
                 <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-30">
                             <article className="card">
+                                <div style={{textAlign:"center"}}>
+                                    <h4 className=" activator">Click on a shape for more detailes</h4>
+                                </div>
+
                             {this.state.shapeIsLoaded ?
-                                <Map center={position} zoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
+                                <Map center={position} zoom={7} style={{height: '80vh',position:'relative',backgroundColor:'white'}}>
                                 <GeoJSON
                                 data= {this.state.shape}
                             />

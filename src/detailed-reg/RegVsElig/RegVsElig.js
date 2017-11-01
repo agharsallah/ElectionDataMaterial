@@ -87,10 +87,10 @@ class RegVsElig extends Component {
             return {
                 fillColor: this.getColorRegElg(eligVsReg,COLORSET,this.state.dynamicReg),
                 weight: 1,
-                opacity: 2,
+                opacity: 1,
                 color: 'white',
                 dashArray: '3',
-                fillOpacity: 0.8
+                fillOpacity: 0.7
             };
 	}
 
@@ -124,7 +124,10 @@ class RegVsElig extends Component {
     resetFeature(e) {
 	    var layer = e.target;
 	     layer.setStyle({
-	        weight: 5
+            weight: 1,
+            dashArray: '3',
+            fillOpacity: 0.7,
+            color: 'white',
 	    });
         
     }
@@ -142,7 +145,7 @@ class RegVsElig extends Component {
     }
 
     render() {
-        const position = [34.05360, 5.59795];
+        const position = [34.85360, 7.59795];
         const TITLE= <Translate type="text" content="RegVsElig.TITLE"/>
         const SUBTITLE= <Translate type="text" content="RegVsElig.SUBTITLE"/>
         /* Tooltip */
@@ -168,7 +171,7 @@ class RegVsElig extends Component {
                         </div>
                     </div>
                 </section>
-                {this.props.shapeIsLoaded ? <section> <Map  maxZoom={23} center={position} zoom={6} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
+                {this.props.shapeIsLoaded ? <section> <Map  maxZoom={8} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
@@ -204,7 +207,8 @@ class RegVsElig extends Component {
                     </GeoJSON>
                     <ThemeRadio defaultSelected="pop" styles={{marginTop:"14vh",minWidth:"16vw",position:"fixed",zIndex:2,marginLeft:"83%"}}/>
                     {/*Left side ScatterPlot*/}
-                    <div className="col-md-6" style={{marginTop:"20vh",zIndex:1500}}>
+                    <div className="col-md-7"> </div>
+                    <div className="col-md-5" style={{marginTop:"1vh",zIndex:1500}}>
                         {
                         <ScatterRegVsElig
                         menElgReg={this.state.menElgReg}

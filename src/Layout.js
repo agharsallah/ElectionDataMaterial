@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link,NavLink,Route } from 'react-router-dom';
 class Layout extends Component {
     render() {
-        let headerClass= 'tt-nav '+this.props.layoutShape;
+        let headerClass= 'tt-nav sticky '+this.props.layoutShape;
         let headerColor= 'menuzord-menu pull-right '+this.props.typoColor;
         return (
             <header id='header' className={headerClass} >
@@ -26,7 +26,7 @@ class Layout extends Component {
                                 <li className={this.props.mun17}><a href='javascript:void(0)'>Municipal 2017</a>                                   <ul className="dropdown">
                                         <li><Link to='/munre'>Insights</Link></li>
                                         <li ><Link to='/detailed-reg'>Registration</Link></li>
-                                        <li ><Link to='/reg-perfomance'>Registration perfomance</Link></li>
+                                        <li ><Link to='/reg-performance'>Registration perfomance</Link></li>
                                     </ul>
                                 </li>
                                 <li className={this.props.parl14}><a href='javascript:void(0)'>Last elections</a>                                   <ul className="dropdown">

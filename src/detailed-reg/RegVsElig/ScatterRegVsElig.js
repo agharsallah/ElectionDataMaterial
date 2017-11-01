@@ -47,7 +47,7 @@ class ScatterRegVsElig extends Component {
             chart: {
                 type: 'scatter',
                 zoomType: 'xy',
-                backgroundColor: 'rgba(255, 255, 255, .6)'
+                backgroundColor: 'rgba(255, 255, 255, .2)'
             },
             credits: false,
             title: {

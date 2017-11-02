@@ -38,7 +38,7 @@ class ScatterRegVsElig extends Component {
             var xf = 850000,yf = regression0*xf + regression1;
            var dataSeries= [
                 {name: this.state.Governorate,color: 'black', data: this.props.allElgReg},
-                {type: 'line',name: this.state.Regression,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
+                //{type: 'line',name: this.state.Regression,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
                 {type: 'line',color:"orange",name: this.state.Ideal,data: [[x0, x0], [xf, xf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false}
 
            ]
@@ -139,7 +139,7 @@ class ScatterRegVsElig extends Component {
             var title="Registered Versus Eligible by Gender"
             var dataSeries= [
                 {name: this.state.Male ,color: 'rgba(119, 152, 191, .5)',data: nextProps.femaleElgReg},
-                {type: 'line',name: this.state.Regression ,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
+                //{type: 'line',name: this.state.Regression ,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
                 {type: 'line',color:"orange",name: this.state.Ideal,data: [[x0, x0], [xf, xf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false}
             ]
         }else if (nextProps.genderFilter=="Female"){
@@ -148,7 +148,7 @@ class ScatterRegVsElig extends Component {
             var title="Registered Versus Eligible by Gender"
             var dataSeries= [
                 {name: this.state.Female ,color: 'rgba(223, 83, 83, .5)', data: nextProps.menElgReg},
-                {type: 'line',name: this.state.Regression ,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
+                //{type: 'line',name: this.state.Regression ,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
                 {type: 'line',color:"orange",name: this.state.Ideal ,data: [[x0, x0], [xf, xf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false}
             ] 
         }
@@ -158,7 +158,7 @@ class ScatterRegVsElig extends Component {
            var title="Registered Versus Eligible"
            var dataSeries= [
                 {name: this.state.Governorate,color: 'black', data: nextProps.allElgReg},
-                {type: 'line',name: this.state.Regression,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
+                //{type: 'line',name: this.state.Regression,data: [[x0, y0], [xf, yf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false},
                 {type: 'line',color:"orange",name: this.state.Ideal ,data: [[x0, x0], [xf, xf]],marker: {enabled:false},states: {hover: {lineWidth: 0}}, enableMouseTracking: false}
 
            ]

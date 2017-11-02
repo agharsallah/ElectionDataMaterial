@@ -80,7 +80,7 @@ class RegVsElig extends Component {
                 :
                 (REGISTRATION = parseInt(feature.properties.allreg_female_sum),
                 ELIGIBLE = parseInt(feature.properties._2014_eligilevotersfemale),
-                COLORSET=["#feebe2","#fbb4b9","#f768a1","#ae017e"]
+                COLORSET=["#fec44f","#ca9534","#a4631e","#7f3114"]
                 )
             )
             let eligVsReg = ((REGISTRATION*100)/ELIGIBLE).toFixed(2);
@@ -139,13 +139,13 @@ class RegVsElig extends Component {
             :   (value==="Male"?
                 (keyColor=["#f7fbff","#c6dbef","#6baed6","#084594"],keyTitle=this.state.malekey)
                 :
-                (keyColor=["#feebe2","#fbb4b9","#f768a1","#ae017e"],keyTitle=this.state.femalekey)
+                (keyColor=["#fec44f","#ca9534","#a4631e","#7f3114"],keyTitle=this.state.femalekey)
                 )
                 this.setState({mapGender:value,keyColor,keyTitle})
     }
 
     render() {
-        const position = [34.85360, 7.59795];
+        const position = [34.55360, 11.59795];
         const TITLE= <Translate type="text" content="RegVsElig.TITLE"/>
         const SUBTITLE= <Translate type="text" content="RegVsElig.SUBTITLE"/>
         /* Tooltip */
@@ -157,8 +157,8 @@ class RegVsElig extends Component {
 
         return (
                 
-                <div>
-                <section className="page-title ptb-50">
+                <div style={{paddingTop:'10vh' }}>
+                {/* <section className="page-title ptb-50">
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
@@ -170,8 +170,8 @@ class RegVsElig extends Component {
                             </div>
                         </div>
                     </div>
-                </section>
-                {this.props.shapeIsLoaded ? <section> <Map  maxZoom={8} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
+                </section> */}
+                {this.props.shapeIsLoaded ? <section> <Map  maxZoom={8} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0,backgroundColor:"white"}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
@@ -205,7 +205,6 @@ class RegVsElig extends Component {
                         </Tooltip>
 
                     </GeoJSON>
-                    <ThemeRadio defaultSelected="pop" styles={{marginTop:"14vh",minWidth:"16vw",position:"fixed",zIndex:2,marginLeft:"83%"}}/>
                     {/*Left side ScatterPlot*/}
                     <div className="col-md-7"> </div>
                     <div className="col-md-5" style={{marginTop:"1vh",zIndex:1500}}>
@@ -219,15 +218,14 @@ class RegVsElig extends Component {
                         genderFilter={this.state.mapGender}
                         />}
                     </div>
-
                     {/*Change Degree of map : Governorate - Municipality*/}
                 
                     {/*to download raw data*/}
                         
                     {/*Map Keys coropleth*/}
-                    <Control position="bottomright" >
+                    {/* <Control position="bottomleft" >
                         <MapKey colorSet={this.state.keyColor} grades={this.state.grades} getColor={this.state.colorfun} keyTitle={this.state.keyTitle} key={this.state.keytitle} />
-                    </Control>
+                    </Control> */}
                     
                     {/*Title of the map*/}
                     {/* <Control position="topleft">

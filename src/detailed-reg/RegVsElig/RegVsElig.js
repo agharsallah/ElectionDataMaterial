@@ -207,7 +207,7 @@ class RegVsElig extends Component {
                     </GeoJSON>
                     {/*Left side ScatterPlot*/}
                     <div className="col-md-7"> </div>
-                    <div className="col-md-5" style={{marginTop:"1vh",zIndex:1500}}>
+                    <div className="col-md-5" style={{marginTop:"2vh",zIndex:1500}}>
                         {
                         <ScatterRegVsElig
                         menElgReg={this.state.menElgReg}

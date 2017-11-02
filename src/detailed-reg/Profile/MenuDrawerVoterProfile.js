@@ -17,7 +17,7 @@ const _t = Translate.translate;
 class MenuDrawerVoterProfile extends Component {
     constructor(props) {
         super(props);
-        this.state = {open: true,radioChart:"difference"};
+        this.state = {open: true,radioChart:"age"};
     }
     handleToggle() {this.setState({open: !this.state.open})}
     
@@ -44,17 +44,18 @@ class MenuDrawerVoterProfile extends Component {
         return (
             <div>
                 <RaisedButton
-                style={{position: "absolute",right: "2vh",top: "50vh",zIndex:500}}
+                style={{position: "absolute",left: "2vh",top: "50vh",zIndex:500}}
                 label={_t('statDrawer.open')}
                 primary={true}
                 onClick={this.handleToggle.bind(this)}
                 />
-                <Drawer width={"18%"}
+                <Drawer width={"15%"}
                         open={this.state.open}
-                        openSecondary={true}
-                        containerStyle={{top:"0vh",height:"98%",zIndex:"1600",position:"absolute"}}
+                        openSecondary={false}
+                        containerStyle={{top:"10vh",height:"98%",zIndex:"900",position:"absolute"}}
                         onRequestChange={(open) => this.setState({open})}
                         zDepth={2}
+                        style={{fontSize:"12px",fontWeight:700}}
                 >
                     <AppBar title={MENU} onLeftIconButtonTouchTap={this.handleToggle.bind(this)} />
 
@@ -80,15 +81,16 @@ class MenuDrawerVoterProfile extends Component {
                     </div>
                     <div  style={{paddingLeft:"2vh"}}>
                                 <RadioButtonGroup name="activeVoterChart"  onChange={this.handleRadioChart.bind(this)} valueSelected={this.state.radioChart} >
-                                    <RadioButton
-                                        value="difference"
-                                        label={MALE_FEMALE_DIFF}
-                                    />
+
                                     <RadioButton
                                         value="age"
                                         label=  {AGEPER}
                                     />
-                                </RadioButtonGroup>
+                                    <RadioButton
+                                    value="difference"
+                                    label={MALE_FEMALE_DIFF}
+                                />
+                                    </RadioButtonGroup>
                     </div>
                     {/* Map Key */}
                     <div style={{paddingTop:"1vh",paddingLeft:"2vh"}}>

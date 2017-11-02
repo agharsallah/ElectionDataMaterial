@@ -91,7 +91,7 @@ class ActiveRegistered extends Component {
 	}
 
     render() {
-        const position = [35.25360, 9.09795];
+        const position = [34.55360, 9.09795];
         const TITLE= <Translate type="text" content="ActiveReg.title"/>
         const SUBTITLE= <Translate type="text" content="ActiveReg.subtitle"/>
         
@@ -100,8 +100,8 @@ class ActiveRegistered extends Component {
         const TOTALREG= <Translate type="text" content="ActiveReg.totalReg"/>
         const NEWREG= <Translate type="text" content="ActiveReg.newReg"/>
         return (
-                <div>
-                <section className="page-title ptb-50">
+                <div style={{paddingTop:'10vh' }}>
+            {/* <section className="page-title ptb-50">
                 <div className="container">
                     <div className="row">
                         <div className="col-md-12">
@@ -113,8 +113,8 @@ class ActiveRegistered extends Component {
                         </div>
                     </div>
                 </div>
-            </section>
-                {this.props.shapeIsLoaded ? <Map  maxZoom={23} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
+            </section> */}
+                {this.props.shapeIsLoaded ? <Map  maxZoom={23} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "99vw",position:"relative",zIndex:0,backgroundColor:"white"}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
@@ -133,7 +133,7 @@ class ActiveRegistered extends Component {
                             }    
                         }
                     >
-                        <Tooltip direction="bottom" className="leafletTooltip" >
+                        <Tooltip direction="bottom" className="leafletTooltip" sticky={true} >
                             <div>
                                 <h3>{this.state.gouv_name}</h3>
                                 {
@@ -151,10 +151,12 @@ class ActiveRegistered extends Component {
                     {/*Change Degree of map : Governorate - Municipality*/}
                 
                     {/*Map Keys coropleth*/}
-                    <Control position="bottomright" >
+                    {/* <Control position="bottomright" >
                         <MapKey colorSet={["#ffffcc", "#c2e699", "#78c679","#238443"]} grades={this.state.grades} getColor={this.state.colorfun} keyTitle={this.state.keytitle} />
+                    </Control> */}
+                    <Control position="topright" >
+                        <p>Hover Over the map for more info</p>
                     </Control>
-                    
                     {/*Title of the map*/}
 {/*                     <Control position="topleft">
                         <div className="lefttitle" >

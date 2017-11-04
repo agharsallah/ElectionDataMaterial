@@ -154,9 +154,9 @@ class ActiveRegistered extends Component {
                     {/* <Control position="bottomright" >
                         <MapKey colorSet={["#ffffcc", "#c2e699", "#78c679","#238443"]} grades={this.state.grades} getColor={this.state.colorfun} keyTitle={this.state.keytitle} />
                     </Control> */}
-                    <Control position="topright" >
-                        <p>Hover Over the map for more info</p>
-                    </Control>
+                        <Control position="topright" >
+                            <p>Hover Over the map for more info</p>
+                        </Control>
                     {/*Title of the map*/}
 {/*                     <Control position="topleft">
                         <div className="lefttitle" >

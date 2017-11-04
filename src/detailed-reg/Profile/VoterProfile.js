@@ -234,7 +234,7 @@ class VoterProfile extends Component {
     }
 
     render() {
-        const position = [34.55360, 11.59795];
+        const position = [34.85360, 11.8];
         //choose which shape to load based on the delimiattion
         let chosenSape,GeojsonKeyChanger;
         this.state.selectedMapLevel=="gov"?(chosenSape=this.props.shape,GeojsonKeyChanger="gov"):(chosenSape=this.props.munShape,GeojsonKeyChanger="mun")
@@ -254,7 +254,7 @@ class VoterProfile extends Component {
         return (
                 <div style={{paddingTop:'10vh' }}>
                 
-                {this.props.shapeIsLoaded ? <div><Map  maxZoom={8} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0,backgroundColor:"white"}}>
+                {this.props.shapeIsLoaded ? <div><Map minZoom={6} maxZoom={7} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0,backgroundColor:"white"}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
@@ -318,9 +318,9 @@ class VoterProfile extends Component {
 
                     {/* bottom Navigation To Change map : Governorate - Municipality */}
 
-                    <div className="col-md-12" style={{zIndex:1500,position:"absolute",marginTop: "90vh"}} >
-                    <div className="col-md-7">_</div>
-                    <div className="col-md-5">
+                    <div className="col-md-12" style={{zIndex:1500,position:"absolute",marginTop: "1vh"}} >
+                    <div className="col-md-3">_</div>
+                    <div className="col-md-3">
                         <RaisedButton onClick={this.MapLevelClick.bind(this,"gov")} label={GOV}  labelColor={this.state.buttonLabelGov} />
                         <RaisedButton onClick={this.MapLevelClick.bind(this,"mun")} label={MUN} style={{marginLeft:"1vh"}} labelColor={this.state.buttonLabelMun} />
 

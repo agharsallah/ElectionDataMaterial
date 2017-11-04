@@ -148,24 +148,10 @@ class RegTrackLineRoot extends Component {
                     <script src="../../js/scripts.js"></script>
                 </Helmet>  
 
-                <Layout/>
+                <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light"/>
 
-                <section className="page-title ptb-50">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <h2 style={{marginTop:"5px"}}  >Registration Performance </h2>
-                                <ol className="breadcrumb">
-                                    <li><Link to="/">Home</Link></li>
-                                    <li ><Link to="/reg-perfomance">Municipal Election 2017</Link></li>
-                                    <li ><Link to="/reg-perfomance">Registration perfomance</Link></li>
-                                    </ol>
-                            </div>
-                        </div>
-                    </div>
-                </section>
                 <section>             
-                <div  style={{marginTop:"2rem"}} >
+                <div  style={{marginTop:"10vh"}} >
 
                         <LineChart
                             key={this.state.dates+inscription }

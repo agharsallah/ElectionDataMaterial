@@ -33,7 +33,7 @@ class BarChart extends Component {
             invalidPer= ((invalid*100)/signingVoters).toFixed(2),
             chosenNiveau=nextProps.chosenNiveau
             ;
-            chosenNiveau=="parl"?chosenNiveau='Parlimentary 14':chosenNiveau='Presidential 14'
+            chosenNiveau=="parl"?chosenNiveau='Parliamentary 2014':chosenNiveau='Presidential 2014'
         this.setState({
             options:{
                 chart: {

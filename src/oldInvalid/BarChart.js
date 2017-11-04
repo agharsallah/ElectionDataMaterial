@@ -81,7 +81,7 @@ class BarChart extends Component {
                     shadow: false
                 },
                 xAxis: {
-                    categories: ['invalid','total'],
+                    categories: ['Invalid','Total signed in'],
                     text: null
                 },
                 yAxis: {
@@ -102,7 +102,7 @@ class BarChart extends Component {
                     name: "cancelled",
                     data: [cancelled]
                 }, {
-                    name: 'Total',
+                    name: 'Total Signed in',
                     data: [0,signingVoters]
                 }],
                 credits: false
@@ -114,7 +114,7 @@ class BarChart extends Component {
             return (
                 <div style={{position:"absolute!important"}} >
                 {console.log("key",this.props.hoveredProperties.cancelled)}
-                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.cancelled} styles={{height:"75vh"}}/>
+                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.cancelled} styles={{height:"80vh"}}/>
                 </div>
             );
         }

@@ -30,7 +30,7 @@ class BarChart extends Component {
             turnoutPer= ((signingVoters*100)/registeredVoters).toFixed(2),
             chosenNiveau=nextProps.chosenNiveau
             ;
-            chosenNiveau=="parl"?chosenNiveau='Parliamentary 14':chosenNiveau='Presidential 14'
+            chosenNiveau=="parl"?chosenNiveau='Parliamentary 2014':chosenNiveau='Presidential 2014'
         this.setState({
             options:{
                 chart: {

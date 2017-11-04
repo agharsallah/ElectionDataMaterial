@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../Layout' ;
-import VizBox from './VizBox' ;
+import BoxFilter from './BoxFilter' ;
 import {Helmet} from "react-helmet";
 class Home extends Component {
   render() {
@@ -23,28 +23,16 @@ class Home extends Component {
             </div>{/* /.container */}
             </div>{/* /.valign-cell */}
         </section>
-        <section className="section-padding">
+        <section style={{paddingTop:"5vh"}}>
             <div className="container">
 
               <div className="text-center mb-50">
                   <h2 className="section-title text-uppercase">visualizations</h2>
                   <p className="section-sub">Check out all our visualization</p>
               </div>
-
-              <div className="portfolio-container text-center">
-
-                <div className="portfolio portfolio-with-title col-3 gutter mt-50">
-                    <VizBox vizLink='/munre' title='Municipal insights' desc='desc here' imgLink='./img/home/regInsight.jpg' />
-                    <VizBox vizLink='/detailed-reg' title='Municipal registration ' desc='desc here' imgLink='./img/home/reg.jpg' />
-                    <VizBox vizLink='/reg-performance' title='Municipal registration performance' desc='desc here' imgLink='./img/home/regPerformance.jpg' />
-                </div>{/* /.portfolio */}
-
-                <div className="portfolio portfolio-with-title col-3 gutter mt-50">
-                    <VizBox vizLink='invalid' title='Invalid ballot' desc='desc here' imgLink='./img/home/invalid.jpg' />
-                    <VizBox vizLink='/turnout' title='Turnout' desc='desc here' imgLink='./img/home/turnout.jpg' />
-                </div>{/* /.portfolio */}
-              </div>{/* portfolio-container */}
-
+            
+              <BoxFilter/>
+    
             </div>{/* /.container */}
         </section>
       </div>

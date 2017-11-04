@@ -7,7 +7,7 @@ import MapKey from './MapKey' ;
 class TurnoutMap extends Component {
     constructor(props){
       super(props);
-      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[35.5,11.23]}
+      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[34.4,9.8]}
     }
     
     componentWillMount() {
@@ -114,9 +114,9 @@ class TurnoutMap extends Component {
     render() {
         const position = this.state.position;
         return (
-            <Map center={position} zoom={7} style={{height: '70vh',position:'relative',backgroundColor:'white'}}>
+            <Map center={position} maxZoom={8} minZoom={6} zoom={7} style={{height: '98vh',position:'relative',backgroundColor:'white'}}>
             <TileLayer
-            url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
+            url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tilesess_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
             />
             <GeoJSON
@@ -136,6 +136,9 @@ class TurnoutMap extends Component {
 
             <Control position="bottomright" >
                 <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[50,60,70]} getColor={this.getColor} keyTitle="Turnout percentage"  />
+            </Control>
+            <Control position="topright" >
+                <p>Click on a shape for more info</p>
             </Control>
           </Map>        
         );

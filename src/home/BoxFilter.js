@@ -41,7 +41,7 @@ class BoxFilter extends Component {
 
                     <div className='portfolio-container text-center' >
                         {this.state.Municipal=='active'||this.state.All=='active'?
-                            <div className='portfolio portfolio-with-title col-3 gutter mt-50 shuffle'  >
+                            <div className='portfolio portfolio-with-title col-3 gutter mt-20 shuffle'  >
                                 <VizBox key='Municipal1' vizLink='/munre' title='Municipal insights' desc='desc here' imgLink='./img/home/regInsight.jpg' />
                                 <VizBox key='Municipal2' vizLink='/detailed-reg' title='Municipal registration ' desc='desc here' imgLink='./img/home/reg.jpg' />
                                 <VizBox key='Municipal3' vizLink='/reg-performance' title='Municipal registration performance' desc='desc here' imgLink='./img/home/regPerformance.jpg' />
@@ -49,10 +49,11 @@ class BoxFilter extends Component {
                             :null
                         }
                         {this.state.Data=='active'||this.state.All=='active'?
-                            <div className='portfolio portfolio-with-title col-3 gutter mt-50' style={{ transition:'height 250ms ease-out',height: '784px',position:'relative'}}>
+                            <div className='portfolio portfolio-with-title col-3 gutter mt-20' style={{ transition:'height 250ms ease-out'}}>
                                 <VizBox key='Data1' vizLink='invalid' title='Invalid ballot' desc='desc here' imgLink='./img/home/invalid.jpg' />
                                 <VizBox key='Data2' vizLink='/turnout' title='Turnout' desc='desc here' imgLink='./img/home/turnout.jpg' />
-                            </div>:null
+                                <VizBox key='Data3' vizLink='/socio' title='Socio ' desc='desc here' imgLink='./img/home/socio.jpg' />
+                                </div>:null
                         }
                     </div>{/* portfolio-container */}
 

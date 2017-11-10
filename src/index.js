@@ -13,6 +13,7 @@ import DetailedRegGovRoot from './detailed-reg/DetailedRegGovRoot' ;
 import RegTrackLineRoot from './reg-perfomance/RegTrackLineRoot' ;
 import Invalid from './oldInvalid/Invalid' ;
 import Turnout from './oldTurnout/Turnout' ;
+import TwoMapsRoot from './socioElection/TwoMapsRoot' ;
 import { Route, Router, Redirect, Switch } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -37,6 +38,7 @@ const render = Component =>
       
       <Route  path="/invalid" component={Invalid}/>
       <Route  path="/turnout" component={Turnout}/>
+      <Route  path="/socio" component={TwoMapsRoot}/>
       </Switch>
     </Router>
     </MuiThemeProvider>

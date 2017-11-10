@@ -13,8 +13,7 @@ class Layout extends Component {
 
                             {/*logo start*/}
                             <a href='index.html' className='logo-brand'>
-                                <img className='logo-dark' src='./img/loego.png' alt=''/>
-                                <img className='logo-light' src='./img/logo-whiete.png' alt=''/>
+                                <img className='logo-dark' src='./img/logo.png' alt=''/>
                             </a>
                             {/*logo end*/}
 

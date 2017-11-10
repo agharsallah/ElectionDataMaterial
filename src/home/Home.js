@@ -23,10 +23,10 @@ class Home extends Component {
             </div>{/* /.container */}
             </div>{/* /.valign-cell */}
         </section>
-        <section style={{paddingTop:"5vh"}}>
+        <section style={{paddingTop:"2vh"}}>
             <div className="container">
 
-              <div className="text-center mb-50">
+              <div className="text-center mb-30">
                   <h2 className="section-title text-uppercase">visualizations</h2>
                   <p className="section-sub">Check out all our visualization</p>
               </div>

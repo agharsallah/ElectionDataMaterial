@@ -23,7 +23,7 @@ class Layout extends Component {
                                 </li>
 
                                 <li className={this.props.mun17}><a href='javascript:void(0)'>Municipal </a>                                   <ul className="dropdown">
-                                        <li><Link to='/munre'>Insights</Link></li>
+                                        <li><Link to='/munre'>Administrative Structure</Link></li>
                                         <li ><Link to='/detailed-reg'>Registration</Link></li>
                                         <li ><Link to='/reg-performance'>Registration perfomance</Link></li>
                                     </ul>
@@ -31,14 +31,30 @@ class Layout extends Component {
                                 <li className={this.props.parl14}><a href='javascript:void(0)'>election data</a>                                   <ul className="dropdown">
                                         <li><Link to='/invalid'>Invalid</Link></li>
                                         <li ><Link to='/turnout'>Turnout</Link></li>
-                                        <li ><a href='http://tunisiaelectiondata.com' target="_blank">more visualizations</a></li>
+                                        <li ><Link to='/socio'>Socio Election</Link></li>
                                         </ul>
                                 </li>
 
-                                <li ><Link to='/'>election result</Link>
-                                </li>
+                                <li className={this.props.result}><a href='javascript:void(0)'>Election result</a>
+                                <ul className="dropdown" >
+                                  <li><a href="javascript:void(0)">Maps</a>
+                                    <ul className="dropdown" >
+                                      <li><a href="/result/2011/index.html">Parliamentary 2011</a></li>
+                                      <li><a href="/result/2014/demos/Maps_Bubble/Elections2014.html">Parliamentary 2014</a></li>
+                                      <li><a href="/result/visPrez/demos/Maps_with_Drill_Down/Tunisia_presidential_election_2008.html">Presidential 2014</a></li>
+                                    </ul>
+                                  </li>
+                                  <li><a href="javascript:void(0)">Archive</a>
+                                    <ul className="dropdown" >
+                                    <li><Link to='/full'>Full results</Link></li>
+                                    <li><Link to='/archive'>Old Viz</Link></li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                            </li>
+                                
 
-                                <li ><Link to='/'>Web Radar</Link>
+                                <li className={this.props.webradar}><Link to='/webradar/index.html'>Web Radar</Link>
                                 </li>
 
                                 

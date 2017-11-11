@@ -20,7 +20,7 @@ class MapKey extends Component {
                         )
                 },this)}
                 <div style={{paddingTop:"0.5rem"}} >
-                <i style={{background:"#54A4DE"}}  ></i>Water
+                <i style={{background:"#c2e699"}}  ></i>Water
                 </div>
                 <div>
                 <i style={{background:"#252525"}}  ></i>Unavailable

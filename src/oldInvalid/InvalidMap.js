@@ -76,12 +76,12 @@ class InvalidMap extends Component {
     }
     
     getColor(d) {
-	    return d > 10 ? '#bd0026' :
-               d > 6  ? '#fd8d3c' :
-               d > 3  ? '#fecc5c' :               
+	    return d > 10 ? '#0570b0' :
+               d > 6  ? '#74a9cf' :
+               d > 3  ? '#bdc9e1' :               
                d == 'inexistant'? '#252525' :
-               d == 'water'? '#54A4DE' :
-	                      '#ffffb2';
+               d == 'water'? '#c2e699' :
+	                      '#f1eef6';
     }
     
     style(feature) {

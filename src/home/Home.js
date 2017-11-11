@@ -1,39 +1,96 @@
 import React, { Component } from 'react';
-import Layout from '../Layout' ;
-import BoxFilter from './BoxFilter' ;
-import {Helmet} from "react-helmet";
+import LayoutHome from '../LayoutHome';
+import BoxFilter from './BoxFilter';
+import { Helmet } from "react-helmet";
 class Home extends Component {
+  smooth(a) {
+    $('html, body').animate({
+      scrollTop: a,
+    }, 'slow');
+
+
+    return false;
+  }
   render() {
     return (
-      <div>      
-      <Helmet>
-      <script src="./js/scripts.js"></script>
-      </Helmet>    
-      <Layout home="active" mun17="" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light"/>      
-        <section className="banner-tn parallax-bg bg-fixed overlay   valign-wrapper" style={{height:'400px'}}>
-            <div className="valign-cell">
-            <div className="container padding-top-110">
-                <div className="row">
-                <div className="col-md-6"></div>
-                    <div className="col-md-6">
-                        <h1 className="intro-title text-uppercase white-text mb-30" style={{color:"white"}} >Election Data</h1>
-                        <p className="lead text-regular white-text" style={{color:"white"}}>Bringing all election data in one place.</p>
-                    </div>{/* col-md-6 */}
-                </div>{/* row */}
-            </div>{/* /.container */}
-            </div>{/* /.valign-cell */}
-        </section>
-        <section style={{paddingTop:"2vh"}}>
-            <div className="container">
+      <div>
+        <Helmet>
+          <script src="./js/scripts.js"></script>
+        </Helmet>
+        <LayoutHome home="active" mun17="" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light" />
+        <section >
+          <div className="container-fluid" style={{ padding: 0 }} >
+            <h2>Carousel Example</h2>
+            <div id="myCarousel" className="carousel slide" data-ride="carousel">
+              <ol className="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+                <li data-target="#myCarousel" data-slide-to="4"></li>
+              </ol>
 
-              <div className="text-center mb-30">
-                  <h2 className="section-title text-uppercase">visualizations</h2>
-                  <p className="section-sub">Check out all our visualization</p>
+              <div className="carousel-inner">
+
+                <div style={{ maxHeight: '90vh' }} className="item active">
+                  <img src="/img/tun.jpg" alt="New york" style={{ width: '100%', opacity: '0.7' }} />
+                  <div className="carousel-caption carousel-text">
+                    <h3>TUNISIA ELECTION DATA</h3>
+                    <p>Bringing Data to People !</p>
+                  </div>
+                </div>
+
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '600vh')} className="item">
+                  <img src="/img/home/mun.jpg" alt="Los Angeles" style={{ width: '100%' , opacity: '0.7' }} />
+                  <div className="carousel-caption carousel-text">
+                    <h3>MUNICIPAL DATA</h3>
+                    <p>Democracy without morality is impossible</p>
+                  </div>
+                </div>
+
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '1040vh')} className="item">
+                  <img src="/img/home/elct_data.jpg" alt="Chicago" style={{ width: '100%' , opacity: '1' }} />
+                  <div className="carousel-caption carousel-text">
+                    <h3>ELECTION DATA</h3>
+                    <p>A Robust Democracy Requires Active Participation</p>
+                  </div>
+                </div>
+
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '1420vh')} className="item">
+                  <img src="/img/home/elct_res.jpg" alt="New york" style={{ width: '100%', opacity: '0.7' }} />
+                  <div className="carousel-caption carousel-text">
+                    <h3>ELECTION RESULT</h3>
+                    <p>It's not the voting that's Democracy, it's the Counting</p>
+                  </div>
+                </div>
+
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '4000vh')} className="item">
+                  <img src="/img/home/mourabba.png" alt="New york" style={{ width: '100%' }} />
+                  <div className="carousel-caption carousel-text">
+                    <h3>WEBRADAR</h3>
+                    <p>Media Monitoring & Analytics</p>
+                  </div>
+                </div>
               </div>
-            
-              <BoxFilter/>
-    
-            </div>{/* /.container */}
+
+              <a className="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span className="glyphicon glyphicon-chevron-left"></span>
+                <span className="sr-only">Previous</span>
+              </a>
+              <a className="right carousel-control" href="#myCarousel" data-slide="next">
+                <span className="glyphicon glyphicon-chevron-right"></span>
+                <span className="sr-only">Next</span>
+              </a>
+            </div>
+          </div>
+        </section>
+        <section style={{ paddingTop: "2vh" }}>
+          <div className="container" >
+
+
+            <BoxFilter />
+
+          </div>{/* /.container */}
         </section>
       </div>
     );

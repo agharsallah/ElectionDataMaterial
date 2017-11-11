@@ -100,10 +100,12 @@ class BarChart extends Component {
                 },
                 {
                     name: "cancelled",
-                    data: [cancelled]
+                    data: [cancelled],
+                    color:'rgba(208, 191, 191, 0.73)'
                 }, {
                     name: 'Total Signed in',
-                    data: [0,signingVoters]
+                    data: [0,signingVoters],
+                    color:'rgb(232, 167, 102)'
                 }],
                 credits: false
             }

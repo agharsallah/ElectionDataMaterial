@@ -76,12 +76,12 @@ class TurnoutMap extends Component {
     }
     
     getColor(d) {
-	    return d > 70 ? '#bd0026' :
-	           d > 60  ? '#fd8d3c' :
-	           d > 50  ? '#fecc5c' :               
+	    return d > 70 ? '#0570b0' :
+	           d > 60  ? '#74a9cf' :
+	           d > 50  ? '#bdc9e1' :               
                d == 'inexistant'? '#252525' :
-               d == 'water'? '#54A4DE' :
-	                      '#ffffb2';
+               d == 'water'? '#c2e699' :
+	                      '#f1eef6';
     }
     
     style(feature) {
@@ -116,7 +116,7 @@ class TurnoutMap extends Component {
         return (
             <Map center={position} maxZoom={8} minZoom={6} zoom={7} style={{height: '98vh',position:'relative',backgroundColor:'white'}}>
             <TileLayer
-            url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tilesess_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
+            url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
             />
             <GeoJSON

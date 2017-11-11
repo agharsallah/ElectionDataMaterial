@@ -87,7 +87,7 @@ class RegistrationMap extends Component {
         let gradesSocio = [0,20, 30, 40 ];
         const GeoLayer = this.state.GeoLayer;
         return (
-        <Map maxZoom={18} center={position} zoom={7} className="initialposition" style={{height:550,position:"relative",zIndex:0}} attributionControl={false}>
+        <Map maxZoom={18} center={position} maxZoom={8} minZoom={6} zoom={7} className="initialposition" style={{height:'98vh',marginTop:'8vh',position:"relative",zIndex:0}} attributionControl={false}>
 
                     <GeoJSON data= {G_2maps_ins_data}  
                             style={this.stylesocio.bind(this)}    
@@ -118,10 +118,10 @@ class RegistrationMap extends Component {
                 </div>
 
                     <Control position="bottomright" >
-                            <MapKey grades={gradesSocio} getColor={this.getColorSocio} selectedSet={this.props.GetSelectedSets} />
+                            <MapKey title="% of social parameter" grades={gradesSocio} getColor={this.getColorSocio} selectedSet={this.props.GetSelectedSets} />
                     </Control>
                      <Control position="bottomleft" >
-                            <MapKey title="% of Active" grades={grades} getColor={this.getColor} selectedSet={this.props.GetSelectedSets} />
+                            <MapKey title="% of Election data" grades={grades} getColor={this.getColor} selectedSet={this.props.GetSelectedSets} />
                     </Control>
         </Map>
         );

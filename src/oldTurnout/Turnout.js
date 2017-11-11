@@ -51,8 +51,8 @@ class Turnout extends Component {
                                     </article>{/* /.card */}
                                 </div>{/* /.col-md-6 */}
 
-                                <div className="col-xs-12 col-sm-5 col-md-5 blog-grid-item mb-30">
-                                    <article className="card">
+                                <div className="col-xs-12 col-sm-5 col-md-5 blog-grid-item mb-30" style={{paddingTop:'3vh'}}>
+                                    <article className="card" style={{paddingTop:'3vh'}}>
 
                                     <div className="card-image waves-effect waves-block waves-light">
                                     <BarChart

@@ -7,6 +7,9 @@ import ElectionSubject from './ElectionSubject';
 import Translate from 'react-translate-component';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import HeaderHelmet from '../HeaderHelmet' ;
+
+import Layout from '../Layout' ;
 
 class TwoMapsRoot extends Component {
     constructor(props){
@@ -21,11 +24,12 @@ class TwoMapsRoot extends Component {
     
     return(
         <div style={{position:"relative"}}>
-            <YearToggle HandleYear={this.HandleYear.bind(this)} />
+        <HeaderHelmet/>        
+        <Layout home="" mun17="" parl14="active" pres14="" result="" webradar="" layoutShape="transparent-header" typoColor="light"/>      
+        <YearToggle HandleYear={this.HandleYear.bind(this)} />
             <SocioEconomicToggle HandleSocioParameter={this.HandleSocioParameter.bind(this)}/>
             <ElectionSubject HandleElecSubject={this.HandleElecSubject.bind(this)}/>
         {/*<AggregationToggle HandleAggregation={this.HandleYear.bind(this)} />*/}
-              <hr className="yeartoggle" style={{width:"1px", backgroundColor: 'black',  height:"520px",left:"50%"}} />
              <RegistrationMap style={{position:"absolute"}} SelectedYear={this.state.SelectedYear} socioparam={this.state.socioparam} elecSubject={this.state.elecSubject} GetSelectedSets={this.state.sets} />
         </div>
     )

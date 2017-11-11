@@ -185,5 +185,21 @@ radioComp:{
   old:"Old",
   new:"New",
   extended:"Extended",
-}
+},TwoMaps:{
+    internetuse:"internet Access",
+    illetracy:"Illetracy",
+    sociotitle:"Social Parameter",
+    electionsubject:"Election Parameter",
+    registration:"Registration",
+    turnout:"Turnout",
+    higher_enrolment:"higher Education Enrolement"
+  },
+  RegistrationMap:{
+    parlimantary:"parlimantary 2014",
+    _2011:"NCA 2011",
+    ElectionYear:"Election Year",
+    Delegation:"Delegation",
+    District:"District",
+    VC:"Voting Center",
+  }
 }

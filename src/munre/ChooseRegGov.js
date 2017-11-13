@@ -151,6 +151,7 @@ class ChooseRegGov extends Component {
             </section> */}
 
             <section className="latest-news-card " style={{paddingTop:'10vh'}}>
+            <h5 className="section-title" style={{textAlign:'center',fontSize:'30px'}} >Administrative structure</h5>
             <div className="container-fluid">
                 <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-10 ">
@@ -160,7 +161,7 @@ class ChooseRegGov extends Component {
                                 </div> */}
 
                             {this.state.shapeIsLoaded ?
-                                <Map center={position} zoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
+                                <Map center={position} zoom={7} maxZoom={8} minZoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
                                 <GeoJSON
                                     data= {this.state.shape}
                                 />
@@ -176,7 +177,7 @@ class ChooseRegGov extends Component {
                                     }
                                 />
 
-                                <Control position="bottomright">
+                                <Control position="bottomright" >
                                     <MapKey colorSet={["#BBDEFB","#005288","#0096d6"]} grades={["New","Old","Extended"]}  keyTitle="Municipality color Representation" />                                
                                 </Control>
 

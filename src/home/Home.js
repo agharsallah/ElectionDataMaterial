@@ -40,27 +40,27 @@ class Home extends Component {
                   </div>
                 </div>
 
-                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '600vh')} className="item">
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '750vh')} className="item">
                   <img src="/img/home/mun.jpg" alt="Los Angeles" style={{ width: '100%' , opacity: '0.7' }} />
                   <div className="carousel-caption carousel-text">
                     <h3>MUNICIPAL DATA</h3>
-                    <p>Democracy without morality is impossible</p>
+                    {/* <p>Democracy without morality is impossible</p> */}
                   </div>
                 </div>
 
-                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '1040vh')} className="item">
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '1140vh')} className="item">
                   <img src="/img/home/elct_data.jpg" alt="Chicago" style={{ width: '100%' , opacity: '1' }} />
                   <div className="carousel-caption carousel-text">
                     <h3>ELECTION DATA</h3>
-                    <p>A Robust Democracy Requires Active Participation</p>
+                    {/* <p>A Robust Democracy Requires Active Participation</p> */}
                   </div>
                 </div>
 
-                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '1420vh')} className="item">
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '1920vh')} className="item">
                   <img src="/img/home/elct_res.jpg" alt="New york" style={{ width: '100%', opacity: '0.7' }} />
                   <div className="carousel-caption carousel-text">
                     <h3>ELECTION RESULT</h3>
-                    <p>It's not the voting that's Democracy, it's the Counting</p>
+                    {/* <p>It's not the voting that's Democracy, it's the Counting</p> */}
                   </div>
                 </div>
 

@@ -39,7 +39,7 @@ class Layout extends Component {
                                 <ul className="dropdown" >
                                   <li><a href="javascript:void(0)">Maps</a>
                                     <ul className="dropdown" >
-                                      <li><a href="/result/2011/index.html">Parliamentary 2011</a></li>
+                                      <li><a href="/result/2011/index.html">NCA 2011</a></li>
                                       <li><a href="/result/2014/demos/Maps_Bubble/Elections2014.html">Parliamentary 2014</a></li>
                                       <li><a href="/result/visPrez/demos/Maps_with_Drill_Down/Tunisia_presidential_election_2008.html">Presidential 2014</a></li>
                                     </ul>

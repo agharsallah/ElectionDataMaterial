@@ -114,7 +114,7 @@ class ActiveRegistered extends Component {
                     </div>
                 </div>
             </section> */}
-                {this.props.shapeIsLoaded ? <Map  maxZoom={23} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "99vw",position:"relative",zIndex:0,backgroundColor:"white"}}>
+                {this.props.shapeIsLoaded ? <Map  maxZoom={8} center={position} zoom={7} minZoom={7} className="initialposition" style={{height: "100vh", width: "99vw",position:"relative",zIndex:0,backgroundColor:"white"}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '

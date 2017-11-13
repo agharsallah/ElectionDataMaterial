@@ -55,11 +55,11 @@ class LayoutHome extends Component {
 
                                 <li className={this.state.mun}><a onClick={this.smooth.bind(this,'600vh',1)}  >Municipal</a>     
                                 </li>
-                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1040vh',2)}  >election data</a>                                   
+                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1140vh',2)}  >election data</a>                                   
                                 
                                 </li>
 
-                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'1420vh',3)} >Election Result</a>
+                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'1730vh',3)} >Election Result</a>
                                 </li>
 
                                 <li className={this.state.radar} ><a onClick={this.smooth.bind(this,'4000vh',4)}  >Web Radar</a>

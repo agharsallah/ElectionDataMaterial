@@ -9,7 +9,6 @@ class HeaderHelmet extends Component {
             <script src="./js/jquery-2.1.3.min.js"></script>  
             <script src="./bootstrap/js/bootstrap.min.js"></script>
             <script src="./materialize/js/materialize.min.js"></script>
-            <script src="./js/menuzord.js"></script>
             <script src="./js/jquery.easing.min.js"></script>
             <script src="./js/jquery.sticky.min.js"></script>
             <script src="./js/smoothscroll.min.js"></script>
@@ -21,6 +20,7 @@ class HeaderHelmet extends Component {
             <script src="./carousel/owl.carousel.min.js"></script>
             <script src="./flexSlider/jquery.flexslider-min.js"></script>
             <script src="./magnific-popup/jquery.magnific-popup.min.js"></script>
+            <script src="./js/menuzord.js"></script>            
             <script src="./js/scripts.js"></script>
             </Helmet>  
         );

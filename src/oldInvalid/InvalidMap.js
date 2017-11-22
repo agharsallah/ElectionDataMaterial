@@ -7,7 +7,7 @@ import MapKey from './MapKey' ;
 class InvalidMap extends Component {
     constructor(props){
       super(props);
-      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[35.5,11.23]}
+      this.state={shape:config.initShape,shapeIsLoaded:false,key:1,position:[34.4,9.8]}
     }
     
     componentWillMount() {
@@ -76,12 +76,12 @@ class InvalidMap extends Component {
     }
     
     getColor(d) {
-	    return d > 10 ? '#bd0026' :
-               d > 6  ? '#fd8d3c' :
-               d > 3  ? '#fecc5c' :               
+	    return d > 10 ? '#0570b0' :
+               d > 6  ? '#74a9cf' :
+               d > 3  ? '#bdc9e1' :               
                d == 'inexistant'? '#252525' :
-               d == 'water'? '#54A4DE' :
-	                      '#ffffb2';
+               d == 'water'? '#c2e699' :
+	                      '#f1eef6';
     }
     
     style(feature) {
@@ -114,7 +114,7 @@ class InvalidMap extends Component {
     render() {
         const position = this.state.position;
         return (
-            <Map center={position} zoom={7} style={{height: '70vh',position:'relative',backgroundColor:'white'}}>
+            <Map center={position} maxZoom={8} minZoom={6} zoom={7} style={{height: '98vh',position:'relative',backgroundColor:'white'}}>
             <TileLayer
             url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
@@ -136,6 +136,9 @@ class InvalidMap extends Component {
 
             <Control position="bottomright" >
                 <MapKey colorSet={["#67000","#fb6a4a","#fee0d2"]} grades={[3,6,10]} getColor={this.getColor} keyTitle="Percentage of invalid ballot"  />
+            </Control>
+            <Control position="topright" >
+                <p>Click on a shape for more info</p>
             </Control>
           </Map>        
         );

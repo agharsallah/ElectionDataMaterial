@@ -34,14 +34,14 @@ class MenuDrawerActiveReg extends Component {
         return (
             <div>
                 <RaisedButton
-                style={{position: "absolute",right: "2vh",top: "50vh",zIndex:500}}
+                style={{position: "absolute",left: "2vh",top: "50vh",zIndex:500}}
                 label={_t('statDrawer.open')}
                 primary={true}
                 onClick={this.handleToggle.bind(this)}
                 />
-                <Drawer width={"20%"}
+                <Drawer width={"15%"}
                         open={this.state.open}
-                        openSecondary={true}
+                        openSecondary={false}
                         containerStyle={{top:"0vh",height:"98%",zIndex:"1001",position:"absolute"}}
                         onRequestChange={(open) => this.setState({open})}
                         zDepth={2}

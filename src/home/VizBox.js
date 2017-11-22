@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class VizBox extends Component {
     render() {
         return (
-            <div className="portfolio-item" data-groups='["all"]'>
+            <div className="portfolio-item"  id={this.props.slide}>
                 <div className="portfolio-wrapper">
 
                 <div className="thumb">

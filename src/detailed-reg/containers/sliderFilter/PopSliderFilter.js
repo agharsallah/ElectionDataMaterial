@@ -29,7 +29,7 @@ class PopSliderFilter extends Component {
     render() {
         return (
                 <InputRange
-                        style={{fontSize:"1rem !important"}}
+                        style={{fontSize:"2rem !important"}}
                         maxValue={3}
                         minValue={0}
                         formatLabel={this.formatLabel.bind(this)}

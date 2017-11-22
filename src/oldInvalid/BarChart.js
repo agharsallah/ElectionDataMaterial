@@ -33,7 +33,7 @@ class BarChart extends Component {
             invalidPer= ((invalid*100)/signingVoters).toFixed(2),
             chosenNiveau=nextProps.chosenNiveau
             ;
-            chosenNiveau=="parl"?chosenNiveau='Parlimentary 14':chosenNiveau='Presidential 14'
+            chosenNiveau=="parl"?chosenNiveau='Parliamentary 2014':chosenNiveau='Presidential 2014'
         this.setState({
             options:{
                 chart: {
@@ -81,7 +81,7 @@ class BarChart extends Component {
                     shadow: false
                 },
                 xAxis: {
-                    categories: ['invalid','total'],
+                    categories: ['Invalid','Total signed in'],
                     text: null
                 },
                 yAxis: {
@@ -100,10 +100,12 @@ class BarChart extends Component {
                 },
                 {
                     name: "cancelled",
-                    data: [cancelled]
+                    data: [cancelled],
+                    color:'rgba(208, 191, 191, 0.73)'
                 }, {
-                    name: 'Total',
-                    data: [0,signingVoters]
+                    name: 'Total Signed in',
+                    data: [0,signingVoters],
+                    color:'rgb(232, 167, 102)'
                 }],
                 credits: false
             }
@@ -114,7 +116,7 @@ class BarChart extends Component {
             return (
                 <div style={{position:"absolute!important"}} >
                 {console.log("key",this.props.hoveredProperties.cancelled)}
-                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.cancelled} styles={{height:"75vh"}}/>
+                <HighchartInit  options={this.state.options} key={this.props.hoveredProperties.cancelled} styles={{height:"80vh"}}/>
                 </div>
             );
         }

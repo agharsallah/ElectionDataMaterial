@@ -36,22 +36,9 @@ class MunReg extends Component {
             <script src="../../js/scripts.js"></script>
             </Helmet>             
                 <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
-                <section className="page-title ptb-50">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <h2>Municipal Election registration data </h2>
-                                <ol className="breadcrumb">
-                                    <li><Link to="/">Home</Link></li>
-                                    <li ><Link to="/munre">Municipal Registration 2017</Link></li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </section>
                 
                 {/* Tab to Choose the level of the map  */}
-                <section >
+                <section style={{paddingTop:'10vh'}}>
                     <div className="border-bottom-tab" style={{padding:'20px 5px'}} >
                     <ul className="nav nav-tabs" role="tablist">
                     <li  data-id="gov" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-2" role="tab" className="waves-effect waves-dark" data-toggle="tab">Governorate</a></li>

@@ -10,7 +10,7 @@ class MapKey extends Component {
     render() {
          var grades = this.props.grades;
         return (
-             <div className="info legend">
+             <div className="info legend" style={{marginBottom:'11vh'}} >
                 <p style={{marginLeft:"10px"}}>{this.props.keyTitle}</p>
                 {grades.map(function(object, i){
                     if(object=="Extended"){object=1}else if (object=="New"){object=2}else{object=3}

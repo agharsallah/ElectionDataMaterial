@@ -29,12 +29,13 @@ import { bindActionCreators } from "redux";
 class VoterProfile extends Component {
     constructor(props){
         super(props);
+        //colorfun : function sent to the menu drawer then to the map key to process the color of the key squares 
         this.state={
             gouv_name:"",govForMunTooltip:"",munNumber:"",destroy:true,
-            colorfun:this.getColorRegElg,
+            colorfun:this.getColorAgePercentage,
             keyTitleDiff:counterpart.translate('VoterProfile.keyTitleDiff18'),keyTitleRegPerc:counterpart.translate('VoterProfile.keyTitleRegPerc18')
             ,mapAge:"18-24",diffrenceArray:[],
-            maleNumber:0,femaleNumber:0,radioChart:"difference",mapClicked:false,
+            maleNumber:0,femaleNumber:0,radioChart:"age",mapClicked:false,
             maleHistogram:[],femaleHistogram:[],maleFemaleHistogram:[],clickedShapeName:counterpart.translate('HistogramVoterProfile.click'),
             dynamicPercentage:[7,9,12],tranchePercentage:0,allreg_sum:0,dynamicColor:["#f7fbff","#c6dbef","#6baed6","#084594"],
             selectedMapLevel:"gov",buttonLabelGov:"#00bcd4",buttonLabelMun:"black"
@@ -233,7 +234,7 @@ class VoterProfile extends Component {
     }
 
     render() {
-        const position = [33.25360, 3.40795];
+        const position = [34.85360, 11.8];
         //choose which shape to load based on the delimiattion
         let chosenSape,GeojsonKeyChanger;
         this.state.selectedMapLevel=="gov"?(chosenSape=this.props.shape,GeojsonKeyChanger="gov"):(chosenSape=this.props.munShape,GeojsonKeyChanger="mun")
@@ -251,21 +252,9 @@ class VoterProfile extends Component {
         const OTHERREG= <Translate type="text" content="VoterProfile.otherReg"/>
 
         return (
-                <div>
-                <section className="page-title ptb-50">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-12">
-                                <h2 style={{marginTop:"5px"}}> {TITLE}</h2>
-                                <ol className="breadcrumb">
-                                    <li><Link to="/">Home</Link></li>
-                                    <li ><Link to="/munre">Municipal Registration 2017</Link></li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                {this.props.shapeIsLoaded ? <div><Map  maxZoom={23} center={position} zoom={6} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0}}>
+                <div style={{paddingTop:'10vh' }}>
+                
+                {this.props.shapeIsLoaded ? <div><Map minZoom={6} maxZoom={7} center={position} zoom={7} className="initialposition" style={{height: "100vh", width: "100vw",position:"relative",zIndex:0,backgroundColor:"white"}}>
                     <TileLayer
                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
@@ -297,7 +286,7 @@ class VoterProfile extends Component {
                         
                     >
                         {this.state.radioChart==="difference"?
-                        <Tooltip direction="left"  className="leafletTooltip" sticky={true} maxWidth={350} maxHeight={250} >
+                        <Tooltip direction="bottom"  className="leafletTooltip" sticky={true} maxWidth={350} maxHeight={250} >
                                 <div style={{zIndex:1501}}>
                                      <SemiPie title={this.state.gouv_name+" "+this.state.govForMunTooltip} male={this.state.maleNumber} female={this.state.femaleNumber} />
                                         <div style={{textAlign:"center",position:"relative",marginTop:"-45px"}}>
@@ -309,7 +298,7 @@ class VoterProfile extends Component {
                                 
                                 </div>
                         </Tooltip>:
-                        <Tooltip direction="left" className="leafletTooltip" zIndex={2000} >
+                        <Tooltip direction="bottom" className="leafletTooltip" sticky={true} zIndex={2000} >
                             <div style={{zIndex:1501}} >
                                 <TooltipPie 
                                     title={this.state.gouv_name+" "+this.state.govForMunTooltip}
@@ -329,9 +318,9 @@ class VoterProfile extends Component {
 
                     {/* bottom Navigation To Change map : Governorate - Municipality */}
 
-                    <div className="col-md-12" style={{zIndex:1500,position:"absolute",marginTop: "90vh"}} >
-                    <div className="col-md-7">_</div>
-                    <div className="col-md-5">
+                    <div className="col-md-12" style={{zIndex:1500,position:"absolute",marginTop: "1vh"}} >
+                    <div className="col-md-3">_</div>
+                    <div className="col-md-3">
                         <RaisedButton onClick={this.MapLevelClick.bind(this,"gov")} label={GOV}  labelColor={this.state.buttonLabelGov} />
                         <RaisedButton onClick={this.MapLevelClick.bind(this,"mun")} label={MUN} style={{marginLeft:"1vh"}} labelColor={this.state.buttonLabelMun} />
 
@@ -339,7 +328,8 @@ class VoterProfile extends Component {
                     </div>    
 
                     {/*Left side ScatterPlot*/}
-                    <div className="col-md-6" style={{marginTop:"12rem",zIndex:1500}}>
+                    <div className="col-md-7" ></div>
+                    <div className="col-md-5" style={{marginTop:"2vh",zIndex:1500}}>
                     {this.state.radioChart==="difference" ?
                         <BarMaleFemaleDiff 
                             alldiffrenceArray={this.state.diffrenceArray} 
@@ -371,10 +361,11 @@ class VoterProfile extends Component {
                             <p style={{fontSize:"13px"}}>{SUBTITLE}</p>
                         </div>
                     </Control> */}
+                    
+                    </Map>   
                     {/* Menu Drawer */}
                     <MenuDrawerVoterProfile getRadioChart={this.getRadioChart.bind(this)} colorSet={this.state.dynamicColor} grades={this.state.dynamicPercentage} getColor={this.state.colorfun} keyTitleRegPerc={this.state.keyTitleRegPerc} keyTitleDiff={this.state.keyTitleDiff} radioChart= {this.state.radioChart} />
-                    
-                    </Map>            
+                                        
                 </div>
                 :
                 <div>

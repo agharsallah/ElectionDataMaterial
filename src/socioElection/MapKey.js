@@ -9,17 +9,14 @@ class MapKey extends Component {
     componentWillReceiveProps(nextProps) {
         this.setState({selectedSet:nextProps.selectedSet});
 
-    }
-    
-    
- 
+    } 
     
     render() {
          var grades = this.props.grades;
          var getColor=this.props.getColor;
 
         return (
-             <div className="infoLeg legend">
+             <div className="infoLeg legend" style={{marginBottom:'10vh'}}>
                 <p style={{marginLeft:"10px"}}>{this.props.title}</p>
                 {grades.map(function(object, i){
                     var bg=getColor(object + 1,this.state.selectedSet)

@@ -12,9 +12,9 @@ class Layout extends Component {
                         <div id='materialize-menu' className='menuzord'>
 
                             {/*logo start*/}
-                            <a href='index.html' className='logo-brand'>
+                            <Link to='/' className='logo-brand'>
                                 <img className='logo-dark' src='./img/logo.png' alt=''/>
-                            </a>
+                            </Link>
                             {/*logo end*/}
 
                             {/*mega menu start*/}
@@ -53,12 +53,13 @@ class Layout extends Component {
                                 </ul>
                             </li>
                                 
-
-                                <li className={this.props.webradar}><Link to='/webradar/index.html'>Web Radar</Link>
+                            <li className={this.props.other} ><Link to='/viz'> Other Viz</Link></li>
+                            
+                                <li className={this.props.webradar}><a href='/webradar/index.html'>Web Radar</a>
                                 </li>
 
+                                <li className={this.props.about} ><Link to='/about'> About</Link></li>
                                 
-
                                 {/* <li className={this.props.contact}><Link to='javascript:void(0)'>Contact</Link>
                                 </li> */}
                             </ul>

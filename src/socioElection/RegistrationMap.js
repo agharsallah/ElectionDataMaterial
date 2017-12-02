@@ -61,12 +61,12 @@ class RegistrationMap extends Component {
 	    };
 	}
     stylesocio(feature) {
-        const internet=((feature.properties.internet_use*100)/(feature.properties.potentialVoters14))
-        const higher_ed=((feature.properties.higer_education_enrolement*100)/(feature.properties.potentialVoters14))
-        const illetracy=((feature.properties.illetracy*100)/(feature.properties.potentialVoters14))
+        const internet=((feature.properties.internet_use*100)/(feature.properties.population_10))
+        const higher_ed=((feature.properties.higer_education_enrolement*100)/(feature.properties.population_10))
+        const illetracy=((feature.properties.illetracy*100)/(feature.properties.population_10))
         let percentage;
         if (this.state.SocialParameter=="internetuse")
-           { percentage=internet;console.log(this.state.SocialParameter)}
+           { percentage=internet;}
         else if (this.state.SocialParameter=="illetracy")
             percentage=illetracy;
         else if (this.state.SocialParameter=="higher_enrolment")
@@ -87,7 +87,7 @@ class RegistrationMap extends Component {
         let gradesSocio = [0,20, 30, 40 ];
         const GeoLayer = this.state.GeoLayer;
         return (
-        <Map maxZoom={18} center={position} maxZoom={8} minZoom={6} zoom={7} className="initialposition" style={{height:'98vh',marginTop:'8vh',position:"relative",zIndex:0}} attributionControl={false}>
+        <Map maxZoom={18} center={position} maxZoom={8} minZoom={7} zoom={7} className="initialposition" style={{height:'98vh',marginTop:'8vh',position:"relative",zIndex:0}} attributionControl={false}>
 
                     <GeoJSON data= {G_2maps_ins_data}  
                             style={this.stylesocio.bind(this)}    
@@ -117,7 +117,7 @@ class RegistrationMap extends Component {
                      
                 </div>
 
-                    <Control position="bottomright" >
+                    <Control position="bottomright">
                             <MapKey title="% of social parameter" grades={gradesSocio} getColor={this.getColorSocio} selectedSet={this.props.GetSelectedSets} />
                     </Control>
                      <Control position="bottomleft" >

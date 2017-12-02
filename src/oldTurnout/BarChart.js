@@ -37,7 +37,7 @@ class BarChart extends Component {
                     type: 'bar'
                 },
                 title: {
-                text: 'turnout in '+ name+' ('+chosenNiveau+')'
+                text: turnoutPer+'% turnout in '+ name
                 },
                 labels: {
                      overflow: 'justify'
@@ -54,10 +54,10 @@ class BarChart extends Component {
                                 console.log(pntr);
                                 if(pntr !== cnt)
                                 {
-                                    return   ' turnout Percentage is '+turnoutPer+'%';
+                                    return   ' Total signin voters is '+signingVoters;
                                 }else{
                                     console.log('ggggg',pntr);
-                                    return registeredVoters+' total registered voter ' ;
+                                    return ' total registered voters is '+registeredVoters ;
                                 }
                             }
                         }

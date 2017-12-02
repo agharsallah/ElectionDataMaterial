@@ -20,7 +20,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Full from './full/Full' ;
 import Archive from './archive/Archive' ;
 import Empty from './Empty' ;
-
+import About from './About' ;
+import VizRoot from './viz/VizRoot' ;
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
 const render = Component =>
@@ -45,7 +46,9 @@ const render = Component =>
 
       <Route  path="/full" component={Full}/>
       <Route  path="/archive" component={Archive}/>
-
+      <Route  path="/about" component={About}/>
+      <Route  path="/viz" component={VizRoot}/>
+      
       <Route  path="/empty/:iframe" component={Empty}/>
       
       </Switch>

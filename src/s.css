@@ -21,3 +21,13 @@
     margin-right: 8px;
     opacity: 0.7;
 }
+.paragraph{
+    text-align: justify;
+    text-justify: inter-word;
+    margin-bottom:5vh;
+    margin-top: 1vh;
+    font-family: roboto;
+}
+.ul{
+font-size: robot
+} 

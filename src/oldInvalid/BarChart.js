@@ -40,7 +40,7 @@ class BarChart extends Component {
                     type: 'bar'
                 },
                 title: {
-                text: 'Invalid votes in '+ name+' ('+chosenNiveau+')'
+                text: invalidPer+'% of invalid ballot in '+ name
                 },
                 labels: {
                      overflow: 'justify'
@@ -57,7 +57,7 @@ class BarChart extends Component {
                                 console.log(pntr);
                                 if(pntr !== cnt)
                                 {
-                                    return  invalid +' Invalid ballot which represents '+invalidPer+'%';
+                                    return  invalid +' Invalid ballot';
                                 }else{
                                     console.log('ggggg',pntr);
                                     return signingVoters ;

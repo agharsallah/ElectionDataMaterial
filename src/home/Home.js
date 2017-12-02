@@ -33,7 +33,7 @@ class Home extends Component {
               <div className="carousel-inner">
 
                 <div style={{ maxHeight: '90vh' }} className="item active">
-                  <img src="/img/tun.jpg" alt="New york" style={{ width: '100%', opacity: '0.7' }} />
+                  <img src="/img/tun.jpg" alt="election" style={{ width: '100%'}} />
                   <div className="carousel-caption carousel-text">
                     <h3>TUNISIA ELECTION DATA</h3>
                     <p>Bringing Data to People !</p>

@@ -33,7 +33,7 @@ class Home extends Component {
               <div className="carousel-inner">
 
                 <div style={{ maxHeight: '90vh' }} className="item active">
-                  <img src="/img/tun.jpg" alt="election" style={{ width: '100%'}} />
+                  <img src="/img/tun.jpg" alt="TUNISIA ELECTION DATA" style={{ width: '100%'}} />
                   <div className="carousel-caption carousel-text">
                     <h3>TUNISIA ELECTION DATA</h3>
                     <p>Bringing Data to People !</p>
@@ -41,7 +41,7 @@ class Home extends Component {
                 </div>
 
                 <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '750vh')} className="item">
-                  <img src="/img/home/mun.jpg" alt="Los Angeles" style={{ width: '100%' , opacity: '0.7' }} />
+                  <img src="/img/home/mun.jpg" alt="ELECTION DATA" style={{ width: '100%' , opacity: '0.7' }} />
                   <div className="carousel-caption carousel-text">
                     <h3>MUNICIPAL DATA</h3>
                     {/* <p>Democracy without morality is impossible</p> */}
@@ -57,7 +57,7 @@ class Home extends Component {
                 </div>
 
                 <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '1920vh')} className="item">
-                  <img src="/img/home/elct_res.jpg" alt="New york" style={{ width: '100%', opacity: '0.7' }} />
+                  <img src="/img/home/elct_res.jpg" alt="ELECTION RESULT" style={{ width: '100%', opacity: '0.7' }} />
                   <div className="carousel-caption carousel-text">
                     <h3>ELECTION RESULT</h3>
                     {/* <p>It's not the voting that's Democracy, it's the Counting</p> */}
@@ -65,7 +65,7 @@ class Home extends Component {
                 </div>
 
                 <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '4000vh')} className="item">
-                  <img src="/img/home/mourabba.png" alt="New york" style={{ width: '100%' }} />
+                  <img src="/img/home/mourabba.png" alt="WEBRADAR" style={{ width: '100%' }} />
                   <div className="carousel-caption carousel-text">
                     <h3>WEBRADAR</h3>
                     <p>Media Monitoring & Analytics</p>
@@ -86,7 +86,6 @@ class Home extends Component {
         </section>
         <section style={{ paddingTop: "2vh" }}>
           <div className="container" >
-
 
             <BoxFilter />
 

@@ -186,8 +186,8 @@ radioComp:{
   new:"New",
   extended:"Extended",
 },TwoMaps:{
-    internetuse:"internet Access",
-    illetracy:"Illetracy",
+    internetuse:"internet Usage",
+    illetracy:"Citizens Illetracy",
     sociotitle:"Social Parameter",
     electionsubject:"Election Parameter",
     registration:"Registration",

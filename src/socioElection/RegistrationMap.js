@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip,LayersControl } from 'react-leaflet';
 import Control from 'react-leaflet-control';
 import MapKey from './MapKey.js';
-import PieChart from './PieChart'
+//import PieChart from './PieChart'
+import TooltipPie from './TooltipPie' ;
 const { BaseLayer, Overlay } = LayersControl;
 
 class RegistrationMap extends Component {
@@ -80,12 +81,40 @@ class RegistrationMap extends Component {
 		    fillOpacity: 0.8
 	    };
 	}
+    highlightFeatureSocio(e){
+        const property = e.target.feature.properties;
+        if (this.state.SocialParameter=="internetuse")
+        this.setState({socioProperty:property.internet_use,socioPercentage:((property.internet_use*100)/property.population_10),population_10Property:property.population_10,cityProperty:property.CIRC_Name,delegProperty:property.NAME_EN});
+        else if (this.state.SocialParameter=="illetracy")
+        this.setState({socioProperty:property.illetracy,socioPercentage:((property.illetracy*100)/property.population_10),population_10Property:property.population_10,cityProperty:property.CIRC_Name,delegProperty:property.NAME_EN});
+    }
+    highlightFeatureElection(e){
+        const property = e.target.feature.properties;
+        const RegPer11=((property.registred11*100)/(property.potentialVoters11));
+        const RegPer14=((property.registred14*100)/(property.potentialVoters14));
+        const Turnout11=((property.SigningVoters11*100)/(property.potentialVoters11));
+        const Turnout14=((property.SigningVoters14*100)/(property.potentialVoters14));
 
+        if (this.state.ElectionYear=="2011" && this.state.ElectioParameter=="registration") 
+            this.setState({socioProperty:property.registred11,socioPercentage:RegPer11,population_10Property:property.potentialVoters11,cityProperty:property.CIRC_Name,delegProperty:property.NAME_EN});
+        
+        else if (this.state.ElectionYear=="2014" && this.state.ElectioParameter=="registration")
+            this.setState({socioProperty:property.registred14,socioPercentage:RegPer14,population_10Property:property.potentialVoters14,cityProperty:property.CIRC_Name,delegProperty:property.NAME_EN});            
+        
+        else if (this.state.ElectionYear=="2011" && this.state.ElectioParameter=="turnout")
+            this.setState({socioProperty:property.SigningVoters11,socioPercentage:Turnout11,population_10Property:property.registred11,cityProperty:property.CIRC_Name,delegProperty:property.NAME_EN});
+            
+        else
+            this.setState({socioProperty:property.SigningVoters14,socioPercentage:Turnout14,population_10Property:property.registred14,cityProperty:property.CIRC_Name,delegProperty:property.NAME_EN});
+            
+        }
     render() {
         const position = [34.9, 11.9];
         let grades = [0,40, 50, 60 ];
         let gradesSocio = [0,20, 30, 40 ];
         const GeoLayer = this.state.GeoLayer;
+        let tooltipLegend
+        this.state.SocialParameter=='illetracy'?tooltipLegend='Illetrate people :':tooltipLegend='Internet use :'
         return (
         <Map maxZoom={18} center={position} maxZoom={8} minZoom={7} zoom={7} className="initialposition" style={{height:'98vh',marginTop:'8vh',position:"relative",zIndex:0}} attributionControl={false}>
 
@@ -93,27 +122,56 @@ class RegistrationMap extends Component {
                             style={this.stylesocio.bind(this)}    
                             onEachFeature={
                                 (feature, layer) => {
-                                    layer.bindPopup(feature.properties.NAME_EN);
-                                     layer.bindTooltip(feature.properties.NAME_EN+'<br/>'+feature.properties.internet_use,{ permanent: false})
+                                    //layer.bindPopup(feature.properties.NAME_EN);
+                                    layer.on({mouseover: this.highlightFeatureSocio.bind(this)});
+                                     //layer.bindTooltip(feature.properties.NAME_EN+'<br/>'+feature.properties.internet_use,{ permanent: false})
                                 }
                             }
-                    />
+                    >
+                    <Tooltip direction="bottom"  className="leafletTooltip" sticky={true} maxWidth={350} maxHeight={250} >
+                    <div style={{zIndex:1501}}>
+                        <TooltipPie 
+                        title={this.state.delegProperty+","+this.state.cityProperty}
+                        allPopulation={this.state.population_10Property}
+                        chosenParam={this.state.SocialParameter} 
+                        socioPercentage={this.state.socioPercentage} 
+                        />
+                        <div style={{textAlign:"center",position:"relative"}}>
+                        <h4><b>{tooltipLegend} </b>  {this.state.socioProperty} person </h4>
+                        <h4><b>Population over 10 : </b>  {this.state.population_10Property} person </h4>
+                        </div>
                     
+                    </div>
+                    </Tooltip>
+                    </GeoJSON>
                    <GeoJSON data= {G_Pv_Parlimentary} 
                         style={this.style.bind(this)} 
                         onEachFeature={
                                 (feature, layer) => {
-                                layer.bindPopup(feature.properties.NAME_EN);
-                                layer.bindTooltip(feature.properties.NAME_EN,{ permanent: false})
+                                //layer.bindPopup(feature.properties.NAME_EN);
+                                ///layer.bindTooltip(feature.properties.NAME_EN,{ permanent: false})
+                                layer.on({mouseover: this.highlightFeatureElection.bind(this)});
                                 }
                         } 
-                    />
+                    >
+                        <Tooltip direction="bottom"  className="leafletTooltip" sticky={true} maxWidth={350} maxHeight={250} >
+                            <div style={{zIndex:1501}}>
+                                <TooltipPie 
+                                title={this.state.delegProperty+","+this.state.cityProperty}
+                                allPopulation={this.state.population_10Property}
+                                chosenParam={this.state.ElectioParameter} 
+                                chosenYear={this.state.ElectioParameter} 
+                                socioPercentage={this.state.socioPercentage} 
+                                />                            
+                            </div>
+                        </Tooltip>
+                    </GeoJSON>
                     
-                    <div className="two-elm-container">
+                <div className="two-elm-container">
                     
-                     <Control position="topright"  >
+                    {/* <Control position="topright">
                        {(this.state.destroy==false)?<PieChart ElectionYear={this.state.ElectionYear} name={this.state.name} circname={this.state.circname} registred14={this.state.registred14} registred11={this.state.registred11} potentialVoters14={this.state.potentialVoters14} potentialVoters11={this.state.potentialVoters11} RegPer11={this.state.RegPer11} RegPer14={this.state.RegPer14} destroy={this.state.destroy} />:<div></div>}
-                    </Control>
+                    </Control> */}
                      
                 </div>
 

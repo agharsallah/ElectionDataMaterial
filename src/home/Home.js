@@ -52,7 +52,7 @@ class Home extends Component {
                     <h3>TUNISIA ELECTION DATA</h3>
                     <p>Bringing Data to People !</p>
                     <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='wXCBh4Y-IoY' onClose={() => this.setState({isOpen: false})} />
-                    <RaisedButton secondary={true} backgroundColor='#ff4081'  style={{margin:'15px',height:'50px',backgroundColr:'#ff4081'}} label="The Website In a Video" onClick={this.openModal}/>
+                    <RaisedButton  backgroundColor='#e62f2d' labelStyle={{color:'white'}}  style={{margin:'15px',height:'50px',backgroundColr:'#e62f2d'}} label="The Website In a Video" onClick={this.openModal}/>
                   
                   </div>
                 </div>

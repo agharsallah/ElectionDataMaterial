@@ -222,11 +222,11 @@ home:{
     electDataTitle2:"Turnout",
     electDataTitle3:"Socio Election Map",
 
-    electResultData1:"Municipal Data",
-    electResultData2:"Election Data",
-    electResultData3:"Election Result",
-    electResultData4:"other Viz",
-    electResultData5:"Webradar"
+    electResultData1:'NCA Results 2011',
+    electResultData2:'Parliamentary 2014',
+    electResultData3:'Presidential 2014 ',
+    electResultData4:'Full Results',
+    electResultData5:'Archive'
     
 },
 }

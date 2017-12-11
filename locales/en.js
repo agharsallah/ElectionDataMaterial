@@ -39,15 +39,7 @@ module.exports = {
      service:"Service",
      municipality:"Municipality"
  },
- navbar:{
-     ar:"العربية",
-     fr:"Français",
-     en:"English",
-     about:"about",
-     viz:"vizualizations",
-     language:"Languages",
-     sitetitle:"Election Data Visualization"
- },
+
  vizroot:{
     title:"Municipal election data",
 
@@ -201,5 +193,40 @@ radioComp:{
     Delegation:"Delegation",
     District:"District",
     VC:"Voting Center",
-  }
+  },
+  navbar:{
+    ar:"العربية",
+    fr:"Français",
+    en:"English",
+    about:"About",
+    other:"Other Viz",
+    mun:"Municipal",
+    electData:"Election Data",
+    elecResult:"Election Result",
+    webRadar:"Web Radar",
+    home:"Home"
+},
+home:{
+    sectionMunicipalData:"Municipal Data",
+    sectionElectionData:"Election Data",
+    sectionElectionResult:"Election Result",
+    sectionotherViz:"other Viz",
+    sectionWebradar:"Webradar",
+    sectionAbout:"About",
+
+    munDataTitle1:"Aministrative Structure",
+    munDataTitle2:"Municipal Registration",
+    munDataTitle3:"Municipal Registration Performance",
+
+    electDataTitle1:"Invalid Ballot",
+    electDataTitle2:"Turnout",
+    electDataTitle3:"Socio Election Map",
+
+    electResultData1:"Municipal Data",
+    electResultData2:"Election Data",
+    electResultData3:"Election Result",
+    electResultData4:"other Viz",
+    electResultData5:"Webradar"
+    
+},
 }

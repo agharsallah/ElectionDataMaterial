@@ -1,10 +1,23 @@
 import React, { Component } from 'react';
 import {Link,NavLink,Route } from 'react-router-dom';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import counterpart  from 'counterpart';
+import Translate from 'react-translate-component';
 class LayoutHome extends Component {
     constructor(props){
       super(props);
-      this.state={home:'active', mun:'', data:'', result:'',  radar:'' }
+      this.state={home:'active', mun:'', data:'', result:'',  radar:'', value: 'en' }
     }
+    componentWillMount() {
+        counterpart.getLocale();
+    }
+
+    handleChange (event, index, value) {
+        this.setState({value})
+        counterpart.setLocale(value);
+    };	
+
     smooth(a,selector){
         $('html, body').animate({
             scrollTop: a,
@@ -38,7 +51,19 @@ class LayoutHome extends Component {
         return false;
     }
     render() {
+        /* Get The language variables from Locale */
+        const en = <Translate type="text" content="navbar.en"/>
+		const fr = <Translate type="text" content="navbar.fr"/>
+        const ar = <Translate type="text" content="navbar.ar"/>
         
+        const about = <Translate content= 'navbar.about'/>//About
+        const other = <Translate content= 'navbar.other'/>//OtherViz
+        const mun = <Translate content= 'navbar.mun'/>//Municipal
+        const electData = <Translate content= 'navbar.electData'/>//Election Data
+        const elecResult = <Translate content= 'navbar.elecResult'/>//Election Result
+        const webRadar = <Translate content= 'navbar.webRadar'/>//webradar
+        const home = <Translate content= 'navbar.home'/>//Home
+
         let headerClass= 'tt-nav sticky '+this.props.layoutShape;
         let headerColor= 'menuzord-menu pull-left '+this.props.typoColor;
         return (
@@ -56,25 +81,29 @@ class LayoutHome extends Component {
 
                             {/*mega menu start*/}
                             <ul className={headerColor}>
-                                <li className={this.state.home} ><a onClick={this.smooth.bind(this,'0vh',0)}  >Home</a> 
+                                <li className={this.state.home} ><a onClick={this.smooth.bind(this,'0vh',0)}  >{home}</a> 
+                                </li>
+                                <li className={this.state.mun}><a onClick={this.smooth.bind(this,'600vh',1)}  >{mun}</a>     
+                                </li>
+                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1140vh',2)}  >{electData}</a>                                   
                                 </li>
 
-                                <li className={this.state.mun}><a onClick={this.smooth.bind(this,'600vh',1)}  >Municipal</a>     
-                                </li>
-                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1140vh',2)}  >election data</a>                                   
-                                
+                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'1730vh',3)} >{elecResult}</a>
                                 </li>
 
-                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'1730vh',3)} >Election Result</a>
+                                <li className={this.state.other} ><a onClick={this.smooth.bind(this,'2500vh',6)}  >{other}</a>
                                 </li>
-
-                                <li className={this.state.other} ><a onClick={this.smooth.bind(this,'2500vh',6)}  >Other Viz</a>
+                                <li className={this.state.radar} ><a onClick={this.smooth.bind(this,'2500vh',4)}  >{webRadar}</a>
                                 </li>
-                                <li className={this.state.radar} ><a onClick={this.smooth.bind(this,'2500vh',4)}  >Web Radar</a>
+                                <li className={this.state.about} ><a onClick={this.smooth.bind(this,'2500vh',5)}  >{about}</a>
                                 </li>
-                                <li className={this.state.about} ><a onClick={this.smooth.bind(this,'2500vh',5)}  >About</a>
-                                </li>
-                            
+                                {/* <li style={{float:"right"}}>      	
+                                <DropDownMenu labelStyle={{color:'inherit'}} value={this.state.value} onChange={this.handleChange.bind(this)} >
+                                  <MenuItem value={'en'} primaryText={en} />
+                                  <MenuItem value={'fr'} primaryText={fr} />
+                                  <MenuItem value={'ar'} primaryText={ar} />
+                                </DropDownMenu>
+                            </li> */}
 
                                 {/* <li className={this.props.contact}><Link to='javascript:void(0)'>Contact</Link>
                                 </li> */}

@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import LayoutHome from '../LayoutHome';
 import BoxFilter from './BoxFilter';
 import { Helmet } from "react-helmet";
+import ModalVideo from 'react-modal-video'
+import './modal-video.css';
+import RaisedButton from 'material-ui/RaisedButton';
+
 class Home extends Component {
+  constructor () {
+    super()
+    this.state = {
+      isOpen: false
+    }
+    this.openModal = this.openModal.bind(this)
+  }
   smooth(a) {
     $('html, body').animate({
       scrollTop: a,
@@ -10,6 +21,9 @@ class Home extends Component {
 
 
     return false;
+  }
+  openModal () {
+    this.setState({isOpen: true})
   }
   render() {
     return (
@@ -20,8 +34,8 @@ class Home extends Component {
         <LayoutHome home="active" mun17="" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light" />
         <section >
           <div className="container-fluid" style={{ padding: 0 }} >
-            <h2>Carousel Example</h2>
-            <div id="myCarousel" className="carousel slide" data-ride="carousel">
+            <h2>Tunisia Election Data</h2>
+            <div id="myCarousel" className="carousel slide" data-interval="false">
               <ol className="carousel-indicators">
                 <li data-target="#myCarousel" data-slide-to="0" className="active"></li>
                 <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -37,6 +51,9 @@ class Home extends Component {
                   <div className="carousel-caption carousel-text">
                     <h3>TUNISIA ELECTION DATA</h3>
                     <p>Bringing Data to People !</p>
+                    <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='wXCBh4Y-IoY' onClose={() => this.setState({isOpen: false})} />
+                    <RaisedButton secondary={true} backgroundColor='#ff4081'  style={{margin:'15px',height:'50px',backgroundColr:'#ff4081'}} label="The Website In a Video" onClick={this.openModal}/>
+                  
                   </div>
                 </div>
 
@@ -73,11 +90,11 @@ class Home extends Component {
                 </div>
               </div>
 
-              <a className="left carousel-control" href="#myCarousel" data-slide="prev">
+              <a className="left carousel-control" style={{width:'10%'}} href="#myCarousel" data-slide="prev">
                 <span className="glyphicon glyphicon-chevron-left"></span>
                 <span className="sr-only">Previous</span>
               </a>
-              <a className="right carousel-control" href="#myCarousel" data-slide="next">
+              <a className="right carousel-control" style={{width:'10%'}} href="#myCarousel" data-slide="next">
                 <span className="glyphicon glyphicon-chevron-right"></span>
                 <span className="sr-only">Next</span>
               </a>

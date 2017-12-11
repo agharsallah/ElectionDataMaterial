@@ -15,7 +15,7 @@ class VizRoot extends Component {
                         <div className="row"><h3 className="section-title"></h3></div>
                         <div className='row bg-parallax'   >
                                 <div className="col-md-4 hover-box">
-                                    <VizBox slide='mun' vizLink='/deputy/index.html' title='Deputies' desc='' imgLink='./img/viz/deputies.jpg' />
+                                    <VizBox slide='mun' vizLink='/deputy/index.html' title='ARP Members' desc='' imgLink='./img/viz/deputies.jpg' />
                                 </div>
                         </div>
                 </div>        

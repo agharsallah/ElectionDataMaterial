@@ -9,7 +9,7 @@ const Radio_state = (props)=>{
 					<RadioButton
 					labelStyle={{color:'black'}}
 					value="parl"
-					label='Parlimentary 2014'
+					label='Parliamentary 2014'
 					 style={{marginTop:"7px"}}
 					 />
 					 <RadioButton

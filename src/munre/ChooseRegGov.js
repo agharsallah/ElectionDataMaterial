@@ -60,6 +60,13 @@ class ChooseRegGov extends Component {
        
         
     }
+    //painting the style of the circ shapes with white, we're using this shape to focus on the circ delimetation ontop of the mun one
+    styleCirc(feature) {
+        return {
+            fillColor: 'white',
+           
+        };
+    }
     style(feature) {
         //check for what we have checked as filter subject : Population || state ||
             const etat = this.state.stateFilter;
@@ -164,6 +171,7 @@ class ChooseRegGov extends Component {
                                 <Map center={position} zoom={7} maxZoom={8} minZoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
                                 <GeoJSON
                                     data= {this.state.shape}
+                                    style={this.styleCirc.bind(this)}
                                 />
                                 <GeoJSON
                                     key={"a"+this.state.keyMun}

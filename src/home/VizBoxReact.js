@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link } from 'react-router-dom';
-class VizBox extends Component {
+class VizBoxReact extends Component {
     render() {
         return (
             <div className="portfolio-item"  id={this.props.slide}>
@@ -8,12 +8,12 @@ class VizBox extends Component {
 
                 <div className="thumb">
                     <div className=" brand-overlay"></div>
-                    <a href={this.props.vizLink}><img style={{height:"190px"}} src={this.props.imgLink} alt=""/></a>
+                    <Link to={this.props.vizLink}><img style={{height:"190px"}} src={this.props.imgLink} alt=""/></Link>
                 
                 </div>{/* thumb */}
 
                 <div className="portfolio-title">
-                    <h2 ><a href={this.props.vizLink}>{this.props.title}</a></h2>
+                    <h2 ><Link to={this.props.vizLink}>{this.props.title}</Link></h2>
                     {/* <p><a href={this.props.vizLink}>{this.props.desc}</a> </p> */}
                 </div>
 
@@ -23,4 +23,4 @@ class VizBox extends Component {
     }
 }
 
-export default VizBox;
+export default VizBoxReact;

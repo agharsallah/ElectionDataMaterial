@@ -22,6 +22,7 @@ import Archive from './archive/Archive' ;
 import Empty from './Empty' ;
 import About from './About' ;
 import VizRoot from './viz/VizRoot' ;
+import ListsOverview from './lists-overview/ListsOverview' ;
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
 const render = Component =>
@@ -35,7 +36,9 @@ const render = Component =>
       <Route exact path="/" component={App}/>
       <Route  path="/munre" component={ChooseRegGov}/>
       <Route  path="/munreg/:city" component={MunReg}/>
-      
+
+      <Route  path="/lists-overview" component={ListsOverview}/>
+
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
 
       <Route  path="/reg-performance" component={RegTrackLineRoot}/>

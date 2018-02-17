@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import ModalVideo from 'react-modal-video'
 import './modal-video.css';
 import RaisedButton from 'material-ui/RaisedButton';
+import Translate from 'react-translate-component';
 
 class Home extends Component {
   constructor () {
@@ -51,7 +52,7 @@ class Home extends Component {
                   <div className="carousel-caption carousel-text">
                     <h3>TUNISIA ELECTION DATA</h3>
                     <p>Bringing Data to People !</p>
-                    <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='wXCBh4Y-IoY' onClose={() => this.setState({isOpen: false})} />
+                    <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId='ojecMIQu87k' onClose={() => this.setState({isOpen: false})} />
                     <RaisedButton  backgroundColor='#e62f2d' labelStyle={{color:'white'}}  style={{margin:'15px',height:'50px',backgroundColr:'#e62f2d'}} label="The Website In a Video" onClick={this.openModal}/>
                   
                   </div>

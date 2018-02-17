@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VizBox from './VizBox';
 import VizBoxReact from './VizBoxReact';
 import Translate from 'react-translate-component';
+import { Element} from 'react-scroll'
 
 class BoxFilter extends Component {
     constructor(props) {
@@ -52,7 +53,7 @@ class BoxFilter extends Component {
 
             <div>
                 <div className='container  text-center' >
-
+      
                     <div className="row"><h2 className="section-title" style={{marginTop: '20vh'}}>{sectionMunicipalData}</h2></div>
                     <div className='row bg-parallax'   >
                         <div className="col-md-4 hover-box">
@@ -66,7 +67,7 @@ class BoxFilter extends Component {
                         </div>
                     </div>
 
-                    <div className="row"><h2 className="section-title" style={{marginTop: '30vh'}}>{sectionElectionData} </h2></div>
+                    <div className="row"><h2 className="section-title" style={{marginTop: '20vh'}}>{sectionElectionData} </h2></div>
                     <div className='row bg-parallax'  >
                         <div className="col-md-4 hover-box">
                             <VizBoxReact slide="data" vizLink='invalid' title={electDataTitle1} desc='' imgLink='./img/home/invalid.jpg' />
@@ -79,7 +80,8 @@ class BoxFilter extends Component {
                     </div>
 
                     </div>
-                    <div className="row"><h2 className="section-title" style={{marginTop: '15vh'}}>{sectionElectionResult}</h2></div>
+
+                    <div className="row"><h2 className="section-title" style={{marginTop: '20vh'}}>{sectionElectionResult}</h2></div>
                     
                     <div className='row bg-parallax' style={{ marginBottom: '7vh' }} >
                         <div className="col-md-4 hover-box">
@@ -120,6 +122,7 @@ class BoxFilter extends Component {
                         <div className="col-md-4  hover-box">
                             <VizBoxReact vizLink='/about' title=' ' desc='' imgLink='./img/home/about.jpg' />
                         </div>
+                        
 
                         </div>
 

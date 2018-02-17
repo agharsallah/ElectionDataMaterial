@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import {Link,NavLink,Route } from 'react-router-dom';
+import {NavLink,Route } from 'react-router-dom';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import counterpart  from 'counterpart';
 import Translate from 'react-translate-component';
+import { Link} from 'react-scroll'
+
 class LayoutHome extends Component {
     constructor(props){
       super(props);
@@ -66,6 +68,7 @@ class LayoutHome extends Component {
 
         let headerClass= 'tt-nav sticky '+this.props.layoutShape;
         let headerColor= 'menuzord-menu pull-left '+this.props.typoColor;
+
         return (
             <header id='header' className={headerClass} style={{zIndex:1500}} >
                 <div className='header-sticky light-header'>    
@@ -81,14 +84,16 @@ class LayoutHome extends Component {
 
                             {/*mega menu start*/}
                             <ul className={headerColor}>
+                             {/* <li><Link activeClass="active" className="test1" to="test1" spy={true} smooth={true} duration={500} >Test 1</Link></li> */} 
+                            
                                 <li className={this.state.home} ><a onClick={this.smooth.bind(this,'0vh',0)}  >{home}</a> 
                                 </li>
                                 <li className={this.state.mun}><a onClick={this.smooth.bind(this,'600vh',1)}  >{mun}</a>     
                                 </li>
-                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1140vh',2)}  >{electData}</a>                                   
+                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1115vh',2)}  >{electData}</a>                                   
                                 </li>
 
-                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'1730vh',3)} >{elecResult}</a>
+                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'1710vh',3)} >{elecResult}</a>
                                 </li>
 
                                 <li className={this.state.other} ><a onClick={this.smooth.bind(this,'2500vh',6)}  >{other}</a>
@@ -97,13 +102,13 @@ class LayoutHome extends Component {
                                 </li>
                                 <li className={this.state.about} ><a onClick={this.smooth.bind(this,'2500vh',5)}  >{about}</a>
                                 </li>
-                                {/* <li style={{float:"right"}}>      	
+                                <li style={{float:"right"}}>      	
                                 <DropDownMenu labelStyle={{color:'inherit'}} value={this.state.value} onChange={this.handleChange.bind(this)} >
                                   <MenuItem value={'en'} primaryText={en} />
                                   <MenuItem value={'fr'} primaryText={fr} />
                                   <MenuItem value={'ar'} primaryText={ar} />
                                 </DropDownMenu>
-                            </li> */}
+                            </li>
 
                                 {/* <li className={this.props.contact}><Link to='javascript:void(0)'>Contact</Link>
                                 </li> */}

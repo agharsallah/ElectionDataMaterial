@@ -22,7 +22,7 @@ class VizRoot extends Component {
                         <div className="row"><h3 className="section-title">Videos</h3></div>
                         <div className='row bg-parallax'   >
                             <div className="col-md-4 hover-box">
-                                <VideoBox slide='mun' videoId='wXCBh4Y-IoY' title='Website in a video' desc='' imgLink='./img/sitevideo.jpg' />
+                                <VideoBox slide='mun' videoId='ojecMIQu87k' title='Website in a video' desc='' imgLink='./img/sitevideo.jpg' />
                             </div>
 
                             <div className="col-md-4 hover-box">

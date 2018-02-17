@@ -43,8 +43,8 @@ module.exports = {
  vizroot:{
     title:"Municipal election data",
 
-    detailedRegTitle:"Registeration per Sexe & Age",
-    detailedRegDesc:"Visualizing Municipal registration per Age and Sexe - (data provided by ISIE)",
+    detailedRegTitle:"Registration per Gender & Age",
+    detailedRegDesc:"Visualizing Municipal registration per Age and Gender - (data provided by ISIE)",
     
     dailyRegLineTitle:"Daily Registration Number (Charts)",
     dailyRegLineDesc:"Analyzing the registration and updates of the municipal election density in Time -data Daily updatable- (data provided by ISIE)",
@@ -136,9 +136,9 @@ VoterProfile:{
     keyTitleRegPerc50:"Percentage of registered +50"
 },
 BarMaleFemaleDiff:{
-    title:"difference in voters sexe -",
+    title:"difference in voters gender -",
     subtitle:"if the color is red than difference is in favor of female <br/> else in favor of male",
-    yaxe:"voteres sexe difference number"
+    yaxe:"voteres gender difference number"
 },
 HistogramVoterProfile:{
     Male:"Male",  
@@ -210,15 +210,15 @@ home:{
     sectionMunicipalData:"Municipal Data",
     sectionElectionData:"Election Data",
     sectionElectionResult:"Election Result",
-    sectionotherViz:"other Viz",
-    sectionWebradar:"Webradar",
+    sectionotherViz:"Other Viz",
+    sectionWebradar:"WebRadar",
     sectionAbout:"About",
 
-    munDataTitle1:"Aministrative Structure",
+    munDataTitle1:"Administrative Structure",
     munDataTitle2:"Municipal Registration",
     munDataTitle3:"Municipal Registration Performance",
 
-    electDataTitle1:"Invalid Ballot",
+    electDataTitle1:"Invalid Ballots",
     electDataTitle2:"Turnout",
     electDataTitle3:"Socio Election Map",
 

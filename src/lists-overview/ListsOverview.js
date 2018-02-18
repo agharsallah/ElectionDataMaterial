@@ -18,15 +18,16 @@ class ListsOverview extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false, stateFilter: 'All', shapeIsLoaded: false,
-            munNumber: '350', munRectangle: 'Municipality', munShape: config.initShape, shape: config.initShape,
+            redirect: false, stateFilter: 'total', shapeIsLoaded: false,
+            munShape: config.initShape, shape: config.initShape,
             buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov',//these states colors for mun|gove buttons
-            candidatesNumber: 0, listsNumberCount: 0, avgListNum: 0, maxListNum: 0, minListNum: 0
+            candidatesNumber: 0, listsNumberCount: 0, avgListNum: 0, maxListNum: 0, minListNum: 0,// these states are for the upper box info
+            range: [0, 10, 20, 30] // these states are fo the map style & mapkey
+
 
         }
     }
     componentWillMount() {
-
         let qString = config.apiUrl + '/api/candidatesListNumMap';
         axios({
             method: 'get',
@@ -42,7 +43,7 @@ class ListsOverview extends Component {
             }
         })
             .then(response => {
-                console.log(response.data.data);
+                //console.log(response.data.data);
                 var allLists = [], allGouvname = [], listsNumberCount = 0, candidatesNumber = 0, avgListNum = 0, featuresData = JSON.parse(response.data.data).features
                 featuresData.map((element, i) => {
                     allLists.push({ value: parseInt(element.properties.total_lists), gouv: element.properties.NAME_EN })
@@ -57,7 +58,7 @@ class ListsOverview extends Component {
                 allLists.sort(function (a, b) { return b.value - a.value })
                 this.setState({
                     shape: JSON.parse(response.data.data), key: 'gov', shapeIsLoaded: true,
-                    allLists, candidatesNumber, listsNumberCount, avgListNum: avgListNum.toFixed(2),
+                    allLists, candidatesNumber, listsNumberCount, avgListNum: avgListNum.toFixed(0),
                     maxListNum: allLists[0].value, minListNum: allLists[allLists.length - 1].value
                 });
             }
@@ -77,27 +78,23 @@ class ListsOverview extends Component {
         };
     }
     style(feature) {
-        //check for what we have checked as filter subject : Population || state ||
-        const etat = this.state.stateFilter;
-        /* if(etat=='All') {
-            if(feature.properties.state=='extended'){
-                var listsNum = feature.properties.total_lists;
-            }else if(feature.properties.state=='new'){
-                var listsNum = feature.properties.total_lists;
-            }else{
-                var listsNum = feature.properties.total_lists;
-            }
+        //check for what we have checked as filter subject : total List || independent ||
+        const etat = this.state.stateFilter;var activeData; 
+        if(etat=='total') {
+            activeData=feature.properties.total_lists;
+           
+        }else if (etat=='indep'){
+            activeData=feature.properties.independents;
+            ;
+        }else if (etat=='coalition'){
+            activeData=feature.properties.coalitions;
+            ;
+        }else{
+            activeData=feature.properties.parties;
+            ;
         }
-        if ((feature.properties.state=='extended')&&(etat=='Extended')){
-            var ETAT = 1;
-        }else if ((feature.properties.state=='new')&&(etat=='New')){
-            var ETAT = 2;
-        }else if ((feature.properties.state=='old')&&(etat=='Old')){
-            var ETAT = 3;
-        } */
-
         return {
-            fillColor: this.getColor(feature.properties.total_lists, [0, 10, 20, 30], ['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']),
+            fillColor: this.getColor(activeData, this.state.range, ['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']),
             color: 'black',
             weight: 1,
             fillOpacity: 0.7
@@ -122,14 +119,15 @@ class ListsOverview extends Component {
         console.log('dddddddddddd', event.currentTarget.value);
         let pickedLevel = event.currentTarget.value
         this.setState({ stateFilter: pickedLevel });
-        if (pickedLevel == 'New') {
-            this.setState({ munNumber: '86', munRectangle: 'New' });
-        } else if (pickedLevel == 'Old') {
-            this.setState({ munNumber: '75', munRectangle: 'Old' });
-        } else if (pickedLevel == 'Extended') {
-            this.setState({ munNumber: '189', munRectangle: 'Extended' });
+        //setting the range of the style as soon we get the value from the radio button
+        if (pickedLevel == 'total') {
+            this.setState({range:[0, 10, 20, 30] });
+        } else if (pickedLevel == 'indep') {
+            this.setState({range:[0, 5, 10, 15] });
+        } else if (pickedLevel == 'coalition') {
+            this.setState({range:[0, 5, 10, 15] });
         } else {
-            this.setState({ munNumber: '350', munRectangle: 'Municipality' });
+            this.setState({ range:[0, 5, 10, 15]});
         }
     }
     MapLevelClick(index) {
@@ -186,7 +184,7 @@ class ListsOverview extends Component {
                                                 />
 
                                                 <Control position='topright' >
-                                                    <MapKey colorSet={['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']} range={[0, 10, 20, 30]} keyTitle='Candidates Lists Number' />
+                                                    <MapKey colorSet={['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']} range={this.state.range} keyTitle='Candidates Lists Number' />
                                                 </Control>
 
                                                 <div className='col-md-3 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >

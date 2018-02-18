@@ -24,6 +24,7 @@ class MunReg extends Component {
         //contains maleHistogram  femaleHistogram mapClicked ...
         this.setState(data);
     }
+    //we're getting the info of the chairs, population, area, munNumber from the munmap 
     sendRectangleDataBack(recData){
         console.log("rectangle data",recData);
         this.setState(recData)

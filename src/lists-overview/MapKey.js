@@ -17,7 +17,7 @@ class MapKey extends Component {
     render() {
          var range = this.props.range;
         return (
-             <div className="info legend" style={{marginBottom:'11vh'}} >
+             <div className="info legend" style={{marginTop:'18vh'}} >
                 <p style={{marginLeft:"10px"}}>{this.props.keyTitle}</p>
                 {range.map(function(object, i){
                     //if(object=="Extended"){object=1}else if (object=="New"){object=2}else{object=3}

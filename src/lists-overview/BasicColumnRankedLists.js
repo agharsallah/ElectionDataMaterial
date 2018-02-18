@@ -8,7 +8,7 @@ class BasicColumnRankedLists extends Component {
     }
     /* componentDidMount() {
         var inscriptionArray=[],gouvNameArray=[]
-        this.props.allInscription.map((element,i)=>{
+        this.props.allLists.map((element,i)=>{
             inscriptionArray.push(element.value)
             gouvNameArray.push(element.gouv)
         })

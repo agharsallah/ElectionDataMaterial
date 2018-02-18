@@ -21,8 +21,9 @@ class ListsOverview extends Component {
             redirect: false, stateFilter: 'total', shapeIsLoaded: false,
             munShape: config.initShape, shape: config.initShape,
             buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov',//these states colors for mun|gove buttons
-            candidatesNumber: 0, listsNumberCount: 0, avgListNum: 0, maxListNum: 0, minListNum: 0,// these states are for the upper box info
-            range: [0, 10, 20, 30] // these states are fo the map style & mapkey
+            range: [0, 10, 20, 30], // these states are fo the map style & mapkey
+            candidatesNumber: 0, chosenlistsNumberCount:0,chosenavgListNum:0,chosenmaxListNum:0,chosenminListNum:0// these states are for the upper box info
+
 
 
         }
@@ -44,22 +45,53 @@ class ListsOverview extends Component {
         })
             .then(response => {
                 //console.log(response.data.data);
-                var allLists = [], allGouvname = [], listsNumberCount = 0, candidatesNumber = 0, avgListNum = 0, featuresData = JSON.parse(response.data.data).features
+                var allLists = [], allGouvname = [], candidatesNumber = 0,  featuresData = JSON.parse(response.data.data).features,
+                listsNumberCount = 0,indListsNumberCount=0,coalListsNumberCount=0,partyListsNumberCount=0,
+                avgListNum = 0,indAvgListNum = 0,coalAvgListNum = 0,partyAvgListNum = 0,
+                indepList=[],coalList=[],partyList=[]
                 featuresData.map((element, i) => {
                     allLists.push({ value: parseInt(element.properties.total_lists), gouv: element.properties.NAME_EN })
+
+                    indepList.push({ value: parseInt(element.properties.independents)})
+                    coalList.push({ value: parseInt(element.properties.coalitions) })
+                    partyList.push({ value: parseInt(element.properties.parties)})
                     //calculating the candidates number
                     candidatesNumber = (element.properties.total_lists + 3) * element.properties.chairs
                     //calulating the total list number
                     listsNumberCount += element.properties.total_lists;
+                    //calulating the independent lists
+                    indListsNumberCount += element.properties.independents;
+                    //calulating the  coalition lists
+                    coalListsNumberCount+= element.properties.coalitions;
+                    //calulating the party lists 
+                    partyListsNumberCount+= element.properties.parties;
                 })
                 //calulating the avg list number
                 avgListNum = listsNumberCount / featuresData.length
+                indAvgListNum = indListsNumberCount / featuresData.length
+                coalAvgListNum = coalListsNumberCount / featuresData.length
+                partyAvgListNum = partyListsNumberCount / featuresData.length
 
                 allLists.sort(function (a, b) { return b.value - a.value })
+                indepList.sort(function (a, b) { return b.value - a.value })
+                coalList.sort(function (a, b) { return b.value - a.value })
+                partyList.sort(function (a, b) { return b.value - a.value })
                 this.setState({
                     shape: JSON.parse(response.data.data), key: 'gov', shapeIsLoaded: true,
                     allLists, candidatesNumber, listsNumberCount, avgListNum: avgListNum.toFixed(0),
-                    maxListNum: allLists[0].value, minListNum: allLists[allLists.length - 1].value
+                    maxListNum: allLists[0].value, minListNum: allLists[allLists.length - 1].value,
+
+                    indListsNumberCount, indAvgListNum: indAvgListNum.toFixed(0),
+                    indMaxListNum: indepList[0].value, indMinListNum: indepList[indepList.length - 1].value,
+                    
+                    coalListsNumberCount, coalAvgListNum: coalAvgListNum.toFixed(0),
+                    coalMaxListNum: coalList[0].value, coalMinListNum: coalList[coalList.length - 1].value,
+
+                    partyListsNumberCount, partyAvgListNum: partyAvgListNum.toFixed(0),
+                    PartyMaxListNum: partyList[0].value, PartyMinListNum: partyList[partyList.length - 1].value,
+                    
+                    chosenlistsNumberCount:listsNumberCount,chosenavgListNum:avgListNum.toFixed(0),chosenmaxListNum:allLists[0].value,chosenminListNum:allLists[allLists.length - 1].value
+
                 });
             }
             )
@@ -85,13 +117,10 @@ class ListsOverview extends Component {
            
         }else if (etat=='indep'){
             activeData=feature.properties.independents;
-            ;
         }else if (etat=='coalition'){
             activeData=feature.properties.coalitions;
-            ;
         }else{
             activeData=feature.properties.parties;
-            ;
         }
         return {
             fillColor: this.getColor(activeData, this.state.range, ['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']),
@@ -121,13 +150,30 @@ class ListsOverview extends Component {
         this.setState({ stateFilter: pickedLevel });
         //setting the range of the style as soon we get the value from the radio button
         if (pickedLevel == 'total') {
-            this.setState({range:[0, 10, 20, 30] });
+            this.setState({range:[0, 10, 20, 30],
+                chosenlistsNumberCount:this.state.listsNumberCount,
+                chosenavgListNum:this.state.avgListNum,
+                chosenmaxListNum:this.state.maxListNum,
+                chosenminListNum:this.state.minListNum 
+            });
         } else if (pickedLevel == 'indep') {
-            this.setState({range:[0, 5, 10, 15] });
+            this.setState({range:[0, 5, 10, 15],
+                chosenlistsNumberCount:this.state.indListsNumberCount,
+                chosenavgListNum:this.state.indAvgListNum,
+                chosenmaxListNum:this.state.indMaxListNum,
+                chosenminListNum:this.state.indMinListNum  });
         } else if (pickedLevel == 'coalition') {
-            this.setState({range:[0, 5, 10, 15] });
+            this.setState({range:[0, 5, 10, 15],
+                chosenlistsNumberCount:this.state.coalListsNumberCount,
+                chosenavgListNum:this.state.coalAvgListNum,
+                chosenmaxListNum:this.state.coalMaxListNum,
+                chosenminListNum:this.state.coalMinListNum  });
         } else {
-            this.setState({ range:[0, 5, 10, 15]});
+            this.setState({ range:[0, 5, 10, 15],
+                chosenlistsNumberCount:this.state.partyListsNumberCount,
+                chosenavgListNum:this.state.partyAvgListNum,
+                chosenmaxListNum:this.state.PartyMaxListNum,
+                chosenminListNum:this.state.PartyMinListNum });
         }
     }
     MapLevelClick(index) {
@@ -141,7 +187,8 @@ class ListsOverview extends Component {
         let url = this.state.url;
         const GOV = <Translate type="text" content="VoterProfile.gov" />
         const MUN = <Translate type="text" content="VoterProfile.mun" />
-
+        //decision for the boxes ontop of the map
+        
         return (
             this.state.redirect ? <Redirect push to={url} /> :
                 <div>
@@ -153,11 +200,11 @@ class ListsOverview extends Component {
                         <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >Number Of Total Lists Per Governorate (16-02)</h5>
                         <section className="container-fluid" style={{ marginBottom: '10px' }}>
                             <div className="row no-gutter col-md-offset-1">
-                                <DataRectangle imgLink="/img/sum.svg" regValue={this.state.listsNumberCount} title="lists number" />
+                                <DataRectangle imgLink="/img/sum.svg" regValue={this.state.chosenlistsNumberCount} title="lists number" />
                                 <DataRectangle imgLink="/img/candidates.svg" regValue={this.state.candidatesNumber} title="Candidates number" />
-                                <DataRectangle imgLink="/img/average.PNG" regValue={this.state.avgListNum} title="Average Lists number" />
-                                <DataRectangle imgLink="/img/increaseArrow.svg" regValue={this.state.maxListNum} title="Highest Lists number" />
-                                <DataRectangle imgLink="/img/decreaseArrow.svg" regValue={this.state.minListNum} title="Lowest Lists number" />
+                                <DataRectangle imgLink="/img/average.PNG" regValue={this.state.chosenavgListNum} title="Average Lists number per gov" />
+                                <DataRectangle imgLink="/img/increaseArrow.svg" regValue={this.state.chosenmaxListNum} title="Highest Lists number per gov" />
+                                <DataRectangle imgLink="/img/decreaseArrow.svg" regValue={this.state.chosenminListNum} title="Lowest Lists number per gov" />
                             </div>
                         </section>
                         <div className='container-fluid'>

@@ -19,38 +19,23 @@ class ListsOverview extends Component {
     }
     componentWillMount() {
         
-        let qString2=config.apiUrl+"/api/reg/MunShapeOld";
-        axios({
-            method: 'get',
-            url: qString2,
-            headers: {
-                'name': 'Isie',
-                'password': 'Isie@ndDi'
-            }
-        })
-        .then(response=>{
-            //console.log(response.data.data)
-            console.log('we got shape data frm db');
-            console.log(response);
-            this.setState({munShape:JSON.parse(response.data.data),keyMun:"mun",shapeIsLoaded:true});
-            }
-        )
-        .catch(function (error) {
-            console.log(error);
-        });
-
-        let qString=config.apiUrl+'/api/reg/all';
+        let qString=config.apiUrl+'/api/candidatesListNumMap';
         axios({
             method: 'get',
             url: qString,
             headers: {
                 'name': 'Isie',
                 'password': 'Isie@ndDi'
-            }
+            },
+            params: {
+                type: 'gov',
+                timeOfCollection:'15h' ,
+                dateOfCollection:'16-02'
+              }
         })
         .then(response=>{
-            this.setState({shape:JSON.parse(response.data.data),key:'gov'
-            });
+            console.log(response.data.data);
+            this.setState({shape:JSON.parse(response.data.data),key:'gov',shapeIsLoaded:true});
         }
         )
         .catch(function (error) {
@@ -70,13 +55,13 @@ class ListsOverview extends Component {
     style(feature) {
         //check for what we have checked as filter subject : Population || state ||
             const etat = this.state.stateFilter;
-            if(etat=="All") {
+            /* if(etat=="All") {
                 if(feature.properties.state=="extended"){
-                    var ETAT = 1;
+                    var listsNum = feature.properties.total_lists;
                 }else if(feature.properties.state=="new"){
-                    var ETAT = 2;
+                    var listsNum = feature.properties.total_lists;
                 }else{
-                    var ETAT = 3;
+                    var listsNum = feature.properties.total_lists;
                 }
             }
             if ((feature.properties.state=="extended")&&(etat=="Extended")){
@@ -85,21 +70,22 @@ class ListsOverview extends Component {
                 var ETAT = 2;
             }else if ((feature.properties.state=="old")&&(etat=="Old")){
                 var ETAT = 3;
-            }
+            } */
            
             return {
-                fillColor: this.getColor(ETAT,["#BBDEFB","#005288","#0096d6"]),
+                fillColor: this.getColor(feature.properties.total_lists,[0,10,20,30],["#BBDEFB",'#7DAFD5',"#0096d6","#005288"]),
                 color: 'black',
                 weight: 1,
-                fillOpacity: 0.5
+                fillOpacity: 0.7
             };
 
     }
-    getColor(d,c1) {
-        if      (d >2)      {return (c1[2]); }
-        else if (d >1)      {return (c1[1]);}
-        else if (isNaN(d))    {return ('white')}
-        else                  {return (c1[0]);}
+    getColor(listsNum,range,colorRange) {
+        if      (listsNum >range[3])      {return (colorRange[3]); }
+        else if (listsNum >range[2])      {return (colorRange[2]);}
+        else if (listsNum >range[1])      {return (colorRange[1]);}
+        else if (isNaN(listsNum))    {return ('white')}
+        else                  {return (colorRange[0]);}
 	}
     clickedShape(e){
         //for the histogram age BarChart
@@ -131,51 +117,24 @@ class ListsOverview extends Component {
             <HeaderHelmet/>
             
             <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
-            {/* <section className="page-title ptb-50">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12">
-                            <h2>Municipal Election registration data </h2>
-                            <ol className="breadcrumb">
-                                <li><Link to="/">Home</Link></li>
-                                <li ><Link to="/munre">Municipal Registration 2017</Link></li>
-                            </ol>
-                        </div>
-                    </div>
-                </div>
-            </section> */}
-
-            {/* Tab to Choose the level of the map  */}
-            {/* <section >
-                <div className="border-bottom-tab" style={{paddingTop:'20vh'}} >
-                <ul className="nav nav-tabs" role="tablist">
-                    <li  data-id="All" className="active" onClick={this.chosenNiveau.bind(this)}><a href="#tab-2" role="tab" className="waves-effect waves-dark" data-toggle="tab">All</a></li>
-                    <li data-id="New" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">New</a></li>
-                    <li data-id="Old" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Old</a></li>
-                    <li data-id="Extended" onClick={this.chosenNiveau.bind(this)}><a href="#tab-3" role="tab" className="waves-effect waves-dark" data-toggle="tab">Extended</a></li>
-                    </ul> 
-                </div>
-            </section> */}
 
             <section className="latest-news-card " style={{paddingTop:'10vh'}}>
-            <h5 className="section-title" style={{textAlign:'center',fontSize:'30px'}} >Administrative structure</h5>
+            <h5 className="section-title" style={{textAlign:'center',fontSize:'30px'}} >Number Of Total Lists Per Governorate</h5>
             <div className="container-fluid">
                 <div className="row">
                         <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-10 ">
                             <article className="card">
-                                {/* <div style={{textAlign:"center"}}>
-                                    <h4 className=" activator">Click on a shape for more detailes</h4>
-                                </div> */}
+                                
 
                             {this.state.shapeIsLoaded ?
                                 <Map center={position} zoom={7} maxZoom={8} minZoom={7} style={{height: '95vh',position:'relative',backgroundColor:'white'}}>
-                                <GeoJSON
+                                {/* <GeoJSON
                                     data= {this.state.shape}
                                     style={this.styleCirc.bind(this)}
-                                />
+                                /> */}
                                 <GeoJSON
                                     key={"a"+this.state.keyMun}
-                                    data= {this.state.munShape}
+                                    data= {this.state.shape}
                                     style={this.style.bind(this)} 
                                     onEachFeature={
                                         (feature, layer) => {
@@ -186,7 +145,7 @@ class ListsOverview extends Component {
                                 />
 
                                 <Control position="bottomright" >
-                                    <MapKey colorSet={["#BBDEFB","#005288","#0096d6"]} grades={["New","Old","Extended"]}  keyTitle="Municipality color Representation" />                                
+                                    <MapKey colorSet={["#BBDEFB",'#7DAFD5',"#0096d6","#005288"]} range={[0,10,20,30]}  keyTitle="Candidates Lists Number" />                                
                                 </Control>
 
                                 <div className="color-box blue-grad col-sm-2" style={{padding:"40px 40px",float:"right"}}>

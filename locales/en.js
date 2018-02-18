@@ -229,4 +229,11 @@ home:{
     electResultData5:'Archive'
     
 },
+listsOverview:{
+    independent:'Independent lists',
+    total:'Total lists',
+    party:'Party lists',
+    coalition:'Coalition lists',
+
+}
 }

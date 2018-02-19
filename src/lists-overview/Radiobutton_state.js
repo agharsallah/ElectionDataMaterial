@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import Translate from 'react-translate-component';
 
-const Radio_state = (props)=>{
-	return(
+class Radio_state extends Component {
+
+	
+	render() {
+		return (
 			<div style={{position:'absolute',paddingTop:'18vh',paddingLeft:'2vh',width:'20%' }} >
-	            <RadioButtonGroup onChange={props.handleMunState}  name="etatmun" defaultSelected="total" style={{height:'55px !important',fontSize:'1.4vw'}} >
+	            <RadioButtonGroup onChange={this.props.handleMunState} valueSelected={this.props.stateFilter} name="etatmun" defaultSelected="total" style={{height:'55px !important',fontSize:'1.4vw'}} >
 					<RadioButton
 					//labelStyle={{color:'black'}}
 					value="total"
@@ -32,6 +35,8 @@ const Radio_state = (props)=>{
 					/>
 				</RadioButtonGroup>
 	        </div>	
-	);
+		);
+	}
 }
-export default Radio_state
+
+export default Radio_state;

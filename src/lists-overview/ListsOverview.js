@@ -22,7 +22,7 @@ class ListsOverview extends Component {
             munShape: config.initShape, shape: config.initShape,
             buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov',//these states colors for mun|gove buttons
             range: [0, 10, 20, 30], // these states are fo the map style & mapkey
-            candidatesNumber: 0, chosenlistsNumberCount: 0, chosenavgListNum: 0, chosenmaxListNum: 0, chosenminListNum: 0// these states are for the upper box info
+            candidatesNumber: 0, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
 
         }
     }
@@ -86,7 +86,7 @@ class ListsOverview extends Component {
                     partyListsNumberCount, partyAvgListNum: partyAvgListNum.toFixed(0),
                     PartyMaxListNum: partyList[0].value, PartyMinListNum: partyList[partyList.length - 1].value,
 
-                    chosenlistsNumberCount: listsNumberCount, chosenavgListNum: avgListNum.toFixed(0), chosenmaxListNum: allLists[0].value, chosenminListNum: allLists[allLists.length - 1].value
+                    chosenListsNumberCount: listsNumberCount, chosenAvgListNum: avgListNum.toFixed(0), chosenMaxListNum: allLists[0].value, chosenMinListNum: allLists[allLists.length - 1].value
 
                 });
             }
@@ -119,11 +119,12 @@ class ListsOverview extends Component {
                     munCoalList.push({ value: parseInt(element.properties.coalitions) })
                     munPartyList.push({ value: parseInt(element.properties.parties) })
                     //calulating the total independent coalition party list number
-                    munListsNumberCount += element.properties.total_lists;
-                    munIndListsNumberCount += element.properties.independents;
-                    munCoalListsNumberCount += element.properties.coalitions;
-                    munPartyListsNumberCount += element.properties.parties;
+                    munListsNumberCount += parseInt(element.properties.total_lists);
+                    munIndListsNumberCount += parseInt(element.properties.independents);
+                    munCoalListsNumberCount += parseInt(element.properties.coalitions);
+                    munPartyListsNumberCount += parseInt(element.properties.parties);
                 })
+                console.log();
                 //calulating the avg list number
                 munAvgListNum = munListsNumberCount / featuresData.length
                 munIndAvgListNum = munIndListsNumberCount / featuresData.length
@@ -148,7 +149,7 @@ class ListsOverview extends Component {
                     munPartyListsNumberCount, munPartyAvgListNum: munPartyAvgListNum.toFixed(0),
                     munPartyMaxListNum: munPartyList[0].value, munPartyMinListNum: munPartyList[munPartyList.length - 1].value,
 
-                    munChosenlistsNumberCount: munListsNumberCount, munChosenavgListNum: munAvgListNum.toFixed(0), munChosenmaxListNum: munAllLists[0].value, munChosenminListNum: munAllLists[munAllLists.length - 1].value
+                    munChosenListsNumberCount: munListsNumberCount, munChosenAvgListNum: munAvgListNum.toFixed(0), munChosenMaxListNum: munAllLists[0].value, munChosenMinListNum: munAllLists[munAllLists.length - 1].value
 
                 });
             }
@@ -201,68 +202,68 @@ class ListsOverview extends Component {
             if (pickedLevel == 'total') {
                 this.setState({
                     range: [0, 10, 20, 30],
-                    chosenlistsNumberCount: this.state.listsNumberCount,
-                    chosenavgListNum: this.state.avgListNum,
-                    chosenmaxListNum: this.state.maxListNum,
-                    chosenminListNum: this.state.minListNum
+                    chosenListsNumberCount: this.state.listsNumberCount,
+                    chosenAvgListNum: this.state.avgListNum,
+                    chosenMaxListNum: this.state.maxListNum,
+                    chosenMinListNum: this.state.minListNum
                 });
             } else if (pickedLevel == 'indep') {
                 this.setState({
                     range: [0, 5, 10, 15],
-                    chosenlistsNumberCount: this.state.indListsNumberCount,
-                    chosenavgListNum: this.state.indAvgListNum,
-                    chosenmaxListNum: this.state.indMaxListNum,
-                    chosenminListNum: this.state.indMinListNum
+                    chosenListsNumberCount: this.state.indListsNumberCount,
+                    chosenAvgListNum: this.state.indAvgListNum,
+                    chosenMaxListNum: this.state.indMaxListNum,
+                    chosenMinListNum: this.state.indMinListNum
                 });
             } else if (pickedLevel == 'coalition') {
                 this.setState({
                     range: [0, 5, 10, 15],
-                    chosenlistsNumberCount: this.state.coalListsNumberCount,
-                    chosenavgListNum: this.state.coalAvgListNum,
-                    chosenmaxListNum: this.state.coalMaxListNum,
-                    chosenminListNum: this.state.coalMinListNum
+                    chosenListsNumberCount: this.state.coalListsNumberCount,
+                    chosenAvgListNum: this.state.coalAvgListNum,
+                    chosenMaxListNum: this.state.coalMaxListNum,
+                    chosenMinListNum: this.state.coalMinListNum
                 });
             } else {
                 this.setState({
                     range: [0, 5, 10, 15],
-                    chosenlistsNumberCount: this.state.partyListsNumberCount,
-                    chosenavgListNum: this.state.partyAvgListNum,
-                    chosenmaxListNum: this.state.PartyMaxListNum,
-                    chosenminListNum: this.state.PartyMinListNum
+                    chosenListsNumberCount: this.state.partyListsNumberCount,
+                    chosenAvgListNum: this.state.partyAvgListNum,
+                    chosenMaxListNum: this.state.PartyMaxListNum,
+                    chosenMinListNum: this.state.PartyMinListNum
                 });
             }
         }else{ //if the cosen level is municipality
             if (pickedLevel == 'total') {
                 this.setState({
                     range: [0, 3, 6, 9],
-                    munChosenlistsNumberCount: this.state.munListsNumberCount,
-                    munChosenavgListNum: this.state.munAvgListNum,
-                    munChosenmaxListNum: this.state.munMaxListNum,
-                    munChosenminListNum: this.state.munMinListNum
+                    munChosenListsNumberCount: this.state.munListsNumberCount,
+                    munChosenAvgListNum: this.state.munAvgListNum,
+                    munChosenMaxListNum: this.state.munMaxListNum,
+                    munChosenMinListNum: this.state.munMinListNum
                 });
             } else if (pickedLevel == 'indep') {
                 this.setState({
                     range: [0, 3, 6, 9],
-                    munChosenlistsNumberCount: this.state.munIndListsNumberCount,
-                    munChosenavgListNum: this.state.munIndAvgListNum,
-                    munChosenmaxListNum: this.state.munIndMaxListNum,
-                    munChosenminListNum: this.state.munIndMinListNum
+                    munChosenListsNumberCount: this.state.munIndListsNumberCount,
+                    munChosenAvgListNum: this.state.munIndAvgListNum,
+                    munChosenMaxListNum: this.state.munIndMaxListNum,
+                    munChosenMinListNum: this.state.munIndMinListNum
                 });
             } else if (pickedLevel == 'coalition') {
                 this.setState({
                     range: [0, 3, 6, 9],
-                    munChosenlistsNumberCount: this.state.munCoalListsNumberCount,
-                    munChosenavgListNum: this.state.munCoalAvgListNum,
-                    munChosenmaxListNum: this.state.munCoalMaxListNum,
-                    munChosenminListNum: this.state.munCoalMinListNum
+                    munChosenListsNumberCount: this.state.munCoalListsNumberCount,
+                    munChosenAvgListNum: this.state.munCoalAvgListNum,
+                    munChosenMaxListNum: this.state.munCoalMaxListNum,
+                    munChosenMinListNum: this.state.munCoalMinListNum
                 });
             } else {
                 this.setState({
                     range: [0, 3, 6, 9],
-                    munChosenlistsNumberCount: this.state.munPartyListsNumberCount,
-                    munChosenavgListNum: this.state.munPartyAvgListNum,
-                    munChosenmaxListNum: this.state.munPartyMaxListNum,
-                    munChosenminListNum: this.state.munPartyMinListNum
+                    munChosenListsNumberCount: this.state.munPartyListsNumberCount,
+                    munChosenAvgListNum: this.state.munPartyAvgListNum,
+                    munChosenMaxListNum: this.state.munPartyMaxListNum,
+                    munChosenMinListNum: this.state.munPartyMinListNum
                 });
             }
         }
@@ -279,17 +280,30 @@ class ListsOverview extends Component {
         let url = this.state.url;
         const GOV = <Translate type='text' content='VoterProfile.gov' />
         const MUN = <Translate type='text' content='VoterProfile.mun' />
-        //decision for the boxes ontop of the map
+        //decision for the boxes Text - dynamic whenever radio button changes ontop of the map
         var picked; var pickedLevelState = this.state.stateFilter
         pickedLevelState == 'total' ? picked = 'Total' : (pickedLevelState == 'indep' ? picked = 'Independent' : (pickedLevelState == 'coalition' ? picked = 'Coalition' : picked = 'Party'))
+        
         //decision on which shape to load municipal or governorate
         var shapeToSelect,shapeKey;
+        var chosenListsNumberCount,chosenMaxListNum,chosenMinListNum,chosenAvgListNum
         if (this.state.selectedMapLevel=='gov') {
             shapeKey='gov';
             shapeToSelect=this.state.shape
+            //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
+            chosenListsNumberCount=this.state.chosenListsNumberCount
+            chosenAvgListNum=this.state.chosenAvgListNum
+            chosenMaxListNum=this.state.chosenMaxListNum
+            chosenMinListNum=this.state.chosenMinListNum
+
         }else{
             shapeKey='mun';
-            shapeToSelect=this.state.munShape
+            shapeToSelect=this.state.munShape;
+            //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
+            chosenListsNumberCount=this.state.munChosenListsNumberCount
+            chosenAvgListNum=this.state.munChosenAvgListNum
+            chosenMaxListNum=this.state.munChosenMaxListNum
+            chosenMinListNum=this.state.munChosenMinListNum
         }
         return (
             this.state.redirect ? <Redirect push to={url} /> :
@@ -302,11 +316,11 @@ class ListsOverview extends Component {
                         <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >Number Of Total Lists Per Governorate (16-02)</h5>
                         <section className='container-fluid' style={{ marginBottom: '10px' }}>
                             <div className='row no-gutter col-md-offset-1'>
-                                <DataRectangle imgLink='/img/sum.svg' regValue={this.state.chosenlistsNumberCount} title={picked + ' lists number'} />
+                                <DataRectangle imgLink='/img/sum.svg' regValue={chosenListsNumberCount} title={picked + ' lists number'} />
                                 <DataRectangle imgLink='/img/candidates.svg' regValue={this.state.candidatesNumber} title='Candidates number' />
-                                <DataRectangle imgLink='/img/average.PNG' regValue={this.state.chosenavgListNum} title={'Average ' + picked + ' Lists number per gov'} />
-                                <DataRectangle imgLink='/img/increaseArrow.svg' regValue={this.state.chosenmaxListNum} title={'Highest ' + picked + ' Lists number per gov'} />
-                                <DataRectangle imgLink='/img/decreaseArrow.svg' regValue={this.state.chosenminListNum} title={'Lowest ' + picked + ' Lists number per gov'} />
+                                <DataRectangle imgLink='/img/average.PNG' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number per gov'} />
+                                <DataRectangle imgLink='/img/increaseArrow.svg' regValue={chosenMaxListNum} title={'Highest ' + picked + ' Lists number per gov'} />
+                                <DataRectangle imgLink='/img/decreaseArrow.svg' regValue={chosenMinListNum} title={'Lowest ' + picked + ' Lists number per gov'} />
                             </div>
                         </section>
                         <div className='container-fluid'>

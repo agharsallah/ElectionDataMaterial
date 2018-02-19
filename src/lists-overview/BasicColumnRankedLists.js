@@ -53,7 +53,7 @@ class BasicColumnRankedLists extends Component {
                 },
                 tooltip: {
                     headerFormat: '<h3>{point.key}: </h3>',
-                    pointFormat: '<b>{point.y}</b> Inscription',
+                    pointFormat: '<b>{point.y}</b> list',
                 },
                 plotOptions: {
                     column: {
@@ -123,7 +123,7 @@ class BasicColumnRankedLists extends Component {
                 },
                 tooltip: {
                     headerFormat: '<h3>{point.key}: </h3>',
-                    pointFormat: '<b>{point.y}</b> Inscription',
+                    pointFormat: '<b>{point.y}</b> list',
                 },
                 plotOptions: {
                     column: {

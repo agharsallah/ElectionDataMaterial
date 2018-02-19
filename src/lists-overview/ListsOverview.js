@@ -14,6 +14,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import BasicColumnRankedLists from './BasicColumnRankedLists';
 import DataRectangle from './DataRectangle';
 import './s.css'
+import TooltipPie from './TooltipPie' ;
 class ListsOverview extends Component {
     constructor(props) {
         super(props);
@@ -51,9 +52,9 @@ class ListsOverview extends Component {
                 featuresData.map((element, i) => {
                     allLists.push({ value: parseInt(element.properties.total_lists), gouv: element.properties.NAME_EN })
 
-                    indepList.push({ value: parseInt(element.properties.independents), gouv: element.properties.NAME_EN  })
-                    coalList.push({ value: parseInt(element.properties.coalitions), gouv: element.properties.NAME_EN  })
-                    partyList.push({ value: parseInt(element.properties.parties), gouv: element.properties.NAME_EN  })
+                    indepList.push({ value: parseInt(element.properties.independents), gouv: element.properties.NAME_EN })
+                    coalList.push({ value: parseInt(element.properties.coalitions), gouv: element.properties.NAME_EN })
+                    partyList.push({ value: parseInt(element.properties.parties), gouv: element.properties.NAME_EN })
                     //calculating the candidates number
                     candidatesNumber = (element.properties.total_lists + 3) * element.properties.chairs
                     //calulating the total independent coalition party list number
@@ -198,7 +199,7 @@ class ListsOverview extends Component {
         let pickedLevel = event.currentTarget.value
         this.setState({ stateFilter: pickedLevel });
         //setting the range of the style as soon we get the value from the radio button
-        if (this.state.selectedMapLevel=='gov') {
+        if (this.state.selectedMapLevel == 'gov') {
             if (pickedLevel == 'total') {
                 this.setState({
                     range: [0, 10, 20, 30],
@@ -232,7 +233,7 @@ class ListsOverview extends Component {
                     chosenMinListNum: this.state.PartyMinListNum
                 });
             }
-        }else{ //if the cosen level is municipality
+        } else { //if the cosen level is municipality
             if (pickedLevel == 'total') {
                 this.setState({
                     range: [0, 3, 6, 9],
@@ -267,13 +268,24 @@ class ListsOverview extends Component {
                 });
             }
         }
-       
+
     }
     MapLevelClick(index) {
         index === 'gov' ?
-            this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov',stateFilter:'total',range: [0, 10, 20, 30] })
+            this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 10, 20, 30] })
             :
-            this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', selectedMapLevel: 'mun',stateFilter:'total',range: [0, 3, 6, 9] })
+            this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [0, 3, 6, 9] })
+    }
+    highlightFeature(e) {
+        const layer = e.target;
+        const property = layer.feature.properties;
+        this.setState({
+            gouv_name:property.NAME_EN,
+            totalTooltip:property.total_lists,
+            independentsTooltip:property.independents,
+            coalitionTooltip:property.coalitions,
+            partiesTooltip:property.parties,
+        });
     }
     render() {
         const position = [37.5, 7.5];
@@ -283,40 +295,40 @@ class ListsOverview extends Component {
         //decision for the boxes Text - dynamic whenever radio button changes ontop of the map
         var picked; var pickedLevelState = this.state.stateFilter;
         var candidatesArrayList;
-        pickedLevelState == 'total' ? (picked = 'Total',candidatesArrayList=this.state.allLists) :
-         (pickedLevelState == 'indep' ? (picked = 'Independent',candidatesArrayList=this.state.indepList) :
-          (pickedLevelState == 'coalition' ? (picked = 'Coalition',candidatesArrayList=this.state.coalList) :
-           (picked = 'Party',candidatesArrayList=this.state.partyList ) ))
-        
+        pickedLevelState == 'total' ? (picked = 'Total', candidatesArrayList = this.state.allLists) :
+            (pickedLevelState == 'indep' ? (picked = 'Independent', candidatesArrayList = this.state.indepList) :
+                (pickedLevelState == 'coalition' ? (picked = 'Coalition', candidatesArrayList = this.state.coalList) :
+                    (picked = 'Party', candidatesArrayList = this.state.partyList)))
+
         //decision on wht to give to the barchart according to what we have in the radiobutton
 
-        
-        //decision on which shape to load municipal or governorate
-        var shapeToSelect,shapeKey;
-        var chosenListsNumberCount,chosenMaxListNum,chosenMinListNum,chosenAvgListNum,delimitation,delimitationTitle
-        if (this.state.selectedMapLevel=='gov') {
-            shapeKey='gov';
-            shapeToSelect=this.state.shape
-           
-            //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
-            chosenListsNumberCount=this.state.chosenListsNumberCount;
-            chosenAvgListNum=this.state.chosenAvgListNum;
-            chosenMaxListNum=this.state.chosenMaxListNum;
-            chosenMinListNum=this.state.chosenMinListNum;
-            delimitation=' per gov'
-            delimitationTitle=' per governorate'
 
-        }else{
-            shapeKey='mun';
-            shapeToSelect=this.state.munShape;
-           
+        //decision on which shape to load municipal or governorate
+        var shapeToSelect, shapeKey;
+        var chosenListsNumberCount, chosenMaxListNum, chosenMinListNum, chosenAvgListNum, delimitation, delimitationTitle
+        if (this.state.selectedMapLevel == 'gov') {
+            shapeKey = 'gov';
+            shapeToSelect = this.state.shape
+
             //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
-            chosenListsNumberCount=this.state.munChosenListsNumberCount;
-            chosenAvgListNum=this.state.munChosenAvgListNum;
-            chosenMaxListNum=this.state.munChosenMaxListNum;
-            chosenMinListNum=this.state.munChosenMinListNum;
-            delimitation=' per mun'
-            delimitationTitle=' per municipality'
+            chosenListsNumberCount = this.state.chosenListsNumberCount;
+            chosenAvgListNum = this.state.chosenAvgListNum;
+            chosenMaxListNum = this.state.chosenMaxListNum;
+            chosenMinListNum = this.state.chosenMinListNum;
+            delimitation = ' per gov'
+            delimitationTitle = ' per governorate '
+
+        } else {
+            shapeKey = 'mun';
+            shapeToSelect = this.state.munShape;
+
+            //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
+            chosenListsNumberCount = this.state.munChosenListsNumberCount;
+            chosenAvgListNum = this.state.munChosenAvgListNum;
+            chosenMaxListNum = this.state.munChosenMaxListNum;
+            chosenMinListNum = this.state.munChosenMinListNum;
+            delimitation = ' per mun'
+            delimitationTitle = ' per municipality '
         }
         return (
             this.state.redirect ? <Redirect push to={url} /> :
@@ -326,14 +338,14 @@ class ListsOverview extends Component {
                     <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
 
                     <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
-                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle+'(16-02)'}</h5>
+                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle + '(16-02)'}</h5>
                         <section className='container-fluid' style={{ marginBottom: '10px' }}>
                             <div className='row no-gutter col-md-offset-1'>
                                 <DataRectangle imgLink='/img/sum.svg' regValue={chosenListsNumberCount} title={picked + ' lists number'} />
                                 <DataRectangle imgLink='/img/candidates.svg' regValue={this.state.candidatesNumber} title='Candidates number' />
-                                <DataRectangle imgLink='/img/average.PNG' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number'+delimitation} />
-                                <DataRectangle imgLink='/img/increaseArrow.svg' regValue={chosenMaxListNum} title={'Highest ' + picked + ' Lists number'+delimitation} />
-                                <DataRectangle imgLink='/img/decreaseArrow.svg' regValue={chosenMinListNum} title={'Lowest ' + picked + ' Lists number'+delimitation} />
+                                <DataRectangle imgLink='/img/average.PNG' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number' + delimitation} />
+                                <DataRectangle imgLink='/img/increaseArrow.svg' regValue={chosenMaxListNum} title={'Highest ' + picked + ' Lists number' + delimitation} />
+                                <DataRectangle imgLink='/img/decreaseArrow.svg' regValue={chosenMinListNum} title={'Lowest ' + picked + ' Lists number' + delimitation} />
                             </div>
                         </section>
                         <div className='container-fluid'>
@@ -342,7 +354,7 @@ class ListsOverview extends Component {
                                     <article className='card'>
 
                                         {this.state.shapeIsLoaded ?
-                                            <Map center={position} zoom={7} maxZoom={8} minZoom={7} style={{ height: '100%', position: 'relative', backgroundColor: 'white' }}>
+                                            <Map center={position} zoom={7} maxZoom={7} minZoom={7} style={{ height: '100%', position: 'relative', backgroundColor: 'white' }}>
                                                 {/* <GeoJSON
                                     data= {this.state.shape}
                                     style={this.styleCirc.bind(this)}
@@ -353,56 +365,72 @@ class ListsOverview extends Component {
                                                     style={this.style.bind(this)}
                                                     onEachFeature={
                                                         (feature, layer) => {
-                                                            layer.bindTooltip(feature.properties.NAME_EN, { permanent: false, className: 'tooltipnamear', direction: 'right' })
                                                             layer.on({ click: this.clickedShape.bind(this) });
+                                                            layer.on({mouseover: this.highlightFeature.bind(this)});
                                                         }
                                                     }
-                                                />
+                                                >
+                                                    <Tooltip direction="bottom" className="leafletTooltip" sticky={false} zIndex={2000} >
+                                                        <div style={{ zIndex: 1501 }} >
+                                                            
+                                                             <TooltipPie
+                                                             city={this.state.gouv_name }
+                                                                partyTooltip={this.state.partiesTooltip}
+                                                                independentTooltip={this.state.independentsTooltip}
+                                                                coalitionTooltip={this.state.coalitionTooltip }
+                                                            /> 
+                                                            {/* <div style={{ textAlign: "center", position: "relative", marginTop: "-10px" }}>
+                                                                <h4><b>{(this.state.maleNumber + this.state.femaleNumber).toLocaleString()}</b>{REGTRANCHE}{this.state.mapAge}</h4>
+                                                                <h4><b>{(this.state.allreg_sum - (this.state.maleNumber + this.state.femaleNumber)).toLocaleString()}</b>{OTHERREG}</h4>
+                                                            </div> */}
+                                                        </div>
+                                                    </Tooltip>
+                                                    </GeoJSON>
 
-                                                <Control position='topright' >
-                                                    <MapKey colorSet={['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']} range={this.state.range} keyTitle='Candidates Lists Number' />
-                                                </Control>
+                                                    <Control position='topright' >
+                                                        <MapKey colorSet={['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']} range={this.state.range} keyTitle='Candidates Lists Number' />
+                                                    </Control>
 
-                                                <div className='col-md-3 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
-                                                    <div className='col-md-12'>
-                                                        <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} labelColor={this.state.buttonLabelGov} />
-                                                        <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} labelColor={this.state.buttonLabelMun} />
+                                                    <div className='col-md-3 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
+                                                        <div className='col-md-12'>
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} labelColor={this.state.buttonLabelGov} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} labelColor={this.state.buttonLabelMun} />
 
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <Radio_state stateFilter={this.state.stateFilter} handleMunState={this.chosenNiveau.bind(this)} />
-                                                {/*Left side top column chart*/}
-                                                <div className='col-md-6 col-xs-12' style={{ marginTop: '40vh', zIndex: 500 }}>
-                                                    {
-                                                        <BasicColumnRankedLists
-                                                            title='Total candidates lists number'
-                                                            allLists={candidatesArrayList}
-                                                            spec={'list' + this.state.stateFilter}
-                                                            ytitle='Candidates Lists Number'
-                                                            subtitle={this.props.regDate + '-2017'}
-                                                        />}
-                                                </div>
+                                                    <Radio_state stateFilter={this.state.stateFilter} handleMunState={this.chosenNiveau.bind(this)} />
+                                                    {/*Left side top column chart*/}
+                                                    <div className='col-md-6 col-xs-12' style={{ marginTop: '40vh', zIndex: 500 }}>
+                                                        {
+                                                            <BasicColumnRankedLists
+                                                                title='Total candidates lists number'
+                                                                allLists={candidatesArrayList}
+                                                                spec={'list' + this.state.stateFilter}
+                                                                ytitle='Candidates Lists Number'
+                                                                subtitle={this.props.regDate + '-2017'}
+                                                            />}
+                                                    </div>
                                             </Map>
-                                            :
+                                                :
                                             <div>
-                                                <div className='col-md-5'></div>
-                                                <div className='col-md-5' style={{ marginTop: '43vh' }}>
-                                                    <h2 >'Loading Map'</h2>
-                                                    <div style={{ marginLeft: '70px' }}>
-                                                        <ReactLoading type='bars' color='#444' className='react-Loader' delay={0} />
+                                                    <div className='col-md-5'></div>
+                                                    <div className='col-md-5' style={{ marginTop: '43vh' }}>
+                                                        <h2 >'Loading Map'</h2>
+                                                        <div style={{ marginLeft: '70px' }}>
+                                                            <ReactLoading type='bars' color='#444' className='react-Loader' delay={0} />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        }
-                                    </article>{/* /.card */}
+                                                }
+                                    </article>{/* /.card */ }
                                 </div>{/* /.col-md-12 */}
                             </div>{/* /.row */}
-                        </div>{/* /.container */}
+                                </div>{/* /.container */}
                     </section>
-                </div>
+                        </div>
 
-        );
+                        );
     }
 }
 

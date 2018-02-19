@@ -51,9 +51,9 @@ class ListsOverview extends Component {
                 featuresData.map((element, i) => {
                     allLists.push({ value: parseInt(element.properties.total_lists), gouv: element.properties.NAME_EN })
 
-                    indepList.push({ value: parseInt(element.properties.independents) })
-                    coalList.push({ value: parseInt(element.properties.coalitions) })
-                    partyList.push({ value: parseInt(element.properties.parties) })
+                    indepList.push({ value: parseInt(element.properties.independents), gouv: element.properties.NAME_EN  })
+                    coalList.push({ value: parseInt(element.properties.coalitions), gouv: element.properties.NAME_EN  })
+                    partyList.push({ value: parseInt(element.properties.parties), gouv: element.properties.NAME_EN  })
                     //calculating the candidates number
                     candidatesNumber = (element.properties.total_lists + 3) * element.properties.chairs
                     //calulating the total independent coalition party list number
@@ -77,13 +77,13 @@ class ListsOverview extends Component {
                     allLists, candidatesNumber, listsNumberCount, avgListNum: avgListNum.toFixed(0),
                     maxListNum: allLists[0].value, minListNum: allLists[allLists.length - 1].value,
 
-                    indListsNumberCount, indAvgListNum: indAvgListNum.toFixed(0),
+                    indepList, indListsNumberCount, indAvgListNum: indAvgListNum.toFixed(0),
                     indMaxListNum: indepList[0].value, indMinListNum: indepList[indepList.length - 1].value,
 
-                    coalListsNumberCount, coalAvgListNum: coalAvgListNum.toFixed(0),
+                    coalList, coalListsNumberCount, coalAvgListNum: coalAvgListNum.toFixed(0),
                     coalMaxListNum: coalList[0].value, coalMinListNum: coalList[coalList.length - 1].value,
 
-                    partyListsNumberCount, partyAvgListNum: partyAvgListNum.toFixed(0),
+                    partyList, partyListsNumberCount, partyAvgListNum: partyAvgListNum.toFixed(0),
                     PartyMaxListNum: partyList[0].value, PartyMinListNum: partyList[partyList.length - 1].value,
 
                     chosenListsNumberCount: listsNumberCount, chosenAvgListNum: avgListNum.toFixed(0), chosenMaxListNum: allLists[0].value, chosenMinListNum: allLists[allLists.length - 1].value
@@ -138,7 +138,7 @@ class ListsOverview extends Component {
                 this.setState({
                     munShape: JSON.parse(response.data.data), shapeKey: 'mun',
                     munAllLists, munListsNumberCount, munAvgListNum: munAvgListNum.toFixed(0),
-                    munMaxListNum: munAllLists[0].value, munMminListNum: munAllLists[munAllLists.length - 1].value,
+                    munMaxListNum: munAllLists[0].value, munMinListNum: munAllLists[munAllLists.length - 1].value,
 
                     munIndListsNumberCount, munIndAvgListNum: munIndAvgListNum.toFixed(0),
                     munIndMaxListNum: munIndepList[0].value, munIndMinListNum: munIndepList[munIndepList.length - 1].value,
@@ -281,29 +281,42 @@ class ListsOverview extends Component {
         const GOV = <Translate type='text' content='VoterProfile.gov' />
         const MUN = <Translate type='text' content='VoterProfile.mun' />
         //decision for the boxes Text - dynamic whenever radio button changes ontop of the map
-        var picked; var pickedLevelState = this.state.stateFilter
-        pickedLevelState == 'total' ? picked = 'Total' : (pickedLevelState == 'indep' ? picked = 'Independent' : (pickedLevelState == 'coalition' ? picked = 'Coalition' : picked = 'Party'))
+        var picked; var pickedLevelState = this.state.stateFilter;
+        var candidatesArrayList;
+        pickedLevelState == 'total' ? (picked = 'Total',candidatesArrayList=this.state.allLists) :
+         (pickedLevelState == 'indep' ? (picked = 'Independent',candidatesArrayList=this.state.indepList) :
+          (pickedLevelState == 'coalition' ? (picked = 'Coalition',candidatesArrayList=this.state.coalList) :
+           (picked = 'Party',candidatesArrayList=this.state.partyList ) ))
+        
+        //decision on wht to give to the barchart according to what we have in the radiobutton
+
         
         //decision on which shape to load municipal or governorate
         var shapeToSelect,shapeKey;
-        var chosenListsNumberCount,chosenMaxListNum,chosenMinListNum,chosenAvgListNum
+        var chosenListsNumberCount,chosenMaxListNum,chosenMinListNum,chosenAvgListNum,delimitation,delimitationTitle
         if (this.state.selectedMapLevel=='gov') {
             shapeKey='gov';
             shapeToSelect=this.state.shape
+           
             //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
-            chosenListsNumberCount=this.state.chosenListsNumberCount
-            chosenAvgListNum=this.state.chosenAvgListNum
-            chosenMaxListNum=this.state.chosenMaxListNum
-            chosenMinListNum=this.state.chosenMinListNum
+            chosenListsNumberCount=this.state.chosenListsNumberCount;
+            chosenAvgListNum=this.state.chosenAvgListNum;
+            chosenMaxListNum=this.state.chosenMaxListNum;
+            chosenMinListNum=this.state.chosenMinListNum;
+            delimitation=' per gov'
+            delimitationTitle=' per governorate'
 
         }else{
             shapeKey='mun';
             shapeToSelect=this.state.munShape;
+           
             //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
-            chosenListsNumberCount=this.state.munChosenListsNumberCount
-            chosenAvgListNum=this.state.munChosenAvgListNum
-            chosenMaxListNum=this.state.munChosenMaxListNum
-            chosenMinListNum=this.state.munChosenMinListNum
+            chosenListsNumberCount=this.state.munChosenListsNumberCount;
+            chosenAvgListNum=this.state.munChosenAvgListNum;
+            chosenMaxListNum=this.state.munChosenMaxListNum;
+            chosenMinListNum=this.state.munChosenMinListNum;
+            delimitation=' per mun'
+            delimitationTitle=' per municipality'
         }
         return (
             this.state.redirect ? <Redirect push to={url} /> :
@@ -313,14 +326,14 @@ class ListsOverview extends Component {
                     <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
 
                     <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
-                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >Number Of Total Lists Per Governorate (16-02)</h5>
+                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle+'(16-02)'}</h5>
                         <section className='container-fluid' style={{ marginBottom: '10px' }}>
                             <div className='row no-gutter col-md-offset-1'>
                                 <DataRectangle imgLink='/img/sum.svg' regValue={chosenListsNumberCount} title={picked + ' lists number'} />
                                 <DataRectangle imgLink='/img/candidates.svg' regValue={this.state.candidatesNumber} title='Candidates number' />
-                                <DataRectangle imgLink='/img/average.PNG' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number per gov'} />
-                                <DataRectangle imgLink='/img/increaseArrow.svg' regValue={chosenMaxListNum} title={'Highest ' + picked + ' Lists number per gov'} />
-                                <DataRectangle imgLink='/img/decreaseArrow.svg' regValue={chosenMinListNum} title={'Lowest ' + picked + ' Lists number per gov'} />
+                                <DataRectangle imgLink='/img/average.PNG' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number'+delimitation} />
+                                <DataRectangle imgLink='/img/increaseArrow.svg' regValue={chosenMaxListNum} title={'Highest ' + picked + ' Lists number'+delimitation} />
+                                <DataRectangle imgLink='/img/decreaseArrow.svg' regValue={chosenMinListNum} title={'Lowest ' + picked + ' Lists number'+delimitation} />
                             </div>
                         </section>
                         <div className='container-fluid'>
@@ -364,8 +377,8 @@ class ListsOverview extends Component {
                                                     {
                                                         <BasicColumnRankedLists
                                                             title='Total candidates lists number'
-                                                            allLists={this.state.allLists}
-                                                            spec={'inscription' + this.props.regDate}
+                                                            allLists={candidatesArrayList}
+                                                            spec={'list' + this.state.stateFilter}
                                                             ytitle='Candidates Lists Number'
                                                             subtitle={this.props.regDate + '-2017'}
                                                         />}

@@ -66,7 +66,7 @@ class BasicColumnRankedLists extends Component {
                 },
                 series: [{
                     showInLegend: false,
-                    name: 'inscription',
+                    name: 'lists',
                     data: inscriptionArray,
                     /*dataLabels: {
                         enabled: true,
@@ -84,9 +84,9 @@ class BasicColumnRankedLists extends Component {
             }
         });
     }
-    /* componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
         var inscriptionArray = [], gouvNameArray = []
-        nextProps.allInscription.map((element, i) => {
+        nextProps.allLists.map((element, i) => {
             inscriptionArray.push(element.value)
             gouvNameArray.push(element.gouv)
         })
@@ -136,12 +136,12 @@ class BasicColumnRankedLists extends Component {
                 },
                 series: [{
                     showInLegend: false,
-                    name: 'Tokyo',
+                    name: 'lists',
                     data: inscriptionArray,
                 }]
             }
         });
-    } */
+    }
 
 
 

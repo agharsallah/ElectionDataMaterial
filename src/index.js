@@ -23,6 +23,7 @@ import Empty from './Empty' ;
 import About from './About' ;
 import VizRoot from './viz/VizRoot' ;
 import ListsOverview from './lists-overview/ListsOverview' ;
+import OneToOne from './one-to-one/OneToOne' ;
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
 const render = Component =>
@@ -38,6 +39,8 @@ const render = Component =>
       <Route  path="/munreg/:city" component={MunReg}/>
 
       <Route  path="/lists-overview" component={ListsOverview}/>
+
+      <Route  path="/one-to-one" component={OneToOne}/>
 
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
 

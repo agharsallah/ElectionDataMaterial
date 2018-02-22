@@ -103,11 +103,11 @@ class LayoutHome extends Component {
                                 <li className={this.state.about} ><a onClick={this.smooth.bind(this,'2500vh',5)}  >{about}</a>
                                 </li>
                                 <li style={{float:"right"}}>      	
-                                <DropDownMenu labelStyle={{color:'inherit'}} value={this.state.value} onChange={this.handleChange.bind(this)} >
+                                {/* <DropDownMenu labelStyle={{color:'inherit'}} value={this.state.value} onChange={this.handleChange.bind(this)} >
                                   <MenuItem value={'en'} primaryText={en} />
                                   <MenuItem value={'fr'} primaryText={fr} />
                                   <MenuItem value={'ar'} primaryText={ar} />
-                                </DropDownMenu>
+                                </DropDownMenu> */}
                             </li>
 
                                 {/* <li className={this.props.contact}><Link to='javascript:void(0)'>Contact</Link>

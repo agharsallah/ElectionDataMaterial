@@ -12,7 +12,10 @@ class TooltipPie extends Component {
     componentWillMount() {
         let partyTooltip=this.props.partyTooltip,
         independentTooltip=this.props.independentTooltip,
-        coalitionTooltip=this.props.coalitionTooltip
+        coalitionTooltip=this.props.coalitionTooltip;
+        console.log(partyTooltip,
+            independentTooltip,
+            coalitionTooltip);
    
         this.setState({
             options:{

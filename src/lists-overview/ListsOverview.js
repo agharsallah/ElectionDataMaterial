@@ -19,13 +19,14 @@ class ListsOverview extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false, stateFilter: 'total', shapeIsLoaded: false,
+            redirect: false, stateFilter: 'total', shapeIsLoaded: false,position:[37.5, 7.5],
             munShape: config.initShape, shape: config.initShape,
             buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov',//these states colors for mun|gove buttons
-            range: [0, 10, 20, 30], // these states are fo the map style & mapkey
+            range: [0, 25, 45, 55], // these states are fo the map style & mapkey
             candidatesNumber: 0, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
-
+            ,highLowButton:'none'//these state for the high|low style on the map
         }
+        this.getClickedRectangle=this.getClickedRectangle.bind(this)
     }
     componentWillMount() {
         //before the components mount I'm gone load and do the calculation of both the municipal and governorate shapes
@@ -40,7 +41,7 @@ class ListsOverview extends Component {
             params: {
                 type: 'gov',
                 timeOfCollection: '15h',
-                dateOfCollection: '16-02'
+                dateOfCollection: '21-02'
             }
         })
             .then(response => {
@@ -106,7 +107,7 @@ class ListsOverview extends Component {
             params: {
                 type: 'mun',
                 timeOfCollection: '15h',
-                dateOfCollection: '16-02'
+                dateOfCollection: '21-02'
             }
         })
             .then(response => {
@@ -125,7 +126,7 @@ class ListsOverview extends Component {
                     munCoalListsNumberCount += parseInt(element.properties.coalitions);
                     munPartyListsNumberCount += parseInt(element.properties.parties);
                 })
-                console.log();
+
                 //calulating the avg list number
                 munAvgListNum = munListsNumberCount / featuresData.length
                 munIndAvgListNum = munIndListsNumberCount / featuresData.length
@@ -163,29 +164,76 @@ class ListsOverview extends Component {
     style(feature) {
         //check for what we have checked as filter subject : total List || independent ||
         const etat = this.state.stateFilter; var activeData;
-        if (etat == 'total') {
-            activeData = feature.properties.total_lists;
-        } else if (etat == 'indep') {
-            activeData = feature.properties.independents;
-        } else if (etat == 'coalition') {
-            activeData = feature.properties.coalitions;
-        } else {
-            activeData = feature.properties.parties;
+        if (this.state.highLowButton=='none') {
+
+            if (etat == 'total') {
+                activeData = feature.properties.total_lists;
+            } else if (etat == 'indep') {
+                activeData = feature.properties.independents;
+            } else if (etat == 'coalition') {
+                activeData = feature.properties.coalitions;
+            } else {
+                activeData = feature.properties.parties;
+            }
+            return {
+                fillColor: this.getColor(activeData, this.state.range, ['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']),
+                color: 'black',
+                weight: 1,
+                fillOpacity: 0.7
+            };
+        }else if(this.state.highLowButton=='highest'){// we are treating the case where the user clicks to see the highest lists of mun
+            let activeData,edgeData;
+            this.state.selectedMapLevel=='gov'?edgeData = this.state.chosenMaxListNum:edgeData = this.state.munChosenMaxListNum;
+            if (etat == 'total') {
+                activeData = feature.properties.total_lists;
+            } else if (etat == 'indep') {
+                activeData = feature.properties.independents;
+            } else if (etat == 'coalition') {
+                activeData = feature.properties.coalitions;
+            } else {
+                activeData = feature.properties.parties;
+            }
+            return {
+                fillColor: this.getOneColor(activeData, edgeData,'#6ed665' ),
+                color: 'black',
+                weight: 1,
+                fillOpacity: 0.7
+            };
+        }else if(this.state.highLowButton=='lowest'){// we are treating the case where the user clicks to see the lowesr lists of mun
+            let activeData,edgeData;
+            this.state.selectedMapLevel=='gov'?edgeData = this.state.chosenMinListNum:edgeData = this.state.munChosenMinListNum;
+            if (etat == 'total') {
+                activeData = feature.properties.total_lists;
+            } else if (etat == 'indep') {
+                activeData = feature.properties.independents;
+
+            } else if (etat == 'coalition') {
+                activeData = feature.properties.coalitions;
+            } else {
+                activeData = feature.properties.parties;
+            }
+            return {
+                fillColor: this.getOneColor(activeData, edgeData, '#d67964'),
+                color: 'black',
+                weight: 1,
+                fillOpacity: 0.7
+            };
+        }else{
+            console.log('ERROR');
         }
-        return {
-            fillColor: this.getColor(activeData, this.state.range, ['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']),
-            color: 'black',
-            weight: 1,
-            fillOpacity: 0.7
-        };
 
     }
+
     getColor(listsNum, range, colorRange) {
         if (listsNum > range[3]) { return (colorRange[3]); }
         else if (listsNum > range[2]) { return (colorRange[2]); }
         else if (listsNum > range[1]) { return (colorRange[1]); }
         else if (isNaN(listsNum)) { return ('white') }
         else { return (colorRange[0]); }
+    }
+    getOneColor(activeData, edgeData, Color) {
+        if (activeData ==edgeData) { return (Color); }
+        else { return ('white'); }
     }
     clickedShape(e) {
         //for the histogram age BarChart
@@ -202,7 +250,7 @@ class ListsOverview extends Component {
         if (this.state.selectedMapLevel == 'gov') {
             if (pickedLevel == 'total') {
                 this.setState({
-                    range: [0, 10, 20, 30],
+                    range: [0, 25, 45, 55],
                     chosenListsNumberCount: this.state.listsNumberCount,
                     chosenAvgListNum: this.state.avgListNum,
                     chosenMaxListNum: this.state.maxListNum,
@@ -210,7 +258,7 @@ class ListsOverview extends Component {
                 });
             } else if (pickedLevel == 'indep') {
                 this.setState({
-                    range: [0, 5, 10, 15],
+                    range: [0, 10, 15, 25],
                     chosenListsNumberCount: this.state.indListsNumberCount,
                     chosenAvgListNum: this.state.indAvgListNum,
                     chosenMaxListNum: this.state.indMaxListNum,
@@ -218,7 +266,7 @@ class ListsOverview extends Component {
                 });
             } else if (pickedLevel == 'coalition') {
                 this.setState({
-                    range: [0, 5, 10, 15],
+                    range: [0, 1, 2, 3],
                     chosenListsNumberCount: this.state.coalListsNumberCount,
                     chosenAvgListNum: this.state.coalAvgListNum,
                     chosenMaxListNum: this.state.coalMaxListNum,
@@ -226,7 +274,7 @@ class ListsOverview extends Component {
                 });
             } else {
                 this.setState({
-                    range: [0, 5, 10, 15],
+                    range: [0, 20, 30, 35],
                     chosenListsNumberCount: this.state.partyListsNumberCount,
                     chosenAvgListNum: this.state.partyAvgListNum,
                     chosenMaxListNum: this.state.PartyMaxListNum,
@@ -236,7 +284,7 @@ class ListsOverview extends Component {
         } else { //if the cosen level is municipality
             if (pickedLevel == 'total') {
                 this.setState({
-                    range: [0, 3, 6, 9],
+                    range: [0, 1, 3, 6],
                     munChosenListsNumberCount: this.state.munListsNumberCount,
                     munChosenAvgListNum: this.state.munAvgListNum,
                     munChosenMaxListNum: this.state.munMaxListNum,
@@ -244,7 +292,7 @@ class ListsOverview extends Component {
                 });
             } else if (pickedLevel == 'indep') {
                 this.setState({
-                    range: [0, 3, 6, 9],
+                    range: [0, 1, 3, 6],
                     munChosenListsNumberCount: this.state.munIndListsNumberCount,
                     munChosenAvgListNum: this.state.munIndAvgListNum,
                     munChosenMaxListNum: this.state.munIndMaxListNum,
@@ -252,7 +300,7 @@ class ListsOverview extends Component {
                 });
             } else if (pickedLevel == 'coalition') {
                 this.setState({
-                    range: [0, 3, 6, 9],
+                    range: [0, 1, 3, 6],
                     munChosenListsNumberCount: this.state.munCoalListsNumberCount,
                     munChosenAvgListNum: this.state.munCoalAvgListNum,
                     munChosenMaxListNum: this.state.munCoalMaxListNum,
@@ -260,7 +308,7 @@ class ListsOverview extends Component {
                 });
             } else {
                 this.setState({
-                    range: [0, 3, 6, 9],
+                    range: [0, 1, 3, 6],
                     munChosenListsNumberCount: this.state.munPartyListsNumberCount,
                     munChosenAvgListNum: this.state.munPartyAvgListNum,
                     munChosenMaxListNum: this.state.munPartyMaxListNum,
@@ -272,23 +320,36 @@ class ListsOverview extends Component {
     }
     MapLevelClick(index) {
         index === 'gov' ?
-            this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 10, 20, 30] })
+            this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 25, 45, 55] })
             :
-            this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [0, 3, 6, 9] })
+            this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [0, 1, 3, 6] })
     }
     highlightFeature(e) {
         const layer = e.target;
         const property = layer.feature.properties;
+        var govName;
+         property.GOUV?govName='- '+property.GOUV:govName=''
         this.setState({
             gouv_name:property.NAME_EN,
-            totalTooltip:property.total_lists,
-            independentsTooltip:property.independents,
-            coalitionTooltip:property.coalitions,
-            partiesTooltip:property.parties,
+            totalTooltip:parseInt(property.total_lists),
+            independentsTooltip:parseInt(property.independents),
+            coalitionTooltip:parseInt(property.coalitions),
+            partiesTooltip:parseInt(property.parties),
+            govNameForMunTooltip:govName
         });
     }
+        //this function intercepts whenever the client clicks on the min|or max datarectangle
+    getClickedRectangle(e){
+        let buttonClicked=e.currentTarget.dataset.id
+        if (buttonClicked=='highest'||buttonClicked=='lowest') {
+            this.setState({highLowButton:buttonClicked});
+
+        }else {
+            this.setState({highLowButton:'none',position:[37.5, 7.5]});
+        }
+    }
     render() {
-        const position = [37.5, 7.5];
+        const position = this.state.position;
         let url = this.state.url;
         const GOV = <Translate type='text' content='VoterProfile.gov' />
         const MUN = <Translate type='text' content='VoterProfile.mun' />
@@ -330,6 +391,9 @@ class ListsOverview extends Component {
             delimitation = ' per mun'
             delimitationTitle = ' per municipality '
         }
+        //Decision whether to show reset button or not
+        var resetDataRectangle;
+        this.state.highLowButton=='lowest'||this.state.highLowButton=='highest'?resetDataRectangle= <DataRectangle  identifier='none' regValue='Reset' title='' getClickedRectangle={this.getClickedRectangle} />:null
         return (
             this.state.redirect ? <Redirect push to={url} /> :
                 <div>
@@ -338,14 +402,15 @@ class ListsOverview extends Component {
                     <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
 
                     <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
-                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle + '(16-02)'}</h5>
+                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle + '(21-02)'}</h5>
                         <section className='container-fluid' style={{ marginBottom: '10px' }}>
                             <div className='row no-gutter col-md-offset-1'>
-                                <DataRectangle imgLink='/img/sum.svg' regValue={chosenListsNumberCount} title={picked + ' lists number'} />
-                                <DataRectangle imgLink='/img/candidates.svg' regValue={this.state.candidatesNumber} title='Candidates number' />
-                                <DataRectangle imgLink='/img/average.PNG' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number' + delimitation} />
-                                <DataRectangle imgLink='/img/increaseArrow.svg' regValue={chosenMaxListNum} title={'Highest ' + picked + ' Lists number' + delimitation} />
-                                <DataRectangle imgLink='/img/decreaseArrow.svg' regValue={chosenMinListNum} title={'Lowest ' + picked + ' Lists number' + delimitation} />
+                                <DataRectangle imgLink='/img/sum.svg' identifier='none' regValue={chosenListsNumberCount} title={picked + ' lists number'} getClickedRectangle={this.getClickedRectangle} />
+                                <DataRectangle imgLink='/img/candidates.svg' identifier='none' regValue={this.state.candidatesNumber} title='Candidates number' getClickedRectangle={this.getClickedRectangle} />
+                                <DataRectangle imgLink='/img/average.PNG' identifier='none' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number' + delimitation} getClickedRectangle={this.getClickedRectangle} />
+                                <DataRectangle imgLink='/img/increaseArrow.svg' identifier='highest' regValue={chosenMaxListNum}  title={'Highest ' + picked + ' Lists number' + delimitation} getClickedRectangle={this.getClickedRectangle}/>
+                                <DataRectangle imgLink='/img/decreaseArrow.svg' identifier='lowest' regValue={chosenMinListNum}  title={'Lowest ' + picked + ' Lists number' + delimitation} getClickedRectangle={this.getClickedRectangle}/>
+                                {resetDataRectangle}
                             </div>
                         </section>
                         <div className='container-fluid'>
@@ -360,29 +425,27 @@ class ListsOverview extends Component {
                                     style={this.styleCirc.bind(this)}
                                 /> */}
                                                 <GeoJSON
-                                                    key={'a' + shapeKey}
+                                                    key={'a' + shapeKey+this.state.highLowButton}
                                                     data={shapeToSelect}
                                                     style={this.style.bind(this)}
                                                     onEachFeature={
                                                         (feature, layer) => {
-                                                            layer.on({ click: this.clickedShape.bind(this) });
                                                             layer.on({mouseover: this.highlightFeature.bind(this)});
                                                         }
                                                     }
                                                 >
                                                     <Tooltip direction="bottom" className="leafletTooltip" sticky={false} zIndex={2000} >
                                                         <div style={{ zIndex: 1501 }} >
-                                                            
+                                                        <h4><b>{this.state.totalTooltip}</b> Total lists | <b>{this.state.partiesTooltip}</b> <span style={{color:'#8e3426'}}>Party List</span></h4>
+                                                        <h4><b>{this.state.independentsTooltip}</b> <span style={{color:'#f6aea3'}}>Independent List </span> | <b>{this.state.coalitionTooltip }</b> <span style={{color:'#457daf'}}>Coalition List </span></h4>
+
                                                              <TooltipPie
-                                                             city={this.state.gouv_name }
+                                                             city={this.state.gouv_name+' '+this.state.govNameForMunTooltip }
                                                                 partyTooltip={this.state.partiesTooltip}
                                                                 independentTooltip={this.state.independentsTooltip}
                                                                 coalitionTooltip={this.state.coalitionTooltip }
                                                             /> 
-                                                            {/* <div style={{ textAlign: "center", position: "relative", marginTop: "-10px" }}>
-                                                                <h4><b>{(this.state.maleNumber + this.state.femaleNumber).toLocaleString()}</b>{REGTRANCHE}{this.state.mapAge}</h4>
-                                                                <h4><b>{(this.state.allreg_sum - (this.state.maleNumber + this.state.femaleNumber)).toLocaleString()}</b>{OTHERREG}</h4>
-                                                            </div> */}
+                                                           
                                                         </div>
                                                     </Tooltip>
                                                     </GeoJSON>

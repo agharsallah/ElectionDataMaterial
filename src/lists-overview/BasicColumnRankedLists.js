@@ -14,11 +14,11 @@ class BasicColumnRankedLists extends Component {
         })
         console.log("555555555555",inscriptionArray);
         console.log('555',gouvNameArray);
-    }
-     */
+    } */
+    
     componentWillMount() {
-        var gouvNameArray = ["Kairouan", "Jendouba", "Nabeul 1", "Mahdia", "Bizerte", "Zaghouan", "Sfax 1", "Sousse", "Sidi Bouziid", "Medenine", "Sfax 2", "Nabeul 2", "Monastir", "Gabes", "Ben Arous", "Le Kef", "Kasserine", "Tunis 2", "Tozeur", "Beja", "Ariana", "Kebili", "Tunis 1", "Gafsa", "Manouba", "Siliana", "Tataouine"],
-            inscriptionArray = [31, 29, 28, 25, 21, 21, 20, 18, 17, 17, 17, 17, 13, 13, 12, 12, 11, 10, 10, 8, 7, 7, 6, 6, 5, 1, 1]
+        var gouvNameArray = ["Nabeul 1", "Monastir", "Kairouan", "Mahdia", "Sousse", "Bizerte", "Zaghouan", "Jendouba", "Sfax 1", "Nabeul 2", "Ben Arous", "Sidi Bouziid", "Le Kef", "Sfax 2", "Gabes", "Beja", "Medenine", "Gafsa", "Kasserine", "Ariana", "Tozeur", "Manouba", "Tunis 2", "Kebili", "Siliana", "Tataouine", "Tunis 1"],
+            inscriptionArray = [46, 44, 40, 38, 38, 35, 33, 33, 33, 32, 30, 28, 27, 27, 23, 22, 22, 21, 19, 18, 16, 15, 12, 11, 10, 7, 6]
 
         this.setState({
             options: {
@@ -32,7 +32,7 @@ class BasicColumnRankedLists extends Component {
                     text: this.props.title
                 },
                 subtitle: {
-                    text: '16-02-2018'
+                    text: '21-02-2018'
                 },
                 xAxis: {
                     categories: gouvNameArray,
@@ -90,7 +90,7 @@ class BasicColumnRankedLists extends Component {
             inscriptionArray.push(element.value)
             gouvNameArray.push(element.gouv)
         })
-        console.log(inscriptionArray);
+        //console.log(inscriptionArray);
         this.setState({
             options: {
                 chart: {
@@ -102,7 +102,7 @@ class BasicColumnRankedLists extends Component {
                     text: nextProps.title
                 },
                 subtitle: {
-                    text: nextProps.subtitle
+                    text: '21-02-2018'
                 },
                 xAxis: {
                     categories: gouvNameArray,

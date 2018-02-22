@@ -6,3 +6,28 @@
     padding: 2vh;
     margin-bottom: 5px;
 }
+
+.tooltipRectangle {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltipRectangle .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0, 0, 0, 0.42);;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltipRectangle */
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+}
+
+.tooltipRectangle:hover .tooltiptext {
+    visibility: visible;
+}

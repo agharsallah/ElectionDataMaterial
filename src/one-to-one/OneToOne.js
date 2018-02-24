@@ -11,7 +11,9 @@ class OneToOne extends Component {
         super(props);
         this.state = { shape: config.initShape, shapeIsLoaded: false, key: 1, position: [35.9, 9.23],
             validSamplingArray: [1000, 1100, 1200, 1300, 1400, 1500],circleColorArr:['#7fc97f','#beaed4','#fdc086','#ffff99','#386cb0','#f0027f'],
-            opacityCircle:0.5,votingCenters:[],delimitation:config.initShape,etat:'notloaded'
+            opacityCircle:0.5,votingCenters:[],
+            delimitation:config.initShape,etat:'notloaded',
+            checkBoxData:[false,false,false,false,false,false]
         }
     }
     componentWillMount() {
@@ -76,18 +78,27 @@ class OneToOne extends Component {
         }
     }
 
-
+    getCheckBoxDelete(checkBoxData){
+        //console.log(JSON.parse(checkBoxData.arrayToDeleteNum));
+        //we get the index of the array we're gone delete - this index value is in the checkbox -
+        var storedNum=JSON.parse(checkBoxData.arrayToDeleteNum)
+        //we define the array of checkbox -which ones are true and which are false
+        var addArray=this.state.checkBoxData
+        addArray[storedNum]=checkBoxData.deleteBool
+        console.log(addArray);
+        this.setState({checkBoxData:addArray});
+    }
 
     render() {
         const position = this.state.position;
         var sampleRadius=this.state.validSamplingArray
         var circleColorArr=this.state.circleColorArr
         var numerOfp1000,numerOf800,numerOf700,numerOf600,numerOf500,numerOfm500;
-        var opacityCircle=this.state.opacityCircle;
-        var etatKey=this.state.etat
+        var etatKey=this.state.etat,checkBoxData=this.state.checkBoxData,opacityCircle=this.state.opacityCircle;
+        //var {etatKey,checkBoxData,opacityCircle}=this.state
         return (
             <div>
-            <MenuDrawer getSampling={this.getSampling.bind(this)} />
+            <MenuDrawer getSampling={this.getSampling.bind(this)} getCheckBoxDelete={this.getCheckBoxDelete.bind(this)}/>
             {etatKey=='loaded'?
             <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                 <TileLayer
@@ -108,27 +119,31 @@ class OneToOne extends Component {
                 {/* Loop through the json of points and draw our VCs */}
 
                 {(this.state.votingCenters).map(function (obj, i) {
-                    var radius,colorFill
-                    if (obj.sum>=1000) {
+                    var radius,colorFill,weight=2
+                    if ((obj.sum>=1000)&&(checkBoxData[0]==false)) {
                         radius=sampleRadius[0]
                         colorFill=circleColorArr[0]
-                    }else if(obj.sum>=800){
+                    }else if((obj.sum>=800)&&(checkBoxData[1]==false)){
                         radius=sampleRadius[1]
                         colorFill=circleColorArr[1]
-                    }else if(obj.sum>=700){
+                    }else if((obj.sum>=700)&&(checkBoxData[2]==false)){
                         radius=sampleRadius[2]
                         colorFill=circleColorArr[2]
-                    }else if(obj.sum>=600){
+                    }else if((obj.sum>=600)&&(checkBoxData[3]==false)){
                         radius=sampleRadius[3]
                         colorFill=circleColorArr[3]
-                    }else if(obj.sum>=500){
+                    }else if((obj.sum>=500)&&(checkBoxData[4]==false)){
                         radius=sampleRadius[4]
                         colorFill=circleColorArr[4]
-                    }else{
+                    }else if((obj.sum>=0)&&(checkBoxData[5]==false)){
                         radius=sampleRadius[5]
                         colorFill=circleColorArr[5]
+                    }else{
+                        radius=0
+                        colorFill='none',
+                        weight=0
                     }
-                   return (<Circle radius={radius} key={i} fillOpacity={opacityCircle} fillColor={colorFill} center={[obj.lat,obj.lon]}>
+                   return (<Circle radius={radius} key={i} fillOpacity={opacityCircle} weight={weight} fillColor={colorFill} center={[obj.lat,obj.lon]}>
                         <Popup>
                             <span>
                             <h4>polling_name: {obj.polling}</h4>

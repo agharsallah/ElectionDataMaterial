@@ -5,6 +5,7 @@ import Drawer from 'material-ui/Drawer';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import TextField from 'material-ui/TextField';
 import InputRange from 'react-input-range';
+import Checkbox from 'material-ui/Checkbox';
 
 class MenuDrawerActiveReg extends Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class MenuDrawerActiveReg extends Component {
         if ((arrayRadius.length == 6) && (circleColorArr.length == 6) && (!isNaN(opacityCircle))) {
             console.log('hhh');
             arrayRadius.sort()
-            this.setState({ error: false, errorColor: false, errOpacity:false });
+            this.setState({ error: false, errorColor: false, errOpacity: false });
             this.props.getSampling(arrayRadius, circleColorArr, opacityCircle)
         } else {
             console.log('errr');
@@ -36,18 +37,23 @@ class MenuDrawerActiveReg extends Component {
 
     }
     handleChangeInput(e, val) {// input handle
-        console.log(val);
+        {/* console.log(val); */}
         this.setState({ SamplingArray: '[' + val + ']' });
     }
     handleChangeColor(e, val) {// color handle
-        console.log('ddddddddddddddddddd');
-        console.log('changecol', val);
+       {/*  console.log('ddddddddddddddddddd');
+        console.log('changecol', val); */}
         this.setState({ circleColorArr: val });
     }
     handleChangeOpacity(e, val) {
         this.setState({ opacityCircle: val });
     }
-
+    handleCheck(e, isInputChecked) {
+        console.log(e.target.value);
+        {/* console.log(data, isInputChecked);
+ */}
+        this.props.getCheckBoxDelete({arrayToDeleteNum:e.target.value,deleteBool:isInputChecked});
+    }
     render() {
         if (Array.isArray(this.state.circleColorArr)) {
             var colorArr = this.state.circleColorArr
@@ -130,36 +136,79 @@ class MenuDrawerActiveReg extends Component {
                     <section>
                         <table>
                             <tr>
+                                <th>Hide radius</th>
                                 <th>Registered Voters</th>
                                 <th>Sampling Radius (m)</th>
                                 <th>color</th>
                             </tr>
                             <tr>
+                                <td>
+                                    <Checkbox
+                                        key='0'
+                                        value={0}
+                                        onCheck={this.handleCheck.bind(this)}
+                                    />
+                                </td>
                                 <td>≥1000</td>
                                 <td>{SamplingArray[0]}</td>
                                 <td style={{ backgroundColor: colorArr[0] }}></td>
                             </tr>
                             <tr>
+                                <td>
+                                    <Checkbox
+                                    key='1'
+                                    value={1}
+                                        onCheck={this.handleCheck.bind(this)}
+                                    />
+                                </td>
                                 <td>800-999</td>
                                 <td>{SamplingArray[1]}</td>
                                 <td style={{ backgroundColor: colorArr[1] }}></td>
                             </tr>
                             <tr>
+                                <td>
+                                    <Checkbox
+                                    key='2'
+                                    value={2}
+                                        onCheck={this.handleCheck.bind(this)}
+                                    />
+                                </td>
                                 <td>700-899</td>
                                 <td>{SamplingArray[2]}</td>
                                 <td style={{ backgroundColor: colorArr[2] }}></td>
                             </tr>
                             <tr>
+                                <td>
+                                    <Checkbox
+                                    key='3'
+                                    value={3}
+                                        onCheck={this.handleCheck.bind(this)}
+                                    />
+                                </td>
                                 <td>600-799</td>
                                 <td>{SamplingArray[3]}</td>
                                 <td style={{ backgroundColor: colorArr[3] }}></td>
                             </tr>
                             <tr>
+                                <td>
+                                    <Checkbox
+                                    key='4'
+                                    value={4}
+                                        onCheck={this.handleCheck.bind(this)}
+                                    />
+                                </td>
                                 <td>500-699</td>
                                 <td>{SamplingArray[4]}</td>
                                 <td style={{ backgroundColor: colorArr[4] }}></td>
                             </tr>
                             <tr>
+                                <td>
+                                    <Checkbox
+                                    key='5'
+                                    value={5}
+                                        onCheck={this.handleCheck.bind(this)}
+                                    />
+                                </td>
                                 <td>≤500</td>
                                 <td>{SamplingArray[5]}</td>
                                 <td style={{ backgroundColor: colorArr[5] }}></td>

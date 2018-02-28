@@ -50,9 +50,12 @@ class MenuDrawerActiveReg extends Component {
     }
     handleCheck(e, isInputChecked) {
         console.log(e.target.value);
-        {/* console.log(data, isInputChecked);
- */}
+        {/* console.log(data, isInputChecked);*/}    
         this.props.getCheckBoxDelete({arrayToDeleteNum:e.target.value,deleteBool:isInputChecked});
+    }
+    handleSaveRadius(){
+        (this.props.xlsSave).exportToCSV('edited vcs.xls')
+
     }
     render() {
         if (Array.isArray(this.state.circleColorArr)) {
@@ -215,12 +218,20 @@ class MenuDrawerActiveReg extends Component {
                             </tr>
                         </table>
                     </section>
+                    <div>
                     <RaisedButton
                         style={{ marginLeft: "2vh", marginTop: "2vh", zIndex: 500 }}
                         label='update Map'
                         primary={true}
                         onClick={this.handleSamplingRadius.bind(this)}
                     />
+                    <RaisedButton
+                        style={{ marginLeft: "2vh", marginTop: "2vh", zIndex: 500 }}
+                        label='Save VCs after deletion'
+                        primary={true}
+                        onClick={this.handleSaveRadius.bind(this)}
+                    />
+                    </div>
                 </Drawer>
             </div>
         );

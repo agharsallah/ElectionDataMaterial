@@ -22,8 +22,8 @@ class ListsOverview extends Component {
             redirect: false, stateFilter: 'total', shapeIsLoaded: false,position:[37.5, 7.5],
             munShape: config.initShape, shape: config.initShape,
             buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov',//these states colors for mun|gove buttons
-            range: [0, 25, 45, 55], // these states are fo the map style & mapkey
-            candidatesNumber: 0, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
+            range: [0, 50, 80, 100], // these states are fo the map style & mapkey
+            candidatesNumber: 45150, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
             ,highLowButton:'none'//these state for the high|low style on the map
         }
         this.getClickedRectangle=this.getClickedRectangle.bind(this)
@@ -40,13 +40,13 @@ class ListsOverview extends Component {
             },
             params: {
                 type: 'gov',
-                timeOfCollection: '15h',
-                dateOfCollection: '21-02'
+                timeOfCollection: '18h',
+                dateOfCollection: '03-03'
             }
         })
             .then(response => {
                 //console.log(response.data.data);
-                var allLists = [], allGouvname = [], candidatesNumber = 0, featuresData = JSON.parse(response.data.data).features,
+                var allLists = [], allGouvname = [], featuresData = JSON.parse(response.data.data).features,
                     listsNumberCount = 0, indListsNumberCount = 0, coalListsNumberCount = 0, partyListsNumberCount = 0,
                     avgListNum = 0, indAvgListNum = 0, coalAvgListNum = 0, partyAvgListNum = 0,
                     indepList = [], coalList = [], partyList = []
@@ -57,7 +57,8 @@ class ListsOverview extends Component {
                     coalList.push({ value: parseInt(element.properties.coalitions), gouv: element.properties.NAME_EN })
                     partyList.push({ value: parseInt(element.properties.parties), gouv: element.properties.NAME_EN })
                     //calculating the candidates number
-                    candidatesNumber = (element.properties.total_lists + 3) * element.properties.chairs
+                    /* candidatesNumber = (element.properties.total_lists + 3) * element.properties.chairs */
+
                     //calulating the total independent coalition party list number
                     listsNumberCount += element.properties.total_lists;
                     indListsNumberCount += element.properties.independents;
@@ -76,7 +77,7 @@ class ListsOverview extends Component {
                 partyList.sort(function (a, b) { return b.value - a.value })
                 this.setState({
                     shape: JSON.parse(response.data.data), shapeKey: 'gov', shapeIsLoaded: true,
-                    allLists, candidatesNumber, listsNumberCount, avgListNum: avgListNum.toFixed(0),
+                    allLists, listsNumberCount, avgListNum: avgListNum.toFixed(0),
                     maxListNum: allLists[0].value, minListNum: allLists[allLists.length - 1].value,
 
                     indepList, indListsNumberCount, indAvgListNum: indAvgListNum.toFixed(0),
@@ -250,7 +251,7 @@ class ListsOverview extends Component {
         if (this.state.selectedMapLevel == 'gov') {
             if (pickedLevel == 'total') {
                 this.setState({
-                    range: [0, 25, 45, 55],
+                    range: [0, 50, 80, 100],
                     chosenListsNumberCount: this.state.listsNumberCount,
                     chosenAvgListNum: this.state.avgListNum,
                     chosenMaxListNum: this.state.maxListNum,
@@ -258,7 +259,7 @@ class ListsOverview extends Component {
                 });
             } else if (pickedLevel == 'indep') {
                 this.setState({
-                    range: [0, 10, 15, 25],
+                    range: [0, 20, 40, 60],
                     chosenListsNumberCount: this.state.indListsNumberCount,
                     chosenAvgListNum: this.state.indAvgListNum,
                     chosenMaxListNum: this.state.indMaxListNum,
@@ -266,7 +267,7 @@ class ListsOverview extends Component {
                 });
             } else if (pickedLevel == 'coalition') {
                 this.setState({
-                    range: [0, 1, 2, 3],
+                    range: [0, 5, 7, 9],
                     chosenListsNumberCount: this.state.coalListsNumberCount,
                     chosenAvgListNum: this.state.coalAvgListNum,
                     chosenMaxListNum: this.state.coalMaxListNum,
@@ -274,7 +275,7 @@ class ListsOverview extends Component {
                 });
             } else {
                 this.setState({
-                    range: [0, 20, 30, 35],
+                    range: [0, 30, 40, 50],
                     chosenListsNumberCount: this.state.partyListsNumberCount,
                     chosenAvgListNum: this.state.partyAvgListNum,
                     chosenMaxListNum: this.state.PartyMaxListNum,
@@ -320,7 +321,7 @@ class ListsOverview extends Component {
     }
     MapLevelClick(index) {
         index === 'gov' ?
-            this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 25, 45, 55] })
+            this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 50, 80, 100] })
             :
             this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [0, 1, 3, 6] })
     }
@@ -376,8 +377,8 @@ class ListsOverview extends Component {
             chosenAvgListNum = this.state.chosenAvgListNum;
             chosenMaxListNum = this.state.chosenMaxListNum;
             chosenMinListNum = this.state.chosenMinListNum;
-            delimitation = ' per gov'
-            delimitationTitle = ' per governorate '
+            delimitation = ' per gov '
+            delimitationTitle = ' per governorate (03-03)' //for main view title
 
         } else {
             shapeKey = 'mun';
@@ -388,8 +389,8 @@ class ListsOverview extends Component {
             chosenAvgListNum = this.state.munChosenAvgListNum;
             chosenMaxListNum = this.state.munChosenMaxListNum;
             chosenMinListNum = this.state.munChosenMinListNum;
-            delimitation = ' per mun'
-            delimitationTitle = ' per municipality '
+            delimitation = ' per mun'//for Boxes title
+            delimitationTitle = ' per municipality (21-02)' //for main view title
         }
         //Decision whether to show reset button or not
         var resetDataRectangle;
@@ -402,7 +403,7 @@ class ListsOverview extends Component {
                     <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
 
                     <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
-                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle + '(21-02)'}</h5>
+                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle }</h5>
                         <section className='container-fluid' style={{ marginBottom: '10px' }}>
                             <div className='row no-gutter col-md-offset-1'>
                                 <DataRectangle imgLink='/img/sum.svg' identifier='none' regValue={chosenListsNumberCount} title={picked + ' lists number'} getClickedRectangle={this.getClickedRectangle} />

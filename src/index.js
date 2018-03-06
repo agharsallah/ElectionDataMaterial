@@ -22,7 +22,7 @@ import Archive from './archive/Archive' ;
 import Empty from './Empty' ;
 import About from './About' ;
 import VizRoot from './viz/VizRoot' ;
-import ListsOverview from './lists-overview/ListsOverview' ;
+import ListsOverviewGen from './lists-overview/general/ListsOverviewGen' ;
 import OneToOne from './one-to-one/OneToOne' ;
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
@@ -38,7 +38,7 @@ const render = Component =>
       <Route  path="/munre" component={ChooseRegGov}/>
       <Route  path="/munreg/:city" component={MunReg}/>
 
-      <Route  path="/lists-overview" component={ListsOverview}/>
+      <Route  path="/lists-overview" component={ListsOverviewGen}/>
 
       <Route  path="/one-to-one" component={OneToOne}/>
 

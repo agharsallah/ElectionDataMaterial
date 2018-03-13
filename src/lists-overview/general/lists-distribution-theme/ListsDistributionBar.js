@@ -24,13 +24,13 @@ export default class ListsDistributionBar extends Component {
                 xAxis: {
                     categories: [2,3,4,5,6,7,8,9,10,11,12,13,14],
                     step:1,
+                    title: {
+                        text: 'Lists number'
+                    },
                     //format: '<b>{value}</b>',
                     //formatter: function() {console.log(this); return (listsData[this.value]).name},
                     labels: {
                         enabled: true,
-                    title: {
-                        text: 'Lists number'
-                    },
                         style: {
                             fontSize: '12px',
                             fontFamily: 'Verdana, sans-serif'
@@ -41,13 +41,13 @@ export default class ListsDistributionBar extends Component {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Lists number'
+                        text: 'Municipalities number'
                     }
                 },
 
                 tooltip: {
-                    headerFormat: '<h2>{point.key} </h2> municipalities have ',
-                    pointFormat: '<b>{point.y}</b> list',
+                    headerFormat: '<h2>{point.y} </h2> municipalities have ',
+                    pointFormat: '<b>{point.name}</b> list',
                 },
                 plotOptions: {
                     column: {

@@ -3,6 +3,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import ListsOverviewBar from './ListsOverviewBar' ;
 import ListsOverviewPie from './ListsOverviewPie' ;
+import IsieImage from './IsieImage';
+
 export default class ListsOverviewTheme extends Component {
     constructor(props){
       super(props);
@@ -36,18 +38,20 @@ export default class ListsOverviewTheme extends Component {
                         onClick={this.MapLevelClick.bind(this, 1)}
                         icon={<FontIcon className="fas fa-chart-pie" />}
                     />
-                    {/* <RaisedButton
-                        label="Boxes"
-                        className='top-right '
-                        primary={this.state.activeButton[2] }
-                        onClick={this.MapLevelClick.bind(this, 2)}
-                        icon={<FontIcon className="fas fa-th-large" />}
-                    /> */}
+                    <RaisedButton
+                    label="Image"
+                    className='top-right '
+                    primary={this.state.activeButton[2]}
+                    onClick={this.MapLevelClick.bind(this, 2)}
+                    icon={<FontIcon className="far fa-images" color='#000000' />}
+                />
                    
                 </div>
                 <div className='col-md-7 col-md-offset-1 col-xs-12 ' >
                 {
-                    this.state.activeButton[0]?<ListsOverviewBar/>: <ListsOverviewPie/>
+                    this.state.activeButton[0]?<ListsOverviewBar/>: 
+                    this.state.activeButton[1]?<ListsOverviewPie/>
+                    :<IsieImage/>
                 }
                 </div>
                 

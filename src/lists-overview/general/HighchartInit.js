@@ -102,7 +102,7 @@ class HighchartInit extends Component {
     render() {
 
         return (
-            <div ref="chart" style={{ height: "65vh" }} />
+            <div ref="chart" style={{ height: "60vh" }} />
         );
     }
 }

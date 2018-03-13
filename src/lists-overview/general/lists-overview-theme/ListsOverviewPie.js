@@ -7,7 +7,7 @@ export default class ListsOverviewPie extends Component {
     }
     
     componentWillMount() {
-        var listsData = [{name:'Party Lists',y:1099,per:50.57},{name:'Independent Lists',y:897,per:41.27},{name:'Coalition Lists',y:177,per:8.14}]
+        var listsData = [{name:'Party Lists',y:1053,per:50.91},{name:'Independent Lists',y:859,per:41.53},{name:'Coalition Lists',y:156,per:7.54}]
         this.setState({
             options: {
                 chart: {

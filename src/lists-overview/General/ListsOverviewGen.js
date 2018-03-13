@@ -40,6 +40,12 @@ class ListsOverviewGen extends Component {
     render() {
         const GOV = <Translate type='text' content='VoterProfile.gov' />
         const MUN = <Translate type='text' content='VoterProfile.mun' />
+        //Decision on what the title of the Viz 
+        var title;
+        this.state.selectedIndex==0?title='General lists overview':
+        this.state.selectedIndex==1?title='Lists Distribution':
+        this.state.selectedIndex==2?title='General Candidates overview':
+        title='Ranking of Candidates Lists per Party';
         return (
             <div>
                 {this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> : this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov /> :
@@ -55,7 +61,7 @@ class ListsOverviewGen extends Component {
                                 </div>
                             </div>
                         </section>
-                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px', marginTop: '13vh' }} >General lists overview</h5>
+                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '25px', marginTop: '10vh' }} >{title}</h5>
 
                         <section className='col-md-12' >
                             <div className='col-md-2 col-md-offset-1' style={{marginTop:'2vh'}}>

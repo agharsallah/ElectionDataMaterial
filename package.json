@@ -68,6 +68,7 @@
     "react-leaflet-control": "^1.4.0",
     "react-loading": "^0.1.4",
     "react-modal-video": "^1.0.7",
+    "react-rangeslider": "^2.2.0",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.2.2",
     "react-scroll": "^1.6.7",

@@ -1,0 +1,14 @@
+.active-menu-list{
+    background-color: rgba(94, 189, 213, 0.5) !important;
+}
+.top-right-wrap {
+    position: relative;
+}
+.top-right  {
+    /* position: absolute;
+    top: 0px;
+    right: 0px; */
+    float: right;
+    margin-left: 2%;
+    margin-top: 2%;
+}

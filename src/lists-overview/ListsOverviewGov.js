@@ -15,7 +15,7 @@ import BasicColumnRankedLists from './BasicColumnRankedLists';
 import DataRectangle from './DataRectangle';
 import './s.css'
 import TooltipPie from './TooltipPie';
-import GeneralViz from './general/GeneralViz';
+import ListsOverviewGen from './general/ListsOverviewGen';
 import ListsOverviewMun from './ListsOverviewMun';
 
 class ListsOverviewGov extends Component {
@@ -297,7 +297,7 @@ class ListsOverviewGov extends Component {
 
 
                 {/* If the clicked button is general Load General Component /general/GeneralViz Else load maps from here */}
-                {this.state.selectedMapLevel == 'general' ? <GeneralViz /> :this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> :
+                {this.state.selectedMapLevel == 'general' ? <ListsOverviewGen /> :this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> :
                     <div>
                     <HeaderHelmet/>
                         <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />

@@ -13,16 +13,16 @@ class OneToOne extends Component {
         super(props);
         this.state = {
             shape: config.initShape, shapeIsLoaded: false, key: 1, position: [35.9, 9.23],
-            validSamplingArray: [1000, 1100, 1200, 1300, 1400, 1500], circleColorArr: ['#7fc97f', '#beaed4', '#fdc086', '#ffff99', '#386cb0', '#f0027f'],
+            validSamplingArray: [400, 450, 500, 550, 600, 650], circleColorArr: ['#7fc97f', '#beaed4', '#fdc086', '#ffff99', '#386cb0', '#f0027f'],
             opacityCircle: 0.5,
-            votingCenters: [],allVotingCenters:[],showAll:true,
+            votingCenters: [], allVotingCenters: [], showAll: true,
             delimitation: config.initShape, etat: 'notloaded',
             checkBoxData: [false, false, false, false, false, false],
-            xlsExport:[]
+            xlsExport: []
         }
     }
     componentWillMount() {
-        let qString = config.apiUrl + '/api/shape/dataSample300-2000VCs';
+        let qString = config.apiUrl + '/api/shape/dataSample200-2000-noOverlapVCs';
         axios({
             method: 'get',
             url: qString,
@@ -35,7 +35,7 @@ class OneToOne extends Component {
 
         })
             .then(response => {
-                this.setState({ allVotingCenters: JSON.parse(response.data.data),  votingCenters: JSON.parse(response.data.data) });
+                this.setState({ allVotingCenters: JSON.parse(response.data.data), votingCenters: JSON.parse(response.data.data) });
 
             })
             .catch(function (error) {
@@ -64,7 +64,7 @@ class OneToOne extends Component {
         return {
             weight: 3,
             opacity: 1,
-            color: 'green',
+            color: 'red',
             dashArray: '',
             fillOpacity: 0.1
         };
@@ -74,7 +74,7 @@ class OneToOne extends Component {
         if (Array.isArray(validSamplingArray) && Array.isArray(circleColorArr)) {
             console.log('passed');
             console.log(circleColorArr);
-            this.setState({ validSamplingArray, circleColorArr,showAll:true });
+            this.setState({ validSamplingArray, circleColorArr, showAll: true });
             if (!isNaN(parseFloat(opacityCircle))) {
                 this.setState({ opacityCircle });
             }
@@ -93,19 +93,20 @@ class OneToOne extends Component {
         addArray[storedNum] = checkBoxData.deleteBool // ex addArray[0]=true
         console.log(addArray);
 
-        this.setState({ checkBoxData: addArray,showAll:true });
+        this.setState({ checkBoxData: addArray, showAll: true });
     }
-    getCircleToDelete(toDelete){
+    getCircleToDelete(toDelete) {
         console.log(toDelete);
 
         var tempArray;
-        tempArray=(this.state.votingCenters).filter(function(el) {
+        tempArray = (this.state.votingCenters).filter(function (el) {
             return el.polling !== toDelete;
         });
         var xls = new XlsExport(tempArray, 'String');
-        console.log(tempArray);
-        this.setState({votingCenters:tempArray,showAll:false,xlsExport:xls});
+        //console.log(tempArray);
+        this.setState({ votingCenters: tempArray, showAll: false, xlsExport: xls });
     }
+
     render() {
         const position = this.state.position;
         var sampleRadius = this.state.validSamplingArray
@@ -135,24 +136,24 @@ class OneToOne extends Component {
                         />
                         {/* Loop through the json of points and draw our VCs */}
 
-                        {this.state.showAll?(this.state.allVotingCenters).map(function (obj, i) {
+                        {this.state.showAll ? (this.state.allVotingCenters).map(function (obj, i) {
                             var radius, colorFill, weight = 2
-                            if ((obj.sum >= 1000) && (checkBoxData[0] == false)) {
+                            if ((obj.registeredVoters_mun18 >= 1000) && (checkBoxData[0] == false)) {
                                 radius = sampleRadius[0]
                                 colorFill = circleColorArr[0]
-                            } else if ((obj.sum >= 800&&obj.sum <1000) && (checkBoxData[1] == false)) {
+                            } else if ((obj.registeredVoters_mun18 >= 800 && obj.registeredVoters_mun18 < 1000) && (checkBoxData[1] == false)) {
                                 radius = sampleRadius[1]
                                 colorFill = circleColorArr[1]
-                            } else if ((obj.sum >= 700&&obj.sum <800) && (checkBoxData[2] == false)) {
+                            } else if ((obj.registeredVoters_mun18 >= 700 && obj.registeredVoters_mun18 < 800) && (checkBoxData[2] == false)) {
                                 radius = sampleRadius[2]
                                 colorFill = circleColorArr[2]
-                            } else if ((obj.sum >= 600&&obj.sum <700) && (checkBoxData[3] == false)) {
+                            } else if ((obj.registeredVoters_mun18 >= 600 && obj.registeredVoters_mun18 < 700) && (checkBoxData[3] == false)) {
                                 radius = sampleRadius[3]
                                 colorFill = circleColorArr[3]
-                            } else if ((obj.sum >= 500&&obj.sum <600) && (checkBoxData[4] == false)) {
+                            } else if ((obj.registeredVoters_mun18 >= 500 && obj.registeredVoters_mun18 < 600) && (checkBoxData[4] == false)) {
                                 radius = sampleRadius[4]
                                 colorFill = circleColorArr[4]
-                            } else if ((obj.sum >= 0&&obj.sum <500) && (checkBoxData[5] == false)) {
+                            } else if ((obj.registeredVoters_mun18 >= 0 && obj.registeredVoters_mun18 < 500) && (checkBoxData[5] == false)) {
                                 radius = sampleRadius[5]
                                 colorFill = circleColorArr[5]
                             } else {
@@ -160,63 +161,74 @@ class OneToOne extends Component {
                                 colorFill = 'black',
                                     weight = 0
                             }
-                            return (<Circle radius={radius} key={i} fillOpacity={opacityCircle} weight={weight} fillColor={colorFill} center={[obj.lat, obj.lon]}>
+                            return (<Circle onContextMenu={this.getCircleToDelete.bind(this, obj.polling)} radius={radius} key={i} fillOpacity={opacityCircle} weight={weight} fillColor={colorFill} center={([obj.lat, obj.lon])}>
                                 <Popup>
                                     <span>
-                                        <h4>polling_name: {obj.polling}</h4>
-                                        <h4>mun_name: {obj.mun}</h4>
-                                        <h4>radius is : {radius} m</h4>
-                                        <h4>number of registered: {obj.sum} </h4>
+                                        <h4>id: <b>{obj.id}</b></h4>
+                                        <h5>VC name: <b>{obj.center_name}</b></h5>
+                                        <h5>VC name Ar: <b>{obj.center_name_ar}</b></h5>
+                                        <h4>mun name Ar: <b>{obj.mun_name_ar}</b></h4>
+                                        <h4>gov name: <b>{obj.gov_name_en}</b></h4>
+                                        <h4>radius is : <b>{radius} m</b></h4>
+                                        <h4>Parl 2014 turnout VC level: <b>{(obj.signingVoters_par14 * 100 / obj.registeredVoters_par14).toFixed(2)} %</b></h4>
+                                        <h4>Pres 2014 turnout VC level:  <b>{(obj.signingVoters_pres14 * 100 / obj.registeredVoters_pres14).toFixed(2)} %</b></h4>
+                                        <h4>number of registered 2018: <b>{obj.registeredVoters_mun18}</b> </h4>
                                         <button className='btn-warning col-md-offset-5' onClick={this.getCircleToDelete.bind(this, obj.polling)}>Delete</button>
 
                                     </span>
                                 </Popup>
                             </Circle>)
-                        },this)
+                        }, this)
 
-                    :
-                    /* REPEATING THE SAME BLOCK AS ABOVE BUT WIth DIfFEreNT VCs  */
-                    (this.state.votingCenters).map(function (obj, i) {
-                        var radius, colorFill, weight = 2
-                        if ((obj.sum >= 1000) && (checkBoxData[0] == false)) {
-                            radius = sampleRadius[0]
-                            colorFill = circleColorArr[0]
-                        } else if ((obj.sum >= 800&&obj.sum <1000) && (checkBoxData[1] == false)) {
-                            radius = sampleRadius[1]
-                            colorFill = circleColorArr[1]
-                        } else if ((obj.sum >= 700&&obj.sum <800) && (checkBoxData[2] == false)) {
-                            radius = sampleRadius[2]
-                            colorFill = circleColorArr[2]
-                        } else if ((obj.sum >= 600&&obj.sum <700) && (checkBoxData[3] == false)) {
-                            radius = sampleRadius[3]
-                            colorFill = circleColorArr[3]
-                        } else if ((obj.sum >= 500&&obj.sum <600) && (checkBoxData[4] == false)) {
-                            radius = sampleRadius[4]
-                            colorFill = circleColorArr[4]
-                        } else if ((obj.sum >= 0&&obj.sum <500) && (checkBoxData[5] == false)) {
-                            radius = sampleRadius[5]
-                            colorFill = circleColorArr[5]
-                        } else {
-                            radius = 0
-                            colorFill = 'black',
-                                weight = 0
+                            :
+                            /* REPEATING THE SAME BLOCK AS ABOVE BUT WIth DIfFEreNT VCs -Incase we deleted some VCs we work on the deleted set here  */
+                            (this.state.votingCenters).map(function (obj, i) {
+                                var radius, colorFill, weight = 2
+                                if ((obj.registeredVoters_mun18 >= 1000) && (checkBoxData[0] == false)) {
+                                    radius = sampleRadius[0]
+                                    colorFill = circleColorArr[0]
+                                } else if ((obj.registeredVoters_mun18 >= 800 && obj.registeredVoters_mun18 < 1000) && (checkBoxData[1] == false)) {
+                                    radius = sampleRadius[1]
+                                    colorFill = circleColorArr[1]
+                                } else if ((obj.registeredVoters_mun18 >= 700 && obj.registeredVoters_mun18 < 800) && (checkBoxData[2] == false)) {
+                                    radius = sampleRadius[2]
+                                    colorFill = circleColorArr[2]
+                                } else if ((obj.registeredVoters_mun18 >= 600 && obj.registeredVoters_mun18 < 700) && (checkBoxData[3] == false)) {
+                                    radius = sampleRadius[3]
+                                    colorFill = circleColorArr[3]
+                                } else if ((obj.registeredVoters_mun18 >= 500 && obj.registeredVoters_mun18 < 600) && (checkBoxData[4] == false)) {
+                                    radius = sampleRadius[4]
+                                    colorFill = circleColorArr[4]
+                                } else if ((obj.registeredVoters_mun18 >= 0 && obj.registeredVoters_mun18 < 500) && (checkBoxData[5] == false)) {
+                                    radius = sampleRadius[5]
+                                    colorFill = circleColorArr[5]
+                                } else {
+                                    radius = 0
+                                    colorFill = 'black',
+                                        weight = 0
+                                }
+
+                                return (
+                                    <Circle onContextMenu={this.getCircleToDelete.bind(this, obj.polling)} radius={radius} key={i} fillOpacity={opacityCircle} weight={weight} fillColor={colorFill} center={[obj.lat, obj.lon]}>
+                                        <Popup>
+                                            <span>
+                                            <h4>id: <b>{obj.id}</b></h4>
+                                            <h5>VC name: <b>{obj.center_name}</b></h5>
+                                            <h5>VC name Ar: <b>{obj.center_name_ar}</b></h5>
+                                            <h4>mun name Ar: <b>{obj.mun_name_ar}</b></h4>
+                                            <h4>gov name: <b>{obj.gov_name_en}</b></h4>
+                                            <h4>radius is : <b>{radius} m</b></h4>
+                                            <h4>Parl 2014 turnout VC level: <b>{(obj.signingVoters_par14 * 100 / obj.registeredVoters_par14).toFixed(2)} %</b></h4>
+                                            <h4>Pres 2014 turnout VC level:  <b>{(obj.signingVoters_pres14 * 100 / obj.registeredVoters_pres14).toFixed(2)} %</b></h4>
+                                            <h4>number of registered 2018: <b>{obj.registeredVoters_mun18}</b> </h4>
+                                                    <button className='btn-warning col-md-offset-5' onClick={this.getCircleToDelete.bind(this, obj.polling)}>Delete</button>
+
+                                            </span>
+                                        </Popup>
+                                    </Circle>)
+                            }, this)
+
                         }
-
-                        return (<Circle radius={radius} key={i} fillOpacity={opacityCircle} weight={weight} fillColor={colorFill} center={[obj.lat, obj.lon]}>
-                            <Popup>
-                                <span>
-                                    <h4>polling_name: {obj.polling}</h4>
-                                    <h4>mun_name: {obj.mun}</h4>
-                                    <h4>radius is : {radius} m</h4>
-                                    <h4>number of registered: {obj.sum} </h4>
-                                    <button className='btn-warning col-md-offset-5'  onClick={this.getCircleToDelete.bind(this, obj.polling)}>Delete</button>
-
-                                </span>
-                            </Popup>
-                        </Circle>)
-                    },this)
-                    
-                    }
                         {/* {G_data_sample.map(function (obj, i) {
                     <CircleMarker position={[obj.lon, obj.lat]}>
                         <Popup>

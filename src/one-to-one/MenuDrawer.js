@@ -12,7 +12,7 @@ class MenuDrawerActiveReg extends Component {
         super(props);
         this.state = {
             open: true, error: false, errorColor: false, errOpacity: false,
-            SamplingArray: '[1000,1100,1200,1300,1400,1500]',
+            SamplingArray: '[400, 450, 500, 550, 600, 650]',
             circleColorArr: '#7fc97f,#beaed4,#fdc086,#ffff99,#386cb0,#f0027f',
             opacityCircle: 0.5
         };
@@ -93,13 +93,13 @@ class MenuDrawerActiveReg extends Component {
                         {this.state.error ?
                             <TextField
                                 hintText="should have this format : 1,2,3,4,5,6"
-                                defaultValue="1000,1100,1200,1300,1400,1500"
+                                defaultValue="400, 450, 500, 550, 600, 650"
                                 onChange={this.handleChangeInput.bind(this)}
                                 errorText='you have to enter 6 numbers seperateb by ,'
                             />
                             : <TextField
                                 hintText="should have this format : 1,2,3,4,5,6"
-                                defaultValue="1000,1100,1200,1300,1400,1500"
+                                defaultValue="400, 450, 500, 550, 600, 650"
                                 onChange={this.handleChangeInput.bind(this)}
                             />
                         }

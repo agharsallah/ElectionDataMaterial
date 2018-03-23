@@ -13,3 +13,13 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+.bulletPoint{
+    display: list-item;
+    list-style-type: disc;
+    list-style-position: inside;
+}
+.fiveMarginTop{
+    margin-top: 5vh;
+     margin-bottom: 2vh;
+}

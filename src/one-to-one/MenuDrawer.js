@@ -68,10 +68,12 @@ class MenuDrawerActiveReg extends Component {
 
     /*This func to handle what to show as border  */
     handleBorderSelection(e, isInputChecked) {
-        //console.log(e.target.value);
+        console.log(e.target.value);
         if (e.target.value == 'munBorder') {
+            this.setState({munBorder:isInputChecked});
             this.props.getBorderSelection({ munBorder: isInputChecked, govBorder: this.state.govBorder });
         } else {
+            this.setState({govBorder:isInputChecked});
             this.props.getBorderSelection({ govBorder: isInputChecked, munBorder: this.state.munBorder });
         }
         //console.log(isInputChecked);

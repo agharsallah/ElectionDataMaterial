@@ -23,7 +23,9 @@ import Empty from './Empty' ;
 import About from './About' ;
 import VizRoot from './viz/VizRoot' ;
 import ListsOverviewGen from './lists-overview/general/ListsOverviewGen' ;
+/* Aaron Maps */
 import OneToOne from './one-to-one/OneToOne' ;
+import FinalMap from './one-to-one-final/FinalMap' ;
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
 const render = Component =>
@@ -41,6 +43,7 @@ const render = Component =>
       <Route  path="/lists-overview" component={ListsOverviewGen}/>
 
       <Route  path="/one-to-one" component={OneToOne}/>
+      <Route  path="/final-map" component={FinalMap}/>
 
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
 

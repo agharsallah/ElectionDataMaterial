@@ -26,7 +26,7 @@ class OneToOne extends Component {
         }
     }
     componentWillMount() {
-        let qString = config.apiUrl + '/api/shape/data200-3000 vc 2018+par14+pres14_mun_en';
+        let qString = config.apiUrl + '/api/shape/finalData26-03-PC200-3000+oldtrn+state+unemp-b';
         axios({
             method: 'get',
             url: qString,
@@ -150,7 +150,7 @@ class OneToOne extends Component {
                     console.log(error);
                 });
         } else if (checkedOverlap == 'overlap') {
-            let qString = config.apiUrl + '/api/shape/data200-3000 vc 2018+par14+pres14_mun_en';
+            let qString = config.apiUrl + '/api/shape/finalData26-03-PC200-3000+oldtrn+state+unemp-b';
             axios({
                 method: 'get',
                 url: qString,
@@ -326,7 +326,11 @@ class OneToOne extends Component {
                                         <h4>Parl 2014 turnout VC level: <b>{(obj.signingVoters_par14 * 100 / obj.registeredVoters_par14).toFixed(2)} %</b></h4>
                                         <h4>Pres 2014 turnout VC level:  <b>{(obj.signingVoters_pres14 * 100 / obj.registeredVoters_pres14).toFixed(2)} %</b></h4>
                                         <h4>number of registered 2018: <b>{obj.registeredVoters_mun18}</b> </h4>
-                                        <button className='btn-warning col-md-offset-5' onClick={this.getCircleToDelete.bind(this, obj.center_name_ar)}>Delete</button>
+                                        <h4>Rural Per: <b>{Number(obj.ruralPer).toFixed(2)}%</b> </h4>
+                                        <h4>Urban Per: <b>{Number(obj.urbanPer).toFixed(2)}%</b> </h4>
+                                        <h4>Unemployment Per: <b>{Number(obj.unemploymentPercentage).toFixed(2)}%</b> </h4>
+                                        <h4>Mun State: <b>{obj.state}</b> </h4>
+                                        {/* <button className='btn-warning col-md-offset-5' onClick={this.getCircleToDelete.bind(this, obj.center_name_ar)}>Delete</button> */}
 
                                     </span>
                                 </Popup>
@@ -375,8 +379,12 @@ class OneToOne extends Component {
                                                 <h4>Parl 2014 turnout VC level: <b>{(obj.signingVoters_par14 * 100 / obj.registeredVoters_par14).toFixed(2)} %</b></h4>
                                                 <h4>Pres 2014 turnout VC level:  <b>{(obj.signingVoters_pres14 * 100 / obj.registeredVoters_pres14).toFixed(2)} %</b></h4>
                                                 <h4>number of registered 2018: <b>{obj.registeredVoters_mun18}</b> </h4>
-                                                <button className='btn-warning col-md-offset-5' onClick={this.getCircleToDelete.bind(this, obj.center_name_ar)}>Delete</button>
-
+                                                <h4>Rural Per: <b>{Number(obj.ruralPer).toFixed(2)}%</b> </h4>
+                                                <h4>Urban Per: <b>{Number(obj.urbanPer).toFixed(2)}%</b> </h4>
+                                                <h4>Unemployment Per: <b>{Number(obj.unemploymentPercentage).toFixed(2)}%</b> </h4>
+                                                <h4>Mun State: <b>{obj.state}</b> </h4>
+                                                {/* <button className='btn-warning col-md-offset-5' onClick={this.getCircleToDelete.bind(this, obj.center_name_ar)}>Delete</button> */}
+        
                                             </span>
                                         </Popup>
                                     </Circle>)

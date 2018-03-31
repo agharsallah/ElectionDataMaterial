@@ -26,6 +26,8 @@ import ListsOverviewGen from './lists-overview/general/ListsOverviewGen' ;
 /* Aaron Maps */
 import OneToOne from './one-to-one/OneToOne' ;
 import FinalMap from './one-to-one-final/FinalMap' ;
+import FinalMapLeafletDist from './leaflet-dist-final/FinalMapLeafletDist' ;
+
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
 const render = Component =>
@@ -43,7 +45,8 @@ const render = Component =>
       <Route  path="/lists-overview" component={ListsOverviewGen}/>
 
       <Route  path="/one-to-one" component={OneToOne}/>
-      <Route  path="/final-map" component={FinalMap}/>
+      <Route  path="/final-map-direct" component={FinalMap}/>
+      <Route  path="/final-map-lealfet" component={FinalMapLeafletDist}/>
 
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
 

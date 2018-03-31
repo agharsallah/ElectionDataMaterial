@@ -11,7 +11,8 @@ class MenuDrawerActiveReg extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true
+            open: true,
+            munBorder: true, govBorder: false,
         };
     }
 

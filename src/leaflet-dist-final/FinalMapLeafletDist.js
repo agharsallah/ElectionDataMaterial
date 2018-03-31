@@ -14,7 +14,7 @@ export default class FinalMapLeafletDist extends Component {
             key: 1, position: [35.9, 9.23],
             delimitation: config.initShape, delimitationConsistantMun: config.initShape, etat: 'notloaded',
             govDelimitation: config.initShape, delimitationConsistantGov: config.initShape
-            , munBorder: true, govBorder: false, toggleKey: '', toggleKeyg: '' // this state to toggle the mun|gov -> show or hide
+            , munBorder: true, govBorder: false, toggleKey: 'mun', toggleKeyg: 'gov' // this state to toggle the mun|gov -> show or hide
 
 
         }
@@ -79,8 +79,9 @@ export default class FinalMapLeafletDist extends Component {
     }
 
     getBorderSelection(checkboxBorder) {
+        console.log(checkboxBorder);
         if (checkboxBorder.munBorder) {
-            //console.log(checkboxBorder);
+            console.log(checkboxBorder);
             //if the munborder is toggeled we inject the mun borders in the shape
             this.setState({ delimitation: this.state.delimitationConsistantMun, toggleKey: 'munBorder' });
         } else {
@@ -105,65 +106,64 @@ export default class FinalMapLeafletDist extends Component {
             <div>
                 <MenuDrawer getBorderSelection={this.getBorderSelection.bind(this)} />
                 {etatKey == 'loaded' ?
-                <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
-                    <TileLayer
-                        url='https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
-                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> '
-                    />
-                    <GeoJSON
-                        data={this.state.delimitation}
-                        key={toggleKey+'mun'}
-                        style={this.style.bind(this)}
-                        onEachFeature={
+                    <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
+                        <TileLayer
+                            url='https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
+                        />
+                        <GeoJSON
+                            data={this.state.delimitation}
+                            key={toggleKey}
+                            style={this.style.bind(this)}
+                            onEachFeature={
+                                (feature, layer) => {
+                                    layer.bringToBack()
+                                    layer.on({ click: layer.bindPopup(feature.properties.LABEL, { permanent: false, className: "tooltipnamear", direction: "right" }) });
+                                    //layer.bindTooltip(feature.properties.LABEL,{ permanent: false,className:"tooltipnamear",direction:"right" })
+                                }
+                            }
+                        />
+                        {/* Gov geojson */}
+                        <GeoJSON
+                            data={this.state.govDelimitation}
+                            key={toggleKeyg}
+                            style={this.styleGovDelim.bind(this)}
+                        /* onEachFeature={
                             (feature, layer) => {
                                 layer.bringToBack()
                                 layer.on({ click: layer.bindPopup(feature.properties.LABEL, { permanent: false, className: "tooltipnamear", direction: "right" }) });
                                 //layer.bindTooltip(feature.properties.LABEL,{ permanent: false,className:"tooltipnamear",direction:"right" })
                             }
-                        }
-                    />
-                    {/* Gov geojson */}
-                    <GeoJSON
-                        data={this.state.govDelimitation}
-                        key={toggleKeyg+'gov'}
-                        style={this.styleGovDelim.bind(this)}
-                    /* onEachFeature={
-                        (feature, layer) => {
-                            layer.bringToBack()
-                            layer.on({ click: layer.bindPopup(feature.properties.LABEL, { permanent: false, className: "tooltipnamear", direction: "right" }) });
-                            //layer.bindTooltip(feature.properties.LABEL,{ permanent: false,className:"tooltipnamear",direction:"right" })
-                        }
-                    } */
-                    />
-                    <LayersControl position="topright">
-                        <LayersControl.BaseLayer name="Google Map">
-                            <TileLayer
-                                url="https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA"
-                            />
-                        </LayersControl.BaseLayer>
-                        <LayersControl.BaseLayer name="OpenStreetMap.BlackAndWhite">
-                            <TileLayer
-                                attribution="&copy; MapBox "
-                                url="https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA"
-                            />
-                        </LayersControl.BaseLayer>
-                        <LayersControl.BaseLayer name="OpenStreetMap.Mapnik">
-                            <TileLayer
-                                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                            />
-                        </LayersControl.BaseLayer>
-                    </LayersControl>
+                        } */
+                        />
+                        <LayersControl position="topright">
+                            <LayersControl.BaseLayer name="satellite streets mapbox">
+                                <TileLayer
+                                    url="https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA"
+                                />
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer name="streets-mapbox" checked={true}>
+                                <TileLayer
+                                    attribution="&copy; MapBox "
+                                    url="https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA"
+                                />
+                            </LayersControl.BaseLayer>
+                            <LayersControl.BaseLayer name="Mapnik-OpenStreetMap">
+                                <TileLayer
+                                    attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                />
+                            </LayersControl.BaseLayer>
+                        </LayersControl>
 
-                </Map>: <div>
-                <div className='col-md-4'></div>
-                <div className='col-md-5' style={{ marginTop: '43vh', textAlign: 'center' }}>
-                    <h2 >'Loading Map'</h2> <h3>this might take a minute, sorry for the inconvenience !</h3>
-                    <div style={{ marginLeft: '40%' }}>
-                        <ReactLoading type='bars' color='#444' className='react-Loader' delay={0} />
-                    </div>
-                </div>
-            </div>}
+                    </Map> : <div>
+                        <div className='col-md-4'></div>
+                        <div className='col-md-5' style={{ marginTop: '43vh', textAlign: 'center' }}>
+                            <h2 >'Loading Map'</h2> <h3>this might take a minute, sorry for the inconvenience !</h3>
+                            <div style={{ marginLeft: '40%' }}>
+                                <ReactLoading type='bars' color='#444' className='react-Loader' delay={0} />
+                            </div>
+                        </div>
+                    </div>}
             </div>
         );
     }

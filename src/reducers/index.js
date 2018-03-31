@@ -16,6 +16,8 @@ import radioFilterPicker from './activateFilterCheckbox/reducer_Radio' ;
 import regDate from './DatePicker/reducer_datePicker' ;
 import regUpdSelectField from './selectField/reducer_registrationSelectField' ;
 
+import borderSelectionCheckbox from './leaflet-dist-final/reducer_borderSelectionCheckbox' ;
+
 const rootReducer = combineReducers({
   irieCheckbox:irieCheckbox,
   changeMapColor,
@@ -31,7 +33,9 @@ const rootReducer = combineReducers({
   stateFilter,
 
   regDate,
-  regUpdSelectField
+  regUpdSelectField,
+
+  borderSelectionCheckbox
 
 });
 

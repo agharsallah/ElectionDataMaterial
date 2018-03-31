@@ -6,8 +6,11 @@ import config from '../config';
 import ReactLoading from 'react-loading';
 import RaisedButton from 'material-ui/RaisedButton';
 import './s.css'
+import { connect } from "react-redux";
 
-export default class FinalMapLeafletDist extends Component {
+
+
+class FinalMapLeafletDist extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,8 +18,6 @@ export default class FinalMapLeafletDist extends Component {
             delimitation: config.initShape, delimitationConsistantMun: config.initShape, etat: 'notloaded',
             govDelimitation: config.initShape, delimitationConsistantGov: config.initShape
             , munBorder: true, govBorder: false, toggleKey: 'mun', toggleKeyg: 'gov' // this state to toggle the mun|gov -> show or hide
-
-
         }
     }
     componentWillMount() {
@@ -32,7 +33,7 @@ export default class FinalMapLeafletDist extends Component {
 
         })
             .then(response => {
-                this.setState({ delimitation: JSON.parse(response.data.data), updateMapButtonBlocked: false, etat: 'loaded', delimitationConsistantMun: JSON.parse(response.data.data) });
+                this.setState({ /* delimitation: JSON.parse(response.data.data), */ updateMapButtonBlocked: false, etat: 'loaded', delimitationConsistantMun: JSON.parse(response.data.data) });
             })
             .catch(function (error) {
                 console.log(error);
@@ -94,53 +95,64 @@ export default class FinalMapLeafletDist extends Component {
         } else {
             this.setState({ govDelimitation: config.initShape, toggleKeyg: 'noGovBorder' });
         }
+    }
+    getTreatment() {
 
-        //console.log(munBorder, govBorder);
     }
     render() {
 
         let { position, toggleKey, toggleKeyg, etat } = this.state;
+        let { borderSelectionCheckbox } = this.props;
         console.log(etat);
         return (
             <div>
-                <MenuDrawer getBorderSelection={this.getBorderSelection.bind(this)} />
+                <MenuDrawer /* getBorderSelection={this.getBorderSelection.bind(this)} */ getTreatment={this.getTreatment.bind(this)} />
                 {etat == 'loaded' ?
                     <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                         <TileLayer
                             url='https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                         />
                         {/* mun Geojson */}
-                        <GeoJSON
-                            data={this.state.delimitation}
-                            key={toggleKey}
-                            style={this.style.bind(this)}
-                            onEachFeature={
-                                (feature, layer) => {
-                                    layer.on({ click: layer.bindPopup(feature.properties.LABEL, { permanent: false, className: "tooltipnamear", direction: "right" }) });
+                        {borderSelectionCheckbox.munBorder ?
+                            <GeoJSON
+                                data={this.state.delimitationConsistantMun}
+                                style={this.style.bind(this)}
+                                onEachFeature={
+                                    (feature, layer) => {
+                                        layer.on({ click: layer.bindPopup(feature.properties.LABEL, { permanent: false, className: "tooltipnamear", direction: "right" }) });
+                                    }
                                 }
-                            }
-                        />
-                        {/* Gov geojson */}
-                        <GeoJSON
-                            data={this.state.govDelimitation}
-                            key={toggleKeyg}
-                            style={this.styleGovDelim.bind(this)}
+                            />
+                            :
+                            null
+                        }
 
-                        />
+                        {/* Gov geojson */}
+                        {borderSelectionCheckbox.govBorder ?
+                            <GeoJSON
+                                data={this.state.delimitationConsistantGov}
+                                key={toggleKeyg}
+                                style={this.styleGovDelim.bind(this)}
+
+                            />
+                            :
+                            null
+                        }
+
                         {/* Loop through the json of points and draw our VCs */}
                         {
                             (G_L_data_AaronMaps).map(function (obj, i) {
                                 var radius, colorFill, weight = 0.1
-                                if (obj.treata =='L-Gratitude') {
+                                if (obj.treata == 'L-Gratitude') {
                                     radius = 2400
                                     colorFill = 'green'
-                                } else if (obj.treata =='L-Intentions') {
+                                } else if (obj.treata == 'L-Intentions') {
                                     radius = 2400
-                                    colorFill = 'yellow'
-                                } else if (obj.treata =='L-Pressure') {
+                                    colorFill = 'orange'
+                                } else if (obj.treata == 'L-Pressure') {
                                     radius = 2400
                                     colorFill = 'red'
-                                }else {
+                                } else {
                                     radius = 0
                                     colorFill = 'black',
                                         weight = 0
@@ -155,20 +167,12 @@ export default class FinalMapLeafletDist extends Component {
                                             <h4>mun name Ar: <b>{obj.mun_name_ar}</b></h4>
                                             <h4>gov name: <b>{obj.gov_name_en}</b></h4>
                                             <h4>radius is : <b>{radius} m</b></h4>
-                                            <h4>Parl 2014 turnout VC level: <b>{(obj.signingvoters_par14 * 100 / obj.registeredvoters_par14).toFixed(2)} %</b></h4>
-                                            <h4>Pres 2014 turnout VC level:  <b>{(obj.signingvoters_pres14 * 100 / obj.registeredvoters_pres14).toFixed(2)} %</b></h4>
-                                            <h4>number of registered 2018: <b>{obj.registeredvoters_mun18}</b> </h4>
-                                            <h4>Rural Per: <b>{Number(obj.ruralper).toFixed(2)}%</b> </h4>
-                                            <h4>Urban Per: <b>{Number(obj.urbanper).toFixed(2)}%</b> </h4>
-                                            <h4>Unemployment Per: <b>{Number(obj.unemploymentpercentage).toFixed(2)}%</b> </h4>
-                                            <h4>Mun State: <b>{obj.state}</b> </h4>
-                                            {/* <button className='btn-warning col-md-offset-5' onClick={this.getCircleToDelete.bind(this, obj.center_name_ar)}>Delete</button> */}
-
                                         </span>
                                     </Popup>
                                 </Circle>)
                             }, this)
                         }
+
                         <LayersControl position="topright">
                             <LayersControl.BaseLayer name="satellite streets mapbox">
                                 <TileLayer
@@ -202,3 +206,11 @@ export default class FinalMapLeafletDist extends Component {
         );
     }
 }
+function mapStateToProps(state) {
+    console.log(state);
+    return {
+        borderSelectionCheckbox: state.borderSelectionCheckbox,
+    };
+}
+
+export default connect(mapStateToProps)(FinalMapLeafletDist);

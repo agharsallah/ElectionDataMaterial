@@ -16,6 +16,8 @@ export const STATESLIDERVALUE = "STATESLIDERVALUE";
 export const DATEPICK = "DATEPICK";
 export const REGUPDSELECTFFIELD="REGUPDSELECTFFIELD";
 
+export const BORDERSELECTIONCHECCKBOX="BORDERSELECTIONCHECCKBOX";
+
 export function getIrieButton(checkIrieButton) {
   return {
     type: CHECKEDIRIEBUTTON,
@@ -100,5 +102,14 @@ export function getRegOrUpd(chosenVal) {
   return {
     type: REGUPDSELECTFFIELD,
     payload: chosenVal
+  };
+}
+
+/* define the show|hide component for the delimitation in aaron maps to  */
+export function getBorderSelection(checkboxesObject) {
+  console.log('aaaaaaccction',checkboxesObject);
+  return {
+    type: BORDERSELECTIONCHECCKBOX,
+    payload: checkboxesObject
   };
 }

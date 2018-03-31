@@ -195,7 +195,7 @@ class FinalMapLeafletDist extends Component {
                                     }
                                 }
 
-                        return (<Circle radius={radius} key={i} fillOpacity={0.3} weight={weight} fillColor={colorFill} center={([Number(obj.lat),Number(obj.lon)])}>
+                        return (<Circle radius={radius} key={i} fillOpacity={Number(treatmentSelectionCheckbox.opacity)} weight={weight} fillColor={colorFill} center={([Number(obj.lat),Number(obj.lon)])}>
                             <Popup>
                                 <span>
                                     <h4>id: <b>{obj.id}</b></h4>

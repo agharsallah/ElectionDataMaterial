@@ -8,7 +8,7 @@ import InputRange from 'react-input-range';
 import Checkbox from 'material-ui/Checkbox';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getBorderSelection,getTreatmentSelection } from "../actions/index";
+import { getBorderSelection, getTreatmentSelection } from "../actions/index";
 
 class MenuDrawer extends Component {
     constructor(props) {
@@ -16,7 +16,9 @@ class MenuDrawer extends Component {
         this.state = {
             open: true,
             munBorder: false, govBorder: false,
-            gratitude: true, intention: true,pressure:true,other:true
+            gratitude: true, intention: true, pressure: true, other: true,
+            errOpacity: false,
+            opacity:0.3
 
         };
     }
@@ -38,16 +40,24 @@ class MenuDrawer extends Component {
     handleTreatment(e, isInputChecked) {
         if (e.target.value == 'gratitude') {
             this.setState({ gratitude: isInputChecked });
-            this.props.getTreatmentSelection({ gratitude: isInputChecked, intention: this.state.intention,pressure: this.state.pressure,other: this.state.other });
+            this.props.getTreatmentSelection({ gratitude: isInputChecked, intention: this.state.intention, pressure: this.state.pressure, other: this.state.other,opacity:this.state.opacity });
         } else if (e.target.value == 'intention') {
             this.setState({ intention: isInputChecked });
-            this.props.getTreatmentSelection({ intention: isInputChecked, gratitude: this.state.gratitude,pressure: this.state.pressure,other: this.state.other });
-        }else if (e.target.value == 'other') {
+            this.props.getTreatmentSelection({ intention: isInputChecked, gratitude: this.state.gratitude, pressure: this.state.pressure, other: this.state.other,opacity:this.state.opacity });
+        } else if (e.target.value == 'other') {
             this.setState({ other: isInputChecked });
-            this.props.getTreatmentSelection({ other: isInputChecked, gratitude: this.state.gratitude,pressure: this.state.pressure,intention: this.state.intention });
-        }else {
-            this.setState({ pressure : isInputChecked });
-            this.props.getTreatmentSelection({ pressure: isInputChecked, gratitude: this.state.gratitude,intention: this.state.intention,other: this.state.other });
+            this.props.getTreatmentSelection({ other: isInputChecked, gratitude: this.state.gratitude, pressure: this.state.pressure, intention: this.state.intention,opacity:this.state.opacity });
+        } else {
+            this.setState({ pressure: isInputChecked });
+            this.props.getTreatmentSelection({ pressure: isInputChecked, gratitude: this.state.gratitude, intention: this.state.intention, other: this.state.other,opacity:this.state.opacity });
+        }
+    }
+    handleChangeOpacity(e, val) {
+        if ((!isNaN(val))) {
+            this.setState({ opacity: val });
+            this.props.getTreatmentSelection({ pressure: this.state.pressure, gratitude: this.state.gratitude, intention: this.state.intention, other: this.state.other,opacity:val });
+        }else{
+            errOpacity:true
         }
     }
     render() {
@@ -92,32 +102,47 @@ class MenuDrawer extends Component {
                             label='Gratitude'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
-                            labelStyle={{color:'green'}}
+                            labelStyle={{ color: 'green' }}
                         />
                         <Checkbox
                             value="intention"
                             label='Intentions'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
-                            labelStyle={{color:'orange'}}
+                            labelStyle={{ color: 'orange' }}
                         />
                         <Checkbox
                             value="pressure"
                             label='Social Pressure'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
-                            labelStyle={{color:'red'}}
+                            labelStyle={{ color: 'red' }}
                         />
                         <Checkbox
-                        value="other"
-                        label='other'
-                        defaultChecked={true}
-                        onCheck={this.handleTreatment.bind(this)}
-                        labelStyle={{color:'blue'}}
-                    />
+                            value="other"
+                            label='other'
+                            defaultChecked={true}
+                            onCheck={this.handleTreatment.bind(this)}
+                            labelStyle={{ color: 'blue' }}
+                        />
 
                     </div>
-
+                    <div style={{ marginTop: '5vh', marginBottom: '2vh', marginLeft: '2vh' }}>
+                        <h5 className='bulletPoint fiveMarginTop'>select the color fill opacity from 0.1 to 1</h5>
+                        {this.state.errOpacity ?
+                            <TextField
+                                hintText="default value is 0.5"
+                                defaultValue={0.5}
+                                onChange={this.handleChangeOpacity.bind(this)}
+                                errorText='you have to enter a number from 0.1 to 1 '
+                            />
+                            : <TextField
+                                hintText="default value is 0.5"
+                                defaultValue={0.5}
+                                onChange={this.handleChangeOpacity.bind(this)}
+                            />
+                        }
+                    </div>
 
                 </Drawer>
             </div>
@@ -129,10 +154,10 @@ class MenuDrawer extends Component {
 function mapDispatchToProps(dispatch) {
     // Whenever getPopValue is called, the result shoudl be passed
     // to all of our reducers
-    return bindActionCreators({ getBorderSelection,getTreatmentSelection }, dispatch);
-  }
-  
-  // Promote BookList from a component to a container - it needs to know
-  // about this new dispatch method, selectBook. Make it available
-  // as a prop.
-  export default connect(null, mapDispatchToProps)(MenuDrawer);
+    return bindActionCreators({ getBorderSelection, getTreatmentSelection }, dispatch);
+}
+
+// Promote BookList from a component to a container - it needs to know
+// about this new dispatch method, selectBook. Make it available
+// as a prop.
+export default connect(null, mapDispatchToProps)(MenuDrawer);

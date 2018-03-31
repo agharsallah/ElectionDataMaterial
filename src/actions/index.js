@@ -17,6 +17,7 @@ export const DATEPICK = "DATEPICK";
 export const REGUPDSELECTFFIELD="REGUPDSELECTFFIELD";
 
 export const BORDERSELECTIONCHECCKBOX="BORDERSELECTIONCHECCKBOX";
+export const TREATMENTSELECTIONCHECCKBOX="TREATMENTSELECTIONCHECCKBOX";
 
 export function getIrieButton(checkIrieButton) {
   return {
@@ -107,9 +108,16 @@ export function getRegOrUpd(chosenVal) {
 
 /* define the show|hide component for the delimitation in aaron maps to  */
 export function getBorderSelection(checkboxesObject) {
-  console.log('aaaaaaccction',checkboxesObject);
   return {
     type: BORDERSELECTIONCHECCKBOX,
+    payload: checkboxesObject
+  };
+}
+/* define the show|hide component for the treatment checkboxes (gratitude,intentions,social) in aaron maps to  */
+export function getTreatmentSelection(checkboxesObject) {
+  console.log('aaaaaaccction',checkboxesObject);
+  return {
+    type: TREATMENTSELECTIONCHECCKBOX,
     payload: checkboxesObject
   };
 }

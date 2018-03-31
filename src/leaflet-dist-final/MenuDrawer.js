@@ -8,7 +8,7 @@ import InputRange from 'react-input-range';
 import Checkbox from 'material-ui/Checkbox';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getBorderSelection } from "../actions/index";
+import { getBorderSelection,getTreatmentSelection } from "../actions/index";
 
 class MenuDrawer extends Component {
     constructor(props) {
@@ -16,7 +16,7 @@ class MenuDrawer extends Component {
         this.state = {
             open: true,
             munBorder: false, govBorder: false,
-            gratitude: true, intention: true,pressure:true
+            gratitude: true, intention: true,pressure:true,other:true
 
         };
     }
@@ -38,13 +38,16 @@ class MenuDrawer extends Component {
     handleTreatment(e, isInputChecked) {
         if (e.target.value == 'gratitude') {
             this.setState({ gratitude: isInputChecked });
-            //this.props.getBorderSelection({ munBorder: isInputChecked, govBorder: this.state.govBorder });
+            this.props.getTreatmentSelection({ gratitude: isInputChecked, intention: this.state.intention,pressure: this.state.pressure,other: this.state.other });
         } else if (e.target.value == 'intention') {
             this.setState({ intention: isInputChecked });
-            //this.props.getBorderSelection({ munBorder: isInputChecked, govBorder: this.state.govBorder });
+            this.props.getTreatmentSelection({ intention: isInputChecked, gratitude: this.state.gratitude,pressure: this.state.pressure,other: this.state.other });
+        }else if (e.target.value == 'other') {
+            this.setState({ other: isInputChecked });
+            this.props.getTreatmentSelection({ other: isInputChecked, gratitude: this.state.gratitude,pressure: this.state.pressure,intention: this.state.intention });
         }else {
             this.setState({ pressure : isInputChecked });
-            //this.props.getBorderSelection({ govBorder: isInputChecked, munBorder: this.state.munBorder });
+            this.props.getTreatmentSelection({ pressure: isInputChecked, gratitude: this.state.gratitude,intention: this.state.intention,other: this.state.other });
         }
     }
     render() {
@@ -102,6 +105,12 @@ class MenuDrawer extends Component {
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
                         />
+                        <Checkbox
+                        value="other"
+                        label='other'
+                        defaultChecked={true}
+                        onCheck={this.handleTreatment.bind(this)}
+                    />
 
                     </div>
 
@@ -116,7 +125,7 @@ class MenuDrawer extends Component {
 function mapDispatchToProps(dispatch) {
     // Whenever getPopValue is called, the result shoudl be passed
     // to all of our reducers
-    return bindActionCreators({ getBorderSelection }, dispatch);
+    return bindActionCreators({ getBorderSelection,getTreatmentSelection }, dispatch);
   }
   
   // Promote BookList from a component to a container - it needs to know

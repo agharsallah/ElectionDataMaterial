@@ -79,7 +79,7 @@ class FinalMapLeafletDist extends Component {
         };
     }
 
-    getBorderSelection(checkboxBorder) {
+    /* getBorderSelection(checkboxBorder) {
         console.log(checkboxBorder);
         if (checkboxBorder.munBorder) {
             console.log(checkboxBorder);
@@ -98,15 +98,15 @@ class FinalMapLeafletDist extends Component {
     }
     getTreatment() {
 
-    }
+    } */
     render() {
 
         let { position, toggleKey, toggleKeyg, etat } = this.state;
-        let { borderSelectionCheckbox } = this.props;
+        let { borderSelectionCheckbox, treatmentSelectionCheckbox } = this.props;
         console.log(etat);
         return (
             <div>
-                <MenuDrawer /* getBorderSelection={this.getBorderSelection.bind(this)} */ getTreatment={this.getTreatment.bind(this)} />
+                <MenuDrawer /* getBorderSelection={this.getBorderSelection.bind(this)} */ />
                 {etat == 'loaded' ?
                     <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                         <TileLayer
@@ -133,7 +133,6 @@ class FinalMapLeafletDist extends Component {
                                 data={this.state.delimitationConsistantGov}
                                 key={toggleKeyg}
                                 style={this.styleGovDelim.bind(this)}
-
                             />
                             :
                             null
@@ -141,37 +140,76 @@ class FinalMapLeafletDist extends Component {
 
                         {/* Loop through the json of points and draw our VCs */}
                         {
+                            
                             (G_L_data_AaronMaps).map(function (obj, i) {
                                 var radius, colorFill, weight = 0.1
-                                if (obj.treata == 'L-Gratitude') {
-                                    radius = 2400
-                                    colorFill = 'green'
-                                } else if (obj.treata == 'L-Intentions') {
-                                    radius = 2400
-                                    colorFill = 'orange'
-                                } else if (obj.treata == 'L-Pressure') {
-                                    radius = 2400
-                                    colorFill = 'red'
-                                } else {
-                                    radius = 0
-                                    colorFill = 'black',
-                                        weight = 0
+                                if (treatmentSelectionCheckbox.gratitude) {
+                                    if (obj.treata == 'L-Gratitude') {
+                                        radius = 2400
+                                        colorFill = 'green'
+                                    }
+                                }else if(!treatmentSelectionCheckbox.gratitude){
+                                    if (obj.treata == 'L-Gratitude') {
+                                        radius = 0
+                                        colorFill = 'green'
+                                        weight=0
+                                    }
                                 }
-                                return (<Circle radius={radius} key={i} fillOpacity={0.3} weight={weight} fillColor={colorFill} center={([obj.lat, obj.lon])}>
-                                    <Popup>
-                                        <span>
-                                            <h4>id: <b>{obj.id}</b></h4>
-                                            <h5>VC name: <b>{obj.center_name}</b></h5>
-                                            <h5>VC name Ar: <b>{obj.center_name_ar}</b></h5>
-                                            <h4>mun name: <b>{obj.mun_name_en}</b></h4>
-                                            <h4>mun name Ar: <b>{obj.mun_name_ar}</b></h4>
-                                            <h4>gov name: <b>{obj.gov_name_en}</b></h4>
-                                            <h4>radius is : <b>{radius} m</b></h4>
-                                        </span>
-                                    </Popup>
-                                </Circle>)
-                            }, this)
-                        }
+
+                                if (treatmentSelectionCheckbox.intention) {
+                                    if (obj.treata == 'L-Intentions') {
+                                        radius = 2400
+                                        colorFill = 'orange'
+                                    }
+                                }else if(!treatmentSelectionCheckbox.intention){
+                                    if (obj.treata == 'L-Intentions') {
+                                        radius = 0
+                                        colorFill = 'green'
+                                        weight=0
+                                    }
+                                }
+
+                                if (treatmentSelectionCheckbox.pressure) {
+                                    if (obj.treata == 'L-Pressure') {
+                                        radius = 2400
+                                        colorFill = 'red'
+                                    }
+                                }else if(!treatmentSelectionCheckbox.pressure){
+                                    if (obj.treata == 'L-Pressure') {
+                                        radius = 0
+                                        colorFill = 'green'
+                                        weight=0
+                                    }
+                                }
+
+                                if (treatmentSelectionCheckbox.other) {
+                                    if (obj.treata == 'L-TBD') {
+                                        radius = 2400
+                                        colorFill = 'blue'
+                                    }
+                                }else if(!treatmentSelectionCheckbox.other){
+                                    if (obj.treata == 'L-TBD') {
+                                        radius = 0
+                                        colorFill = 'green'
+                                        weight=0
+                                    }
+                                }
+
+                        return (<Circle radius={radius} key={i} fillOpacity={0.3} weight={weight} fillColor={colorFill} center={([Number(obj.lat),Number(obj.lon)])}>
+                            <Popup>
+                                <span>
+                                    <h4>id: <b>{obj.id}</b></h4>
+                                    <h5>VC name: <b>{obj.center_name}</b></h5>
+                                    <h5>VC name Ar: <b>{obj.center_name_ar}</b></h5>
+                                    <h4>mun name: <b>{obj.mun_name_en}</b></h4>
+                                    <h4>mun name Ar: <b>{obj.mun_name_ar}</b></h4>
+                                    <h4>gov name: <b>{obj.gov_name_en}</b></h4>
+                                    <h4>radius is : <b>{radius} m</b></h4>
+                                </span>
+                            </Popup>
+                        </Circle>)
+                    }, this)
+                }
 
                         <LayersControl position="topright">
                             <LayersControl.BaseLayer name="satellite streets mapbox">
@@ -210,6 +248,7 @@ function mapStateToProps(state) {
     console.log(state);
     return {
         borderSelectionCheckbox: state.borderSelectionCheckbox,
+        treatmentSelectionCheckbox: state.treatmentSelectionCheckbox,
     };
 }
 

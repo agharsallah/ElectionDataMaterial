@@ -108,7 +108,7 @@ class FinalMapLeafletDist extends Component {
             <div>
                 <MenuDrawer /* getBorderSelection={this.getBorderSelection.bind(this)} */ />
                 {etat == 'loaded' ?
-                    <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
+                    <Map center={position} zoom={9} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                         <TileLayer
                             url='https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                         />
@@ -145,7 +145,7 @@ class FinalMapLeafletDist extends Component {
                                 var radius, colorFill, weight = 0.1
                                 if (treatmentSelectionCheckbox.gratitude) {
                                     if (obj.treata == 'L-Gratitude') {
-                                        radius = 2400
+                                        radius = Number(obj.radius)
                                         colorFill = 'green'
                                     }
                                 }else if(!treatmentSelectionCheckbox.gratitude){
@@ -158,7 +158,7 @@ class FinalMapLeafletDist extends Component {
 
                                 if (treatmentSelectionCheckbox.intention) {
                                     if (obj.treata == 'L-Intentions') {
-                                        radius = 2400
+                                        radius = Number(obj.radius)
                                         colorFill = 'orange'
                                     }
                                 }else if(!treatmentSelectionCheckbox.intention){
@@ -171,7 +171,7 @@ class FinalMapLeafletDist extends Component {
 
                                 if (treatmentSelectionCheckbox.pressure) {
                                     if (obj.treata == 'L-Pressure') {
-                                        radius = 2400
+                                        radius = Number(obj.radius)
                                         colorFill = 'red'
                                     }
                                 }else if(!treatmentSelectionCheckbox.pressure){
@@ -184,7 +184,7 @@ class FinalMapLeafletDist extends Component {
 
                                 if (treatmentSelectionCheckbox.other) {
                                     if (obj.treata == 'L-TBD') {
-                                        radius = 2400
+                                        radius = Number(obj.radius)
                                         colorFill = 'blue'
                                     }
                                 }else if(!treatmentSelectionCheckbox.other){

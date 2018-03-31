@@ -14,7 +14,7 @@ class MenuDrawer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true,
+            open: false,
             munBorder: false, govBorder: false,
             gratitude: true, intention: true, pressure: true, other: true,
             errOpacity: false,
@@ -66,8 +66,8 @@ class MenuDrawer extends Component {
             <div>
                 <RaisedButton
                     style={{ position: "absolute", left: "2vh", top: "50vh", zIndex: 500 }}
-                    label='open'
-                    primary={true}
+                    label='Open Option Drawer'
+                    secondary={true}
                     onClick={this.handleToggle.bind(this)}
                 />
                 <Drawer width={"25%"}
@@ -80,6 +80,7 @@ class MenuDrawer extends Component {
                     <AppBar title="Menu" onLeftIconButtonTouchTap={this.handleToggle.bind(this)} />
 
                     <div style={{ marginTop: '5vh', marginBottom: '2vh', marginLeft: '2vh' }}>
+
                         <h5 className='bulletPoint fiveMarginTop' >Choose to show or hide borders</h5>
                         <Checkbox
                             value="munBorder"
@@ -131,18 +132,25 @@ class MenuDrawer extends Component {
                         <h5 className='bulletPoint fiveMarginTop'>select the color fill opacity from 0.1 to 1</h5>
                         {this.state.errOpacity ?
                             <TextField
-                                hintText="default value is 0.5"
-                                defaultValue={0.5}
+                                hintText="default value is 0.3"
+                                defaultValue={0.3}
                                 onChange={this.handleChangeOpacity.bind(this)}
                                 errorText='you have to enter a number from 0.1 to 1 '
                             />
                             : <TextField
-                                hintText="default value is 0.5"
-                                defaultValue={0.5}
+                                hintText="default value is 0.3"
+                                defaultValue={0.3}
                                 onChange={this.handleChangeOpacity.bind(this)}
                             />
                         }
                     </div>
+                    <div style={{ marginTop: '5vh', marginBottom: '2vh', marginLeft: '2vh' }}>
+                    <h6 className='fiveMarginTop' >You can click on the circles to get the PC's info</h6>
+                    <h6 className='' >If you want to zoom in or out use the '+' , '-' of the keyboard or your mouse wheel  </h6>
+                    <h6 className='' >You can change the map layer (satelite, openStreet Map ) by choosing from the top right Option   </h6>
+                    </div>
+                    
+
 
                 </Drawer>
             </div>

@@ -92,24 +92,28 @@ class MenuDrawer extends Component {
                             label='Gratitude'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
+                            labelStyle={{color:'green'}}
                         />
                         <Checkbox
                             value="intention"
                             label='Intentions'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
+                            labelStyle={{color:'orange'}}
                         />
                         <Checkbox
                             value="pressure"
                             label='Social Pressure'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
+                            labelStyle={{color:'red'}}
                         />
                         <Checkbox
                         value="other"
                         label='other'
                         defaultChecked={true}
                         onCheck={this.handleTreatment.bind(this)}
+                        labelStyle={{color:'blue'}}
                     />
 
                     </div>

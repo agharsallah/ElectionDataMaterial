@@ -147,7 +147,7 @@ class MenuDrawer extends Component {
                     <div style={{ marginTop: '5vh', marginBottom: '2vh', marginLeft: '2vh' }}>
                     <h6 className='fiveMarginTop' >You can click on the circles to get the PC's info</h6>
                     <h6 className='' >If you want to zoom in or out use the '+' , '-' of the keyboard or your mouse wheel  </h6>
-                    <h6 className='' >You can change the map layer (satelite, openStreet Map ) by choosing from the top right Option   </h6>
+                    <h6 className='' >You can change the map layer (satelite, openStreet Map ) by choosing from the top right option button   </h6>
                     </div>
                     
 

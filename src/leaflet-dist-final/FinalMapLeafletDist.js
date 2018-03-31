@@ -98,14 +98,13 @@ export default class FinalMapLeafletDist extends Component {
         //console.log(munBorder, govBorder);
     }
     render() {
-        const position = this.state.position;
-        const toggleKey = this.state.toggleKey;
-        const toggleKeyg = this.state.toggleKeyg;
-        var etatKey = this.state.etat
+
+        let { position, toggleKey,toggleKeyg,etat } = this.state;
+        console.log(etat);
         return (
             <div>
                 <MenuDrawer getBorderSelection={this.getBorderSelection.bind(this)} />
-                {etatKey == 'loaded' ?
+                {etat == 'loaded' ?
                     <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                         <TileLayer
                             url='https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'

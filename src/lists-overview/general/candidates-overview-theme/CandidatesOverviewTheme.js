@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
-import ListsDistributionSlider from './ListsDistributionSlider';
+import CandidatesOverviewPie from './CandidatesOverviewPie';
 import CandidatesOverviewBar from './CandidatesOverviewBar';
 import IsieImage from './IsieImage';
 
@@ -32,11 +32,11 @@ export default class CandidatesOverviewTheme extends Component {
                         icon={<FontIcon className="fas fa-chart-bar" color='#000000' />}
                     />
                     <RaisedButton
-                        label="Slider"
+                        label="Pie Chart"
                         className='top-right '
                         primary={this.state.activeButton[1]}
                         onClick={this.MapLevelClick.bind(this, 1)}
-                        icon={<FontIcon className="fas fa-sliders-h" color='#000000' />}
+                        icon={<FontIcon className="fas fa-chart-pie" />}
                     />
                     <RaisedButton
                         label="Image"
@@ -49,7 +49,7 @@ export default class CandidatesOverviewTheme extends Component {
                 <div className='col-md-7 col-md-offset-1 col-xs-12 ' >
                     {
                         this.state.activeButton[0] ? <CandidatesOverviewBar /> :
-                            this.state.activeButton[1] ? <ListsDistributionSlider />  :
+                            this.state.activeButton[1] ? <CandidatesOverviewPie />  :
                             <IsieImage />
                     }
                 </div>

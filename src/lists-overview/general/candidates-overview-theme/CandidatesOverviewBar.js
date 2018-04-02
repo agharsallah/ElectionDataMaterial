@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import HighchartInit from '../HighchartInit';
-export default class ListsOverviewBar extends Component {
+export default class CandidatesOverviewBar extends Component {
     constructor(props){
       super(props);
       this.state={option:{}}
     }
     
     componentWillMount() {
-        var listsData = [{name:'Party Lists',y:1053,per:50.91},{name:'Independent Lists',y:859,per:41.53},{name:'Coalition Lists',y:156,per:7.54}]
+        var listsData = [{name:'less than 35',y:28044,per:52.07},{name:'Between 36-45',y:12834,per:23.83},{name:'Between 46-60',y:10600,per:19.68},{name:'More than 60',y:2377,per:4.41}]
         this.setState({
             options: {
                 chart: {
@@ -22,27 +22,32 @@ export default class ListsOverviewBar extends Component {
                     text: '03-03-2018'
                 },
                 xAxis: {
-                    crosshair: true,
+                    categories: ['less than 35','Between 36-45','Between46-60','More than 60'],
+                    step:1,
+                    title: {
+                        text: 'Candidates age'
+                    },
+                    //format: '<b>{value}</b>',
+                    //formatter: function() {console.log(this); return (listsData[this.value]).name},
                     labels: {
                         enabled: true,
-                        formatter: function() { return (listsData[this.value]).name},
-                       
                         style: {
-                            fontSize: '15px',
+                            fontSize: '12px',
                             fontFamily: 'Verdana, sans-serif'
-                        },
+                        }
                     }
                    
                 },
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Lists number'
+                        text: 'Number of candidates'
                     }
                 },
+
                 tooltip: {
-                    headerFormat: '<h3>{point.key}: </h3>',
-                    pointFormat: '<b>{point.y}</b> list',
+                    headerFormat: '',
+                    pointFormat: '<b>{point.name}: </b> {point.y} candidates ',
                 },
                 plotOptions: {
                     column: {
@@ -54,7 +59,8 @@ export default class ListsOverviewBar extends Component {
                         borderWidth: 0,
                         dataLabels: {
                             enabled: true,
-                            format: '{point.per} % '
+                            //format: '{point.y*100/350} % ',
+                        formatter: function() {console.log(this); return (( (this.y)*100) / 53855).toFixed(1) + ' %'},
                         }
                     }
                     
@@ -62,7 +68,7 @@ export default class ListsOverviewBar extends Component {
                 series: [{
                     showInLegend: false,
                     colorByPoint: true,
-                    name: 'lists',
+                    //name: 'lists',
                     data: listsData,
                    
                 }]

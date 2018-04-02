@@ -10,6 +10,7 @@ import './s.css'
 import HeaderHelmet from '../../HeaderHelmet';
 import ListsOverviewTheme from './lists-overview-theme/ListsOverviewTheme' ;
 import ListsDistributionTheme from './lists-distribution-theme/ListsDistributionTheme' ;
+import CandidatesOverviewTheme from './candidates-overview-theme/CandidatesOverviewTheme' ;
 class ListsOverviewGen extends Component {
     constructor(props) {
         super(props);
@@ -72,8 +73,11 @@ class ListsOverviewGen extends Component {
                                     <MenuItem value={3} primaryText="Party Ranking" className={this.state.activeMun[3]}/>
                                 </Menu>
                             </div>
+                            {/* the theme we're gone project according to the selected index in the side menu */}
                             {this.state.selectedIndex==0?<ListsOverviewTheme/>:
-                                    this.state.selectedIndex==1? <ListsDistributionTheme/>:null  
+                                    this.state.selectedIndex==1? <ListsDistributionTheme/>:
+                                    this.state.selectedIndex==2?<CandidatesOverviewTheme/>:
+                                    null  
                             
                             }
                         </section>

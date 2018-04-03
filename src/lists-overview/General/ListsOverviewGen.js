@@ -11,6 +11,7 @@ import HeaderHelmet from '../../HeaderHelmet';
 import ListsOverviewTheme from './lists-overview-theme/ListsOverviewTheme' ;
 import ListsDistributionTheme from './lists-distribution-theme/ListsDistributionTheme' ;
 import CandidatesOverviewTheme from './candidates-overview-theme/CandidatesOverviewTheme' ;
+import PartyRankingTheme from './party-ranking-theme/PartyRankingTheme' ;
 class ListsOverviewGen extends Component {
     constructor(props) {
         super(props);
@@ -77,7 +78,7 @@ class ListsOverviewGen extends Component {
                             {this.state.selectedIndex==0?<ListsOverviewTheme/>:
                                     this.state.selectedIndex==1? <ListsDistributionTheme/>:
                                     this.state.selectedIndex==2?<CandidatesOverviewTheme/>:
-                                    null  
+                                    <PartyRankingTheme/>  
                             
                             }
                         </section>

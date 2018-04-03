@@ -25,8 +25,8 @@ import VizRoot from './viz/VizRoot' ;
 import ListsOverviewGen from './lists-overview/general/ListsOverviewGen' ;
 /* Aaron Maps */
 import OneToOne from './one-to-one/OneToOne' ;
-import FinalMap from './one-to-one-final/FinalMap' ;
-import FinalMapLeafletDist from './leaflet-dist-final/FinalMapLeafletDist' ;
+import FinalMap from './one-to-one-direct-final/FinalMap' ;
+import FinalMapLeafletDist from './one-to-one-leaflet-final/FinalMapLeafletDist' ;
 
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');

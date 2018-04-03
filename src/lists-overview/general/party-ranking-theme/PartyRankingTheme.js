@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import PartyRankingBar from './PartyRankingBar';
+import PartyRankingPie from './PartyRankingPie';
 import IsieImage from './IsieImage';
 
 export default class PartyRankingTheme extends Component {
@@ -31,6 +32,14 @@ export default class PartyRankingTheme extends Component {
                         icon={<FontIcon className="fas fa-chart-bar" color='#000000' />}
                     />
                     <RaisedButton
+                    label="Pie Chart"
+                    className='top-right '
+                    primary={this.state.activeButton[1]}
+                    onClick={this.MapLevelClick.bind(this, 1)}
+                    icon={<FontIcon className="fas fa-chart-pie" />}
+                />
+
+                    <RaisedButton
                         label="Image"
                         className='top-right '
                         primary={this.state.activeButton[2]}
@@ -41,6 +50,8 @@ export default class PartyRankingTheme extends Component {
                 <div className='col-md-7 col-md-offset-1 col-xs-12 ' >
                     {
                         this.state.activeButton[0] ? <PartyRankingBar /> :
+                        this.state.activeButton[1] ? <PartyRankingPie />  :
+
                             <IsieImage />
                     }
                 </div>

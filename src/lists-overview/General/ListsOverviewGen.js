@@ -70,7 +70,7 @@ class ListsOverviewGen extends Component {
                                     <MenuItem value={0} primaryText="Lists Overview" className={this.state.activeMun[0]} />
                                     <MenuItem value={1} primaryText="Lists distribution" className={this.state.activeMun[1]}/>
                                     <MenuItem value={2} primaryText="Candidates Overview" className={this.state.activeMun[2]}/>
-                                    <MenuItem value={3} primaryText="Party Ranking" className={this.state.activeMun[3]}/>
+                                    <MenuItem value={3} primaryText="Party Ranking per list number" className={this.state.activeMun[3]}/>
                                 </Menu>
                             </div>
                             {/* the theme we're gone project according to the selected index in the side menu */}

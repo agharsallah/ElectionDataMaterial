@@ -33,11 +33,14 @@ export default class ListsOverviewPie extends Component {
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '{point.name}: <b>{point.y} candidates</b>'
+                            format: ' <p class="HighchartLabel">{point.y} candidates</p>'
                         },
                         showInLegend: true
                     }
                 },
+                legend: {
+                       style:{fontSize: '15px !important'}
+                 },
                 series: [{
                     name: 'Brands',
                     colorByPoint: true,

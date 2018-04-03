@@ -17,7 +17,7 @@ class HighchartInit extends Component {
                style: {
                   color: 'black',
                   fontSize: '16px',
-                  fontWeight: 'bold'
+                  //fontWeight: 'bold'
                }
             },
             subtitle: {
@@ -30,7 +30,7 @@ class HighchartInit extends Component {
             },
             legend: {
                itemStyle: {
-                  fontWeight: 'bold',
+                  //fontWeight: 'bold',
                   fontSize: '13px'
                }
             },

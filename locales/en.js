@@ -204,10 +204,13 @@ radioComp:{
     electData:"Election Data",
     elecResult:"Election Result",
     webRadar:"Web Radar",
-    home:"Home"
+    home:"Home",
+    oldViz:"Old Viz",
+    maps:"Maps"
 },
 home:{
     sectionMunicipalData:"Municipal Data",
+    sectionMunicipalData_b:"Municipal",
     sectionElectionData:"Election Data",
     sectionElectionResult:"Election Result",
     sectionotherViz:"Other Viz",
@@ -218,6 +221,9 @@ home:{
     munDataTitle2:"Municipal Registration",
     munDataTitle3:"Municipal Registration Performance",
     munDataTitle4:"Lists Overview",
+    munDataTitle2_b:"Registration",
+    munDataTitle3_b:"Registration Performance",
+
 
     electDataTitle1:"Invalid Ballots",
     electDataTitle2:"Turnout",

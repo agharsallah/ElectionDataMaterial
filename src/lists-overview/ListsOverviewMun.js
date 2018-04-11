@@ -4,7 +4,7 @@ import { Redirect, withRouter, Link, NavLink, Route } from 'react-router-dom';
 import config from '../config';
 import axios from 'axios';
 import Translate from 'react-translate-component';
-import Layout from '../Layout';
+import LayoutTranslated from '../LayoutTranslated';
 import HeaderHelmet from '../HeaderHelmet';
 import MapKey from './MapKey';
 import Control from 'react-leaflet-control';
@@ -281,7 +281,7 @@ class ListsOverviewMun extends Component {
         chosenMaxListNum = this.state.munChosenMaxListNum;
         chosenMinListNum = this.state.munChosenMinListNum;
         delimitation = ' per mun'//for Boxes title
-        delimitationTitle = ' per municipality (21-02-2018)' //for main view title
+        delimitationTitle = ' per municipality (05-04-2018)' //for main view title
         //Decision whether to show reset button or not
         var resetDataRectangle;
         this.state.highLowButton == 'lowest' || this.state.highLowButton == 'highest' ? resetDataRectangle = <DataRectangle identifier='none' regValue='Reset' title='' getClickedRectangle={this.getClickedRectangle} /> : null
@@ -292,7 +292,7 @@ class ListsOverviewMun extends Component {
                 {this.state.selectedMapLevel == 'general' ? <ListsOverviewGen /> : this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov /> :
                     <div>
                         <HeaderHelmet />
-                        <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
+                        <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
                             <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle}</h5>
                             <section className='container-fluid' style={{ marginBottom: '10px' }}>

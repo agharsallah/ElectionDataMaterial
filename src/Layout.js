@@ -24,8 +24,9 @@ class Layout extends Component {
 
                                 <li className={this.props.mun17}><a href='javascript:void(0)'>Municipal </a>
                                     <ul className="dropdown">
-                                        <li><Link to='/munre'>Administrative Structure</Link></li>
+                                        <li><Link to='/lists-overview'>Lists overview</Link></li>
                                         <li ><Link to='/detailed-reg'>Registration</Link></li>
+                                        <li><Link to='/munre'>Administrative Structure</Link></li>
                                         <li ><Link to='/reg-performance'>Registration perfomance</Link></li>
                                     </ul>
                                 </li>

@@ -60,12 +60,11 @@ class BoxFilter extends Component {
                             <VizBoxReact vizLink='/lists-overview' title={munDataTitle4} desc='' imgLink='./img/home/lists-overview.jpg' />
                         </div>
                         <div className="col-md-4 hover-box">
-                            <VizBoxReact slide='mun' vizLink='/munre' title={munDataTitle1} desc='' imgLink='./img/home/regInsight.jpg' />
-                        </div>
-                        <div className="col-md-4 hover-box">
                             <VizBoxReact vizLink='/detailed-reg' title={munDataTitle2} desc='' imgLink='./img/home/reg.jpg' />
                         </div>
-                       
+                        <div className="col-md-4 hover-box">
+                        <VizBoxReact slide='mun' vizLink='/munre' title={munDataTitle1} desc='' imgLink='./img/home/regInsight.jpg' />
+                    </div>
                     </div>
                     <div className='row bg-parallax' style={{ marginTop: '5vh' }}>
                         <div className="col-md-4 col-md-offset-4 hover-box">

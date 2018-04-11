@@ -26,7 +26,7 @@ class ListsOverviewGov extends Component {
             munShape: config.initShape, shape: config.initShape,
             buttonLabelGeneral: 'black', buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', selectedMapLevel: 'gov',//these states colors for mun|gove buttons
             range: [0, 50, 80, 100], // these states are fo the map style & mapkey
-            candidatesNumber: 45150, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
+            candidatesNumber: 45348, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
             , highLowButton: 'none'//these state for the high|low style on the map
         }
         this.getClickedRectangle = this.getClickedRectangle.bind(this)

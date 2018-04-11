@@ -7,7 +7,7 @@ export default class ListsOverviewBar extends Component {
     }
     
     componentWillMount() {
-        var listsData = [{name:'Party Lists',y:1053,per:50.91},{name:'Independent Lists',y:859,per:41.53},{name:'Coalition Lists',y:156,per:7.54}]
+        var listsData = [{name:'Party Lists',y:1055,per:50.86},{name:'Independent Lists',y:860,per:41.46},{name:'Coalition Lists',y:159,per:7.66}]
         this.setState({
             options: {
                 chart: {

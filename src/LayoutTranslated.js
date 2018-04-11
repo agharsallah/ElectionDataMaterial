@@ -114,13 +114,13 @@ class LayoutTranslated extends Component {
 
                                 <li className={this.props.about} ><Link to='/about'> {sectionAbout}</Link></li>
 
-                                <li style={{ float: "right" }}>
+                                {/* <li style={{ float: "right" }}>
                                     <DropDownMenu labelStyle={{ color: 'inherit' }} value={this.state.value} onChange={this.handleChange.bind(this)} >
                                         <MenuItem value={'en'} primaryText={en} />
                                         <MenuItem value={'fr'} primaryText={fr} />
                                         <MenuItem value={'ar'} primaryText={ar} />
                                     </DropDownMenu>
-                                </li>
+                                </li> */}
                             </ul>
 
                         </div>

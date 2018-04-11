@@ -46,7 +46,7 @@ class ListsOverviewGov extends Component {
             params: {
                 type: 'gov',
                 timeOfCollection: '18h',
-                dateOfCollection: '03-03'
+                dateOfCollection: '05-04'
             }
         })
             .then(response => {
@@ -232,7 +232,7 @@ class ListsOverviewGov extends Component {
             index === 'gov' ?
                 this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 50, 80, 100] })
                 :
-                this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [0, 1, 3, 6] })
+                this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [2, 4, 6, 8] })
     }
     highlightFeature(e) {
         const layer = e.target;
@@ -286,7 +286,7 @@ class ListsOverviewGov extends Component {
             chosenMaxListNum = this.state.chosenMaxListNum;
             chosenMinListNum = this.state.chosenMinListNum;
             delimitation = ' per gov '
-            delimitationTitle = ' per governorate (03-03-2018)' //for main view title
+            delimitationTitle = ' per governorate (05-04-2018)' //for main view title
 
         
         //Decision whether to show reset button or not

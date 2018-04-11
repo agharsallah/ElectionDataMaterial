@@ -58,7 +58,7 @@ class Home extends Component {
                   </div>
                 </div>
 
-                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '750vh')} className="item">
+                <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '800vh')} className="item">
                   <img src="/img/home/mun.jpg" alt="ELECTION DATA" style={{ width: '100%' , opacity: '0.7' }} />
                   <div className="carousel-caption carousel-text">
                     <h3>MUNICIPAL DATA</h3>

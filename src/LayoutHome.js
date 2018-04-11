@@ -88,19 +88,19 @@ class LayoutHome extends Component {
                             
                                 <li className={this.state.home} ><a onClick={this.smooth.bind(this,'0vh',0)}  >{home}</a> 
                                 </li>
-                                <li className={this.state.mun}><a onClick={this.smooth.bind(this,'600vh',1)}  >{mun}</a>     
+                                <li className={this.state.mun}><a onClick={this.smooth.bind(this,'715vh',1)}  >{mun}</a>     
                                 </li>
-                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1115vh',2)}  >{electData}</a>                                   
-                                </li>
-
-                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'1710vh',3)} >{elecResult}</a>
+                                <li className={this.state.data} ><a onClick={this.smooth.bind(this,'1400vh',2)}  >{electData}</a>                                   
                                 </li>
 
-                                <li className={this.state.other} ><a onClick={this.smooth.bind(this,'2500vh',6)}  >{other}</a>
+                                <li className={this.state.result} ><a onClick={this.smooth.bind(this,'2000vh',3)} >{elecResult}</a>
                                 </li>
-                                <li className={this.state.radar} ><a onClick={this.smooth.bind(this,'2500vh',4)}  >{webRadar}</a>
+
+                                <li className={this.state.other} ><a onClick={this.smooth.bind(this,'2700vh',6)}  >{other}</a>
                                 </li>
-                                <li className={this.state.about} ><a onClick={this.smooth.bind(this,'2500vh',5)}  >{about}</a>
+                                <li className={this.state.radar} ><a onClick={this.smooth.bind(this,'2700vh',4)}  >{webRadar}</a>
+                                </li>
+                                <li className={this.state.about} ><a onClick={this.smooth.bind(this,'2700vh',5)}  >{about}</a>
                                 </li>
                                 <li style={{float:"right"}}>      	
                                 {/* <DropDownMenu labelStyle={{color:'inherit'}} value={this.state.value} onChange={this.handleChange.bind(this)} >

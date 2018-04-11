@@ -24,7 +24,7 @@ class ListsOverviewMun extends Component {
             stateFilter: 'total', shapeIsLoaded: false, position: [34.5, 7.5],
             munShape: config.initShape, shape: config.initShape,
             buttonLabelGeneral: 'black', buttonLabelGov: 'black', buttonLabelMun: '#00bcd4', selectedMapLevel: 'mun',//these states colors for mun|gove buttons
-            range: [0, 1, 3, 6], // these states are fo the map style & mapkey
+            range: [2, 4, 6, 8], // these states are fo the map style & mapkey
             candidatesNumber: 45150, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
             , highLowButton: 'none'//these state for the high|low style on the map
         }
@@ -43,8 +43,8 @@ class ListsOverviewMun extends Component {
             },
             params: {
                 type: 'mun',
-                timeOfCollection: '15h',
-                dateOfCollection: '21-02'
+                timeOfCollection: '00h',
+                dateOfCollection: '05-04'
             }
         })
             .then(response => {
@@ -75,7 +75,7 @@ class ListsOverviewMun extends Component {
                 munCoalList.sort(function (a, b) { return b.value - a.value })
                 munPartyList.sort(function (a, b) { return b.value - a.value })
                 this.setState({
-                    munShape: JSON.parse(response.data.data), shapeKey: 'mun',shapeIsLoaded: true,
+                    munShape: JSON.parse(response.data.data), shapeKey: 'mun', shapeIsLoaded: true,
                     munAllLists, munListsNumberCount, munAvgListNum: munAvgListNum.toFixed(0),
                     munMaxListNum: munAllLists[0].value, munMinListNum: munAllLists[munAllLists.length - 1].value,
 
@@ -138,7 +138,7 @@ class ListsOverviewMun extends Component {
             };
         } else if (this.state.highLowButton == 'lowest') {// we are treating the case where the user clicks to see the lowesr lists of mun
             let activeData, edgeData;
-           edgeData = this.state.munChosenMinListNum;
+            edgeData = this.state.munChosenMinListNum;
             if (etat == 'total') {
                 activeData = feature.properties.total_lists;
             } else if (etat == 'indep') {
@@ -184,41 +184,41 @@ class ListsOverviewMun extends Component {
         let pickedLevel = event.currentTarget.value
         this.setState({ stateFilter: pickedLevel });
         //setting the range of the style as soon we get the value from the radio button
-           
-            //if the cosen level is municipality
-            if (pickedLevel == 'total') {
-                this.setState({
-                    range: [0, 1, 3, 6],
-                    munChosenListsNumberCount: this.state.munListsNumberCount,
-                    munChosenAvgListNum: this.state.munAvgListNum,
-                    munChosenMaxListNum: this.state.munMaxListNum,
-                    munChosenMinListNum: this.state.munMinListNum
-                });
-            } else if (pickedLevel == 'indep') {
-                this.setState({
-                    range: [0, 1, 3, 6],
-                    munChosenListsNumberCount: this.state.munIndListsNumberCount,
-                    munChosenAvgListNum: this.state.munIndAvgListNum,
-                    munChosenMaxListNum: this.state.munIndMaxListNum,
-                    munChosenMinListNum: this.state.munIndMinListNum
-                });
-            } else if (pickedLevel == 'coalition') {
-                this.setState({
-                    range: [0, 1, 3, 6],
-                    munChosenListsNumberCount: this.state.munCoalListsNumberCount,
-                    munChosenAvgListNum: this.state.munCoalAvgListNum,
-                    munChosenMaxListNum: this.state.munCoalMaxListNum,
-                    munChosenMinListNum: this.state.munCoalMinListNum
-                });
-            } else {
-                this.setState({
-                    range: [0, 1, 3, 6],
-                    munChosenListsNumberCount: this.state.munPartyListsNumberCount,
-                    munChosenAvgListNum: this.state.munPartyAvgListNum,
-                    munChosenMaxListNum: this.state.munPartyMaxListNum,
-                    munChosenMinListNum: this.state.munPartyMinListNum
-                });
-            }
+
+        //if the cosen level is municipality
+        if (pickedLevel == 'total') {
+            this.setState({
+                range: [2,4,6,8],
+                munChosenListsNumberCount: this.state.munListsNumberCount,
+                munChosenAvgListNum: this.state.munAvgListNum,
+                munChosenMaxListNum: this.state.munMaxListNum,
+                munChosenMinListNum: this.state.munMinListNum
+            });
+        } else if (pickedLevel == 'indep') {
+            this.setState({
+                range: [0, 2, 4, 6],
+                munChosenListsNumberCount: this.state.munIndListsNumberCount,
+                munChosenAvgListNum: this.state.munIndAvgListNum,
+                munChosenMaxListNum: this.state.munIndMaxListNum,
+                munChosenMinListNum: this.state.munIndMinListNum
+            });
+        } else if (pickedLevel == 'coalition') {
+            this.setState({
+                range: [0, 1, 2, 3],
+                munChosenListsNumberCount: this.state.munCoalListsNumberCount,
+                munChosenAvgListNum: this.state.munCoalAvgListNum,
+                munChosenMaxListNum: this.state.munCoalMaxListNum,
+                munChosenMinListNum: this.state.munCoalMinListNum
+            });
+        } else {
+            this.setState({
+                range: [0, 2, 4, 6],
+                munChosenListsNumberCount: this.state.munPartyListsNumberCount,
+                munChosenAvgListNum: this.state.munPartyAvgListNum,
+                munChosenMaxListNum: this.state.munPartyMaxListNum,
+                munChosenMinListNum: this.state.munPartyMinListNum
+            });
+        }
     }
     MapLevelClick(index) {
         index === 'general' ?
@@ -227,7 +227,7 @@ class ListsOverviewMun extends Component {
             index === 'gov' ?
                 this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 50, 80, 100] })
                 :
-                this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [0, 1, 3, 6] })
+                this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [2, 4, 6, 8] })
     }
     highlightFeature(e) {
         const layer = e.target;
@@ -243,7 +243,7 @@ class ListsOverviewMun extends Component {
             govNameForMunTooltip: govName
         });
     }
-    
+
     //this function intercepts whenever the client clicks on the min|or max datarectangle
     getClickedRectangle(e) {
         let buttonClicked = e.currentTarget.dataset.id
@@ -271,17 +271,17 @@ class ListsOverviewMun extends Component {
 
 
         //decision on which shape to load municipal or governorate
-        var shapeToSelect, shapeKey,chosenListsNumberCount, chosenMaxListNum, chosenMinListNum, chosenAvgListNum, delimitation, delimitationTitle
+        var shapeToSelect, shapeKey, chosenListsNumberCount, chosenMaxListNum, chosenMinListNum, chosenAvgListNum, delimitation, delimitationTitle
 
-            shapeKey = 'mun';
-            shapeToSelect = this.state.munShape;
-            //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
-            chosenListsNumberCount = this.state.munChosenListsNumberCount;
-            chosenAvgListNum = this.state.munChosenAvgListNum;
-            chosenMaxListNum = this.state.munChosenMaxListNum;
-            chosenMinListNum = this.state.munChosenMinListNum;
-            delimitation = ' per mun'//for Boxes title
-            delimitationTitle = ' per municipality (21-02-2018)' //for main view title
+        shapeKey = 'mun';
+        shapeToSelect = this.state.munShape;
+        //decision for the boxes values - dynamic whenever (radio button) changes and or (Mun|gov button) changes
+        chosenListsNumberCount = this.state.munChosenListsNumberCount;
+        chosenAvgListNum = this.state.munChosenAvgListNum;
+        chosenMaxListNum = this.state.munChosenMaxListNum;
+        chosenMinListNum = this.state.munChosenMinListNum;
+        delimitation = ' per mun'//for Boxes title
+        delimitationTitle = ' per municipality (21-02-2018)' //for main view title
         //Decision whether to show reset button or not
         var resetDataRectangle;
         this.state.highLowButton == 'lowest' || this.state.highLowButton == 'highest' ? resetDataRectangle = <DataRectangle identifier='none' regValue='Reset' title='' getClickedRectangle={this.getClickedRectangle} /> : null
@@ -289,9 +289,9 @@ class ListsOverviewMun extends Component {
             <div>
 
                 {/* If the clicked button is general Load General Component /general/GeneralViz Else load maps from here */}
-                {this.state.selectedMapLevel == 'general' ? <ListsOverviewGen /> :this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov />:
+                {this.state.selectedMapLevel == 'general' ? <ListsOverviewGen /> : this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov /> :
                     <div>
-                    <HeaderHelmet/>
+                        <HeaderHelmet />
                         <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
                             <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle}</h5>
@@ -356,7 +356,7 @@ class ListsOverviewMun extends Component {
                                                     </div>
 
                                                     <Radio_state stateFilter={this.state.stateFilter} handleMunState={this.chosenNiveau.bind(this)} />
-                                                    
+
                                                 </Map>
                                                 :
                                                 <div>

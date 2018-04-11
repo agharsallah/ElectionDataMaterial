@@ -217,6 +217,7 @@ home:{
     munDataTitle1:"Administrative Structure",
     munDataTitle2:"Municipal Registration",
     munDataTitle3:"Municipal Registration Performance",
+    munDataTitle4:"Lists Overview",
 
     electDataTitle1:"Invalid Ballots",
     electDataTitle2:"Turnout",

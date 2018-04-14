@@ -59,6 +59,7 @@
     "material-ui": "^0.19.2",
     "prop-types": "^15.6.0",
     "react": "^15.4.2",
+    "react-bootstrap-table-next": "^0.1.7",
     "react-chartjs-2": "^2.6.2",
     "react-dom": "^15.4.2",
     "react-helmet": "^5.2.0",

@@ -23,7 +23,7 @@ class ListsOverviewMun extends Component {
         this.state = {
             stateFilter: 'total', shapeIsLoaded: false, position: [34.5, 7.5],
             munShape: config.initShape, shape: config.initShape,
-            buttonLabelGeneral: 'black', buttonLabelGov: 'black', buttonLabelMun: '#00bcd4', selectedMapLevel: 'mun',//these states colors for mun|gove buttons
+            buttonLabelGeneral: false, buttonLabelGov: false, buttonLabelMun: true, selectedMapLevel: 'mun',//these states colors for mun|gove buttons
             range: [2, 4, 6, 8], // these states are fo the map style & mapkey
             candidatesNumber: 45348, chosenListsNumberCount: 0, chosenAvgListNum: 0, chosenMaxListNum: 0, chosenMinListNum: 0// these states are for the upper box info
             , highLowButton: 'none'//these state for the high|low style on the map
@@ -222,12 +222,12 @@ class ListsOverviewMun extends Component {
     }
     MapLevelClick(index) {
         index === 'general' ?
-            this.setState({ buttonLabelGeneral: '#00bcd4', buttonLabelGov: 'black', buttonLabelMun: 'black', selectedMapLevel: 'general', stateFilter: 'total', range: [0, 50, 80, 100] })
+            this.setState({ buttonLabelGeneral: true, buttonLabelGov: false, buttonLabelMun: false, selectedMapLevel: 'general', stateFilter: 'total', range: [0, 50, 80, 100] })
             :
             index === 'gov' ?
-                this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 50, 80, 100] })
+                this.setState({ buttonLabelGov: true, buttonLabelMun: false, buttonLabelGeneral: false, selectedMapLevel: 'gov', stateFilter: 'total', range: [0, 50, 80, 100] })
                 :
-                this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'mun', stateFilter: 'total', range: [2, 4, 6, 8] })
+                this.setState({ buttonLabelMun: true, buttonLabelGov: false, buttonLabelGeneral: false, selectedMapLevel: 'mun', stateFilter: 'total', range: [2, 4, 6, 8] })
     }
     highlightFeature(e) {
         const layer = e.target;
@@ -348,9 +348,9 @@ class ListsOverviewMun extends Component {
 
                                                     <div className='col-md-4 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
                                                         <div className='col-md-12'>
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label='General' labelColor={this.state.buttonLabelGeneral} />
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} labelColor={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} labelColor={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label='General' primary={this.state.buttonLabelGeneral} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
 
                                                         </div>
                                                     </div>

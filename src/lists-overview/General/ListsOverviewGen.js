@@ -16,7 +16,7 @@ class ListsOverviewGen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            buttonLabelGeneral: '#00bcd4', buttonLabelGov: '', buttonLabelMun: 'black', selectedMapLevel: 'general',//these states colors for mun|gove buttons}    
+            buttonLabelGeneral:true, buttonLabelGov:false , buttonLabelMun: false , selectedMapLevel: 'general',//these states colors for mun|gove buttons}    
             //Active selected menu- if != '' then active class is implemented
             activeMun:['active-menu-list','','',''],selectedIndex:0
         }
@@ -24,12 +24,12 @@ class ListsOverviewGen extends Component {
 
     MapLevelClick(index) {
         index === 'general' ?
-            this.setState({ buttonLabelGeneral: '#00bcd4', buttonLabelGov: 'black', buttonLabelMun: 'black', selectedMapLevel: 'general' })
+            this.setState({ buttonLabelGeneral: true, buttonLabelGov: false, buttonLabelMun: false, selectedMapLevel: 'general' })
             :
             index === 'gov' ?
-                this.setState({ buttonLabelGov: '#00bcd4', buttonLabelMun: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'gov' })
+                this.setState({ buttonLabelGov: true, buttonLabelMun: false, buttonLabelGeneral: false, selectedMapLevel: 'gov' })
                 :
-                this.setState({ buttonLabelMun: '#00bcd4', buttonLabelGov: 'black', buttonLabelGeneral: 'black', selectedMapLevel: 'mun' })
+                this.setState({ buttonLabelMun: true, buttonLabelGov: false, buttonLabelGeneral: false, selectedMapLevel: 'mun' })
     }
     changeTheme(event,item,index){
         console.log(item.props.value);
@@ -57,9 +57,9 @@ class ListsOverviewGen extends Component {
                         <section className='latest-news-card ' style={{ paddingTop: '12vh' }}>
                             <div className='col-md-4  col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '1vh' }} >
                                 <div className='col-md-12'>
-                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label='General' labelColor={this.state.buttonLabelGeneral} />
-                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} labelColor={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
-                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} labelColor={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
+                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label='General' primary={this.state.buttonLabelGeneral} />
+                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
+                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
                                 </div>
                             </div>
                         </section>

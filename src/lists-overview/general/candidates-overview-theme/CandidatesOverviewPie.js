@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import HighchartInit from '../HighchartInit';
+import counterpart from 'counterpart' ;
+
 export default class ListsOverviewPie extends Component {
     constructor(props){
       super(props);
@@ -7,7 +9,11 @@ export default class ListsOverviewPie extends Component {
     }
     
     componentWillMount() {
-        var listsData = [{name:'less than 35',y:28044,per:52.07},{name:'Between 36-45',y:12834,per:23.83},{name:'Between 46-60',y:10600,per:19.68},{name:'More than 60',y:2377,per:4.41}]
+        var listsData;
+        counterpart.getLocale()=='en'? 
+         listsData = [{name:'less than 35',y:28044,per:52.07},{name:'Between 36-45',y:12834,per:23.83},{name:'Between 46-60',y:10600,per:19.68},{name:'More than 60',y:2377,per:4.41}]
+        :listsData = [{name:' 35 أقل من',y:28044,per:52.07},{name:' 36-45 بين ',y:12834,per:23.83},{name:' 46-60 بين ',y:10600,per:19.68},{name:'60 أكثر من ',y:2377,per:4.41}]
+
         this.setState({
             options: {
                 chart: {
@@ -21,11 +27,11 @@ export default class ListsOverviewPie extends Component {
                     text: ''
                 },
                 subtitle: {
-                    text: '03-03-2018'
+                    text: '05-04-2018'
                 },
                 tooltip: {
                     headerFormat: '<h3>{point.key}: </h3>',
-                    pointFormat: '<b>{point.per}</b> %',
+                    pointFormat: '{point.per} %',
                 },
                 plotOptions: {
                     pie: {
@@ -33,7 +39,7 @@ export default class ListsOverviewPie extends Component {
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: ' <p class="HighchartLabel">{point.y} candidates</p>'
+                            format: ' <p class="HighchartLabel">{point.y} </p>'+counterpart.translate('listsOverview.candidates')
                         },
                         showInLegend: true
                     }

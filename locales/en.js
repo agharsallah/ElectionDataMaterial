@@ -273,10 +273,14 @@ listsOverview:{
     consigne:'Move the slider to discover the ',
     consigne2:'distribution '  ,
     consigne3:'of candidates Lists in municipalities.',
-    exist:'There exists',
-    have:'That have',
-    mun:'municipalities',
-    lists:'lists',
+    exist:' There exists ',
+    have: 'That have ',
+    mun:' municipalities ',
+    lists:' lists ',
+    //Lists candidates Overview :
+    candNum:' Number of candidates ',
+    candAge:' Candidates age ',
+    candidates:' candidates '
 
 }
 }

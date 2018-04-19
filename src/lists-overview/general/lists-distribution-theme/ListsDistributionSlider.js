@@ -24,12 +24,19 @@ export default class ListsDistributionSlider extends Component {
 
     render() {
         const barChart = <Translate type='text' content='listsOverview.barChart' />//Bar Chart
+        const consigne = <Translate type='text' content='listsOverview.consigne' />//Move the slider to discover the 
+        const consigne2 = <Translate type='text' content='listsOverview.consigne2' />//<b>distribution</b> 
+        const consigne3 = <Translate type='text' content='listsOverview.consigne3' />//of candidates Lists in municipalities.
+        const exist = <Translate type='text' content='listsOverview.exist' />//there exists
+        const have = <Translate type='text' content='listsOverview.have' />//'That have
+        const mun = <Translate type='text' content='listsOverview.mun' />//'municipalities',
+        const lists = <Translate type='text' content='listsOverview.lists' />//'lists',
 
         const formatLabel = value => value + ' lists'
 
         return (
             <div style={{ marginTop: '5vh' }}>
-                <h4>Move the slider to discover the  <b>distribution</b>  of candidates Lists in municipalities.</h4>
+                <h4>{consigne}<b>{consigne2}</b>{consigne3}</h4>
 
                 <div className='slider custom-labels' style={{ marginTop: '5vh' }}>
                     <Slider
@@ -42,10 +49,10 @@ export default class ListsDistributionSlider extends Component {
 
                     />
                 </div>
-                <p className='heading-mun-number'>There exist<br />
-                    <span style={{marginLeft:'-10%'}} > <p className='em-mun-num'>{this.state.munNum}  </p> <p className='midlleHigh'>municipalities</p>  </span>
-                    <br /> That have <br />
-                    <span style={{marginLeft:'-10%'}}>   <p className='em-mun-num'>{this.state.value}</p> <p className='midlleHigh'>lists</p></span>  </p>
+                <p className='heading-mun-number'>{exist}<br />
+                    <span style={{marginLeft:'-10%'}} > <p className='em-mun-num'>{this.state.munNum}  </p> <p className='midlleHigh'>{mun}</p>  </span>
+                    <br /> {have} <br />
+                    <span style={{marginLeft:'-10%'}}>   <p className='em-mun-num'>{this.state.value}</p> <p className='midlleHigh'>{lists}</p></span>  </p>
             </div>
         );
     }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import HighchartInit from '../HighchartInit';
+import counterpart from 'counterpart' ;
+
 export default class ListsDistributionBar extends Component {
     constructor(props){
       super(props);
@@ -19,13 +21,13 @@ export default class ListsDistributionBar extends Component {
                     text: ''
                 },
                 subtitle: {
-                    text: '03-03-2018'
+                    text: '05-04-2018'
                 },
                 xAxis: {
                     categories: [2,3,4,5,6,7,8,9,10,11,12,13,14],
                     step:1,
                     title: {
-                        text: 'Lists number'
+                        text: counterpart.translate('listsOverview.listNumber')
                     },
                     //format: '<b>{value}</b>',
                     //formatter: function() {console.log(this); return (listsData[this.value]).name},
@@ -41,13 +43,13 @@ export default class ListsDistributionBar extends Component {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Municipalities number'
+                        text: counterpart.translate('listsOverview.munNumber')
                     }
                 },
 
                 tooltip: {
-                    headerFormat: '<h2>{point.y} </h2> municipalities have ',
-                    pointFormat: '<b>{point.name}</b> list',
+                    headerFormat: '<h2>{point.y} </h2> '+counterpart.translate('listsOverview.munHave'),
+                    pointFormat: '<b>{point.name}</b> '+counterpart.translate('listsOverview.liste'),
                 },
                 plotOptions: {
                     column: {

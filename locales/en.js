@@ -243,8 +243,8 @@ listsOverview:{
     coalition:'Coalition lists',
     //Viz theme button
     general:'General',
-    mun:'Mun. Map',
-    gov:'Gov. Map',
+    munMap:'Municipality Map',
+    govMap:'Governorate Map',
     //general
         //title
     listsOverview:'General lists overview',
@@ -280,7 +280,10 @@ listsOverview:{
     //Lists candidates Overview :
     candNum:' Number of candidates ',
     candAge:' Candidates age ',
-    candidates:' candidates '
+    candidates:' candidates ',
+    listNum:' Number of candidates ',
+    parties:' parties '
+
 
 }
 }

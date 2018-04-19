@@ -51,8 +51,8 @@ class ListsOverviewGen extends Component {
         const sidePartyRanking = <Translate type='text' content='listsOverview.sidePartyRanking' />//Party Ranking per list number
         
         const generalLabel = <Translate type='text' content='listsOverview.general' />//General
-        const munMapLabel = <Translate type='text' content='listsOverview.mun' />//Mun Map
-        const govMapLabel = <Translate type='text' content='listsOverview.gov' />//Gov Map
+        const munMapLabel = <Translate type='text' content='listsOverview.munMap' />//Mun Map
+        const govMapLabel = <Translate type='text' content='listsOverview.govMap' />//Gov Map
         
         //sidebar title
 
@@ -69,7 +69,7 @@ class ListsOverviewGen extends Component {
                         <HeaderHelmet />
                         <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '12vh' }}>
-                            <div className='col-md-4  col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '1vh' }} >
+                            <div className='col-md-5  col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '1vh' }} >
                                 <div className='col-md-12'>
                                     <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label={generalLabel} primary={this.state.buttonLabelGeneral} />
                                     <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={govMapLabel} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
@@ -77,7 +77,7 @@ class ListsOverviewGen extends Component {
                                 </div>
                             </div>
                         </section>
-                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '25px', marginTop: '10vh' }} >{title}</h5>
+                        <h5 className='section-title' style={{ textAlign: 'center', fontSize: '25px', marginTop: '12vh' }} >{title}</h5>
 
                         <section className='col-md-12' >
                             <div className='col-md-2 col-md-offset-1' style={{marginTop:'2vh'}}>

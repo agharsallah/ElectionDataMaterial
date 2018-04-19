@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import HighchartInit from '../HighchartInit';
+import counterpart from 'counterpart' ;
+
 export default class ListsOverviewPie extends Component {
     constructor(props){
       super(props);
@@ -7,7 +9,11 @@ export default class ListsOverviewPie extends Component {
     }
     
     componentWillMount() {
-        var listsData = [{name:'Party Lists',y:1055,per:50.86},{name:'Independent Lists',y:860,per:41.46},{name:'Coalition Lists',y:159,per:7.66}]
+        var listsData;;
+        counterpart.getLocale()=='en'? 
+        listsData = [{name:'Party Lists',y:1055,per:50.86},{name:'Independent Lists',y:860,per:41.46},{name:'Coalition Lists',y:159,per:7.66}]
+        :listsData = [{name:'قائمة حزبية',y:1055,per:50.86},{name:'قائمة مستقلة',y:860,per:41.46},{name:'قائمة ائتلافية',y:159,per:7.66}]
+
         this.setState({
             options: {
                 chart: {
@@ -21,11 +27,11 @@ export default class ListsOverviewPie extends Component {
                     text: ''
                 },
                 subtitle: {
-                    text: '03-03-2018'
+                    text: '05-04-2018'
                 },
                 tooltip: {
                     headerFormat: '<h3>{point.key}: </h3>',
-                    pointFormat: '<b>{point.per}</b> %',
+                    pointFormat: '{point.per} %',
                 },
                 plotOptions: {
                     pie: {
@@ -33,13 +39,13 @@ export default class ListsOverviewPie extends Component {
                         cursor: 'pointer',
                         dataLabels: {
                             enabled: true,
-                            format: '{point.name}: {point.y}'
+                            format: '{point.name}: {point.y}',
                         },
                         showInLegend: true
                     }
                 },
                 series: [{
-                    name: 'Brands',
+                    name: 'candidates overview',
                     colorByPoint: true,
                     data: listsData
                 }]

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import HighchartInit from '../HighchartInit';
+import counterpart from 'counterpart' ;
+
 export default class ListsOverviewBar extends Component {
     constructor(props){
       super(props);
@@ -7,7 +9,11 @@ export default class ListsOverviewBar extends Component {
     }
     
     componentWillMount() {
-        var listsData = [{name:'Party Lists',y:1055,per:50.86},{name:'Independent Lists',y:860,per:41.46},{name:'Coalition Lists',y:159,per:7.66}]
+        var listsData;
+        console.log(counterpart.getLocale());
+        counterpart.getLocale()=='en'? 
+        listsData = [{name:'Party Lists',y:1055,per:50.86},{name:'Independent Lists',y:860,per:41.46},{name:'Coalition Lists',y:159,per:7.66}]
+        :listsData = [{name:'قائمة حزبية',y:1055,per:50.86},{name:'قائمة مستقلة',y:860,per:41.46},{name:'قائمة ائتلافية',y:159,per:7.66}]
         this.setState({
             options: {
                 chart: {
@@ -19,7 +25,7 @@ export default class ListsOverviewBar extends Component {
                     text: ''
                 },
                 subtitle: {
-                    text: '03-03-2018'
+                    text: '05-04-2018'
                 },
                 xAxis: {
                     crosshair: true,
@@ -37,12 +43,12 @@ export default class ListsOverviewBar extends Component {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Lists number'
+                        text:  counterpart.translate('listsOverview.listNumber')
                     }
                 },
                 tooltip: {
                     headerFormat: '<h3>{point.key}: </h3>',
-                    pointFormat: '<b>{point.y}</b> list',
+                    pointFormat: '{point.y} '+counterpart.translate('listsOverview.liste'),
                 },
                 plotOptions: {
                     column: {
@@ -68,7 +74,7 @@ export default class ListsOverviewBar extends Component {
                 }]
             }
         });
-    }
+    }   
     
     render() {
         return (

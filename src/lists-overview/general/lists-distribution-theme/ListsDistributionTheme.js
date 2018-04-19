@@ -4,6 +4,7 @@ import FontIcon from 'material-ui/FontIcon';
 import ListsDistributionSlider from './ListsDistributionSlider';
 import ListsDistributionBar from './ListsDistributionBar';
 import IsieImage from './IsieImage';
+import Translate from 'react-translate-component';
 
 export default class ListsDistributionTheme extends Component {
     constructor(props) {
@@ -20,26 +21,30 @@ export default class ListsDistributionTheme extends Component {
         this.setState({ activeButton: array });
     }
     render() {
+        const barChart = <Translate type='text' content='listsOverview.barChart' />//Bar Chart
+        const slider = <Translate type='text' content='listsOverview.slider' />//slider
+        const Image = <Translate type='text' content='listsOverview.Image' />//Image
+
         return (
             <div >
                 {/* box change */}
                 <div className='col-md-7 col-md-offset-1 col-xs-12 '>
                     <RaisedButton
-                        label="Bar Chart"
+                        label={barChart}
                         className='top-right '
                         primary={this.state.activeButton[0]}
                         onClick={this.MapLevelClick.bind(this, 0)}
                         icon={<FontIcon className="fas fa-chart-bar" color='#000000' />}
                     />
                     <RaisedButton
-                        label="Slider"
+                        label={slider}
                         className='top-right '
                         primary={this.state.activeButton[1]}
                         onClick={this.MapLevelClick.bind(this, 1)}
                         icon={<FontIcon className="fas fa-sliders-h" color='#000000' />}
                     />
                     <RaisedButton
-                        label="Image"
+                        label={Image}
                         className='top-right '
                         primary={this.state.activeButton[2]}
                         onClick={this.MapLevelClick.bind(this, 2)}

@@ -241,6 +241,32 @@ listsOverview:{
     total:'Total lists',
     party:'Party lists',
     coalition:'Coalition lists',
-
+    //Viz theme button
+    general:'General',
+    mun:'Mun. Map',
+    gov:'Gov. Map',
+    //general
+        //title
+    listsOverview:'General lists overview',
+    listsDist:'Lists Distribution',
+    CandidatesOverview:'General Candidates overview',
+    partyRanking:'Ranking of Candidates Lists per Party',
+        //sidebar
+    sideListsOverview:'Lists Overview',
+    sideCandidatesOverview:'Candidates Overview',
+    sidePartyRanking:'Party Ranking per list number',
+        //type-viz buttons
+        barChart:'Bar Chart',
+        pieChart:'Pie Chart',
+        slider:'Slider',
+        Image:'Image',
+        ImageDetail:'Image from the official document of ISIE',
+    //barchart highchart Viz :
+    listNumber:'Lists Number',
+    partyList:'Party List',
+    independentList:'Independent List',
+    coalitionList:'Coalition List',
+    liste:'list'
+    
 }
 }

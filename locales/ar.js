@@ -1,32 +1,32 @@
 module.exports = {
  AutoSuggest: {
-    Title: 'منظومة الدعم التقني',
-    sub1:'الإنتخابات البلدية مهمة برشة، خاطرها مربوطة بالواقع اليومي للمواطن ',
-    sub2:'... عملنا التطبيق هذا بش يخليك تعرف لآنا بلدية تنتمي، بيروات الانتخاب إلي قراب ليك، وين تنجم تسجل ',
-    rk1:'ملاحظة: الحدود البلدية المستعملة قريبة للواقع لكن يمكن فيها شوية أغلاط . بيروات الإنتخاب في التطبيقة هذي حوالي  4600 بيرو ينجمو ينزادو وإلا ينقصوا   ',
-    SubTitle:'. للقيام بعملية بحث لتحديد البلدية الراجعة بالنظر الرجاء إختيار الولاية ثم الضغط على زر البحث',
-    SubmitButton:'بحث',
-    InputGuide:'إختر ولاية من هنا  ',
+    Title: 'arمنظومة الدعم التقني',
+    sub1:'arالإنتخابات البلدية مهمة برشة، خاطرها مربوطة بالواقع اليومي للمواطن ',
+    sub2:'ar... عملنا التطبيق هذا بش يخليك تعرف لآنا بلدية تنتمي، بيروات الانتخاب إلي قراب ليك، وين تنجم تسجل ',
+    rk1:'arملاحظة: الحدود البلدية المستعملة قريبة للواقع لكن يمكن فيها شوية أغلاط . بيروات الإنتخاب في التطبيقة هذي حوالي  4600 بيرو ينجمو ينزادو وإلا ينقصوا   ',
+    SubTitle:'ar. للقيام بعملية بحث لتحديد البلدية الراجعة بالنظر الرجاء إختيار الولاية ثم الضغط على زر البحث',
+    SubmitButton:'arبحث',
+    InputGuide:'arإختر ولاية من هنا  ',
     loading:"... تحضير المعلومات "
  },
  Geocode: {
-    InputGuide:'adress...',
-    GoogleRadio: 'منظومة الدعم التقني',
-    OSMRadio: 'منظومة الدعم التقني',
-    AvailableInfo0:'الرجاء إدخال العنوان أو الشارع أو مكان قريب من العنوان الفعلي  في المكان المخصص  ',
-    AvailableInfo:' ',
-    AvailableInfo2:' بلدية --> ',
-    AvailableInfoar:' ولاية',
-    InavailableInfo:'  نتائج غير موجودة الرجاء إدخال العنوان  أو الشارع أو مكان قريب من العنوان الفعلي ',
-    BackButton:'عودة للإختيار',
+    InputGuide:'aradress...',
+    GoogleRadio: 'arمنظومة الدعم التقني',
+    OSMRadio: 'arمنظومة الدعم التقني',
+    AvailableInfo0:'arالرجاء إدخال العنوان أو الشارع أو مكان قريب من العنوان الفعلي  في المكان المخصص  ',
+    AvailableInfo:'ar ',
+    AvailableInfo2:'ar بلدية --> ',
+    AvailableInfoar:'ar ولاية',
+    InavailableInfo:'ar  نتائج غير موجودة الرجاء إدخال العنوان  أو الشارع أو مكان قريب من العنوان الفعلي ',
+    BackButton:'arعودة للإختيار',
     PollingCheck:  " (مراكز إقتراع (إحداثيات دقيقة " ,
-    RegistrationCheck:'مراكز تسجيل',
+    RegistrationCheck:'arمراكز تسجيل',
     WhereAmI:"آنا فين ",
-    download:'حمل أماكن التسجيل'
+    download:'arحمل أماكن التسجيل'
  },
 filter: {
-    placeholder:'إضغط على المربع أعلاه وإختر مركز الاقتراع',
-    polling:'مركز الاقتراع',
+    placeholder:'arإضغط على المربع أعلاه وإختر مركز الاقتراع',
+    polling:'arمركز الاقتراع',
  },
  statDrawer: {
      open: "إفتح القائمة" ,
@@ -167,7 +167,7 @@ LineChart:{
     update:"Update",
     TitleDaily:"Daily",
     TitleNumber:"Number <br/> Municipal Election",regression:"Regression Line",
-    valuefor:'The value for <b style="color:blue">',
+    valuefor:'arThe value for <b style="color:blue">',
     increased:" increase compared to the last day",
     decreased:" decrease compared to the last day ",
     Sunday:"Sunday",
@@ -177,5 +177,101 @@ LineChart:{
     Thursday:"Thursday",
     Friday:"Friday",
     Saturday:"Saturday"
-}
+},
+radioComp:{
+    all:"All",
+    old:"Old",
+    new:"New",
+    extended:"Extended",
+  },TwoMaps:{
+      internetuse:"internet Usage",
+      illetracy:"Citizens Illetracy",
+      sociotitle:"Social Parameter",
+      electionsubject:"Election Parameter",
+      registration:"Registration",
+      turnout:"Turnout",
+      higher_enrolment:"higher Education Enrolement"
+    },
+    RegistrationMap:{
+      parlimantary:"parlimantary 2014",
+      _2011:"NCA 2011",
+      ElectionYear:"Election Year",
+      Delegation:"Delegation",
+      District:"District",
+      VC:"Voting Center",
+    },
+    navbar:{
+      ar:"العربية",
+      fr:"Français",
+      en:"English",
+      about:"About",
+      other:"Other Viz",
+      mun:"Municipal",
+      electData:"Election Data",
+      elecResult:"Election Result",
+      webRadar:"Web Radar",
+      home:"Home",
+      oldViz:"Old Viz",
+      maps:"Maps"
+  },
+  home:{
+      sectionMunicipalData:"Municipal Data",
+      sectionMunicipalData_b:"Municipal",
+      sectionElectionData:"Election Data",
+      sectionElectionResult:"Election Result",
+      sectionotherViz:"Other Viz",
+      sectionWebradar:"WebRadar",
+      sectionAbout:"About",
+  
+      munDataTitle1:"Administrative Structure",
+      munDataTitle2:"Municipal Registration",
+      munDataTitle3:"Municipal Registration Performance",
+      munDataTitle4:"Lists Overview",
+      munDataTitle2_b:"Registration",
+      munDataTitle3_b:"Registration Performance",
+  
+  
+      electDataTitle1:"Invalid Ballots",
+      electDataTitle2:"Turnout",
+      electDataTitle3:"Socio Election Map",
+  
+      electResultData1:'arNCA Results 2011',
+      electResultData2:'arParliamentary 2014',
+      electResultData3:'arPresidential 2014 ',
+      electResultData4:'arFull Results',
+      electResultData5:'arArchive'
+      
+  },
+  listsOverview:{
+      independent:'arIndependent lists',
+      total:'arTotal lists',
+      party:'arParty lists',
+      coalition:'arCoalition lists',
+      //Viz theme button
+      general:'arGeneral',
+      mun:'arMun. Map',
+      gov:'arGov. Map',
+      //general
+          //title
+      listsOverview:'arGeneral lists overview',
+      listsDist:'arLists Distribution',
+      CandidatesOverview:'arGeneral Candidates overview',
+      partyRanking:'arRanking of Candidates Lists per Party',
+          //sidebar
+      sideListsOverview:'arLists Overview',
+      sideCandidatesOverview:'arCandidates Overview',
+      sidePartyRanking:'arParty Ranking per list number',
+          //type-viz buttons
+          barChart:'arBar Chart',
+          pieChart:'arPie Chart',
+          slider:'arSlider',
+          Image:'arImage',
+          ImageDetail:'arImage from the official document of ISIE',
+      //barchart highchart Viz :
+      listNumber:'arLists Number',
+      partyList:'arParty List',
+      independentList:'arIndependent List',
+      coalitionList:'arCoalition List',
+      
+  }
 }

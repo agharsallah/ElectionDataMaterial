@@ -4,6 +4,7 @@ import FontIcon from 'material-ui/FontIcon';
 import ListsOverviewBar from './ListsOverviewBar' ;
 import ListsOverviewPie from './ListsOverviewPie' ;
 import IsieImage from './IsieImage';
+import Translate from 'react-translate-component';
 
 export default class ListsOverviewTheme extends Component {
     constructor(props){
@@ -20,26 +21,31 @@ export default class ListsOverviewTheme extends Component {
         this.setState({activeButton:array});
     }
     render() {
+        //type-viz buttons
+        const barChart = <Translate type='text' content='listsOverview.barChart' />//Bar Chart
+        const pieChart = <Translate type='text' content='listsOverview.pieChart' />//Pie Chart
+        const Image = <Translate type='text' content='listsOverview.Image' />//Image
+
         return (
             <div >
                 {/* box change */}
                 <div className='col-md-7 col-md-offset-1 col-xs-12 '>
                     <RaisedButton
-                        label="Bar Chart"
+                        label={barChart}
                         className='top-right '
                         primary={this.state.activeButton[0] }
                         onClick={this.MapLevelClick.bind(this, 0)}
                         icon={<FontIcon className="fas fa-chart-bar" color='#000000' />}
                     />
                     <RaisedButton
-                        label="Pie Chart"
+                        label={pieChart}
                         className='top-right '
                         primary={this.state.activeButton[1] }
                         onClick={this.MapLevelClick.bind(this, 1)}
                         icon={<FontIcon className="fas fa-chart-pie" />}
                     />
                     <RaisedButton
-                    label="Image"
+                    label={Image}
                     className='top-right '
                     primary={this.state.activeButton[2]}
                     onClick={this.MapLevelClick.bind(this, 2)}

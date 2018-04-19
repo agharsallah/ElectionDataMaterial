@@ -40,14 +40,28 @@ class ListsOverviewGen extends Component {
         this.setState({activeMun:array,selectedIndex:index});
     }
     render() {
-        const GOV = <Translate type='text' content='VoterProfile.gov' />
-        const MUN = <Translate type='text' content='VoterProfile.mun' />
+
+        const listsOverview = <Translate type='text' content='listsOverview.listsOverview' />//General lists overview
+        const listsDist = <Translate type='text' content='listsOverview.listsDist' />//Lists Distribution
+        const CandidatesOverview = <Translate type='text' content='listsOverview.CandidatesOverview' />//General Candidates overview
+        const partyRanking = <Translate type='text' content='listsOverview.partyRanking' />//Ranking of Candidates Lists per Party
+        
+        const sideListsOverview = <Translate type='text' content='listsOverview.sideListsOverview' />//Lists Overview
+        const sideCandidatesOverview = <Translate type='text' content='listsOverview.sideCandidatesOverview' />//Candidates Overview
+        const sidePartyRanking = <Translate type='text' content='listsOverview.sidePartyRanking' />//Party Ranking per list number
+        
+        const generalLabel = <Translate type='text' content='listsOverview.general' />//General
+        const munMapLabel = <Translate type='text' content='listsOverview.mun' />//Mun Map
+        const govMapLabel = <Translate type='text' content='listsOverview.gov' />//Gov Map
+        
+        //sidebar title
+
         //Decision on what the title of the Viz 
         var title;
-        this.state.selectedIndex==0?title='General lists overview':
-        this.state.selectedIndex==1?title='Lists Distribution':
-        this.state.selectedIndex==2?title='General Candidates overview':
-        title='Ranking of Candidates Lists per Party';
+        this.state.selectedIndex==0?title= listsOverview:
+        this.state.selectedIndex==1?title=listsDist:
+        this.state.selectedIndex==2?title=CandidatesOverview:
+        title=partyRanking;
         return (
             <div>
                 {this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> : this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov /> :
@@ -57,9 +71,9 @@ class ListsOverviewGen extends Component {
                         <section className='latest-news-card ' style={{ paddingTop: '12vh' }}>
                             <div className='col-md-4  col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '1vh' }} >
                                 <div className='col-md-12'>
-                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label='General' primary={this.state.buttonLabelGeneral} />
-                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
-                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
+                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label={generalLabel} primary={this.state.buttonLabelGeneral} />
+                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={govMapLabel} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
+                                    <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={munMapLabel} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
                                 </div>
                             </div>
                         </section>
@@ -68,10 +82,10 @@ class ListsOverviewGen extends Component {
                         <section className='col-md-12' >
                             <div className='col-md-2 col-md-offset-1' style={{marginTop:'2vh'}}>
                                 <Menu onItemTouchTap={this.changeTheme.bind(this)}>
-                                    <MenuItem value={0} primaryText="Lists Overview" className={this.state.activeMun[0]} />
-                                    <MenuItem value={1} primaryText="Lists distribution" className={this.state.activeMun[1]}/>
-                                    <MenuItem value={2} primaryText="Candidates Overview" className={this.state.activeMun[2]}/>
-                                    <MenuItem value={3} primaryText="Party Ranking per list number" className={this.state.activeMun[3]}/>
+                                    <MenuItem value={0} primaryText={sideListsOverview} className={this.state.activeMun[0]} />
+                                    <MenuItem value={1} primaryText={listsDist} className={this.state.activeMun[1]}/>
+                                    <MenuItem value={2} primaryText={sideCandidatesOverview} className={this.state.activeMun[2]}/>
+                                    <MenuItem value={3} primaryText={sidePartyRanking} className={this.state.activeMun[3]}/>
                                 </Menu>
                             </div>
                             {/* the theme we're gone project according to the selected index in the side menu */}

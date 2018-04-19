@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-rangeslider'
 import './index.css'
+import Translate from 'react-translate-component';
 
 export default class ListsDistributionSlider extends Component {
     constructor(props, context) {
@@ -22,12 +23,13 @@ export default class ListsDistributionSlider extends Component {
     }
 
     render() {
+        const barChart = <Translate type='text' content='listsOverview.barChart' />//Bar Chart
 
         const formatLabel = value => value + ' lists'
 
         return (
             <div style={{ marginTop: '5vh' }}>
-                <h4>Move the slider to discover the  <i>distribution</i>  of candidates Lists in municipalities.</h4>
+                <h4>Move the slider to discover the  <b>distribution</b>  of candidates Lists in municipalities.</h4>
 
                 <div className='slider custom-labels' style={{ marginTop: '5vh' }}>
                     <Slider

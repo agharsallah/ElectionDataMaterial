@@ -16,7 +16,7 @@ class DataRectangle extends Component {
                 </div>
                 <div className="desc">
                     <h2 className="text-bold">{this.props.regValue}</h2>
-                    <p>{this.props.title}</p>
+                    <p>{this.props.title}{this.props.picked}</p>
                     
                 </div>
             </div>{/*featured-item */}

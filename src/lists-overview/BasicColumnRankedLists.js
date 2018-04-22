@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 var Highcharts = require('highcharts');
 import HighchartInit from './HighchartInit';
+import counterpart from 'counterpart' ;
+
 class BasicColumnRankedLists extends Component {
     constructor(props) {
         super(props);
@@ -32,14 +34,14 @@ class BasicColumnRankedLists extends Component {
                     text: this.props.title
                 },
                 subtitle: {
-                    text: '21-02-2018'
+                    text: '05-04-2018'
                 },
                 xAxis: {
                     categories: gouvNameArray,
                     crosshair: true,
                     labels: {
                         rotation: -45,
-                        style: {
+                        style: {    
                             fontSize: '10px',
                             fontFamily: 'Verdana, sans-serif'
                         }
@@ -48,7 +50,7 @@ class BasicColumnRankedLists extends Component {
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Registration number'
+                        text: counterpart.translate('listsGov.Registration_number')
                     }
                 },
                 tooltip: {

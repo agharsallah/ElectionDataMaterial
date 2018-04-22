@@ -10,9 +10,9 @@ export default class ListsOverviewPie extends Component {
     
     componentWillMount() {
         var listsData;;
-        counterpart.getLocale()=='en'? 
-        listsData = [{name:'Party Lists',y:1055,per:50.86},{name:'Independent Lists',y:860,per:41.46},{name:'Coalition Lists',y:159,per:7.66}]
-        :listsData = [{name:'قائمة حزبية',y:1055,per:50.86},{name:'قائمة مستقلة',y:860,per:41.46},{name:'قائمة ائتلافية',y:159,per:7.66}]
+        counterpart.getLocale()=='ar'? 
+        listsData = [{name:'قائمة حزبية',y:1055,per:50.86},{name:'قائمة مستقلة',y:860,per:41.46},{name:'قائمة ائتلافية',y:159,per:7.66}]
+        :listsData = [{name:'Party Lists',y:1055,per:50.86},{name:'Independent Lists',y:860,per:41.46},{name:'Coalition Lists',y:159,per:7.66}]
 
         this.setState({
             options: {

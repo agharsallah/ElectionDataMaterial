@@ -17,6 +17,7 @@ import './s.css'
 import TooltipPie from './TooltipPie';
 import ListsOverviewGen from './general/ListsOverviewGen';
 import ListsOverviewMun from './ListsOverviewMun';
+import counterpart from 'counterpart' ;
 
 class ListsOverviewGov extends Component {
     constructor(props) {
@@ -261,8 +262,17 @@ class ListsOverviewGov extends Component {
     render() {
         const position = this.state.position;
         let url = this.state.url;
-        const GOV = <Translate type='text' content='VoterProfile.gov' />
-        const MUN = <Translate type='text' content='VoterProfile.mun' />
+        const GENERALLABEL = <Translate type='text' content='listsOverview.general' />//General
+        const MUNMAPLABEL = <Translate type='text' content='listsOverview.munMap' />//Mun Map
+        const GOVMAPLEVEL = <Translate type='text' content='listsOverview.govMap' />//Gov Map
+
+        const DATARECTLIST = <Translate type='text' content='listsGov.listsNum' />//' lists number-',
+        const DATARECTCAND = <Translate type='text' content='listsGov.candidatesNum' />//' Candidates number-',
+        const DATARECTAVG = <Translate type='text' content='listsGov.average' />//' Average Lists number per gov
+        const DATARECTHIGH = <Translate type='text' content='listsGov.highest' />//' Highest Lists number per gov
+        const DATARECTLOW = <Translate type='text' content='listsGov.lowest' />//' Lowest Lists number per gov
+        const TITLE = <Translate type='text' content='listsGov.title' />//' Number Of Total Lists per governorate (05-04-2018)
+
         //decision for the boxes Text - dynamic whenever radio button changes ontop of the map
         var picked; var pickedLevelState = this.state.stateFilter;
         var candidatesArrayList;
@@ -274,7 +284,7 @@ class ListsOverviewGov extends Component {
 
         //decision on which shape to load municipal or governorate
         var shapeToSelect, shapeKey;
-        var chosenListsNumberCount, chosenMaxListNum, chosenMinListNum, chosenAvgListNum, delimitation, delimitationTitle
+        var chosenListsNumberCount, chosenMaxListNum, chosenMinListNum, chosenAvgListNum
        
             shapeKey = 'gov';
 
@@ -285,8 +295,6 @@ class ListsOverviewGov extends Component {
             chosenAvgListNum = this.state.chosenAvgListNum;
             chosenMaxListNum = this.state.chosenMaxListNum;
             chosenMinListNum = this.state.chosenMinListNum;
-            delimitation = ' per gov '
-            delimitationTitle = ' per governorate (05-04-2018)' //for main view title
 
         //Decision whether to show reset button or not
         var resetDataRectangle;
@@ -301,14 +309,14 @@ class ListsOverviewGov extends Component {
                     <HeaderHelmet/>
                         <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
-                            <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle}</h5>
+                            <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{TITLE}</h5>
                             <section className='container-fluid' style={{ marginBottom: '10px' }}>
                                 <div className='row no-gutter col-md-offset-1'>
-                                    <DataRectangle imgLink='/img/sum.svg' identifier='none' regValue={chosenListsNumberCount} title={picked + ' lists number'} getClickedRectangle={this.getClickedRectangle} />
-                                    <DataRectangle imgLink='/img/candidates.svg' identifier='none' regValue={this.state.candidatesNumber} title='Candidates number' getClickedRectangle={this.getClickedRectangle} />
-                                    <DataRectangle imgLink='/img/average.PNG' identifier='none' regValue={chosenAvgListNum} title={'Average ' + picked + ' Lists number' + delimitation} getClickedRectangle={this.getClickedRectangle} />
-                                    <DataRectangle imgLink='/img/increaseArrow.svg' identifier='highest' regValue={chosenMaxListNum} title={'Highest ' + picked + ' Lists number' + delimitation} getClickedRectangle={this.getClickedRectangle} />
-                                    <DataRectangle imgLink='/img/decreaseArrow.svg' identifier='lowest' regValue={chosenMinListNum} title={'Lowest ' + picked + ' Lists number' + delimitation} getClickedRectangle={this.getClickedRectangle} />
+                                    <DataRectangle imgLink='/img/sum.svg' identifier='none' regValue={chosenListsNumberCount} title={DATARECTLIST} picked={picked} getClickedRectangle={this.getClickedRectangle} />
+                                    <DataRectangle imgLink='/img/candidates.svg' identifier='none' regValue={this.state.candidatesNumber} title={DATARECTCAND} picked={picked} getClickedRectangle={this.getClickedRectangle} />
+                                    <DataRectangle imgLink='/img/average.PNG' identifier='none' regValue={chosenAvgListNum} title={DATARECTAVG}  picked={picked} getClickedRectangle={this.getClickedRectangle} />
+                                    <DataRectangle imgLink='/img/increaseArrow.svg' identifier='highest' regValue={chosenMaxListNum} title={DATARECTHIGH } picked={picked} getClickedRectangle={this.getClickedRectangle} />
+                                    <DataRectangle imgLink='/img/decreaseArrow.svg' identifier='lowest' regValue={chosenMinListNum} title={DATARECTLOW } picked={picked} getClickedRectangle={this.getClickedRectangle} />
                                     {resetDataRectangle}
                                 </div>
                             </section>
@@ -353,11 +361,11 @@ class ListsOverviewGov extends Component {
                                                         <MapKey colorSet={['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']} range={this.state.range} keyTitle='Candidates Lists Number' />
                                                     </Control>
 
-                                                    <div className='col-md-4 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
+                                                    <div className='col-md-5 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
                                                         <div className='col-md-12'>
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label='General' primary={this.state.buttonLabelGeneral} />
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'GENERALLABEL')} label='General' primary={this.state.buttonLabelGeneral} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOVMAPLEVEL} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUNMAPLABEL} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
 
                                                         </div>
                                                     </div>

@@ -10,11 +10,12 @@ export default class CandidatesOverviewBar extends Component {
 
     componentWillMount() {
         var listsData, range;
-        counterpart.getLocale() == 'en' ?
-            (listsData = [{ name: 'less than 35', y: 28044, per: 52.07 }, { name: 'Between 36-45', y: 12834, per: 23.83 }, { name: 'Between 46-60', y: 10600, per: 19.68 }, { name: 'More than 60', y: 2377, per: 4.41 }]
-                , range = ['less than 35', 'Between 36-45', 'Between46-60', 'More than 60'])
-            : (listsData = [{ name: ' 35 أقل من', y: 28044, per: 52.07 }, { name: ' 36-45 بين ', y: 12834, per: 23.83 }, { name: ' 46-60 بين ', y: 10600, per: 19.68 }, { name: '60 أكثر من ', y: 2377, per: 4.41 }],
+        counterpart.getLocale() == 'ar' ?
+             (listsData = [{ name: ' 35 أقل من', y: 28044, per: 52.07 }, { name: ' 36-45 بين ', y: 12834, per: 23.83 }, { name: ' 46-60 بين ', y: 10600, per: 19.68 }, { name: '60 أكثر من ', y: 2377, per: 4.41 }],
                 range = [' 35 أقل من ', ' 36-45 بين ', '46-60 بين', '60 أكثر من'])
+            :(listsData = [{ name: 'less than 35', y: 28044, per: 52.07 }, { name: 'Between 36-45', y: 12834, per: 23.83 }, { name: 'Between 46-60', y: 10600, per: 19.68 }, { name: 'More than 60', y: 2377, per: 4.41 }]
+                , range = ['less than 35', 'Between 36-45', 'Between46-60', 'More than 60'])
+
         this.setState({
             options: {
                 chart: {
@@ -54,7 +55,7 @@ export default class CandidatesOverviewBar extends Component {
 
                 tooltip: {
                     headerFormat: '',
-                    pointFormat: ' {point.y} '+ counterpart.translate('listsOverview.candidates'),
+                    pointFormat: ' {point.y} ' + counterpart.translate('listsOverview.candidates'),
                 },
                 plotOptions: {
                     column: {

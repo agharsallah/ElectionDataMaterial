@@ -1,28 +1,34 @@
+/* general */
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import ReduxPromise from "redux-promise";
 import reducers from "./reducers";
 const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 import { AppContainer } from 'react-hot-loader';
-import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import { Route, Router, Redirect, Switch } from 'react-router-dom';
+import createBrowserHistory from 'history/createBrowserHistory'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+/*  */
 import MunReg from './munReg/MunReg' ;
 import ChooseRegGov from './munre/ChooseRegGov' ;
-import DetailedRegGovRoot from './detailed-reg/DetailedRegGovRoot' ;
 import RegTrackLineRoot from './reg-perfomance/RegTrackLineRoot' ;
 import Invalid from './oldInvalid/Invalid' ;
 import Turnout from './oldTurnout/Turnout' ;
 import TwoMapsRoot from './socioElection/TwoMapsRoot' ;
-import { Route, Router, Redirect, Switch } from 'react-router-dom';
-import createBrowserHistory from 'history/createBrowserHistory'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Full from './full/Full' ;
 import Archive from './archive/Archive' ;
 import Empty from './Empty' ;
 import About from './About' ;
 import VizRoot from './viz/VizRoot' ;
+/* Candidates List 2018 */
 import ListsOverviewGen from './lists-overview/general/ListsOverviewGen' ;
+/* registration2018 */
+import DetailedRegGovRoot from './detailed-reg/DetailedRegGovRoot' ;
+import DetailedRegGovRootLatest from './detailed-reg-latest/DetailedRegGovRootLatest' ;
 /* Aaron Maps */
 import OneToOne from './one-to-one/OneToOne' ;
 import FinalMap from './one-to-one-direct-final/FinalMap' ;
@@ -49,6 +55,7 @@ const render = Component =>
       <Route  path="/final-map-lealfet" component={FinalMapLeafletDist}/>
 
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
+      <Route  path="/detailed-reg-latest" component={DetailedRegGovRootLatest}/>
 
       <Route  path="/reg-performance" component={RegTrackLineRoot}/>
       

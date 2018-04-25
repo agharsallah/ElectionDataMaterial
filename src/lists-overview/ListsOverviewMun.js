@@ -257,8 +257,9 @@ class ListsOverviewMun extends Component {
     render() {
         const position = this.state.position;
         let url = this.state.url;
-        const GOV = <Translate type='text' content='VoterProfile.gov' />
-        const MUN = <Translate type='text' content='VoterProfile.mun' />
+        const GENERALLABEL = <Translate type='text' content='listsOverview.general' />//General
+        const MUNMAPLABEL = <Translate type='text' content='listsOverview.munMap' />//Mun Map
+        const GOVMAPLEVEL = <Translate type='text' content='listsOverview.govMap' />//Gov Map
         //decision for the boxes Text - dynamic whenever radio button changes ontop of the map
         var picked; var pickedLevelState = this.state.stateFilter;
         var candidatesArrayList;
@@ -346,11 +347,11 @@ class ListsOverviewMun extends Component {
                                                         <MapKey colorSet={['#BBDEFB', '#7DAFD5', '#0096d6', '#005288']} range={this.state.range} keyTitle='Candidates Lists Number' />
                                                     </Control>
 
-                                                    <div className='col-md-4 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
+                                                    <div className='col-md-5 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
                                                         <div className='col-md-12'>
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label='General' primary={this.state.buttonLabelGeneral} />
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOV} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUN} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label={GENERALLABEL} primary={this.state.buttonLabelGeneral} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOVMAPLEVEL} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUNMAPLABEL} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
 
                                                         </div>
                                                     </div>

@@ -133,7 +133,13 @@ module.exports = {
         keyTitleDiff36: "36-50 male vs female",
         keyTitleRegPerc36: "Percentage of registered 36-50",
         keyTitleDiff50: "+50 male vs female",
-        keyTitleRegPerc50: "Percentage of registered +50"
+        keyTitleRegPerc50: "Percentage of registered +50",
+
+        keyTitleRegPerc18_latest: "Percentage of registered 18-35",
+        keyTitleRegPerc25_latest: "Percentage of registered 36-40",
+        keyTitleRegPerc36_latest: "Percentage of registered 41-60",
+        keyTitleRegPerc50_latest: "Percentage of registered +60"
+
     },
     BarMaleFemaleDiff: {
         title: "difference in voters gender -",
@@ -145,7 +151,8 @@ module.exports = {
         Female: "Female",
         population: "Population:",
         totalNumber: "Total Number:",
-        click: "Click on the map"
+        click: "Click on the map",
+        registered:'Registered'
     },
     TooltipPie: {
         registerd: "registered",

@@ -363,7 +363,7 @@ class ListsOverviewGov extends Component {
 
                                                     <div className='col-md-5 col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '5vh' }} >
                                                         <div className='col-md-12'>
-                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'GENERALLABEL')} label='General' primary={this.state.buttonLabelGeneral} />
+                                                            <RaisedButton onClick={this.MapLevelClick.bind(this, 'general')} label={GENERALLABEL} primary={this.state.buttonLabelGeneral} />
                                                             <RaisedButton onClick={this.MapLevelClick.bind(this, 'gov')} label={GOVMAPLEVEL} primary={this.state.buttonLabelGov} style={{ marginLeft: '10px' }} />
                                                             <RaisedButton onClick={this.MapLevelClick.bind(this, 'mun')} label={MUNMAPLABEL} style={{ marginLeft: '1vh' }} primary={this.state.buttonLabelMun} style={{ marginLeft: '10px' }} />
 

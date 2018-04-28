@@ -63,8 +63,8 @@ class HistogramVoterProfile extends Component {
 
                 tooltip: {
                     formatter: function () {
-                        return '<b>'+' Registered between ' + this.point.category + ' :</b><br/>' +
-                            counterpart.translate('HistogramVoterProfile.totalNumber')+ '</b>' +totalNumber[this.point.index]+'</b>'
+                        return 'Registered between ' + this.point.category + ' : <b>'+totalNumber[this.point.index]+'</b><br/>' +
+                        counterpart.translate('HistogramVoterProfile.totalNumber')+ '<b>' +this.props.totalNumberOfReg+'</b>'
                             ;
                             
                     }
@@ -132,9 +132,9 @@ class HistogramVoterProfile extends Component {
 
                 tooltip: {
                     formatter: function () {
-                        return '<b>'+'Registered between ' + this.point.category + ' :</b><br/>' +
-                            counterpart.translate('HistogramVoterProfile.totalNumber')+ '</b>' +totalNumber[this.point.index]+'</b>'
-                            ;
+                        return 'Registered between ' + this.point.category + ' : <b>'+totalNumber[this.point.index]+'</b><br/>' +
+                        counterpart.translate('HistogramVoterProfile.totalNumber')+ '<b>' +nextProps.totalNumberOfReg+'</b>'
+                        ;
                             
                     }
                 },

@@ -8,7 +8,7 @@ import InputRange from 'react-input-range';
 import Checkbox from 'material-ui/Checkbox';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { getBorderSelection, getTreatmentSelection } from "../actions/index";
+import { getBorderSelection, getTreatmentSelection } from "../../actions/index";
 
 class MenuDrawer extends Component {
     constructor(props) {

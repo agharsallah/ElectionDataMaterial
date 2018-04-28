@@ -30,9 +30,10 @@ import ListsOverviewGen from './lists-overview/general/ListsOverviewGen' ;
 import DetailedRegGovRoot from './detailed-reg/DetailedRegGovRoot' ;
 import DetailedRegGovRootLatest from './detailed-reg-latest/DetailedRegGovRootLatest' ;
 /* Aaron Maps */
-import OneToOne from './one-to-one/OneToOne' ;
-import FinalMap from './one-to-one-direct-final/FinalMap' ;
-import FinalMapLeafletDist from './one-to-one-leaflet-final/FinalMapLeafletDist' ;
+import OneToOne from './Aaron/one-to-one/OneToOne' ;
+import FinalMap from './Aaron/one-to-one-direct-final/FinalMap' ;
+import FinalMapLeafletDist from './Aaron/one-to-one-leaflet-final/FinalMapLeafletDist' ;
+import LeafletProgress from './Aaron/leaflet-progress/LeafletProgress' ;
 
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
@@ -53,6 +54,7 @@ const render = Component =>
       <Route  path="/one-to-one" component={OneToOne}/>
       <Route  path="/final-map-direct" component={FinalMap}/>
       <Route  path="/final-map-lealfet" component={FinalMapLeafletDist}/>
+      <Route  path="/leaflet-progress" component={LeafletProgress}/>
 
       <Route  path="/detailed-reg" component={DetailedRegGovRoot}/>
       <Route  path="/detailed-reg-latest" component={DetailedRegGovRootLatest}/>

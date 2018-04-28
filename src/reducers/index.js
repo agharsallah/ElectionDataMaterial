@@ -18,6 +18,7 @@ import regUpdSelectField from './selectField/reducer_registrationSelectField' ;
 
 import borderSelectionCheckbox from './leaflet-dist-final/reducer_borderSelectionCheckbox' ;
 import treatmentSelectionCheckbox from './leaflet-dist-final/reducer_treatmentSelectionCheckbox' ;
+import dateSelectionMenu from './leaflet-dist-final/reducer_dateSelectionMenu' ;
 
 const rootReducer = combineReducers({
   irieCheckbox:irieCheckbox,
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
   regUpdSelectField,
 
   borderSelectionCheckbox,
-  treatmentSelectionCheckbox
+  treatmentSelectionCheckbox,
+  dateSelectionMenu
 
 });
 

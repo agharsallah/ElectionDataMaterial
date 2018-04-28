@@ -3,7 +3,7 @@ import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip, LayersControl, M
 import MenuDrawer from './MenuDrawer';
 import './s.css'
 import axios from 'axios';
-import config from '../config';
+import config from '../../config';
 import ReactLoading from 'react-loading';
 import RaisedButton from 'material-ui/RaisedButton';
 import XlsExport from './xls-export';

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip, LayersControl, Marker, Circle, CircleMarker } from 'react-leaflet';
 import MenuDrawer from './MenuDrawer';
 import axios from 'axios';
-import config from '../config';
+import config from '../../config';
 import ReactLoading from 'react-loading';
 import RaisedButton from 'material-ui/RaisedButton';
 import './s.css'

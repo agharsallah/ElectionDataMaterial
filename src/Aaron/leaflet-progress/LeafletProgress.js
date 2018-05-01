@@ -14,7 +14,7 @@ class LeafletProgress extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            key: 1, position: [35.9, 9.23],
+            key: 1, position: [34.8, 9.0],
             delimitation: config.initShape, delimitationConsistantMun: config.initShape, etat: 'notloaded',
             govDelimitation: config.initShape, delimitationConsistantGov: config.initShape
             , munBorder: true, govBorder: false, toggleKey: 'mun', toggleKeyg: 'gov' // this state to toggle the mun|gov -> show or hide
@@ -94,12 +94,18 @@ class LeafletProgress extends Component {
             retourValue=2694 ;  totaldistriuted=102400 ; vcNumberRetour=44,vcNumberreached=128,per=50.3 ;
         }else if (this.props.dateSelectionMenu=='G_L_26'){
             retourValue=2372 ;  totaldistriuted=97600 ; vcNumberRetour=52,vcNumberreached=122,per=62.5 ;
+        }else if (this.props.dateSelectionMenu=='G_L_27'){
+            retourValue=0 ;  totaldistriuted=63200 ; vcNumberRetour=0,vcNumberreached=79,per=70.4 ;
+        }else if (this.props.dateSelectionMenu=='G_L_28'){
+            retourValue=0 ;  totaldistriuted=106400 ; vcNumberRetour=0,vcNumberreached=133,per=83.7 ;
+        }else if (this.props.dateSelectionMenu=='G_L_29'){
+            retourValue=0 ;  totaldistriuted=92800 ; vcNumberRetour=0,vcNumberreached=116,per=95.3 ;
         }
         return (
             <div>
                 <MenuDrawer retourValue={retourValue} totaldistriuted={totaldistriuted} vcNumberRetour={vcNumberRetour} vcNumberreached={vcNumberreached} per={per} />
                 {etat == 'loaded' ?
-                    <Map center={position} zoom={8} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
+                    <Map center={position} zoom={7} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                         <TileLayer
                             url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                         />

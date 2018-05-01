@@ -16,7 +16,7 @@ class MenuDrawer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
+            open: true,
             munBorder: false, govBorder: false,
             gratitude: true, intention: true, pressure: true, other: true, retour: false,
             errOpacity: false,
@@ -100,6 +100,7 @@ class MenuDrawer extends Component {
                             value="govBorder"
                             label='governrate border'
                             onCheck={this.handleBorderSelection.bind(this)}
+                            defaultChecked={true}                            
                         />
                     </div>
 
@@ -150,6 +151,9 @@ class MenuDrawer extends Component {
                             <MenuItem value={'G_L_24'} primaryText="24-04-18" />
                             <MenuItem value={'G_L_25'} primaryText="25-04-18" />
                             <MenuItem value={'G_L_26'} primaryText="26-04-18" />
+                            <MenuItem value={'G_L_27'} primaryText="27-04-18" />
+                            <MenuItem value={'G_L_28'} primaryText="28-04-18" />
+                            <MenuItem value={'G_L_29'} primaryText="29-04-18" />
                             <MenuItem value={'G_L_data_AaronMaps'} primaryText="All" />
                         </DropDownMenu>
                     </div>

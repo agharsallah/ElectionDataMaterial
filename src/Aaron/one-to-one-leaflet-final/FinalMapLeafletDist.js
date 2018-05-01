@@ -14,7 +14,7 @@ class FinalMapLeafletDist extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            key: 1, position: [35.9, 9.23],
+            key: 1, position: [34.8, 9.0],
             delimitation: config.initShape, delimitationConsistantMun: config.initShape, etat: 'notloaded',
             govDelimitation: config.initShape, delimitationConsistantGov: config.initShape
             , munBorder: true, govBorder: false, toggleKey: 'mun', toggleKeyg: 'gov' // this state to toggle the mun|gov -> show or hide
@@ -108,7 +108,7 @@ class FinalMapLeafletDist extends Component {
             <div>
                 <MenuDrawer /* getBorderSelection={this.getBorderSelection.bind(this)} */ />
                 {etat == 'loaded' ?
-                    <Map center={position} zoom={9} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
+                    <Map center={position} zoom={7} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                         <TileLayer
                             url='https://api.mapbox.com/styles/v1/mapbox/streets-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                         />

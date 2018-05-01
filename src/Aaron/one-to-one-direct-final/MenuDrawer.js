@@ -14,8 +14,8 @@ class MenuDrawer extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: false,
-            munBorder: false, govBorder: false,
+            open: true,
+            munBorder: false, govBorder: true,
             gratitude: true, intention: true, pressure: true, other: true,
             errOpacity: false,
             opacity:0.3
@@ -92,6 +92,7 @@ class MenuDrawer extends Component {
                             value="govBorder"
                             label='governrate border'
                             onCheck={this.handleBorderSelection.bind(this)}
+                            defaultChecked={true}
                         />
 
                     </div>

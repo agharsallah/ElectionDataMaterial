@@ -1,6 +1,6 @@
 import { BORDERSELECTIONCHECCKBOX } from "../../actions/index";
 
-export default function(state = {govBorder: false, munBorder: false}, action) {
+export default function(state = {govBorder: true, munBorder: false}, action) {
   switch (action.type) {
     case BORDERSELECTIONCHECCKBOX:
       return action.payload;

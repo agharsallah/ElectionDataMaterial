@@ -18,7 +18,7 @@ class MenuDrawer extends Component {
             munBorder: false, govBorder: false,
             gratitude: true, intention: true, pressure: true, other: true,
             errOpacity: false,
-            opacity: 0.3
+            opacity: 1
 
         };
     }
@@ -105,28 +105,28 @@ class MenuDrawer extends Component {
                             label='Gratitude'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
-                            labelStyle={{ color: 'green' }}
+                            labelStyle={{ color: '#E53935' }}
                         />
                         <Checkbox
                             value="intention"
                             label='Intentions'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
-                            labelStyle={{ color: 'orange' }}
+                            labelStyle={{ color: '#3D5AFE' }}
                         />
                         <Checkbox
                             value="pressure"
                             label='Social Pressure'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
-                            labelStyle={{ color: 'red' }}
+                            labelStyle={{ color: '#FFEB3B' }}
                         />
                         <Checkbox
                             value="other"
-                            label='other'
+                            label='other - sarcasm'
                             defaultChecked={true}
                             onCheck={this.handleTreatment.bind(this)}
-                            labelStyle={{ color: 'blue' }}
+                            labelStyle={{ color: '#64DD17' }}
                         />
 
                     </div>
@@ -134,14 +134,14 @@ class MenuDrawer extends Component {
                         <h5 className='bulletPoint fiveMarginTop'>select the color fill opacity from 0.1 to 1</h5>
                         {this.state.errOpacity ?
                             <TextField
-                                hintText="default value is 0.3"
-                                defaultValue={0.3}
+                                hintText="default value is 1"
+                                defaultValue={1}
                                 onChange={this.handleChangeOpacity.bind(this)}
                                 errorText='you have to enter a number from 0.1 to 1 '
                             />
                             : <TextField
                                 hintText="default value is 0.3"
-                                defaultValue={0.3}
+                                defaultValue={1}
                                 onChange={this.handleChangeOpacity.bind(this)}
                             />
                         }

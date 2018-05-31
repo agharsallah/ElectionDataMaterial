@@ -87,35 +87,19 @@ class FinalMapLeafletControlDist extends Component {
         console.log(etat);
         return (
             <div>
-                <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                    <defs>
-                        <pattern id="stripeGrat" patternUnits="userSpaceOnUse" width="10" height="10">
-                            <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPScjRTUzOTM1Jy8+CiAgPHBhdGggZD0nTS0xLDEgbDIsLTIKICAgICAgICAgICBNMCwxMCBsMTAsLTEwCiAgICAgICAgICAgTTksMTEgbDIsLTInIHN0cm9rZT0nI2NjYycgc3Ryb2tlLXdpZHRoPSczJy8+Cjwvc3ZnPg==" x="0" y="0" width="10" height="10">
-                            </image>
-                        </pattern>
-                    </defs>
-                </svg>
-                <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                    <defs>
-                        <pattern id="stripeIntentions" patternUnits="userSpaceOnUse" width="10" height="10">
-                            <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPScjM0Q1QUZFJy8+CiAgPHBhdGggZD0nTS0xLDEgbDIsLTIKICAgICAgICAgICBNMCwxMCBsMTAsLTEwCiAgICAgICAgICAgTTksMTEgbDIsLTInIHN0cm9rZT0nI2NjYycgc3Ryb2tlLXdpZHRoPSczJy8+Cjwvc3ZnPg==" x="0" y="0" width="10" height="10">
-                            </image>
-                        </pattern>
-                    </defs>
-                </svg>
-                <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1">
-                    <defs>
-                        <pattern id="stripePressure" patternUnits="userSpaceOnUse" width="10" height="10">
-                            <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPScjRkZFQjNCJy8+CiAgPHBhdGggZD0nTS0xLDEgbDIsLTIKICAgICAgICAgICBNMCwxMCBsMTAsLTEwCiAgICAgICAgICAgTTksMTEgbDIsLTInIHN0cm9rZT0nI2NjYycgc3Ryb2tlLXdpZHRoPSczJy8+Cjwvc3ZnPg==" x="0" y="0" width="10" height="10">
-                            </image>
-                        </pattern>
-                    </defs>
-                </svg>
-                <MenuDrawer /* getBorderSelection={this.getBorderSelection.bind(this)} */ />
+            <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+    <pattern id="stripeGrat" patternUnits="userSpaceOnUse" width="10" height="10">
+      <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPScjMDAwMDAwJy8+CiAgPHBhdGggZD0nTS0xLDEgbDIsLTIKICAgICAgICAgICBNMCwxMCBsMTAsLTEwCiAgICAgICAgICAgTTksMTEgbDIsLTInIHN0cm9rZT0nIzU1OTRlNycgc3Ryb2tlLXdpZHRoPScyJy8+Cjwvc3ZnPg==" x="0" y="0" width="10" height="10">
+      </image>
+    </pattern>
+  </defs>
+</svg>
+            <MenuDrawer /* getBorderSelection={this.getBorderSelection.bind(this)} */ />
                 {etat == 'loaded' ?
                     <Map center={position} zoom={7} style={{ height: '100vh', position: 'relative', backgroundColor: 'white' }}>
                         <TileLayer
-                            url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
+                        url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
                         />
                         {/* mun Geojson */}
                         {borderSelectionCheckbox.munBorder ?
@@ -142,56 +126,50 @@ class FinalMapLeafletControlDist extends Component {
                             :
                             null
                         }
-                        {/* Loop through the json of points and draw our VCs direct */}
+
+                        {/* Loop through the json of points and draw our VCs */}
                         {
-
-                            (G_Direct_data_AaronMaps).map(function (obj, i) {
-                                var radius, opacity, colorFill, weight = 0.1
+                            (G_LGratitude).map(function (obj, i) {
+                                let radius,opacity, colorFill, weight = 0.1
                                 if (treatmentSelectionCheckbox.gratitude) {
-                                    if (obj.treata == 'D-Gratitude') {
-                                        radius = Number(obj.radius)
-                                        colorFill = 'url(#stripeGrat)'
-                                        opacity = Number(treatmentSelectionCheckbox.opacity);
-                                    }
+                                    radius = Number(obj.radius);
+                                    colorFill = '#E53935';
+                                    opacity=Number(treatmentSelectionCheckbox.opacity);
                                 } else if (!treatmentSelectionCheckbox.gratitude) {
-                                    if (obj.treata == 'D-Gratitude') {
-                                        radius = 0;
-                                        colorFill = 'green'
-                                        weight = 0;
-                                        opacity = 0;
-                                    }
+                                    radius = 0;
+                                    colorFill = ';#4E896A'
+                                    weight = 0;
+                                    opacity=0
                                 }
-
+                                return (<Circle radius={radius} key={i} fillOpacity={opacity} weight={weight} stroke='#ccc' fillColor='url(#stripeGrat)' center={([Number(obj.lat), Number(obj.lon)])}>
+                                    <Popup>
+                                        <span>
+                                            <h4>id: <b>{obj.id}</b></h4>
+                                            <h5>Treata : <b>{obj.treata} </b></h5>
+                                            <h5>VC name: <b>{obj.center_name}</b></h5>
+                                            <h5>VC name Ar: <b>{obj.center_name_ar}</b></h5>
+                                            <h4>mun name: <b>{obj.mun_name_en}</b></h4>
+                                            <h4>mun name Ar: <b>{obj.mun_name_ar}</b></h4>
+                                            <h4>gov name: <b>{obj.gov_name_en}</b></h4>
+                                            <h4>radius is : <b>{radius} m</b></h4>
+                                        </span>
+                                    </Popup>
+                                </Circle>)
+                            }, this)
+                        }
+                        {
+                            (G_LIntention).map(function (obj, i) {
+                                let radius,opacity, colorFill, weight = 0.1
                                 if (treatmentSelectionCheckbox.intention) {
-                                    if (obj.treata == 'D-Intentions') {
-                                        radius = Number(obj.radius)
-                                        colorFill = 'url(#stripeIntentions)'
-                                        opacity = Number(treatmentSelectionCheckbox.opacity);
-                                    }
+                                    radius = Number(obj.radius);
+                                    colorFill = '#3D5AFE';
+                                    opacity=Number(treatmentSelectionCheckbox.opacity);
                                 } else if (!treatmentSelectionCheckbox.intention) {
-                                    if (obj.treata == 'D-Intentions') {
-                                        radius = 0;
-                                        colorFill = 'green'
-                                        weight = 0;
-                                        opacity = 0;
-                                    }
+                                    radius = 0;
+                                    colorFill = ';#B9845F'
+                                    weight = 0;
+                                    opacity=0
                                 }
-
-                                if (treatmentSelectionCheckbox.pressure) {
-                                    if (obj.treata == 'D-Pressure') {
-                                        radius = Number(obj.radius)
-                                        colorFill = 'url(#stripePressure)'
-                                        opacity = Number(treatmentSelectionCheckbox.opacity);
-                                    }
-                                } else if (!treatmentSelectionCheckbox.pressure) {
-                                    if (obj.treata == 'D-Pressure') {
-                                        radius = 0;
-                                        colorFill = 'green'
-                                        weight = 0;
-                                        opacity = 0;
-                                    }
-                                }
-
                                 return (<Circle radius={radius} key={i} fillOpacity={opacity} weight={weight} fillColor={colorFill} center={([Number(obj.lat), Number(obj.lon)])}>
                                     <Popup>
                                         <span>
@@ -208,71 +186,19 @@ class FinalMapLeafletControlDist extends Component {
                                 </Circle>)
                             }, this)
                         }
-                        {/* Loop through the json of points and draw our VCs leaflets */}
                         {
-
-                            (G_L_data_AaronMaps).map(function (obj, i) {
-                                var radius, opacity, colorFill, weight = 0.1
-                                if (treatmentSelectionCheckbox.gratitude) {
-                                    if (obj.treata == 'L-Gratitude') {
-                                        radius = Number(obj.radius)
-                                        colorFill = '#E53935'
-                                        opacity = Number(treatmentSelectionCheckbox.opacity);
-                                    }
-                                } else if (!treatmentSelectionCheckbox.gratitude) {
-                                    if (obj.treata == 'L-Gratitude') {
-                                        radius = 0;
-                                        colorFill = 'green'
-                                        weight = 0;
-                                        opacity = 0;
-                                    }
-                                }
-
-                                if (treatmentSelectionCheckbox.intention) {
-                                    if (obj.treata == 'L-Intentions') {
-                                        radius = Number(obj.radius)
-                                        colorFill = '#3D5AFE'
-                                        opacity = Number(treatmentSelectionCheckbox.opacity);
-                                    }
-                                } else if (!treatmentSelectionCheckbox.intention) {
-                                    if (obj.treata == 'L-Intentions') {
-                                        radius = 0;
-                                        colorFill = 'green'
-                                        weight = 0;
-                                        opacity = 0;
-                                    }
-                                }
-
+                            (G_LPressure).map(function (obj, i) {
+                                let radius,opacity, colorFill, weight = 0.1
                                 if (treatmentSelectionCheckbox.pressure) {
-                                    if (obj.treata == 'L-Pressure') {
-                                        radius = Number(obj.radius)
-                                        colorFill = '#FFEB3B'
-                                        opacity = Number(treatmentSelectionCheckbox.opacity);
-                                    }
+                                    radius = Number(obj.radius);
+                                    colorFill = '#FFEB3B';
+                                    opacity=Number(treatmentSelectionCheckbox.opacity);
                                 } else if (!treatmentSelectionCheckbox.pressure) {
-                                    if (obj.treata == 'L-Pressure') {
-                                        radius = 0;
-                                        colorFill = 'green'
-                                        weight = 0;
-                                        opacity = 0;
-                                    }
+                                    radius = 0;
+                                    colorFill = ';#8C4557'
+                                    weight = 0;
+                                    opacity=0
                                 }
-
-                                if (treatmentSelectionCheckbox.other) {
-                                    if (obj.treata == 'L-TBD') {
-                                        radius = Number(obj.radius)
-                                        colorFill = '#64DD17'
-                                        opacity = Number(treatmentSelectionCheckbox.opacity);
-                                    }
-                                } else if (!treatmentSelectionCheckbox.other) {
-                                    if (obj.treata == 'L-TBD') {
-                                        radius = 0;
-                                        colorFill = 'green'
-                                        weight = 0;
-                                        opacity = 0;
-                                    }
-                                }
-
                                 return (<Circle radius={radius} key={i} fillOpacity={opacity} weight={weight} fillColor={colorFill} center={([Number(obj.lat), Number(obj.lon)])}>
                                     <Popup>
                                         <span>
@@ -288,6 +214,36 @@ class FinalMapLeafletControlDist extends Component {
                                     </Popup>
                                 </Circle>)
                             }, this)
+                        }
+                        {
+                            (G_LTbd).map(function (obj, i) {
+                                let radius,opacity, colorFill, weight = 0.1
+                                if (treatmentSelectionCheckbox.other) {
+                                    radius = Number(obj.radius);
+                                    colorFill = '#64DD17';
+                                    opacity=Number(treatmentSelectionCheckbox.opacity);
+                                } else if (!treatmentSelectionCheckbox.other) {
+                                    radius = null;
+                                    colorFill = null;
+                                    weight = 0;
+                                    opacity=0
+                                }
+                                return (<Circle radius={radius} key={i} fillOpacity={opacity} weight={weight} fillColor={colorFill} center={([Number(obj.lat), Number(obj.lon)])}>
+                                    <Popup>
+                                        <span>
+                                            <h4>id: <b>{obj.id}</b></h4>
+                                            <h5>Treata : <b>{obj.treata} </b></h5>
+                                            <h5>VC name: <b>{obj.center_name}</b></h5>
+                                            <h5>VC name Ar: <b>{obj.center_name_ar}</b></h5>
+                                            <h4>mun name: <b>{obj.mun_name_en}</b></h4>
+                                            <h4>mun name Ar: <b>{obj.mun_name_ar}</b></h4>
+                                            <h4>gov name: <b>{obj.gov_name_en}</b></h4>
+                                            <h4>radius is : <b>{radius} m</b></h4>
+                                        </span>
+                                    </Popup>
+                                </Circle>)
+                            }, this)
+
                         }
                         {
                             (G_Control_data_AaronMaps).map(function (obj, i) {
@@ -324,7 +280,7 @@ class FinalMapLeafletControlDist extends Component {
                                 <TileLayer
                                     attribution="&copy; MapBox "
                                     url='https://api.mapbox.com/styles/v1/hunter-x/cixhpey8700q12pnwg584603g/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaHVudGVyLXgiLCJhIjoiY2l2OXhqMHJrMDAxcDJ1cGd5YzM2bHlydSJ9.jJxP2PKCIUrgdIXjf-RzlA'
-                                />
+                                    />
                             </LayersControl.BaseLayer>
                             <LayersControl.BaseLayer name="Mapnik-OpenStreetMap">
                                 <TileLayer

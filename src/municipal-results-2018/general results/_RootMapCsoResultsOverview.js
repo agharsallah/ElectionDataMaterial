@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Translate from 'react-translate-component';
 import SelectionMap from './SelectionMap';
-//if we use Redirect the browsing history will be deleted but push history keeps track of history when cllicking back button
-/*import { Redirect  } from 'react-router-dom'; <Redirect  to={this.state.redirect} /> */
+import LayoutTranslated from '../../LayoutTranslated';
+import HeaderHelmet from '../../HeaderHelmet';
 
 export default class _RootMapCsoResultsOverview extends Component {
   constructor(props) {
@@ -19,17 +19,23 @@ export default class _RootMapCsoResultsOverview extends Component {
       <section >
         {this.state.redirect == 'none' ?
           <div>
-            <div id="content">
-              <div className="menu-trigger"></div>
-              <div className="site-content">
-                <h1 className="site-content__headline">{TITLE}</h1>
-              </div>
+            <HeaderHelmet />
+            <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
+            <section className="latest-news-card " style={{ paddingTop: '10vh' }}>
+
               <div className="col-md-offset-1 col-md-10">
                 <h4 className="subheaderTitle "> You can click on the governorate of which you want discover results :</h4>
-
               </div>
-              <SelectionMap handleMapClickFather={this.handleMapClickFather.bind(this)} />
-            </div>
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-xs-12 col-sm-12 col-md-12 blog-grid-item mb-10 ">
+                    <article className="card">
+                      <SelectionMap handleMapClickFather={this.handleMapClickFather.bind(this)} />
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </section>
           </div>
           :
           this.props.history.push(this.state.redirect)

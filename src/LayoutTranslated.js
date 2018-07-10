@@ -14,6 +14,17 @@ class LayoutTranslated extends Component {
     componentWillMount() {
         counterpart.getLocale();
     }
+    componentDidMount() {
+        $("#materialize-menu-alt").html('<ul class="menuzord-menu">' + $("#menu-list").html() + "</ul>");
+    
+    
+        /* === materialize Mega Menu === */
+        jQuery("#materialize-menu, #materialize-menu-alt").menuzord({
+            indicatorFirstLevel: "<i class='fa fa-angle-down'></i>",
+            indicatorSecondLevel: "<i class='fa fa-angle-right'></i>"
+        });
+    }
+    
 
     handleChange(event, index, value) {
         this.setState({ value })

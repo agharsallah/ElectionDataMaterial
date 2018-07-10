@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 /* import { FormGroup, FormControl, Form, Radio } from 'react-bootstrap';
  */
 import Translate from 'react-translate-component';
-import HeaderHelmet from '../../HeaderHelmet';
 import LayoutTranslated from '../../LayoutTranslated';
 
 import PartyMap from './PartyMap';
@@ -41,7 +40,6 @@ export default class _RootTadeem extends Component {
     const { VOTES_value, CHAIRS_value, BEST_RES_value, RUNNED_MUN_value, partyName, shapeToSelect, grades_votes, grades_seats } = this.state;
     return (
       <div>
-        <HeaderHelmet />
         <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
 
         <section className="latest-news-card " style={{ paddingTop: '10vh' }}>

@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip, LayersControl, Marker, CircleMarker } from 'react-leaflet';
-import { Redirect, withRouter, Link, NavLink, Route } from 'react-router-dom';
 import config from '../config';
 import axios from 'axios';
 import Translate from 'react-translate-component';
 import LayoutTranslated from '../LayoutTranslated';
-import HeaderHelmet from '../HeaderHelmet';
 import MapKey from './MapKey';
 import Control from 'react-leaflet-control';
 import ReactLoading from 'react-loading';
@@ -17,7 +15,6 @@ import './s.css'
 import TooltipPie from './TooltipPie';
 import ListsOverviewGen from './general/ListsOverviewGen';
 import ListsOverviewMun from './ListsOverviewMun';
-import counterpart from 'counterpart' ;
 
 class ListsOverviewGov extends Component {
     constructor(props) {
@@ -306,7 +303,6 @@ class ListsOverviewGov extends Component {
                 {/* If the clicked button is general Load General Component /general/GeneralViz Else load maps from here */}
                 {this.state.selectedMapLevel == 'general' ? <ListsOverviewGen /> :this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> :
                     <div>
-                    <HeaderHelmet/>
                         <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
                             <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{TITLE}</h5>

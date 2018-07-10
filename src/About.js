@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import Layout from './Layout' ;
 import s from './s.css' ;
-import HeaderHelmet from './HeaderHelmet' ;
 
 class About extends Component {
   render() {
     return (
       <div style={{height:'50%'}}>
-      <HeaderHelmet/>
       <Layout home="" about="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
       <div style={{marginTop:'10vh'}} className='container'>
       <div className='row' >

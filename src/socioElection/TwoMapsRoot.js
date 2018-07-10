@@ -7,7 +7,6 @@ import ElectionSubject from './ElectionSubject';
 import Translate from 'react-translate-component';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import HeaderHelmet from '../HeaderHelmet' ;
 
 import Layout from '../Layout' ;
 
@@ -24,7 +23,6 @@ class TwoMapsRoot extends Component {
     
     return(
         <div style={{position:"relative"}}>
-        <HeaderHelmet/>        
         <Layout home="" mun17="" parl14="active" pres14="" result="" webradar="" layoutShape="transparent-header" typoColor="light"/>      
         <YearToggle HandleYear={this.HandleYear.bind(this)} />
             <SocioEconomicToggle HandleSocioParameter={this.HandleSocioParameter.bind(this)}/>

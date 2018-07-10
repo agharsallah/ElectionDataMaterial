@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import Layout from '../Layout' ;
 import VizBox from '../home/VizBox' ;
 import VideoBox from './VideoBox' ;
-import HeaderHelmet from '../HeaderHelmet' ;
 
 class VizRoot extends Component {
     render() {
         return (
             <div>
-            <HeaderHelmet/>
             <Layout home="" mun17="" parl14="" pres14="" result="" webradar="" other='active' layoutShape="transparent-header" typoColor="light"/>      
             <section style={{paddingTop:"10vh"}}>
                 

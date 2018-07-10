@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip,LayersControl,Marker,CircleMarker } from 'react-leaflet';
-import { Redirect,withRouter,Link,NavLink,Route } from 'react-router-dom';
+import { Map, GeoJSON } from 'react-leaflet';
+import { Redirect } from 'react-router-dom';
 import config from '../config' ;
 import axios from 'axios' ;
-import Layout from '../Layout' ;
-import HeaderHelmet from '../HeaderHelmet' ;
+import LayoutTranslated from '../LayoutTranslated' ;
 import MapKey from './MapKey' ;
 import Control from 'react-leaflet-control';
 import ReactLoading from 'react-loading';
@@ -128,9 +127,8 @@ class ChooseRegGov extends Component {
         return (
             this.state.redirect ? <Redirect push to={url}/>:
             <div>
-            <HeaderHelmet/>
             
-            <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
+            <LayoutTranslated home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
             {/* <section className="page-title ptb-50">
                 <div className="container">
                     <div className="row">

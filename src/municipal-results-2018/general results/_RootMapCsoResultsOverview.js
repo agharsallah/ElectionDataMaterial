@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Translate from 'react-translate-component';
 import SelectionMap from './SelectionMap';
 import LayoutTranslated from '../../LayoutTranslated';
-import HeaderHelmet from '../../HeaderHelmet';
 
 export default class _RootMapCsoResultsOverview extends Component {
   constructor(props) {
@@ -19,7 +18,6 @@ export default class _RootMapCsoResultsOverview extends Component {
       <section >
         {this.state.redirect == 'none' ?
           <div>
-            <HeaderHelmet />
             <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
             <section className="latest-news-card " style={{ paddingTop: '10vh' }}>
 

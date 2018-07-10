@@ -7,7 +7,6 @@ import LayoutTranslated from '../../LayoutTranslated';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import './s.css'
-import HeaderHelmet from '../../HeaderHelmet';
 import ListsOverviewTheme from './lists-overview-theme/ListsOverviewTheme' ;
 import ListsDistributionTheme from './lists-distribution-theme/ListsDistributionTheme' ;
 import CandidatesOverviewTheme from './candidates-overview-theme/CandidatesOverviewTheme' ;
@@ -66,7 +65,7 @@ class ListsOverviewGen extends Component {
             <div>
                 {this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> : this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov /> :
                     <div>
-                        <HeaderHelmet />
+                        
                         <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '12vh' }}>
                             <div className='col-md-5  col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '1vh' }} >

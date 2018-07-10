@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import Layout from '../Layout' ;
 import VizBox from '../home/VizBox' ;
-import HeaderHelmet from '../HeaderHelmet' ;
 
 class Full extends Component {
     render() {
         return (
             <div>
-            <HeaderHelmet/>
             <Layout home="" mun17="" parl14="" pres14="" result="active" webradar="" layoutShape="transparent-header" typoColor="light"/>      
             <section style={{paddingTop:"7vh"}}>
                 <div className="container" style={{marginLeft:'21vw'}}>

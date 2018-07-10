@@ -5,13 +5,11 @@ import config from '../config';
 import axios from 'axios';
 import Translate from 'react-translate-component';
 import LayoutTranslated from '../LayoutTranslated';
-import HeaderHelmet from '../HeaderHelmet';
 import MapKey from './MapKey';
 import Control from 'react-leaflet-control';
 import ReactLoading from 'react-loading';
 import Radio_state from './Radiobutton_state.js';
 import RaisedButton from 'material-ui/RaisedButton';
-import BasicColumnRankedLists from './BasicColumnRankedLists';
 import DataRectangle from './DataRectangle';
 import './s.css'
 import TooltipPie from './TooltipPie';
@@ -292,7 +290,6 @@ class ListsOverviewMun extends Component {
                 {/* If the clicked button is general Load General Component /general/GeneralViz Else load maps from here */}
                 {this.state.selectedMapLevel == 'general' ? <ListsOverviewGen /> : this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov /> :
                     <div>
-                        <HeaderHelmet />
                         <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
                             <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{'Number Of Total Lists' + delimitationTitle}</h5>

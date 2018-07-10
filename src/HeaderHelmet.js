@@ -20,7 +20,7 @@ class HeaderHelmet extends Component {
             <script src="./carousel/owl.carousel.min.js"></script>
             <script src="./flexSlider/jquery.flexslider-min.js"></script>
             <script src="./magnific-popup/jquery.magnific-popup.min.js"></script> */}
-            {/* <script src="./js/scripts.js"></script> */}
+            <script src="./js/scripts.js"></script>
             </Helmet>  
         );
     }

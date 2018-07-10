@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Layout from '../Layout' ;
-import {Link,NavLink,Route } from 'react-router-dom';
-import {Helmet} from "react-helmet";
 
 import MunMap from './MunMap' ;
 import DataRectangle from './DataRectangle' ;
@@ -33,9 +31,7 @@ class MunReg extends Component {
         let population=(this.state.population)
         return (
             <div>
-            <Helmet>
-            <script src="../../js/scripts.js"></script>
-            </Helmet>             
+                       
                 <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
                 
                 {/* Tab to Choose the level of the map  */}

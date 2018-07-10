@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Translate from 'react-translate-component';
 import SelectionMap from './SelectionMap';
-import LayoutTranslated from '../../LayoutTranslated';
+import Layout from '../../Layout';
 
 export default class _RootMapCsoResultsOverview extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class _RootMapCsoResultsOverview extends Component {
       <section >
         {this.state.redirect == 'none' ?
           <div>
-            <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
+            <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
             <section className="latest-news-card " style={{ paddingTop: '10vh' }}>
 
               <div className="col-md-offset-1 col-md-10">

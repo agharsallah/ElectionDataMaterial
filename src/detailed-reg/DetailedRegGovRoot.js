@@ -7,7 +7,6 @@ import counterpart  from 'counterpart';
 import Translate    from 'react-translate-component';
 import axios from 'axios' ;
 import config from '../config'
-import {Helmet} from "react-helmet";
 
 
 import { connect } from "react-redux";
@@ -78,9 +77,7 @@ class DetailedRegGovRoot extends Component {
     render() {
         return (
             <div>
-                <Helmet>
-                    <script src="../../js/scripts.js"></script>
-                </Helmet>  
+                
                 <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
                 {   this.props.radioFilterPicker==="pop" ?
                     <RegVsElig count={this.state.countRegVs} shape={this.state.shape} shapeIsLoaded={this.state.shapeIsLoaded} key={this.state.key} />

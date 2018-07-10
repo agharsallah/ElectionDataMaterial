@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 /* import { FormGroup, FormControl, Form, Radio } from 'react-bootstrap';
  */
 import Translate from 'react-translate-component';
-import LayoutTranslated from '../../LayoutTranslated';
+import Layout from '../../Layout';
 
 import PartyMap from './PartyMap';
 import './partySheet.css'
@@ -40,7 +40,7 @@ export default class _RootTadeem extends Component {
     const { VOTES_value, CHAIRS_value, BEST_RES_value, RUNNED_MUN_value, partyName, shapeToSelect, grades_votes, grades_seats } = this.state;
     return (
       <div>
-        <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
+        <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
 
         <section className="latest-news-card " style={{ paddingTop: '10vh' }}>
           <h5 className="section-title" style={{ textAlign: 'center', fontSize: '30px' }} >{partyName} {TITLE}</h5>

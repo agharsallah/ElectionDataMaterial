@@ -3,7 +3,7 @@ import { Map, GeoJSON } from 'react-leaflet';
 import { Redirect } from 'react-router-dom';
 import config from '../config' ;
 import axios from 'axios' ;
-import LayoutTranslated from '../LayoutTranslated' ;
+import Layout from '../Layout' ;
 import MapKey from './MapKey' ;
 import Control from 'react-leaflet-control';
 import ReactLoading from 'react-loading';
@@ -128,7 +128,7 @@ class ChooseRegGov extends Component {
             this.state.redirect ? <Redirect push to={url}/>:
             <div>
             
-            <LayoutTranslated home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
+            <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
             {/* <section className="page-title ptb-50">
                 <div className="container">
                     <div className="row">

@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Translate from 'react-translate-component';
 import ListsOverviewGov from '../ListsOverviewGov';
 import ListsOverviewMun from '../ListsOverviewMun';
-import LayoutTranslated from '../../LayoutTranslated';
+import Layout from '../../Layout';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import './s.css'
@@ -66,7 +66,7 @@ class ListsOverviewGen extends Component {
                 {this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> : this.state.selectedMapLevel == 'gov' ? <ListsOverviewGov /> :
                     <div>
                         
-                        <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
+                        <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '12vh' }}>
                             <div className='col-md-5  col-md-offset-1' style={{ zIndex: 1, position: 'absolute', marginTop: '1vh' }} >
                                 <div className='col-md-12'>

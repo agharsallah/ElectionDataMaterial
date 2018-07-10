@@ -3,7 +3,7 @@ import { Map, Popup, TileLayer, GeoJSON, FeatureGroup, Tooltip, LayersControl, M
 import config from '../config';
 import axios from 'axios';
 import Translate from 'react-translate-component';
-import LayoutTranslated from '../LayoutTranslated';
+import Layout from '../Layout';
 import MapKey from './MapKey';
 import Control from 'react-leaflet-control';
 import ReactLoading from 'react-loading';
@@ -303,7 +303,7 @@ class ListsOverviewGov extends Component {
                 {/* If the clicked button is general Load General Component /general/GeneralViz Else load maps from here */}
                 {this.state.selectedMapLevel == 'general' ? <ListsOverviewGen /> :this.state.selectedMapLevel == 'mun' ? <ListsOverviewMun /> :
                     <div>
-                        <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
+                        <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
                         <section className='latest-news-card ' style={{ paddingTop: '10vh' }}>
                             <h5 className='section-title' style={{ textAlign: 'center', fontSize: '30px' }} >{TITLE}</h5>
                             <section className='container-fluid' style={{ marginBottom: '10px' }}>

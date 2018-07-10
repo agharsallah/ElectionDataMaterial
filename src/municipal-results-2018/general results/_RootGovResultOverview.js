@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Translate from 'react-translate-component';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
-import LayoutTranslated from '../../LayoutTranslated';
+import Layout from '../../Layout';
 
 
 import party_res from './all_parties_res.js'
@@ -47,7 +47,7 @@ export default class _RootGovResultOverview extends Component {
         return (
             <div >
                 
-                <LayoutTranslated home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
+                <Layout home='' mun17='active' parl14='' pres14='' contact='' layoutShape='nav-border-bottom' typoColor='' />
 
                 <section className="latest-news-card " style={{ paddingTop: '10vh' }}>
                     <h5 className="section-title" style={{ textAlign: 'center', fontSize: '30px' }} >{this.state.mun_name}{TITLE}</h5>

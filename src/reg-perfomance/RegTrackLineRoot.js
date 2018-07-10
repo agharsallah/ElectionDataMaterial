@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
 import Layout from '../Layout' ;
 import LineChart from './LineChart' ;
-import BubbleChart from './BubbleChart' ;
-import HeatMapCalendar from './HeatMapCalendar' ;
 import config from '../config'
 import axios from 'axios' ;
 import regression from 'regression';
-import {Helmet} from "react-helmet";
-import {Link} from 'react-router-dom';
 
 import counterpart  from 'counterpart';
 import Translate    from 'react-translate-component';
 
 import { connect } from "react-redux";
-import { getPopValue } from "../actions/index";
-import { bindActionCreators } from "redux";
 
 class RegTrackLineRoot extends Component {
     constructor(props) {
@@ -144,10 +138,7 @@ class RegTrackLineRoot extends Component {
         
         return (
             <div >
-                <Helmet>
-                    <script src="../../js/scripts.js"></script>
-                </Helmet>  
-
+               
                 <Layout home="" mun17="active" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light"/>
 
                 <section>             

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Layout from '../Layout' ;
-import {Link,NavLink,Route } from 'react-router-dom';
-import {Helmet} from "react-helmet";
 import InvalidMap from './InvalidMap' ;
 import BarChart from './BarChart' ;
 import Radio_state from './Radiobutton_state' ;
@@ -23,12 +21,9 @@ class Invalid extends Component {
         this.setState({hoveredProperty:hoveredProperty});
     }
     render() {
-        let population=(this.state.population)
         return (
             <div>
-            <Helmet>
-            <script src="../../js/scripts.js"></script>
-            </Helmet>             
+                     
                 <Layout home="" mun17="" parl14="active" pres14="" contact="" layoutShape="nav-border-bottom" typoColor=""/>
                 
                 {/* Tab to Choose the level of the map  */}

@@ -12,7 +12,7 @@ export default class PartyMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shapeIsLoaded: false, shape_mun: config.initShape,shape_gov: config.initShape, key: 1,
+      shapeIsLoaded: false, shape_mun: config.initShape, shape_gov: config.initShape, key: 1,
       filter: 'perVotes', checked: [true, false],
       keyTitle: 'Results per votes percentage', partyName: 'Ennahdha',
       nom: '', results_Percentage: '', turnout: '', blank_per: '', deputy: '', seats_num: '',
@@ -20,44 +20,45 @@ export default class PartyMap extends Component {
     }
   }
   componentWillMount() {
-    let qString = `${config.apiUrl}/api/shape/mun_${this.props.shapeToSelect}_election_res`;
-      console.log(qString);
-      axios({
-        method: 'get',
-        url: qString,
-        headers: {
-          'name': 'Isie',
-          'password': 'Isie@ndDi',
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
+    let qString2 = `${config.apiUrl}/api/shape/gov_munelection_valid_blank_reg`;
+    axios({
+      method: 'get',
+      url: qString2,
+      headers: {
+        'name': 'Isie',
+        'password': 'Isie@ndDi',
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
 
+    })
+      .then(response => {
+        this.setState({ shape_gov: JSON.parse(response.data.data), });
       })
-        .then(response => {
-          console.log(response);
-          this.setState({ shape_mun: JSON.parse(response.data.data), shapeIsLoaded: true });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-        let qString2 = `${config.apiUrl}/api/shape/gov_munelection_valid_blank_reg`;
-        axios({
-          method: 'get',
-          url: qString2,
-          headers: {
-            'name': 'Isie',
-            'password': 'Isie@ndDi',
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-    
-        })
-          .then(response => {
-            this.setState({ shape_gov: JSON.parse(response.data.data), });
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+      .catch(function (error) {
+        console.log(error);
+      });
+    let qString = `${config.apiUrl}/api/shape/mun_${this.props.shapeToSelect}_election_res`;
+    console.log(qString);
+    axios({
+      method: 'get',
+      url: qString,
+      headers: {
+        'name': 'Isie',
+        'password': 'Isie@ndDi',
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+
+    })
+      .then(response => {
+        console.log(response);
+        this.setState({ shape_mun: JSON.parse(response.data.data), shapeIsLoaded: true });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
     //don't know why did this cause u can use props directly ????- it's a sort of initialization
     if (this.state.filter == 'perVotes') {
       this.setState({ grades: this.props.grades_votes, partyName: this.props.partyName });
@@ -99,7 +100,7 @@ export default class PartyMap extends Component {
       .catch(function (error) {
         console.log(error);
       });
-    
+
   }
 
   getColorRegElg(d, c1, grades, state, AssociatedParty) {

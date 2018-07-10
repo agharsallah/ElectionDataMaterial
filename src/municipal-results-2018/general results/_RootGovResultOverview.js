@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import ResultOverviewColumn from './ResultOverviewColumn';
 import ResultOverviewBar from './ResultOverviewBar';
 import ResultOverviewSunburst from './ResultOverviewSunburst';
-import { Link } from 'react-router-dom';
 import Translate from 'react-translate-component';
 import RaisedButton from 'material-ui/RaisedButton';
 import FontIcon from 'material-ui/FontIcon';
 import Layout from '../../Layout';
 
-
+/* DATA - this could be loaded from the API */
 import party_res from './all_parties_res.js'
 import mun_to_gov from './Governorates_associated to municipality.js'
 export default class _RootGovResultOverview extends Component {
@@ -17,7 +16,6 @@ export default class _RootGovResultOverview extends Component {
         this.state = { mun_name: '', activeButton: [true, false, false] }
     }
     componentWillMount() {
-        console.log('hhhhhhhhhhereeeee');
         let chosenGov = (this.props.location.pathname).substring(13);
         let RES = []
         //get all the municipalities of a certain gov 

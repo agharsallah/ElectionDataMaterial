@@ -35,11 +35,11 @@ import _RootPartiesSheet from './municipal-results-2018/party cheat sheet/_RootP
 import _RootMapCsoResultsOverview from './municipal-results-2018/general results/_RootMapCsoResultsOverview' ;
 import _RootGovResultOverview from './municipal-results-2018/general results/_RootGovResultOverview' ;
 /* Aaron Maps */
-import OneToOne from './Aaron/one-to-one/OneToOne' ;
+/* import OneToOne from './Aaron/one-to-one/OneToOne' ;
 import FinalMap from './Aaron/one-to-one-direct-final/FinalMap' ;
 import FinalMapLeafletDist from './Aaron/one-to-one-leaflet-final/FinalMapLeafletDist' ;
 import LeafletProgress from './Aaron/leaflet-progress/LeafletProgress' ;
-import FinalMapLeafletControlDist from './Aaron/controlVC/FinalMapLeafletControlDist' ;
+import FinalMapLeafletControlDist from './Aaron/controlVC/FinalMapLeafletControlDist' ; */
 
 const customHistory = createBrowserHistory()
 const rootEl = document.getElementById('root');
@@ -66,11 +66,11 @@ const render = Component =>
       <Route exact path="/mun-results/:gov" component={_RootGovResultOverview} />
 
       {/* Aaron routes */}
-      <Route  path="/one-to-one" component={OneToOne}/>
+      {/* <Route  path="/one-to-one" component={OneToOne}/>
       <Route  path="/final-map-direct" component={FinalMap}/>
       <Route  path="/final-map-lealfet" component={FinalMapLeafletDist}/>
       <Route  path="/leaflet-progress" component={LeafletProgress}/>
-      <Route  path="/final-map-lealfet-control" component={FinalMapLeafletControlDist}/>
+      <Route  path="/final-map-lealfet-control" component={FinalMapLeafletControlDist}/> */}
 
       <Route  path="/invalid" component={Invalid}/>
       <Route  path="/turnout" component={Turnout}/>

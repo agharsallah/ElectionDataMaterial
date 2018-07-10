@@ -40,11 +40,14 @@ class LayoutTranslated extends Component {
         const munDataTitle2_b = <Translate content='home.munDataTitle2_b' />//" Registration"
         const munDataTitle3_b = <Translate content='home.munDataTitle3_b' />//" Registration Performance"
         const munDataTitle4 = <Translate content='home.munDataTitle4' />//"Lists Overview"
+        const MUN_TURNOUT = <Translate content='home.munTurnout' />//"Municipal election Turnout 2018"
+        const PARTY_RES_MUN = <Translate content='home.partyResultsMunElection' />//"Political parties results"
+        const MUN_RES_OVERVIEW = <Translate content='home.munResOverview' />//"Municipal results Overview"
 
         const electDataTitle1 = <Translate content='home.electDataTitle1' />//"Invalid Ballots"
         const electDataTitle2 = <Translate content='home.electDataTitle2' />//"Turnout"
         const electDataTitle3 = <Translate content='home.electDataTitle3' />//"Socio Election Map"
-        
+
         const electResultData1 = <Translate content='home.electResultData1' />//'NCA Results 2011'
         const electResultData2 = <Translate content='home.electResultData2' />//'Parliamentary 2014'
         const electResultData3 = <Translate content='home.electResultData3' />//'Presidential 2014 '
@@ -74,6 +77,9 @@ class LayoutTranslated extends Component {
 
                                 <li className={this.props.mun17}><a href='javascript:void(0)'>{sectionMunicipalData_b} </a>
                                     <ul className="dropdown">
+                                        <li><Link to='/municipal-turnout18'>{MUN_TURNOUT}</Link></li>
+                                        <li><Link to='/party-sheet'>{PARTY_RES_MUN}</Link></li>
+                                        <li><Link to='/mun-results'>{MUN_RES_OVERVIEW}</Link></li>
                                         <li><Link to='/lists-overview'>{munDataTitle4}</Link></li>
                                         <li ><Link to='/detailed-reg'>{munDataTitle2_b}</Link></li>
                                         <li><Link to='/munre'>{munDataTitle1}</Link></li>
@@ -114,7 +120,7 @@ class LayoutTranslated extends Component {
 
                                 <li className={this.props.about} ><Link to='/about'> {sectionAbout}</Link></li>
 
-                                 {/* <li style={{ float: "right" }}>
+                                {/* <li style={{ float: "right" }}>
                                     <DropDownMenu labelStyle={{ color: 'inherit' }} value={this.state.value} onChange={this.handleChange.bind(this)} >
                                         <MenuItem value={'en'} primaryText={en} />
                                         <MenuItem value={'fr'} primaryText={fr} />

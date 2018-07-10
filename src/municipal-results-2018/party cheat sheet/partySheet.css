@@ -1,0 +1,73 @@
+.subheaderTitle{
+    font: 300 20px/29px "Poppins", sans-serif!important;
+    color: #5BC0BE!important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 18px !important ;
+}
+/* Info card in Party sheet */
+.info-card-section{
+    background-size: 100%;
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 30px 20px;
+    width: 100%;
+    background-color: #F5F7F9;
+}
+.center{
+    text-align: center;
+}
+.info-card-font h3{
+    font: 500 30px/35px "Poppins", sans-serif;
+    color: #1C2541;
+    margin: 10px 0;
+}
+.info-card-font h5{
+    font: 500 22px/35px "Poppins", sans-serif;
+    color: #1C2541;
+    margin: 10px 0;
+}
+.info-card-font h6{
+    font: 300 20px/32px "Poppins", sans-serif;
+    color: #5BC0BE;
+    margin: 10px 0;
+}
+
+.info-card-font p{
+    font: 400 16px/26px "Lato", sans-serif;
+    color: #868A90;
+    margin: 15px 0;
+}
+.topMap{
+    margin-top: 7vh;
+}
+.filterResultInput{
+width: 35%;
+text-align: center;
+}
+/*  left control bar */
+.SideMenuePosition{
+    z-index: 2000;
+      position: absolute;
+      margin-top: 10%;
+      left: 1%;
+      height: 65vh;
+      min-width: 40vh;
+  }
+  .labelStyle{
+    font-weight: 700!important;
+  }
+  .MenuShadow {
+    -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.157);
+            box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.157);
+  }
+  
+  /*leaflet tooltip style overide this is related to the map*/
+  .leafletTooltip{
+    border-radius: 20px
+  }
+  
+  .mapKeyTitle{
+    line-height:14px;
+    margin-left: 10px;
+  }

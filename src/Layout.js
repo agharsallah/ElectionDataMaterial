@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 class Layout extends Component {
     render() {
         let headerClass = 'tt-nav sticky ' + this.props.layoutShape;
@@ -24,8 +24,11 @@ class Layout extends Component {
 
                                 <li className={this.props.mun17}><a href='javascript:void(0)'>Municipal </a>
                                     <ul className="dropdown">
-                                        <li><Link to='/lists-overview'>Lists overview</Link></li>
-                                        <li ><Link to='/detailed-reg'>Registration</Link></li>
+                                    <li><Link to='/lists-overview'>Election Turnout</Link></li>
+                                    <li><Link to='/party-sheet'>Parties map results</Link></li>
+                                    <li><Link to='/mun-results'>Results overview</Link></li>
+                                    <li><Link to='/lists-overview'>Lists overview</Link></li>
+                                    <li ><Link to='/detailed-reg'>Registration</Link></li>
                                         <li><Link to='/munre'>Administrative Structure</Link></li>
                                         <li ><Link to='/reg-performance'>Registration perfomance</Link></li>
                                     </ul>

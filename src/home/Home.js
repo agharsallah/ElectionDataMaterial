@@ -19,10 +19,9 @@ class Home extends Component {
     $('html, body').animate({
       scrollTop: a,
     }, 'slow');
-
-
     return false;
   }
+
   openModal () {
     this.setState({isOpen: true})
   }
@@ -34,7 +33,7 @@ class Home extends Component {
         </Helmet>
         <LayoutHome home="active" mun17="" parl14="" pres14="" contact="" layoutShape="transparent-header" typoColor="light" />
         <section >
-          <div className="container-fluid" style={{ padding: 0 }} >
+          <div id='0' className="container-fluid" style={{ padding: 0 }} >
             <h2>Tunisia Election Data</h2>
             <div id="myCarousel" className="carousel slide" data-interval="false">
               <ol className="carousel-indicators">
@@ -45,7 +44,7 @@ class Home extends Component {
                 <li data-target="#myCarousel" data-slide-to="4"></li>
               </ol>
 
-              <div className="carousel-inner">
+              <div  className="carousel-inner">
 
                 <div style={{ maxHeight: '90vh' }} className="item active">
                   <img src="/img/tun.jpg" alt="TUNISIA ELECTION DATA" style={{ width: '100%'}} />
@@ -60,7 +59,7 @@ class Home extends Component {
 
                 <div style={{ maxHeight: '90vh' }} onClick={this.smooth.bind(this, '800vh')} className="item">
                   <img src="/img/home/mun.jpg" alt="ELECTION DATA" style={{ width: '100%' , opacity: '0.7' }} />
-                  <div className="carousel-caption carousel-text">
+                  <div  className="carousel-caption carousel-text">
                     <h3>MUNICIPAL DATA</h3>
                     {/* <p>Democracy without morality is impossible</p> */}
                   </div>

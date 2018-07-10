@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HighchartInit from '../../shared/HighchartInit';
+import HighchartInit from '../../HighchartInit';
 var _ = require('lodash');
 
 //import counterpart from 'counterpart' ;

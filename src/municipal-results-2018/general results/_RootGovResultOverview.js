@@ -15,6 +15,7 @@ export default class _RootGovResultOverview extends Component {
         this.state = { mun_name: '',activeButton: [true, false, false] }
     }
     componentWillMount() {
+        console.log('hhhhhhhhhhereeeee');
         let chosenGov = (this.props.location.pathname).substring(13);
         let RES=[]
         //get all the municipalities of a certain gov 

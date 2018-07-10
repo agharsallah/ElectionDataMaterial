@@ -65,10 +65,10 @@ class BoxFilter extends Component {
                             <VizBoxReact vizLink='/municipal-turnout18' title={MUN_TURNOUT} desc='' imgLink='./img/home/munturnout18.jpg' />
                         </div>
                         <div className="col-md-4 hover-box">
-                            <VizBoxReact vizLink='/lists-overview' title={PARTY_RES_MUN} desc='' imgLink='./img/home/partySheet.jpg' />
+                            <VizBoxReact vizLink='/party-sheet' title={PARTY_RES_MUN} desc='' imgLink='./img/home/partySheet.jpg' />
                         </div>
                         <div className="col-md-4 hover-box">
-                            <VizBoxReact vizLink='/lists-overview' title={MUN_RES_OVERVIEW} desc='' imgLink='./img/home/mun_res.jpg' />
+                            <VizBoxReact vizLink='/mun-results' title={MUN_RES_OVERVIEW} desc='' imgLink='./img/home/mun_res.jpg' />
                         </div>
                     </div>
 

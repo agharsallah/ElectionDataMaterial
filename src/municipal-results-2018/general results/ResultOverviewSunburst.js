@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HighchartInit from '../../shared/HighchartInit';
+import HighchartInit from '../../HighchartInit';
 import chroma from 'chroma-js';
 //import counterpart from 'counterpart' ;
 export default class ResultOverviewSunburst extends Component {

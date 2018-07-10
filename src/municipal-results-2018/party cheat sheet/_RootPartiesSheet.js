@@ -115,12 +115,7 @@ export default class _RootTadeem extends Component {
             </div>
           </div>
 
-
-
         </section>
-
-
-
 
       </div>
     );

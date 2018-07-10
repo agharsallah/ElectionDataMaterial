@@ -245,7 +245,7 @@ export default class PartyMap extends Component {
     if (e.target.value == 'all') {
       this.setState({ activeFilter: 'result' });
     } else {
-      this.setState({ munFilter: e.target.value, activeFilter: 'munTypeFilter', minFilter: 0, maxFilter: 60 });
+      this.setState({ munFilter: e.target.value, activeFilter: 'munTypeFilter', minFilter: 0, maxFilter: 100 });
     }
 
   }

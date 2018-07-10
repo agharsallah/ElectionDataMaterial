@@ -32,6 +32,8 @@ import DetailedRegGovRootLatest from './detailed-reg-latest/DetailedRegGovRootLa
 /* results2018 */
 import _RootMunTurnout from './municipal-results-2018/turnout/_RootMunTurnout' ;
 import _RootPartiesSheet from './municipal-results-2018/party cheat sheet/_RootPartiesSheet' ;
+import _RootMapCsoResultsOverview from './municipal-results-2018/general results/_RootMapCsoResultsOverview' ;
+import _RootGovResultOverview from './municipal-results-2018/general results/_RootGovResultOverview' ;
 /* Aaron Maps */
 import OneToOne from './Aaron/one-to-one/OneToOne' ;
 import FinalMap from './Aaron/one-to-one-direct-final/FinalMap' ;
@@ -60,8 +62,9 @@ const render = Component =>
       <Route  path="/reg-performance" component={RegTrackLineRoot}/>
       <Route  path="/municipal-turnout18" component={_RootMunTurnout}/>
       <Route  path="/party-sheet" component={_RootPartiesSheet}/>
-      {/* <Route  path="/mun-results" component={_RootMunTurnout}/> */}
-      
+      <Route  exact path="/mun-results" component={_RootMapCsoResultsOverview}/> 
+      <Route exact path="/mun-results/:gov" component={_RootGovResultOverview} />
+
       {/* Aaron routes */}
       <Route  path="/one-to-one" component={OneToOne}/>
       <Route  path="/final-map-direct" component={FinalMap}/>

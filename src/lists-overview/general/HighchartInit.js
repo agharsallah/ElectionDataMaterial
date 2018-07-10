@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-var Highcharts = require('highcharts');
 
 class HighchartInit extends Component {
     componentDidMount() {

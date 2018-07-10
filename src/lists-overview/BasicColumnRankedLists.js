@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-var Highcharts = require('highcharts');
 import HighchartInit from './HighchartInit';
 import counterpart from 'counterpart' ;
 

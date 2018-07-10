@@ -7,7 +7,6 @@ import MapKey from './MapKey';
 import axios from 'axios';
 import config from '../../config'
 import ReactLoading from 'react-loading';
-import SideMenu from '../cso/SideMenu';
 
 export default class SelectionMap extends Component {
   constructor(props) {
@@ -163,10 +162,6 @@ export default class SelectionMap extends Component {
               <MapKey colorSet={this.state.COLOR_SET} grades={this.state.GRADES} getColor={this.state.COLOR_FUNC} keyTitle={this.state.keyTitle} keySubtitle={mapKeySubtitle} />
             </Control>
 
-             <Control position="topright" >
-            <SideMenu getMapType={this.getMapType.bind(this)} />
-
-            </Control> 
           </Map>:
           <div>
             <div className="col-md-5"></div>

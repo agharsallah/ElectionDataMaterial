@@ -21,11 +21,14 @@ export default class _RootGovResultOverview extends Component {
         //get all the municipalities of a certain gov 
         var munsOfGov = _.filter(mun_to_gov, function (o) { return o.GOV_EN == chosenGov; });
         //munsOfGov contains all the municipalities of a certain governorate
-        console.log(munsOfGov);
+        console.log('munsOfGov',munsOfGov);
         //get results of specified municipalities from the result array
         for (let i = 0; i < munsOfGov.length; i++) {
             const MunNameAr = munsOfGov[i].NAME_AR;
             RES.push(_.filter(party_res, function (o) { return o.map_names_ar == MunNameAr; }))
+            //adding chairs at the end of the result array
+            //RES[i].push(munsOfGov[i].chairs)
+            //console.log('RES',i,RES[i]);
         }
 
         this.setState({ mun_name: chosenGov, partyResultsOfMun: RES });

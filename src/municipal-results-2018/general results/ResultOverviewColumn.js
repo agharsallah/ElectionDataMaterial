@@ -108,6 +108,7 @@ export default class ResultOverviewColumn extends Component {
                   key={i}
                   data={this.state.data[i]}
                   mun_name={object[0].mun_fr}
+                  mun_name_ar={object[0].map_names_ar}
                   turnout={((object[0].total_votes * 100) / object[0].total_inscrits).toFixed(2)}
                   blank={((object[0].votes_blancs * 100) / object[0].total_votes_valide).toFixed(2)}
                 />

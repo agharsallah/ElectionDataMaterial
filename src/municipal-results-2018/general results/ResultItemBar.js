@@ -46,7 +46,7 @@ export default class ResultItemBar extends Component {
                     <div style={{textAlign:'center'}} >
                     <div className='text-margin-top'><h4 style={{ display: 'inline' }} >{TURNOUT}:</h4>  <h4  className="subheaderTitle inline"> {this.props.turnout} %</h4></div>
                     <div className='text-margin-top' > <h4 style={{display:'inline'}}>{BLANK}:</h4><h4 className="subheaderTitle inline"> {this.props.blank} %</h4></div>
-                    <div className='text-margin-top' > <h4 style={{display:'inline'}}>{SEATS_NUMBER}:</h4><h4 className="subheaderTitle inline"> _</h4></div>
+                    <div className='text-margin-top' > <h4 style={{display:'inline'}}>{SEATS_NUMBER}:</h4><h4 className="subheaderTitle inline"> {this.props.chair}</h4></div>
                     </div>
                     <hr />
                     <h5 className="author"></h5>

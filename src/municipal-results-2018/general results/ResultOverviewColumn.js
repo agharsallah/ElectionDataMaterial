@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Translate from 'react-translate-component';
 import ResultItemBar from './ResultItemBar';
-import { SSL_OP_PKCS1_CHECK_1 } from 'constants';
 
 export default class ResultOverviewColumn extends Component {
 

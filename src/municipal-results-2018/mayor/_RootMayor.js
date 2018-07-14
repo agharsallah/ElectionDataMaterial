@@ -3,6 +3,7 @@ import Translate from 'react-translate-component';
 import Layout from '../../Layout';
 import MapControl from './MapControl';
 import MayorResultsMap from './MayorResultsMap';
+import MaleVsFemaleColumn from './MaleVsFemaleColumn';
 export default class _RootMayor extends Component {
     constructor(props) {
         super(props);
@@ -32,12 +33,12 @@ export default class _RootMayor extends Component {
                                         <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Map of Mayors distribution per gender </h4>
                                         :
                                         <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Map of Mayors distribution per list type </h4>
-
                                     }
                                     <MayorResultsMap filter={this.state.filter} />
                                 </div>
                                 <article className="col-md-5 card">
-                                    <h2>Other viz</h2>
+                                <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Number of Mayors per gender </h4>
+                                    <MaleVsFemaleColumn/>
                                 </article>
                             </div>
                         </div>

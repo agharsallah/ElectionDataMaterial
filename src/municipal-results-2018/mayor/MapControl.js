@@ -25,6 +25,7 @@ export default class MapControl extends Component {
                         label={PER_LIST}
                     />
                 </RadioButtonGroup>
+                <hr/>
             </div>
         );
     }

@@ -413,5 +413,9 @@ module.exports = {
         select:'Select map theme',
         perGender:'Per Gender',
         perList:'Per List Type',
+        titleMapGender:'Map of Mayors distribution per gender',
+        titleMapListType:'Map of Mayors distribution per list type',
+        titleColumnGender:'Number of Mayors per gender',
+        titleColumnType:'Number of Mayors per List type',
     }
 }

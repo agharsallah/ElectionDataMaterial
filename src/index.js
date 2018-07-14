@@ -34,6 +34,8 @@ import _RootMunTurnout from './municipal-results-2018/turnout/_RootMunTurnout' ;
 import _RootPartiesSheet from './municipal-results-2018/party cheat sheet/_RootPartiesSheet' ;
 import _RootMapCsoResultsOverview from './municipal-results-2018/general results/_RootMapCsoResultsOverview' ;
 import _RootGovResultOverview from './municipal-results-2018/general results/_RootGovResultOverview' ;
+import _RootMayor from './municipal-results-2018/mayor/_RootMayor' ;
+
 /* Aaron Maps */
 /* import OneToOne from './Aaron/one-to-one/OneToOne' ;
 import FinalMap from './Aaron/one-to-one-direct-final/FinalMap' ;
@@ -64,6 +66,7 @@ const render = Component =>
       <Route  path="/party-sheet" component={_RootPartiesSheet}/>
       <Route  exact path="/mun-results" component={_RootMapCsoResultsOverview}/> 
       <Route exact path="/mun-results/:gov" component={_RootGovResultOverview} />
+      <Route  path="/mayor18" component={_RootMayor}/>
 
       {/* Aaron routes */}
       {/* <Route  path="/one-to-one" component={OneToOne}/>

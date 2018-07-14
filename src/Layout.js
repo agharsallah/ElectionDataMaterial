@@ -16,15 +16,15 @@ class Layout extends Component {
     }
     componentDidMount() {
         $("#materialize-menu-alt").html('<ul class="menuzord-menu">' + $("#menu-list").html() + "</ul>");
-    
-    
+
+
         /* === materialize Mega Menu === */
         jQuery("#materialize-menu, #materialize-menu-alt").menuzord({
             indicatorFirstLevel: "<i class='fa fa-angle-down'></i>",
             indicatorSecondLevel: "<i class='fa fa-angle-right'></i>"
         });
     }
-    
+
 
     handleChange(event, index, value) {
         this.setState({ value })
@@ -54,6 +54,7 @@ class Layout extends Component {
         const MUN_TURNOUT = <Translate content='home.munTurnout' />//"Municipal election Turnout 2018"
         const PARTY_RES_MUN = <Translate content='home.partyResultsMunElection' />//"Political parties results"
         const MUN_RES_OVERVIEW = <Translate content='home.munResOverview' />//"Municipal results Overview"
+        const MAYOR_RESULTS = <Translate content='Mayor_results.title' />//"Mayors results"
 
         const electDataTitle1 = <Translate content='home.electDataTitle1' />//"Invalid Ballots"
         const electDataTitle2 = <Translate content='home.electDataTitle2' />//"Turnout"
@@ -88,6 +89,7 @@ class Layout extends Component {
 
                                 <li className={this.props.mun17}><a href='javascript:void(0)'>{sectionMunicipalData_b} </a>
                                     <ul className="dropdown">
+                                        <li><Link to='/mayor18'>{MAYOR_RESULTS}</Link></li>
                                         <li><Link to='/municipal-turnout18'>{MUN_TURNOUT}</Link></li>
                                         <li><Link to='/party-sheet'>{PARTY_RES_MUN}</Link></li>
                                         <li><Link to='/mun-results'>{MUN_RES_OVERVIEW}</Link></li>

@@ -118,7 +118,7 @@ export default class ResultOverviewColumn extends Component {
 
           : <h1>loading</h1>}
 
-        <div className='col-md-3 article'>
+          <div className='col-md-3 article'>
           <div className='blog-item' style={{ position: 'fixed' }} >
             <div className='text-margin-top '><h4 style={{ display: 'inline' }} >{NUMBER_OF_MUN}:</h4>  <h4 className="subheaderTitle inline"> {(this.state.data).length} </h4></div>
 

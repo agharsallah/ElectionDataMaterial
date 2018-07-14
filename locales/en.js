@@ -407,5 +407,11 @@ module.exports = {
         REGISTRATION: 'Registration',
         TOTALVOTES: 'Total Votes'
 
+    },
+    Mayor_results:{
+        title:'Mayors results',
+        select:'Select map theme',
+        perGender:'Per Gender',
+        perList:'Per List Type',
     }
 }

@@ -6,7 +6,7 @@ import config from '../../config'
 import Control from 'react-leaflet-control';
 import Translate from 'react-translate-component';
 
-export default class MayorResultsMap extends Component {
+export default class MayorPartyMap extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,24 +53,25 @@ export default class MayorResultsMap extends Component {
 
     }
     getColorGender(property, color) {
-        if (property == 'M') { return (color[1]); }
-        else if (property == 'F') { return (color[0]); }
+        if (property == 'Independent') { return (color[0]); }
+        else if (property == 'Political party') { return (color[1]); }
+        else if (property == 'Coalition') { return (color[2]); }
         else { return '#F2F2F0' }
     }
     style(feature) {
         const property = feature.properties;
         // if the radio button filter is per result paint the map selon a certain prop Sinon paint selon another property
-        if (this.props.filter == 'per gender') {
-            let PROPERTY = property.mayor_gender;
-            return {
-                fillColor: this.getColorGender(PROPERTY, ['#9023F1', '#9DE6D8']),
-                weight: 1.2,
-                opacity: 0.9,
-                color: 'grey',
-                dashArray: '1',
-                fillOpacity: 0.9
-            }
+        /*  if (this.props.filter == 'per gender') { */
+        let PROPERTY = property.list_type;
+        return {
+            fillColor: this.getColorGender(PROPERTY, ['#059BA5', '#FF9C3C', '#FFE396']),
+            weight: 1.2,
+            opacity: 0.9,
+            color: 'grey',
+            dashArray: '1',
+            fillOpacity: 0.9
         }
+        //}
     }
 
     styleGovLimiter(feature) {
@@ -112,9 +113,9 @@ export default class MayorResultsMap extends Component {
 
         const HOVER = <Translate type='text' content='map.hover' />//Hover Over the map for more info
         const LOADING = <Translate type='text' content='map.loading' />//Loading Map
-        let partyTooltipColor,genderTooltipColor;
-        this.state.listName=='Ennahdha'?partyTooltipColor='#147CA3': this.state.listName=='Nidaa Tounes'?partyTooltipColor='#E10000':'#262727'
-        this.state.mayorGender=='M'?genderTooltipColor='#9DE6D8': genderTooltipColor='#9023F1'
+        let partyTooltipColor, genderTooltipColor, listTypeTooltip;
+        this.state.listName == 'Ennahdha' ? partyTooltipColor = '#147CA3' : this.state.listName == 'Nidaa Tounes' ? partyTooltipColor = '#E10000' : partyTooltipColor = '#262727'
+        this.state.listType == 'Independent' ? listTypeTooltip = '#059BA5' : this.state.listType == 'Political party' ? listTypeTooltip = '#FF9C3C' : listTypeTooltip = '#FFE396'
         return (
             <div >
                 {this.state.shapeIsLoaded ? <Map maxZoom={9} center={[34.79, 9.8]} keyboard={false} scrollWheelZoom={false} zoom={7} minZoom={5} style={{ height: "95vh", width: "100%", position: "relative" }}>
@@ -124,7 +125,7 @@ export default class MayorResultsMap extends Component {
                     />
 
                     <GeoJSON
-                        key={this.props.filter}
+                        /* key={this.props.filter} */
                         data={this.state.shape_mun}
                         style={this.style.bind(this)}
                         onEachFeature={
@@ -137,14 +138,14 @@ export default class MayorResultsMap extends Component {
                         <Tooltip direction="bottom" className="leafletTooltip" sticky={true} >
                             <div>
                                 <h3 style={{ textAlign: 'center' }}>{this.state.nom}</h3>
-                                <h4>Mayor : {(this.state.mayorName)} - <span style={{color:genderTooltipColor}}> {this.state.mayorGender == 'M' ? 'Male' :this.state.mayorGender == 'F' ? 'Female':'none'}</span></h4>
-                               <h4>List Name :  <span style={{color:partyTooltipColor}}> {this.state.listName}</span> </h4>
-                                <h4>List Type :<span > {this.state.listType} </span> </h4>
+                                <h4>Mayor : {(this.state.mayorName)} - <span /* style={{color:genderTooltipColor}} */> {this.state.mayorGender == 'M' ? 'Male' : this.state.mayorGender == 'F' ? 'Female' : 'none'}</span></h4>
+                                <h4>List Name :  <span style={{ color: partyTooltipColor }}> {this.state.listName}</span> </h4>
+                                <h4>List Type :<span style={{ color: listTypeTooltip }} > {this.state.listType} </span> </h4>
                             </div>
                         </Tooltip>
                     </GeoJSON>
                     <GeoJSON
-                        key={'b'+this.props.filter}
+                        /* key={'b'+this.props.filter} */
                         data={this.state.shape_gov}
                         style={this.styleGovLimiter.bind(this)}
                     />
@@ -154,9 +155,12 @@ export default class MayorResultsMap extends Component {
                     <Control position="bottomright" >
                         <div>
                             <div className="info legend" style={{ marginTop: '18vh' }} >
-                                <i style={{ background: '#9023F1' }}  ></i>Female
+                                <i style={{ background: '#FF9C3C' }}  ></i>Party
                         <br />
-                                <i style={{ background: '#9DE6D8' }}  ></i>Male
+                                <i style={{ background: '#059BA5' }}  ></i>Independent
+                        <br />
+
+                                <i style={{ background: '#FFE396' }}  ></i>Coalition
                         </div>
                         </div>
                     </Control>

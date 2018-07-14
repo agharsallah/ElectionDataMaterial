@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Translate from 'react-translate-component';
 import Layout from '../../Layout';
 import MapControl from './MapControl';
-import MayorResultsMap from './MayorResultsMap';
+import MayorGenderMap from './MayorGenderMap';
+import MayorPartyMap from './MayorPartyMap';
 import MaleVsFemaleColumn from './MaleVsFemaleColumn';
+import ListTypeColumn from './ListTypeColumn';
 export default class _RootMayor extends Component {
     constructor(props) {
         super(props);
@@ -30,15 +32,30 @@ export default class _RootMayor extends Component {
                                 </article>
                                 <div className="col-md-5 card">
                                     {this.state.filter == 'per gender' ?
-                                        <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Map of Mayors distribution per gender </h4>
+                                        <div>
+                                            <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Map of Mayors distribution per gender </h4>
+                                            <MayorGenderMap />
+                                        </div>
                                         :
-                                        <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Map of Mayors distribution per list type </h4>
+                                        <div>
+                                            <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Map of Mayors distribution per list type </h4>
+                                            <MayorPartyMap />
+                                        </div>
                                     }
-                                    <MayorResultsMap filter={this.state.filter} />
                                 </div>
                                 <article className="col-md-5 card">
-                                <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Number of Mayors per gender </h4>
-                                    <MaleVsFemaleColumn/>
+                                    {this.state.filter == 'per gender' ?
+                                        <div>
+                                        <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Number of Mayors per gender </h4>
+                                        <MaleVsFemaleColumn />
+                                        </div>
+                                        :
+                                        <div>
+                                        <h4 className="subheaderTitle" style={{ textAlign: 'center' }} >Number of Mayors per List type </h4>
+                                        <ListTypeColumn />
+                                        </div>
+                                    }
+                                    
                                 </article>
                             </div>
                         </div>

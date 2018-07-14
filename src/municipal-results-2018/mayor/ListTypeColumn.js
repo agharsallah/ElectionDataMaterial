@@ -11,7 +11,7 @@ export default class MaleVsFemaleColumn extends Component {
                 chart: {
                     type: 'column'
                 },
-                credits:false,
+                credits: false,
                 title: {
                     text: ''
                 },
@@ -29,7 +29,7 @@ export default class MaleVsFemaleColumn extends Component {
                     headerFormat: '<b>{this.name}</b><br/>',
                     formatter: function () {
                         var pcnt = (this.y / 348) * 100;
-                        return  Highcharts.numberFormat(pcnt) + '%';
+                        return Highcharts.numberFormat(pcnt) + '%';
                     }
                 },
                 plotOptions: {
@@ -42,15 +42,19 @@ export default class MaleVsFemaleColumn extends Component {
                 },
 
                 series: [{
-                    name: 'Female',
-                    data: [66],
-                    color:'#9023F1'
+                    name: 'Coalition',
+                    data: [12],
+                    color: '#FFE396'
                 }, {
-                    name: 'Male',
-                    data: [282],
-                    color:'#9DE6D8'
+                    name: 'Independent',
+                    data: [121],
+                    color: '#059BA5'
+                }, {
+                    name: 'Party',
+                    data: [215],
+                    color: '#FF9C3C'
                 }]
-            }   
+            }
         }
 
         )

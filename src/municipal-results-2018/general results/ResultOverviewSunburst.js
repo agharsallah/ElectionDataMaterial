@@ -65,7 +65,6 @@ export default class ResultOverviewSunburst extends Component {
 
                 }],
                 tooltip: {
-                    headerFormat: "",
                     pointFormat: 'Party seats of <b>{point.name}</b> <b>{point.mun}</b> is <b>{point.value}</b>'
                 }
             }
